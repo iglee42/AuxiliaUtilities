@@ -1,0 +1,5 @@
+newmtl base
+map_Kd au:block/spikes/iron_spikes_base
+
+newmtl side
+map_Kd au:block/spikes/iron_spikes_side

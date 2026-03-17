@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "au:block/resonator_bottom",
+    "east": "au:block/resonator_side",
+    "north": "au:block/resonator_side",
+    "particle": "au:block/resonator_side",
+    "south": "au:block/resonator_side",
+    "up": "au:block/resonator_top",
+    "west": "au:block/resonator_side"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"SOLID",
+        "textures":[
+            "au:block/enchanted_metal_block_connected"
+        ],
+        "extra":{
+        	"ignore_states":true,
+        	"connect_inside":true
+        }
+    }
+}

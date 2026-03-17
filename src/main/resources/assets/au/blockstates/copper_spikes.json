@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "au:block/copper_spikes",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "au:block/copper_spikes",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "au:block/copper_spikes",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "au:block/copper_spikes",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "au:block/copper_spikes"
+    },
+    "facing=west": {
+      "model": "au:block/copper_spikes",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "au:block/solar_panel_bottom",
+    "east": "au:block/solar_panel_side",
+    "north": "au:block/solar_panel_side",
+    "particle": "au:block/solar_panel_side",
+    "south": "au:block/solar_panel_side",
+    "up": "au:block/solar_panel",
+    "west": "au:block/solar_panel_side"
+  }
+}

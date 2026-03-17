@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "au:block/creative_mill",
+    "east": "au:block/creative_mill_side",
+    "north": "au:block/creative_mill_side",
+    "particle": "au:block/creative_mill",
+    "south": "au:block/creative_mill_side",
+    "up": "au:block/creative_mill",
+    "west": "au:block/creative_mill_side"
+  }
+}

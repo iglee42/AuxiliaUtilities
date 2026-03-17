@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "au:block/analog_crafter_bottom",
+    "east": "au:block/analog_crafter_side",
+    "north": "au:block/analog_crafter_side",
+    "particle": "au:block/analog_crafter_side",
+    "south": "au:block/analog_crafter_side",
+    "up": "au:block/analog_crafter",
+    "west": "au:block/analog_crafter_side"
+  }
+}

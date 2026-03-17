@@ -1,0 +1,9 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "au:models/block/spike.obj",
+  "mtl_override": "au:models/block/copper_spikes.mtl",
+  "render_type": "minecraft:solid",
+  "shade_quads": true
+}

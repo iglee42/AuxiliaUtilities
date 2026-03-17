@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/furnace_top",
+    "east": "au:block/mechanical_side",
+    "north": "au:block/mechanical_side",
+    "particle": "au:block/mechanical_side",
+    "south": "au:block/mechanical_side",
+    "up": "au:block/mechanical_miner",
+    "west": "au:block/mechanical_side"
+  }
+}

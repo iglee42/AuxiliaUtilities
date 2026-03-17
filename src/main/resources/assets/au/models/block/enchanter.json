@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "au:block/machines/bottom",
+    "east": "au:block/machines/enchanter_side",
+    "north": "au:block/machines/enchanter_side",
+    "particle": "au:block/machines/enchanter_side",
+    "south": "au:block/machines/enchanter_side",
+    "up": "au:block/machines/enchanter_top",
+    "west": "au:block/machines/enchanter_side"
+  }
+}
