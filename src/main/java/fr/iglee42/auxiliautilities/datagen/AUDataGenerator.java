@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.datagen.providers.assets.AUItemModelsProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AULangProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.data.AUDamageTypeTagsProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.data.AUDataRegistriesProvider;
@@ -25,6 +26,7 @@ public class AUDataGenerator {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
 
         generator.addProvider(event.includeClient(), new AULangProvider(output));
+        generator.addProvider(event.includeClient(), new AUItemModelsProvider(output,fileHelper));
 
         event.createDatapackRegistryObjects(AUDataRegistriesProvider.build());
 

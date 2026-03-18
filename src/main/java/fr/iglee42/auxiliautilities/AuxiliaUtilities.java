@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities;
 
+import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
 import fr.iglee42.auxiliautilities.potions.AUPotions;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,7 @@ public class AuxiliaUtilities {
     public AuxiliaUtilities(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        AUItems.ITEMS.register(modEventBus);
         AUMobEffects.MOB_EFFECTS.register(modEventBus);
         AUPotions.POTIONS.register(modEventBus);
 

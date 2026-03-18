@@ -1,20 +1,29 @@
 package fr.iglee42.auxiliautilities.client;
 
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
+import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.components.ComponentRenderUtils;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
 
+@EventBusSubscriber(modid = AuxiliaUtilities.MODID, value = Dist.CLIENT)
 public class AUClient {
 
     public static void sendPlayerMessage(Player player, Component message, MessageSignature signature){
@@ -72,4 +81,12 @@ public class AUClient {
         }
     }
 
+
+    @SubscribeEvent
+    public static void modifyBackingResult(ModelEvent.ModifyBakingResult event){
+        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_BUILDERS_WAND.getId(), "inventory"),
+                (location,model)->new WandsModelWrapper(model,"builders"));
+        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_DESTRUCTION_WAND.getId(), "inventory"),
+                (location,model)->new WandsModelWrapper(model,"destruction"));
+    }
 }

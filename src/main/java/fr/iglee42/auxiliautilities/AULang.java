@@ -23,6 +23,11 @@ public enum AULang {
     GREEK_FIRE_EFFECT("effect","greek_fire","Greek Fire"),
     RELAPSE_EFFECT("effect","relapse","Relapse"),
 
+    BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
+    CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
+    DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),
+    CREATIVE_DESTRUCTION_WAND_ITEM("item","creative_destruction_wand","Creative Destruction Wand"),
+
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
     SECOND_CHANCE_ALREADY_USED_MESSAGE("message","second_chance_effect.already_used","Unfortunately we can't be lucky too many times !"),
