@@ -23,5 +23,9 @@ public class AULangProvider extends LanguageProvider {
             add("item.minecraft.lingering_potion.effect."+key,"Lingering Potion of "+value);
             add("item.minecraft.tipped_arrow.effect."+key,"Arrow of "+value);
         });
+
+        add("item.minecraft.potion.effect.oily","Oily Potion");
+        add("item.minecraft.splash_potion.effect.oily","Oily Splash Potion");
+        add("item.minecraft.lingering_potion.effect.oily","Oily Lingering Potion");
     }
 }

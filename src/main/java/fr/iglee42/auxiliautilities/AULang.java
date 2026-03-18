@@ -20,6 +20,8 @@ public enum AULang {
     GRAVITY_EFFECT("effect","gravity","Gravity"),
     SECOND_CHANCE_EFFECT("effect","second_chance","Second Chance"),
     PURGING_EFFECT("effect","purging","Purging"),
+    GREEK_FIRE_EFFECT("effect","greek_fire","Greek Fire"),
+    RELAPSE_EFFECT("effect","relapse","Relapse"),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),

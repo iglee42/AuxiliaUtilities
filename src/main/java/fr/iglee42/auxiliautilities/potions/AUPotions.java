@@ -25,6 +25,11 @@ public class AUPotions {
     public static final Holder<Potion> LONG_STRENGTH = POTIONS.register("long_gravity", ()->new Potion("gravity", new MobEffectInstance(AUMobEffects.GRAVITY, 9600)));
     public static final Holder<Potion> SECOND_CHANCE = register("second_chance",registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.SECOND_CHANCE, 2400)));
     public static final Holder<Potion> PURGING = register("purging", registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.PURGING, 1)));
+    public static final Holder<Potion> GREEK_FIRE = register("greek_fire", registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.GREEK_FIRE, 2400)));
+    public static final Holder<Potion> RELAPSE = register("relapse", registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.RELAPSE, 9600)));
+
+    public static final Holder<Potion> OILY = POTIONS.register("oily", ()-> new Potion());
+
 
 
     public static Holder<Potion> register(String name, Function<String,Potion> supplier){

@@ -16,4 +16,6 @@ public class AUMobEffects {
     public static final Holder<MobEffect> GRAVITY = MOB_EFFECTS.register("gravity", GravityEffect::new);
     public static final Holder<MobEffect> SECOND_CHANCE = MOB_EFFECTS.register("second_chance", SecondChanceEffect::new);
     public static final Holder<MobEffect> PURGING = MOB_EFFECTS.register("purging", PurgeEffect::new);
+    public static final Holder<MobEffect> GREEK_FIRE = MOB_EFFECTS.register("greek_fire", GreekFireEffect::new);
+    public static final Holder<MobEffect> RELAPSE = MOB_EFFECTS.register("relapse", RelapseMobEffect::new);
 }
