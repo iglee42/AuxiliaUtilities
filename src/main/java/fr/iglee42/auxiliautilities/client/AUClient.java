@@ -8,6 +8,7 @@ import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.components.ComponentRenderUtils;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,5 +90,18 @@ public class AUClient {
                 (location,model)->new WandsModelWrapper(model,"builders"));
         event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_DESTRUCTION_WAND.getId(), "inventory"),
                 (location,model)->new WandsModelWrapper(model,"destruction"));
+    }
+
+    @SubscribeEvent
+    public static void clientSetup(FMLClientSetupEvent event){
+        registerItemProperties();
+    }
+
+    private static void registerItemProperties() {
+        ItemProperties.register(
+                AUItems.ENDER_SHARD.asItem(),
+                AuxiliaUtilities.id("shards"),
+                (stack,level,entity,seed)-> (float) stack.getCount()
+        );
     }
 }

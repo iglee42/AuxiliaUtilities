@@ -72,13 +72,17 @@ repositories {
             includeGroup "fr.iglee42"
         }
     }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
 }
 
 dependencies {
 
     // compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     // compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    // runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     implementation "fr.iglee42:IgleeLib:${minecraft_version}-${lib_version}"
 

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "au:glass_cutter"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "au:ender_shard"
+  }
+}

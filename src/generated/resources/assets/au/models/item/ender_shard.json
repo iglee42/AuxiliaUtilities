@@ -1,0 +1,56 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "au:item/ender_shards/ender_shard_1",
+      "predicate": {
+        "au:shards": 1.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_2",
+      "predicate": {
+        "au:shards": 2.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_3",
+      "predicate": {
+        "au:shards": 3.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_4",
+      "predicate": {
+        "au:shards": 4.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_5",
+      "predicate": {
+        "au:shards": 5.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_6",
+      "predicate": {
+        "au:shards": 6.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_7",
+      "predicate": {
+        "au:shards": 7.0
+      }
+    },
+    {
+      "model": "au:item/ender_shards/ender_shard_8",
+      "predicate": {
+        "au:shards": 8.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "au:item/ender_shards/ender_shard_1"
+  }
+}

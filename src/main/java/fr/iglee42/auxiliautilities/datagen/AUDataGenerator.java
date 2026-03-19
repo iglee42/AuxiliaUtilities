@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.datagen.providers.assets.AUItemModelsProvider
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AULangProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.data.AUDamageTypeTagsProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.data.AUDataRegistriesProvider;
+import fr.iglee42.auxiliautilities.datagen.providers.data.AURecipesProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -30,6 +31,7 @@ public class AUDataGenerator {
 
         event.createDatapackRegistryObjects(AUDataRegistriesProvider.build());
 
+        generator.addProvider(event.includeServer(), new AURecipesProvider(output,registries));
         generator.addProvider(event.includeServer(), new AUDamageTypeTagsProvider(output,registries,fileHelper));
     }
 }
