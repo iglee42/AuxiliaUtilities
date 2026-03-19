@@ -33,4 +33,5 @@ public class AUItems {
 
     public static final DeferredItem<Item> ENDER_SHARD = ITEMS.register("ender_shard",()-> new Item(new Item.Properties().stacksTo(8)));
     public static final DeferredItem<Item> GLASS_CUTTER = ITEMS.register("glass_cutter",()-> new ItemGlassCutter(new Item.Properties().durability(250)));
+    public static final DeferredItem<Item> WATERING_CAN = ITEMS.register("watering_can",()-> new ItemWateringCan(new Item.Properties()));
 }

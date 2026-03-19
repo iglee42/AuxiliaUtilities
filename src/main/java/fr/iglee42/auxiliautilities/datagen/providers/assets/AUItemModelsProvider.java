@@ -23,6 +23,7 @@ public class AUItemModelsProvider extends ItemModelProvider {
         handheldTool(AUItems.DESTRUCTION_WAND);
         handheldTool(AUItems.CREATIVE_DESTRUCTION_WAND);
         handheldTool(AUItems.GLASS_CUTTER);
+        handheldTool(AUItems.WATERING_CAN);
 
         makeEnderShards();
     }

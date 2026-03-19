@@ -38,5 +38,14 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUItems.ENDER_SHARD))
                 .save(output, AuxiliaUtilities.id("ender_pearl_from_shards"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,AUItems.WATERING_CAN)
+                .pattern("S  ")
+                .pattern("SBS")
+                .pattern(" S ")
+                .define('B',Items.BOWL)
+                .define('S',Tags.Items.STONES)
+                .unlockedBy("has_item", has(Items.BOWL))
+                .save(output);
+
     }
 }

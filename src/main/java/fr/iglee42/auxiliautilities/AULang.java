@@ -29,6 +29,7 @@ public enum AULang {
     CREATIVE_DESTRUCTION_WAND_ITEM("item","creative_destruction_wand","Creative Destruction Wand"),
     ENDER_SHARD("item","ender_shard","Ender Shard"),
     GLASS_CUTTER("item","glass_cutter","Glass Cutter"),
+    WATERING_CAN("item","watering_can","Watering Can"),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
