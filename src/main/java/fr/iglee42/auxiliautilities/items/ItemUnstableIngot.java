@@ -30,7 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-public class ItemUnstableIngot extends Item{
+public class ItemUnstableIngot extends AUItem{
     public static final int TIMEOUT = 200;
     public static final ResourceKey<DamageType> UNSTABLE_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, AuxiliaUtilities.id("unstable"));

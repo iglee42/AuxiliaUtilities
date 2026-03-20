@@ -1,5 +1,7 @@
 package fr.iglee42.auxiliautilities;
 
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.items.AUCreativeTab;
 import fr.iglee42.auxiliautilities.items.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
@@ -17,10 +19,12 @@ public class AuxiliaUtilities {
     public AuxiliaUtilities(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        AUBlocks.BLOCKS.register(modEventBus);
         AUItems.ITEMS.register(modEventBus);
         AUDataComponents.DATA_COMPONENTS.register(modEventBus);
         AUMobEffects.MOB_EFFECTS.register(modEventBus);
         AUPotions.POTIONS.register(modEventBus);
+        AUCreativeTab.CREATIVE_TABS.register(modEventBus);
 
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

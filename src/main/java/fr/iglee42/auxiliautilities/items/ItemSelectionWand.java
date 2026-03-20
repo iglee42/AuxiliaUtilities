@@ -25,7 +25,7 @@ import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.*;
 
-public abstract class ItemSelectionWand extends Item {
+public abstract class ItemSelectionWand extends AUItem {
 
     public static final float offset = 0.5f;
 

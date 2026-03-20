@@ -1,4 +1,5 @@
 {
+  "block.au.angel_block": "Angel Block",
   "death.attack.doom": "%s met their doom",
   "death.attack.doom.item": "%s met their doom",
   "death.attack.doom.player": "%s met their doom whilst fighting %s",
@@ -58,6 +59,7 @@
   "item.minecraft.tipped_arrow.effect.purging": "Arrow of Purging",
   "item.minecraft.tipped_arrow.effect.relapse": "Arrow of Relapse",
   "item.minecraft.tipped_arrow.effect.second_chance": "Arrow of Second Chance",
+  "itemGroup.au": "Auxilia Utilities",
   "message.au.doom_effect": "The Specter of Death will arrive in %s seconds.",
   "message.au.second_chance_effect": "Second Chance !",
   "message.au.second_chance_effect.already_used": "Unfortunately we can't be lucky too many times !",

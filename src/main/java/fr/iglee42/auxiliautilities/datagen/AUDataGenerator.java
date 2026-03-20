@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.datagen.providers.assets.AUBlockStatesProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AUItemModelsProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AULangProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.data.*;
@@ -25,6 +26,7 @@ public class AUDataGenerator {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
 
         generator.addProvider(event.includeClient(), new AULangProvider(output));
+        generator.addProvider(event.includeClient(), new AUBlockStatesProvider(output,fileHelper));
         generator.addProvider(event.includeClient(), new AUItemModelsProvider(output,fileHelper));
 
         event.createDatapackRegistryObjects(AUDataRegistriesProvider.build());
@@ -32,7 +34,7 @@ public class AUDataGenerator {
         var blocksTagsProvider = new AUBlocksTagsProvider(output,registries,fileHelper);
         generator.addProvider(event.includeServer(), blocksTagsProvider);
         generator.addProvider(event.includeServer(),new AUItemTagsProvider(output,registries,blocksTagsProvider.contentsGetter()));
-
+        generator.addProvider(event.includeServer(), new AULootTablesProvider(output,registries));
         generator.addProvider(event.includeServer(), new AURecipesProvider(output,registries));
         generator.addProvider(event.includeServer(), new AUDamageTypeTagsProvider(output,registries,fileHelper));
     }

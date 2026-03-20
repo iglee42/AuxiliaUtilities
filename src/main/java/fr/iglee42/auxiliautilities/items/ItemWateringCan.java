@@ -24,10 +24,19 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.util.FakePlayer;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-public class ItemWateringCan extends Item {
+public class ItemWateringCan extends AUItem {
     public ItemWateringCan(Properties props) {
         super(props.durability(1000).component(DataComponents.DAMAGE,1000));
+    }
+
+    @Override
+    public void addToTab(Consumer<ItemStack> acceptor) {
+        super.addToTab(acceptor);
+        ItemStack stack = new ItemStack(this);
+        stack.setDamageValue(0);
+        acceptor.accept(stack);
     }
 
     @Override

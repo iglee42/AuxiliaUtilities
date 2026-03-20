@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +41,8 @@ public class AUItemModelsProvider extends ItemModelProvider {
         getBuilder(AUItems.STABLE_UNSTABLE_NUGGET.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_nugget"));
+
+        simpleBlockItem(AUBlocks.ANGEL_BLOCK.get());
 
         makeEnderShards();
     }

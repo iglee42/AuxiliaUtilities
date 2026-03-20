@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -79,5 +80,14 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(AUItems.STABLE_UNSTABLE_INGOT)
                 .unlockedBy("has_item", has(AUItems.STABLE_UNSTABLE_INGOT))
                 .save(output,AuxiliaUtilities.id("stable_unstable_nugget_from_ingot"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AUBlocks.ANGEL_BLOCK.get())
+                .pattern(" G ")
+                .pattern("WOW")
+                .define('G', Tags.Items.INGOTS_GOLD)
+                .define('W',Items.FEATHER)
+                .define('O', Tags.Items.OBSIDIANS_NORMAL)
+                .unlockedBy("has_item", has(Items.FEATHER))
+                .save(output);
     }
 }

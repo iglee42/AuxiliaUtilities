@@ -14,6 +14,8 @@ import java.util.UUID;
 
 public enum AULang {
 
+    TAB("itemGroup." + AuxiliaUtilities.MODID, "Auxilia Utilities"),
+
     DOOM_EFFECT("effect","doom","Doom"),
     FIZZY_LIFTING_EFFECT("effect","fizzy_lifting","Fizzy Lifting"),
     LOVE_EFFECT("effect","love","Love"),
@@ -22,6 +24,8 @@ public enum AULang {
     PURGING_EFFECT("effect","purging","Purging"),
     GREEK_FIRE_EFFECT("effect","greek_fire","Greek Fire"),
     RELAPSE_EFFECT("effect","relapse","Relapse"),
+
+    ANGEL_BLOCK("block","angel_block","Angel Block"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),

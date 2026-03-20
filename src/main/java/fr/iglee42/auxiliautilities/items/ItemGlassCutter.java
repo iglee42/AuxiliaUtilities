@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ItemGlassCutter extends Item {
+public class ItemGlassCutter extends AUItem {
     public ItemGlassCutter(Properties props) {
         super(props.component(DataComponents.TOOL, new Tool(
                 List.of(Tool.Rule.minesAndDrops(Tags.Blocks.GLASS_BLOCKS,4),Tool.Rule.minesAndDrops(Tags.Blocks.GLASS_PANES,4)),1,1
