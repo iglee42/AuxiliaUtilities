@@ -30,14 +30,29 @@ public enum AULang {
     ENDER_SHARD("item","ender_shard","Ender Shard"),
     GLASS_CUTTER("item","glass_cutter","Glass Cutter"),
     WATERING_CAN("item","watering_can","Watering Can"),
+    UNSTABLE_INGOT("item","unstable_ingot","Unstable Ingot"),
+    STABLE_UNSTABLE_INGOT("item","stable_unstable_ingot","Stable-\"Unstable Ingot\""),
+    STABLE_UNSTABLE_NUGGET("item","stable_unstable_nugget","Stable-\"Unstable Nugget\""),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
     SECOND_CHANCE_ALREADY_USED_MESSAGE("message","second_chance_effect.already_used","Unfortunately we can't be lucky too many times !"),
 
+    UNSTABLE_INGOT_TOOLTIP_0("tooltip","unstable_ingot.0","§cERROR : Divide by diamond"),
+    UNSTABLE_INGOT_TOOLTIP_1("tooltip","unstable_ingot.1","This ingot is highly unstable and will explode after 10 seconds."),
+    UNSTABLE_INGOT_TOOLTIP_2("tooltip","unstable_ingot.2","Will also explode if the crafting window is closed or the ingot is thrown on the ground."),
+    UNSTABLE_INGOT_TOOLTIP_3("tooltip","unstable_ingot.3","Additionally these ingots do not stack."),
+    UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","§l - Do not craft unless ready -"),
+    UNSTABLE_INGOT_TOOLTIP_5("tooltip","unstable_ingot.5","Must be crafted in a vanilla crafting table."),
+    UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
+
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
-    DOOM_DEATH_PLAYER("death.attack.doom.player","%s met their doom whilst fighting %s")
+    DOOM_DEATH_PLAYER("death.attack.doom.player","%s met their doom whilst fighting %s"),
+
+    UNSTABLE_DEATH("death.attack.unstable","%s suffered a fatal (java.lang.ArithmeticException : / by diamond)"),
+    UNSTABLE_DEATH_ITEM("death.attack.unstable.item","%s suffered a fatal (java.lang.ArithmeticException : / by diamond)"),
+    UNSTABLE_DEATH_PLAYER("death.attack.unstable.player","%s suffered a fatal (java.lang.ArithmeticException : / by diamond) whilst fighting %s")
     ;
 
     private final String key;

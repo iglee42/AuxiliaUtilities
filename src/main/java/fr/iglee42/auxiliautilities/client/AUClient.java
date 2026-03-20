@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.client;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
@@ -16,10 +17,12 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -95,6 +98,14 @@ public class AUClient {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event){
         registerItemProperties();
+    }
+
+    @SubscribeEvent
+    public static void registerColors(RegisterColorHandlersEvent.Item event){
+        event.register(
+                (stack,index)->stack.getItem() instanceof ItemUnstableIngot it ? it.getColor(stack,index): 0xFFFFFF,
+                AUItems.UNSTABLE_INGOT.get()
+        );
     }
 
     private static void registerItemProperties() {

@@ -3,9 +3,7 @@ package fr.iglee42.auxiliautilities.datagen;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AUItemModelsProvider;
 import fr.iglee42.auxiliautilities.datagen.providers.assets.AULangProvider;
-import fr.iglee42.auxiliautilities.datagen.providers.data.AUDamageTypeTagsProvider;
-import fr.iglee42.auxiliautilities.datagen.providers.data.AUDataRegistriesProvider;
-import fr.iglee42.auxiliautilities.datagen.providers.data.AURecipesProvider;
+import fr.iglee42.auxiliautilities.datagen.providers.data.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -30,6 +28,10 @@ public class AUDataGenerator {
         generator.addProvider(event.includeClient(), new AUItemModelsProvider(output,fileHelper));
 
         event.createDatapackRegistryObjects(AUDataRegistriesProvider.build());
+
+        var blocksTagsProvider = new AUBlocksTagsProvider(output,registries,fileHelper);
+        generator.addProvider(event.includeServer(), blocksTagsProvider);
+        generator.addProvider(event.includeServer(),new AUItemTagsProvider(output,registries,blocksTagsProvider.contentsGetter()));
 
         generator.addProvider(event.includeServer(), new AURecipesProvider(output,registries));
         generator.addProvider(event.includeServer(), new AUDamageTypeTagsProvider(output,registries,fileHelper));

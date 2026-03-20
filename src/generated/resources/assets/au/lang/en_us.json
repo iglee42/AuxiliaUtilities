@@ -2,6 +2,9 @@
   "death.attack.doom": "%s met their doom",
   "death.attack.doom.item": "%s met their doom",
   "death.attack.doom.player": "%s met their doom whilst fighting %s",
+  "death.attack.unstable": "%s suffered a fatal (java.lang.ArithmeticException : / by diamond)",
+  "death.attack.unstable.item": "%s suffered a fatal (java.lang.ArithmeticException : / by diamond)",
+  "death.attack.unstable.player": "%s suffered a fatal (java.lang.ArithmeticException : / by diamond) whilst fighting %s",
   "effect.au.doom": "Doom",
   "effect.au.fizzy_lifting": "Fizzy Lifting",
   "effect.au.gravity": "Gravity",
@@ -16,6 +19,9 @@
   "item.au.destruction_wand": "Destruction Wand",
   "item.au.ender_shard": "Ender Shard",
   "item.au.glass_cutter": "Glass Cutter",
+  "item.au.stable_unstable_ingot": "Stable-\"Unstable Ingot\"",
+  "item.au.stable_unstable_nugget": "Stable-\"Unstable Nugget\"",
+  "item.au.unstable_ingot": "Unstable Ingot",
   "item.au.watering_can": "Watering Can",
   "item.minecraft.lingering_potion.effect.doom": "Lingering Potion of Doom",
   "item.minecraft.lingering_potion.effect.fizzy_lifting": "Lingering Potion of Fizzy Lifting",
@@ -54,5 +60,12 @@
   "item.minecraft.tipped_arrow.effect.second_chance": "Arrow of Second Chance",
   "message.au.doom_effect": "The Specter of Death will arrive in %s seconds.",
   "message.au.second_chance_effect": "Second Chance !",
-  "message.au.second_chance_effect.already_used": "Unfortunately we can't be lucky too many times !"
+  "message.au.second_chance_effect.already_used": "Unfortunately we can't be lucky too many times !",
+  "tooltip.au.unstable_ingot.0": "§cERROR : Divide by diamond",
+  "tooltip.au.unstable_ingot.1": "This ingot is highly unstable and will explode after 10 seconds.",
+  "tooltip.au.unstable_ingot.2": "Will also explode if the crafting window is closed or the ingot is thrown on the ground.",
+  "tooltip.au.unstable_ingot.3": "Additionally these ingots do not stack.",
+  "tooltip.au.unstable_ingot.4": "§l - Do not craft unless ready -",
+  "tooltip.au.unstable_ingot.5": "Must be crafted in a vanilla crafting table.",
+  "tooltip.au.unstable_ingot.explosion": "Explosion in %s"
 }

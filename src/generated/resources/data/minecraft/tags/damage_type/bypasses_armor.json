@@ -3,6 +3,10 @@
     {
       "id": "au:doom",
       "required": false
+    },
+    {
+      "id": "au:unstable",
+      "required": false
     }
   ]
 }

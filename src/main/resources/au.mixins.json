@@ -4,6 +4,8 @@
   "package": "fr.iglee42.auxiliautilities.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CraftingMenuMixin",
+    "ShapedRecipeMixin"
   ],
   "client": [
   ],
@@ -12,5 +14,8 @@
   },
   "overwrites": {
     "requireAnnotations": true
+  },
+  "mixinextras": {
+    "minVersion": "0.5.0"
   }
 }

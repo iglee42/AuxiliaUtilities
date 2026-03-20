@@ -25,6 +25,22 @@ public class AUItemModelsProvider extends ItemModelProvider {
         handheldTool(AUItems.GLASS_CUTTER);
         handheldTool(AUItems.WATERING_CAN);
 
+        getBuilder(AUItems.UNSTABLE_INGOT.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_ingot"))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_ingot_inner"))
+                .renderType("translucent");
+
+        getBuilder(AUItems.STABLE_UNSTABLE_INGOT.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_ingot"))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_ingot_inner"))
+                .renderType("translucent");
+
+        getBuilder(AUItems.STABLE_UNSTABLE_NUGGET.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_nugget"));
+
         makeEnderShards();
     }
 
