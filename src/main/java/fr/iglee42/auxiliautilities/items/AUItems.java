@@ -37,4 +37,5 @@ public class AUItems {
     public static final DeferredItem<Item> UNSTABLE_INGOT = ITEMS.register("unstable_ingot",()-> new ItemUnstableIngot(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> STABLE_UNSTABLE_INGOT = ITEMS.register("stable_unstable_ingot",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> STABLE_UNSTABLE_NUGGET = ITEMS.register("stable_unstable_nugget",()-> new AUItem(new Item.Properties()));
+    public static final DeferredItem<Item> SUN_CRYSTAL = ITEMS.register("sun_crystal",()-> new ItemSunCrystal(new Item.Properties()));
 }

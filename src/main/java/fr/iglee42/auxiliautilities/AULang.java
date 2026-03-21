@@ -37,6 +37,8 @@ public enum AULang {
     UNSTABLE_INGOT("item","unstable_ingot","Unstable Ingot"),
     STABLE_UNSTABLE_INGOT("item","stable_unstable_ingot","Stable-\"Unstable Ingot\""),
     STABLE_UNSTABLE_NUGGET("item","stable_unstable_nugget","Stable-\"Unstable Nugget\""),
+    SUN_CRYSTAL("item","sun_crystal","Sun Crystal"),
+    SUN_CRYSTAL_EMPTY("item","sun_crystal.empty","Sun Crystal (Empty)"),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),

@@ -7,12 +7,16 @@ import java.util.function.Consumer;
 
 public interface AUItemBase {
 
-    private Item self(){
+    default Item self(){
         return (Item) this;
     }
 
     default void addToTab(Consumer<ItemStack> acceptor){
         acceptor.accept(new ItemStack(self()));
+    }
+
+    default int getColor(ItemStack stack, int tintIndex){
+        return 0xFFFFFFFF;
     }
 
 }

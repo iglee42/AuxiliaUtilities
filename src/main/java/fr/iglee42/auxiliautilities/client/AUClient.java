@@ -1,7 +1,10 @@
 package fr.iglee42.auxiliautilities.client;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
+import fr.iglee42.auxiliautilities.items.AUItem;
+import fr.iglee42.auxiliautilities.items.AUItemBase;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
 import net.minecraft.client.GuiMessage;
@@ -23,6 +26,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -93,6 +97,8 @@ public class AUClient {
                 (location,model)->new WandsModelWrapper(model,"builders"));
         event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_DESTRUCTION_WAND.getId(), "inventory"),
                 (location,model)->new WandsModelWrapper(model,"destruction"));
+        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.SUN_CRYSTAL.getId(), "inventory"),
+                (location, model) -> new SunCrystalModelWrapper(model));
     }
 
     @SubscribeEvent
@@ -102,10 +108,12 @@ public class AUClient {
 
     @SubscribeEvent
     public static void registerColors(RegisterColorHandlersEvent.Item event){
-        event.register(
-                (stack,index)->stack.getItem() instanceof ItemUnstableIngot it ? it.getColor(stack,index): 0xFFFFFF,
-                AUItems.UNSTABLE_INGOT.get()
-        );
+        AUItems.ITEMS.getEntries().stream()
+                .map(DeferredHolder::get)
+                .filter(AUItemBase.class::isInstance)
+                .map(AUItemBase.class::cast)
+                .forEach(i->
+                    event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));
     }
 
     private static void registerItemProperties() {

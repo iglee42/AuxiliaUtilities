@@ -44,6 +44,13 @@ public class AUItemModelsProvider extends ItemModelProvider {
 
         simpleBlockItem(AUBlocks.ANGEL_BLOCK.get());
 
+        getBuilder(AUItems.SUN_CRYSTAL.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/sun_crystal"))
+                .texture("layer1", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/sun_crystal_inner"))
+                .renderType("translucent");
+
+
         makeEnderShards();
     }
 

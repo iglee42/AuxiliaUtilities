@@ -89,5 +89,14 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('O', Tags.Items.OBSIDIANS_NORMAL)
                 .unlockedBy("has_item", has(Items.FEATHER))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUItems.SUN_CRYSTAL.get())
+                .requires(Tags.Items.GEMS_DIAMOND)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
+                .save(output);
+
     }
 }
