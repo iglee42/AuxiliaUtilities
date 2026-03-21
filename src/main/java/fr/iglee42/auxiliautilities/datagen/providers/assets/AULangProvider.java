@@ -3,7 +3,9 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.potions.AUPotions;
+import fr.iglee42.igleelib.api.utils.ModsUtils;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.DyeColor;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class AULangProvider extends LanguageProvider {
@@ -27,5 +29,9 @@ public class AULangProvider extends LanguageProvider {
         add("item.minecraft.potion.effect.oily","Oily Potion");
         add("item.minecraft.splash_potion.effect.oily","Oily Splash Potion");
         add("item.minecraft.lingering_potion.effect.oily","Oily Lingering Potion");
+
+        for (DyeColor color : DyeColor.values()) {
+            add(AULang.LUX_SABER.getKey() + "."+color.getSerializedName(), ModsUtils.getUpperName(color.getSerializedName(),"_") + " Lux Saber");
+        }
     }
 }

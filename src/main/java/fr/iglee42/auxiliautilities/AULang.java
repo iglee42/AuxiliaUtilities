@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.client.AUClient;
 import fr.iglee42.auxiliautilities.network.SendChatMessagePacket;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -39,6 +40,7 @@ public enum AULang {
     STABLE_UNSTABLE_NUGGET("item","stable_unstable_nugget","Stable-\"Unstable Nugget\""),
     SUN_CRYSTAL("item","sun_crystal","Sun Crystal"),
     SUN_CRYSTAL_EMPTY("item","sun_crystal.empty","Sun Crystal (Empty)"),
+    LUX_SABER("item","lux_saber","Lux Saber"),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
@@ -51,6 +53,7 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","§l - Do not craft unless ready -"),
     UNSTABLE_INGOT_TOOLTIP_5("tooltip","unstable_ingot.5","Must be crafted in a vanilla crafting table."),
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
+    STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
@@ -82,11 +85,11 @@ public enum AULang {
         return key;
     }
 
-    public Component get(){
+    public MutableComponent get(){
         return Component.translatable(this.key);
     }
 
-    public Component get(Object... args){
+    public MutableComponent get(Object... args){
         return Component.translatable(this.key,args);
     }
 

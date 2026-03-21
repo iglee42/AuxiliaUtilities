@@ -51,6 +51,8 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .renderType("translucent");
 
 
+
+
         makeEnderShards();
     }
 

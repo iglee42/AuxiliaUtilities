@@ -16,9 +16,13 @@ public class ItemSunCrystal extends AUItem{
     @Override
     public void addToTab(Consumer<ItemStack> acceptor) {
         super.addToTab(acceptor);
-        ItemStack stack = new ItemStack(this);
+        acceptor.accept(getFullStack());
+    }
+
+    public static ItemStack getFullStack() {
+        ItemStack stack = new ItemStack(AUItems.SUN_CRYSTAL.get());
         stack.setDamageValue(0);
-        acceptor.accept(stack);
+        return stack;
     }
 
     @Override

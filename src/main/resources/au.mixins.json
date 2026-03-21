@@ -8,6 +8,7 @@
     "ShapedRecipeMixin"
   ],
   "client": [
+    "BlockElementMixin"
   ],
   "injectors": {
     "defaultRequire": 1

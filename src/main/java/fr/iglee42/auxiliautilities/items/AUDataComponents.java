@@ -14,4 +14,5 @@ public class AUDataComponents {
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Long>> TIME = DATA_COMPONENTS.register("time", ()-> DataComponentType.<Long>builder().persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> DIMENSION = DATA_COMPONENTS.register("dimension", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> CONTAINER_ID = DATA_COMPONENTS.register("container_id", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> STORED_ENERGY = DATA_COMPONENTS.register("stored_energy", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 }

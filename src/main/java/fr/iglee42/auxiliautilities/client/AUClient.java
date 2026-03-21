@@ -3,10 +3,7 @@ package fr.iglee42.auxiliautilities.client;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
-import fr.iglee42.auxiliautilities.items.AUItem;
-import fr.iglee42.auxiliautilities.items.AUItemBase;
-import fr.iglee42.auxiliautilities.items.AUItems;
-import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
+import fr.iglee42.auxiliautilities.items.*;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
@@ -121,6 +118,11 @@ public class AUClient {
                 AUItems.ENDER_SHARD.asItem(),
                 AuxiliaUtilities.id("shards"),
                 (stack,level,entity,seed)-> (float) stack.getCount()
+        );
+        ItemProperties.register(
+                AUItems.LUX_SABER.asItem(),
+                AuxiliaUtilities.id("charged"),
+                (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ItemLuxSaber.ENERGY_THRESHOLD ? 1f : 0f
         );
     }
 }

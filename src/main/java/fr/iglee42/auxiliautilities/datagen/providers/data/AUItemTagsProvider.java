@@ -25,5 +25,11 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.INGOTS).addTag(AUTags.Items.UNSTABLE_INGOTS);
 
         tag(ItemTags.DURABILITY_ENCHANTABLE).add(AUItems.GLASS_CUTTER.asItem());
+        tag(ItemTags.BREAKS_DECORATED_POTS).add(AUItems.GLASS_CUTTER.asItem());
+
+        tag(ItemTags.SWORDS).add(AUItems.LUX_SABER.asItem());
+        tag(Tags.Items.MELEE_WEAPON_TOOLS).add(AUItems.LUX_SABER.asItem());
+        tag(ItemTags.FIRE_ASPECT_ENCHANTABLE).remove(AUItems.LUX_SABER.asItem());
+        tag(ItemTags.DURABILITY_ENCHANTABLE).remove(AUItems.LUX_SABER.asItem());
     }
 }

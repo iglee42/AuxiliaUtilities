@@ -1,9 +1,15 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class AUItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems("au");
 
@@ -38,4 +44,10 @@ public class AUItems {
     public static final DeferredItem<Item> STABLE_UNSTABLE_INGOT = ITEMS.register("stable_unstable_ingot",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> STABLE_UNSTABLE_NUGGET = ITEMS.register("stable_unstable_nugget",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> SUN_CRYSTAL = ITEMS.register("sun_crystal",()-> new ItemSunCrystal(new Item.Properties()));
+    public static final DeferredItem<Item> LUX_SABER = ITEMS.register("lux_saber",()-> new ItemLuxSaber(new Item.Properties()));
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event){
+        event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),LUX_SABER.get());
+    }
 }

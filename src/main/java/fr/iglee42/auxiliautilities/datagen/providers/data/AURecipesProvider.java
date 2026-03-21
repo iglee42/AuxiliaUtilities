@@ -3,11 +3,20 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
+import fr.iglee42.auxiliautilities.items.ItemSunCrystal;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.StainedGlassBlock;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -97,6 +106,19 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(Tags.Items.DUSTS_GLOWSTONE)
                 .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
                 .save(output);
+
+        for (DyeColor color : DyeColor.values()){
+            ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemLuxSaber.getStack(color,false))
+                    .pattern("DGD")
+                    .pattern("DCD")
+                    .pattern("DRD")
+                    .define('D',Tags.Items.INGOTS_IRON)
+                    .define('C', DataComponentIngredient.of(true, DataComponents.DAMAGE,0,AUItems.SUN_CRYSTAL.get()))
+                    .define('G', BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getName() + "_stained_glass")))
+                    .define('R',Tags.Items.DUSTS_REDSTONE)
+                    .unlockedBy("has_item", has(AUItems.SUN_CRYSTAL.get()))
+                    .save(output, AuxiliaUtilities.id("lux_saber_" + color.getName()));
+        }
 
     }
 }

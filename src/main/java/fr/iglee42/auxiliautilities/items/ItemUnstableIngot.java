@@ -218,7 +218,7 @@ public class ItemUnstableIngot extends AUItem{
                 long time = stack.get(AUDataComponents.TIME);
                 float remaining = (float) ((time + TIMEOUT) - context.level().getGameTime()) / 20;
                 if (remaining > 0)
-                    tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_EXPLOSION.get(NumberFormat.getInstance(Locale.UK).format(remaining)).copy().withStyle(
+                    tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_EXPLOSION.get(NumberFormat.getInstance(Locale.UK).format(remaining)).withStyle(
                             style -> style.withColor(getColor(stack,0))
                     ));
             } else {
