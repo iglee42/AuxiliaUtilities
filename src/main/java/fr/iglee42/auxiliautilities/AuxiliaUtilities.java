@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities;
 
+import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUCreativeTab;
 import fr.iglee42.auxiliautilities.items.AUDataComponents;
@@ -21,6 +22,7 @@ public class AuxiliaUtilities {
 
         AUBlocks.BLOCKS.register(modEventBus);
         AUItems.ITEMS.register(modEventBus);
+        AUBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         AUDataComponents.DATA_COMPONENTS.register(modEventBus);
         AUMobEffects.MOB_EFFECTS.register(modEventBus);
         AUPotions.POTIONS.register(modEventBus);

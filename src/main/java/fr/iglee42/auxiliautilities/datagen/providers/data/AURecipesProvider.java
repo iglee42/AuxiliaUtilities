@@ -185,6 +185,15 @@ public class AURecipesProvider extends RecipeProvider {
                 RecipeCategory.TOOLS,
                 AUItems.NETHERITE_SICKLE.get()
         ).unlocks("has_item", has(Items.NETHERITE_INGOT)).save(output,AuxiliaUtilities.id("netherite_sickle_smithing"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.MANUAL_MILL)
+                .pattern(" G ")
+                .pattern("SCS")
+                .define('G',AUItems.REDSTONE_GEAR)
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .define('S',Tags.Items.STONES)
+                .unlockedBy("has_item", has(AUItems.REDSTONE_GEAR.get()))
+                .save(output);
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){

@@ -31,6 +31,9 @@ public enum AULang {
     ENCHANTED_BLOCK("block","enchanted_block","Enchanted Block"),
     EVIL_INFUSED_IRON_BLOCK("block","evil_infused_iron_block","Evil Infused Iron Block"),
 
+    MANUAL_MILL("block","manual_mill","Manual Mill"),
+    CREATIVE_MILL("block","creative_mill","Creative Mill"),
+
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
     DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),
@@ -77,6 +80,11 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
+
+    GP_TOOLTIP("tooltip","gp","Grid Power : %s / %s"),
+    BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),
+    BLOCK_GENERATE_GP("tooltip","block_generate_gp","Power Generating : %s GP"),
+    BLOCK_DRAIN_GP("tooltip","block_drain_gp","Power Drain : %s GP"),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),

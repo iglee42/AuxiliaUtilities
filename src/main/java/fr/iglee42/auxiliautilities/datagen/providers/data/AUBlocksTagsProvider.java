@@ -41,5 +41,6 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
             tag(BlockTags.SLABS).add(set.getSlab().get());
             tag(BlockTags.WALLS).add(set.getWall().get());
         }
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.MANUAL_MILL.get(),AUBlocks.CREATIVE_MILL.get());
     }
 }

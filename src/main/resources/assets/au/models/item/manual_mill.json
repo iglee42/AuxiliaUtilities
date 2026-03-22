@@ -1,0 +1,12 @@
+{
+  "loader": "neoforge:composite",
+  "parent": "block/block",
+  "children": {
+    "base": {
+      "parent": "au:block/manual_mill_base"
+    },
+    "gear": {
+      "parent": "au:block/manual_mill_gear"
+    }
+  }
+}

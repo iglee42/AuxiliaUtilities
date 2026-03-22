@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BlockAngel extends Block {
+public class BlockAngel extends Block implements AUBlockBase{
     public BlockAngel(BlockBehaviour.Properties props) {
         super(props);
     }

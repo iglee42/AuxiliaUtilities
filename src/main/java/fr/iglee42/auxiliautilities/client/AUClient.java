@@ -1,8 +1,10 @@
 package fr.iglee42.auxiliautilities.client;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
+import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
 import fr.iglee42.auxiliautilities.items.*;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
@@ -21,8 +23,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,6 +118,11 @@ public class AUClient {
                     event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));
     }
 
+    @SubscribeEvent
+    public static void registerAdditionalModels(ModelEvent.RegisterAdditional event){
+        event.register(ManualMillRenderer.GEAR_MODEL);
+    }
+
     private static void registerItemProperties() {
         ItemProperties.register(
                 AUItems.ENDER_SHARD.asItem(),
@@ -124,5 +134,15 @@ public class AUClient {
                 AuxiliaUtilities.id("charged"),
                 (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ItemLuxSaber.ENERGY_THRESHOLD ? 1f : 0f
         );
+    }
+
+    @SubscribeEvent
+    public static void registerHUD(RegisterGuiLayersEvent event){
+        event.registerAbove(VanillaGuiLayers.HOTBAR,AuxiliaUtilities.id("gp_informations"),ClientGPManager.HUD);
+    }
+
+    @SubscribeEvent
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
+        event.registerBlockEntityRenderer(AUBlockEntityTypes.MANUAL_MILL.get(), ManualMillRenderer::new);
     }
 }

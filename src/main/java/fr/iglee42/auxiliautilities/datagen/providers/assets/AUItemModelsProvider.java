@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -84,6 +85,9 @@ public class AUItemModelsProvider extends ItemModelProvider {
                     .parent(new ModelFile.ExistingModelFile(mcLoc("block/wall_inventory"),existingFileHelper))
                     .texture("wall", AuxiliaUtilities.id("block/"+set.getName()));
         }
+
+        simpleBlockItem(AUBlocks.CREATIVE_MILL.get());
+
     }
 
     private void handheldTool(DeferredItem<? extends Item> item){

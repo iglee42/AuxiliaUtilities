@@ -1,14 +1,22 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.client.ClientGPManager;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class AUItems {
@@ -49,7 +57,7 @@ public class AUItems {
     public static final DeferredItem<Item> STABLE_UNSTABLE_INGOT = ITEMS.register("stable_unstable_ingot",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> STABLE_UNSTABLE_NUGGET = ITEMS.register("stable_unstable_nugget",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> SUN_CRYSTAL = ITEMS.register("sun_crystal",()-> new ItemSunCrystal(new Item.Properties()));
-    public static final DeferredItem<Item> RESONATING_REDSTONE_CRYSTAL = ITEMS.register("resonating_redstone_crystal",()-> new AUItem(new Item.Properties()));
+    public static final DeferredItem<Item> RESONATING_REDSTONE_CRYSTAL = ITEMS.register("resonating_redstone_crystal",()-> new ItemResonatingRedstoneCrystal(new Item.Properties()));
     public static final DeferredItem<Item> REDSTONE_GEAR = ITEMS.register("redstone_gear",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> EYE_OF_REDSTONE = ITEMS.register("eye_of_redstone",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> LUNAR_REACTIVE_DUST = ITEMS.register("lunar_reactive_dust",()-> new AUItem(new Item.Properties()));
