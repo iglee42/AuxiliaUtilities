@@ -2,6 +2,18 @@
   "values": [
     "au:demon_block",
     "au:enchanted_block",
-    "au:evil_infused_iron_block"
+    "au:evil_infused_iron_block",
+    "au:stoneburnt",
+    "au:stoneburnt_stairs",
+    "au:stoneburnt_slab",
+    "au:stoneburnt_wall",
+    "au:quartzburnt",
+    "au:quartzburnt_stairs",
+    "au:quartzburnt_slab",
+    "au:quartzburnt_wall",
+    "au:rainbow_stone",
+    "au:rainbow_stone_stairs",
+    "au:rainbow_stone_slab",
+    "au:rainbow_stone_wall"
   ]
 }

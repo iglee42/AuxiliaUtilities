@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "au:block/quartzburnt_slab"
+    },
+    "type=double": {
+      "model": "au:block/quartzburnt"
+    },
+    "type=top": {
+      "model": "au:block/quartzburnt_slab_top"
+    }
+  }
+}

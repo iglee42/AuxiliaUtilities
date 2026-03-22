@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,5 +34,12 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_STONE_TOOL).add(AUBlocks.DEMON_BLOCK.get(),AUBlocks.ENCHANTED_BLOCK.get(),AUBlocks.EVIL_INFUSED_IRON_BLOCK.get());
         tag(BlockTags.BEACON_BASE_BLOCKS).add(AUBlocks.DEMON_BLOCK.get(),AUBlocks.ENCHANTED_BLOCK.get(),AUBlocks.EVIL_INFUSED_IRON_BLOCK.get());
 
+        for (DecorativeBlockSet set : DecorativeBlockSet.ALL_SETS){
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(set.getBlock().get(),set.getStairs().get(),set.getSlab().get(),set.getWall().get());
+            tag(BlockTags.NEEDS_STONE_TOOL).add(set.getBlock().get(),set.getStairs().get(),set.getSlab().get(),set.getWall().get());
+            tag(BlockTags.STAIRS).add(set.getStairs().get());
+            tag(BlockTags.SLABS).add(set.getSlab().get());
+            tag(BlockTags.WALLS).add(set.getWall().get());
+        }
     }
 }

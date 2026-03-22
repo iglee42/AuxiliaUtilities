@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "au:block/rainbow_stone",
+    "side": "au:block/rainbow_stone",
+    "top": "au:block/rainbow_stone"
+  }
+}

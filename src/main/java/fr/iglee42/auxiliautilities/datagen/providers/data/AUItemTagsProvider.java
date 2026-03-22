@@ -1,12 +1,14 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemSickle;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -61,5 +63,11 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         }
 
         tag(Tags.Items.TOOLS).addTag(AUTags.Items.SICKLES);
+
+        for (DecorativeBlockSet set : DecorativeBlockSet.ALL_SETS){
+            tag(ItemTags.STAIRS).add(set.getStairs().asItem());
+            tag(ItemTags.SLABS).add(set.getSlab().asItem());
+            tag(ItemTags.WALLS).add(set.getWall().asItem());
+        }
     }
 }

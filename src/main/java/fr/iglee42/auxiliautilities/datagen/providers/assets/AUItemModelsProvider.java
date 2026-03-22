@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -74,6 +75,15 @@ public class AUItemModelsProvider extends ItemModelProvider {
         handheldTool(AUItems.GOLDEN_SICKLE);
         handheldTool(AUItems.DIAMOND_SICKLE);
         handheldTool(AUItems.NETHERITE_SICKLE);
+
+        for (DecorativeBlockSet set : DecorativeBlockSet.ALL_SETS){
+            simpleBlockItem(set.getBlock().get());
+            simpleBlockItem(set.getStairs().get());
+            simpleBlockItem(set.getSlab().get());
+            getBuilder(set.getWall().getId().toString())
+                    .parent(new ModelFile.ExistingModelFile(mcLoc("block/wall_inventory"),existingFileHelper))
+                    .texture("wall", AuxiliaUtilities.id("block/"+set.getName()));
+        }
     }
 
     private void handheldTool(DeferredItem<? extends Item> item){

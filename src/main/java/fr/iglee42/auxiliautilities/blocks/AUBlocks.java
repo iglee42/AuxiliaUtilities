@@ -24,17 +24,24 @@ public class AUBlocks {
     public static final DeferredBlock<Block> ENCHANTED_BLOCK = createBlock("enchanted_block",()-> new Block(BlockBehaviour.Properties.of().instabreak()));
     public static final DeferredBlock<Block> EVIL_INFUSED_IRON_BLOCK = createBlock("evil_infused_iron_block",()-> new Block(BlockBehaviour.Properties.of().instabreak()));
 
-    private static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
+    //public static final DecorativeBlockSet BORDER_STONE = new DecorativeBlockSet("border_stone");
+    //public static final DecorativeBlockSet CROSSED_STONE = new DecorativeBlockSet("crossed_stone");
+    //public static final DecorativeBlockSet POLISHED_STONE = new DecorativeBlockSet("polished_stone");
+    public static final DecorativeBlockSet STONEBURNT = new DecorativeBlockSet("stoneburnt");
+    public static final DecorativeBlockSet QUARTZBURNT = new DecorativeBlockSet("quartzburnt");
+    public static final DecorativeBlockSet RAINBOW_STONE = new DecorativeBlockSet("rainbow_stone");
+
+    protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);
     }
 
-    private static <T extends Block> DeferredBlock<T> createBlock(String name, Supplier<T> supplier){
+    protected static <T extends Block> DeferredBlock<T> createBlock(String name, Supplier<T> supplier){
         DeferredBlock<T> block = createBlockWithoutItem(name, supplier);
         AUItems.ITEMS.register(name,()->new AUBlockItem(block.get(),new Item.Properties()));
         return block;
     }
 
-    private static <T extends Block> DeferredBlock<T> createBlockWithCustomItem(String name, Supplier<T> supplier, Function<T, ? extends Item> itemFactory){
+    protected static <T extends Block> DeferredBlock<T> createBlockWithCustomItem(String name, Supplier<T> supplier, Function<T, ? extends Item> itemFactory){
         DeferredBlock<T> block = createBlockWithoutItem(name, supplier);
         AUItems.ITEMS.register(name,()->itemFactory.apply(block.get()));
         return block;
