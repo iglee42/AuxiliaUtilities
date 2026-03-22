@@ -11,13 +11,13 @@
       "strict": true
     },
     "D": {
-      "tag": "c:ingots/iron"
+      "tag": "c:ingots/evil_infused_iron"
     },
     "G": {
       "item": "minecraft:light_blue_stained_glass"
     },
     "R": {
-      "tag": "c:dusts/redstone"
+      "item": "au:resonating_redstone_crystal"
     }
   },
   "pattern": [

@@ -14,5 +14,8 @@ public class AUBlockStatesProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(AUBlocks.ANGEL_BLOCK.get());
+        simpleBlock(AUBlocks.DEMON_BLOCK.get(),models().cubeAll(AUBlocks.DEMON_BLOCK.getId().getPath(), modLoc("block/demon_metal_block")));
+        simpleBlock(AUBlocks.ENCHANTED_BLOCK.get(),models().cubeAll(AUBlocks.ENCHANTED_BLOCK.getId().getPath(), modLoc("block/enchanted_metal_block")));
+        simpleBlock(AUBlocks.EVIL_INFUSED_IRON_BLOCK.get());
     }
 }

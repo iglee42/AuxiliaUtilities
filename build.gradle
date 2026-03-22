@@ -76,15 +76,24 @@ repositories {
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
+
+    maven {
+        url = 'https://maven.tterrag.com'
+        content {
+            includeGroup "team.chisel.ctm"
+        }
+    }
 }
 
 dependencies {
 
     // compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     // compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     implementation "fr.iglee42:IgleeLib:${minecraft_version}-${lib_version}"
+
+    runtimeOnly "team.chisel.ctm:CTM:1.21-1.2.1+3"
 
 }
 

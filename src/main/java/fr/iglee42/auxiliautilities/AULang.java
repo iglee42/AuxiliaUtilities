@@ -27,6 +27,9 @@ public enum AULang {
     RELAPSE_EFFECT("effect","relapse","Relapse"),
 
     ANGEL_BLOCK("block","angel_block","Angel Block"),
+    DEMON_BLOCK("block","demon_block","Demon Block"),
+    ENCHANTED_BLOCK("block","enchanted_block","Enchanted Block"),
+    EVIL_INFUSED_IRON_BLOCK("block","evil_infused_iron_block","Evil Infused Iron Block"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
@@ -41,6 +44,18 @@ public enum AULang {
     SUN_CRYSTAL("item","sun_crystal","Sun Crystal"),
     SUN_CRYSTAL_EMPTY("item","sun_crystal.empty","Sun Crystal (Empty)"),
     LUX_SABER("item","lux_saber","Lux Saber"),
+    RESONATING_REDSTONE_CRYSTAL("item","resonating_redstone_crystal","Resonating Redstone Crystal"),
+    REDSTONE_GEAR("item","redstone_gear","Redstone Gear"),
+    EYE_OF_REDSTONE("item","eye_of_redstone","Eye of Redstone"),
+    LUNAR_REACTIVE_DUST("item","lunar_reactive_dust","Lunar Reactive Dust"),
+    RED_COAL("item","red_coal","Red Coal"),
+    MOON_STONE("item","moon_stone","Moon Stone"),
+    DEMON_INGOT("item","demon_ingot","Demon Ingot"),
+    ENCHANTED_INGOT("item","enchanted_ingot","Enchanted Ingot"),
+    EVIL_INFUSED_IRON_INGOT("item","evil_infused_iron_ingot","Evil Infused Iron Ingot"),
+    DEMON_NUGGET("item","demon_nugget","Demon Nugget"),
+    ENCHANTED_NUGGET("item","enchanted_nugget","Enchanted Nugget"),
+    EVIL_INFUSED_IRON_NUGGET("item","evil_infused_iron_nugget","Evil Infused Iron Nugget"),
 
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),

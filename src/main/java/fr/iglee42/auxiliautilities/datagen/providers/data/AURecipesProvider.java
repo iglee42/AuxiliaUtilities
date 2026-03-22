@@ -5,18 +5,22 @@ import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
 import fr.iglee42.auxiliautilities.items.ItemSunCrystal;
+import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.StainedGlassBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -112,13 +116,87 @@ public class AURecipesProvider extends RecipeProvider {
                     .pattern("DGD")
                     .pattern("DCD")
                     .pattern("DRD")
-                    .define('D',Tags.Items.INGOTS_IRON)
+                    .define('D', AUTags.Items.EVIL_INFUSED_IRON_INGOTS)
                     .define('C', DataComponentIngredient.of(true, DataComponents.DAMAGE,0,AUItems.SUN_CRYSTAL.get()))
                     .define('G', BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getName() + "_stained_glass")))
-                    .define('R',Tags.Items.DUSTS_REDSTONE)
+                    .define('R',AUItems.RESONATING_REDSTONE_CRYSTAL)
                     .unlockedBy("has_item", has(AUItems.SUN_CRYSTAL.get()))
                     .save(output, AuxiliaUtilities.id("lux_saber_" + color.getName()));
         }
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.REDSTONE_GEAR)
+                .pattern(" T ")
+                .pattern("TPT")
+                .pattern(" T ")
+                .define('P', ItemTags.PLANKS)
+                .define('T', Items.REDSTONE_TORCH)
+                .unlockedBy("has_item", has(Items.REDSTONE_TORCH))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUItems.EYE_OF_REDSTONE)
+                .requires(Tags.Items.ENDER_PEARLS)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .requires(AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL))
+                .save(output);
+
+        ingotSet(output,AUItems.DEMON_NUGGET,AUItems.DEMON_INGOT,AUBlocks.DEMON_BLOCK);
+        ingotSet(output,AUItems.ENCHANTED_NUGGET,AUItems.ENCHANTED_INGOT,AUBlocks.ENCHANTED_BLOCK);
+        ingotSet(output,AUItems.EVIL_INFUSED_IRON_NUGGET,AUItems.EVIL_INFUSED_IRON_INGOT,AUBlocks.EVIL_INFUSED_IRON_BLOCK);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.MOON_STONE)
+                .pattern("LLL")
+                .pattern("LDL")
+                .pattern("LLL")
+                .define('L',AUItems.LUNAR_REACTIVE_DUST)
+                .define('D',Tags.Items.GEMS_DIAMOND)
+                .unlockedBy("has_item", has(AUItems.LUNAR_REACTIVE_DUST.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.MOON_STONE,9)
+                .pattern("LLL")
+                .pattern("LDL")
+                .pattern("LLL")
+                .define('L',AUItems.LUNAR_REACTIVE_DUST)
+                .define('D',AUTags.Items.UNSTABLE_INGOTS)
+                .unlockedBy("has_item", has(AUItems.LUNAR_REACTIVE_DUST.get()))
+                .save(output,AuxiliaUtilities.id("moon_stone_from_unstable_ingot"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUItems.RESONATING_REDSTONE_CRYSTAL.get())
+                .requires(AUItems.ENDER_SHARD)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .requires(Tags.Items.DUSTS_REDSTONE)
+                .unlockedBy("has_item", has(AUItems.ENDER_SHARD.get()))
+                .save(output);
+    }
+
+    private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ingot.get())
+                    .pattern("NNN")
+                    .pattern("NNN")
+                    .pattern("NNN")
+                    .define('N', nugget.get())
+                    .unlockedBy("has_item", has(nugget.get()))
+                    .save(output);
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, nugget.get(),9)
+                    .requires(ingot.get())
+                    .unlockedBy("has_item", has(ingot.get()))
+                    .save(output,AuxiliaUtilities.id(nugget.getId().getPath()+"_from_ingot"));
+
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, block.get())
+                    .pattern("III")
+                    .pattern("III")
+                    .pattern("III")
+                    .define('I', ingot.get())
+                    .unlockedBy("has_item", has(ingot.get()))
+                    .save(output);
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot.get(),9)
+                    .requires(block.get())
+                    .unlockedBy("has_item", has(block.get()))
+                    .save(output,AuxiliaUtilities.id(ingot.getId().getPath()+"_from_block"));
     }
 }

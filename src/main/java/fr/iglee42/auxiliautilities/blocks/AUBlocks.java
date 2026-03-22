@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.AUBlockItem;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemAngelBlock;
 import net.minecraft.world.item.BlockItem;
@@ -19,6 +20,9 @@ public class AUBlocks {
 
     public static final DeferredBlock<Block> ANGEL_BLOCK = createBlockWithCustomItem("angel_block",()-> new BlockAngel(BlockBehaviour.Properties.of().instabreak()),block->new ItemAngelBlock(block,new Item.Properties()));
 
+    public static final DeferredBlock<Block> DEMON_BLOCK = createBlock("demon_block",()-> new Block(BlockBehaviour.Properties.of().instabreak()));
+    public static final DeferredBlock<Block> ENCHANTED_BLOCK = createBlock("enchanted_block",()-> new Block(BlockBehaviour.Properties.of().instabreak()));
+    public static final DeferredBlock<Block> EVIL_INFUSED_IRON_BLOCK = createBlock("evil_infused_iron_block",()-> new Block(BlockBehaviour.Properties.of().instabreak()));
 
     private static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);
@@ -26,7 +30,7 @@ public class AUBlocks {
 
     private static <T extends Block> DeferredBlock<T> createBlock(String name, Supplier<T> supplier){
         DeferredBlock<T> block = createBlockWithoutItem(name, supplier);
-        AUItems.ITEMS.register(name,()->new BlockItem(block.get(),new Item.Properties()));
+        AUItems.ITEMS.register(name,()->new AUBlockItem(block.get(),new Item.Properties()));
         return block;
     }
 

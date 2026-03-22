@@ -43,6 +43,9 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/unstable_nugget"));
 
         simpleBlockItem(AUBlocks.ANGEL_BLOCK.get());
+        simpleBlockItem(AUBlocks.DEMON_BLOCK.get());
+        simpleBlockItem(AUBlocks.ENCHANTED_BLOCK.get());
+        simpleBlockItem(AUBlocks.EVIL_INFUSED_IRON_BLOCK.get());
 
         getBuilder(AUItems.SUN_CRYSTAL.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
@@ -50,10 +53,20 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("layer1", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/sun_crystal_inner"))
                 .renderType("translucent");
 
-
-
-
         makeEnderShards();
+
+        basicItem(AUItems.RESONATING_REDSTONE_CRYSTAL.asItem());
+        basicItem(AUItems.REDSTONE_GEAR.asItem());
+        basicItem(AUItems.EYE_OF_REDSTONE.asItem());
+        basicItem(AUItems.LUNAR_REACTIVE_DUST.asItem());
+        basicItem(AUItems.RED_COAL.asItem());
+        basicItem(AUItems.MOON_STONE.asItem());
+        basicItem(AUItems.DEMON_INGOT.asItem());
+        basicItem(AUItems.ENCHANTED_INGOT.asItem());
+        basicItem(AUItems.EVIL_INFUSED_IRON_INGOT.asItem());
+        basicItem(AUItems.DEMON_NUGGET.asItem());
+        basicItem(AUItems.ENCHANTED_NUGGET.asItem());
+        basicItem(AUItems.EVIL_INFUSED_IRON_NUGGET.asItem());
     }
 
     private void handheldTool(DeferredItem<? extends Item> item){

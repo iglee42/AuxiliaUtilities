@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:ingots/unstable"
+    },
+    "L": {
+      "item": "au:lunar_reactive_dust"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LDL",
+    "LLL"
+  ],
+  "result": {
+    "count": 9,
+    "id": "au:moon_stone"
+  }
+}
