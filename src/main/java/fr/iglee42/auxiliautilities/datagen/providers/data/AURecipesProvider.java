@@ -13,7 +13,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.StainedGlassBlock;
@@ -170,6 +172,19 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(Tags.Items.DUSTS_REDSTONE)
                 .unlockedBy("has_item", has(AUItems.ENDER_SHARD.get()))
                 .save(output);
+
+        sickle(output,AUItems.WOODEN_SICKLE,ItemTags.PLANKS);
+        sickle(output,AUItems.STONE_SICKLE,ItemTags.STONE_TOOL_MATERIALS);
+        sickle(output,AUItems.IRON_SICKLE,Tags.Items.INGOTS_IRON);
+        sickle(output,AUItems.GOLDEN_SICKLE,Tags.Items.INGOTS_GOLD);
+        sickle(output,AUItems.DIAMOND_SICKLE,Tags.Items.GEMS_DIAMOND);
+        SmithingTransformRecipeBuilder.smithing(
+                Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                Ingredient.of(AUItems.DIAMOND_SICKLE.get()),
+                Ingredient.of(Items.NETHERITE_INGOT),
+                RecipeCategory.TOOLS,
+                AUItems.NETHERITE_SICKLE.get()
+        ).unlocks("has_item", has(Items.NETHERITE_INGOT)).save(output,AuxiliaUtilities.id("netherite_sickle_smithing"));
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){
@@ -198,5 +213,16 @@ public class AURecipesProvider extends RecipeProvider {
                     .requires(block.get())
                     .unlockedBy("has_item", has(block.get()))
                     .save(output,AuxiliaUtilities.id(ingot.getId().getPath()+"_from_block"));
+    }
+
+    private void sickle(RecipeOutput output, DeferredItem<?> sickle, TagKey<Item> tag){
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, sickle.get())
+                .pattern(" II")
+                .pattern("  I")
+                .pattern("SII")
+                .define('I', tag)
+                .define('S',Tags.Items.RODS_WOODEN)
+                .unlockedBy("has_item", has(tag))
+                .save(output);
     }
 }

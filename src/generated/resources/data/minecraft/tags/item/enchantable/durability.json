@@ -3,6 +3,12 @@
     "au:lux_saber"
   ],
   "values": [
-    "au:glass_cutter"
+    "au:glass_cutter",
+    "au:wooden_sickle",
+    "au:stone_sickle",
+    "au:iron_sickle",
+    "au:golden_sickle",
+    "au:diamond_sickle",
+    "au:netherite_sickle"
   ]
 }

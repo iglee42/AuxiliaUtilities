@@ -57,6 +57,13 @@ public enum AULang {
     ENCHANTED_NUGGET("item","enchanted_nugget","Enchanted Nugget"),
     EVIL_INFUSED_IRON_NUGGET("item","evil_infused_iron_nugget","Evil Infused Iron Nugget"),
 
+    WOODEN_SICKLE("item","wooden_sickle","Wooden Sickle"),
+    STONE_SICKLE("item","stone_sickle","Stone Sickle"),
+    IRON_SICKLE("item","iron_sickle","Iron Sickle"),
+    GOLDEN_SICKLE("item","golden_sickle","Golden Sickle"),
+    DIAMOND_SICKLE("item","diamond_sickle","Diamond Sickle"),
+    NETHERITE_SICKLE("item","netherite_sickle","Netherite Sickle"),
+
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
     SECOND_CHANCE_ALREADY_USED_MESSAGE("message","second_chance_effect.already_used","Unfortunately we can't be lucky too many times !"),
@@ -69,6 +76,7 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_5("tooltip","unstable_ingot.5","Must be crafted in a vanilla crafting table."),
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
+    AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),

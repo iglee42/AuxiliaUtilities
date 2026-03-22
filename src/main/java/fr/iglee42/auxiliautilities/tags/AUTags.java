@@ -26,6 +26,8 @@ public class AUTags {
         public static final TagKey<Item> EVIL_INFUSED_IRON_INGOTS = common("ingots/evil_infused_iron");
         public static final TagKey<Item> EVIL_INFUSED_IRON_NUGGETS = common("nuggets/evil_infused_iron");
 
+        public static final TagKey<Item> SICKLES = mod("sickles");
+
         private static TagKey<Item> common(String path){
             return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c",path));
         }

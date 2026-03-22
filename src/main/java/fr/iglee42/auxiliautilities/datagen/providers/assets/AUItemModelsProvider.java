@@ -67,6 +67,13 @@ public class AUItemModelsProvider extends ItemModelProvider {
         basicItem(AUItems.DEMON_NUGGET.asItem());
         basicItem(AUItems.ENCHANTED_NUGGET.asItem());
         basicItem(AUItems.EVIL_INFUSED_IRON_NUGGET.asItem());
+
+        handheldTool(AUItems.WOODEN_SICKLE);
+        handheldTool(AUItems.STONE_SICKLE);
+        handheldTool(AUItems.IRON_SICKLE);
+        handheldTool(AUItems.GOLDEN_SICKLE);
+        handheldTool(AUItems.DIAMOND_SICKLE);
+        handheldTool(AUItems.NETHERITE_SICKLE);
     }
 
     private void handheldTool(DeferredItem<? extends Item> item){

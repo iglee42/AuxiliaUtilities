@@ -2,13 +2,17 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemSickle;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -47,5 +51,15 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(AUTags.Items.EVIL_INFUSED_IRON_NUGGETS).add(AUItems.EVIL_INFUSED_IRON_NUGGET.asItem());
 
         tag(Tags.Items.DYES_MAGENTA).add(AUItems.LUNAR_REACTIVE_DUST.asItem());
+
+        for (Item sickle : AUItems.ITEMS.getEntries().stream().filter(e -> e.get() instanceof ItemSickle).map(DeferredHolder::get).toList()) {
+            tag(ItemTags.DURABILITY_ENCHANTABLE).add(sickle);
+            tag(ItemTags.MINING_ENCHANTABLE).add(sickle);
+            tag(ItemTags.MINING_LOOT_ENCHANTABLE).add(sickle);
+            tag(ItemTags.BREAKS_DECORATED_POTS).add(sickle);
+            tag(AUTags.Items.SICKLES).add(sickle);
+        }
+
+        tag(Tags.Items.TOOLS).addTag(AUTags.Items.SICKLES);
     }
 }
