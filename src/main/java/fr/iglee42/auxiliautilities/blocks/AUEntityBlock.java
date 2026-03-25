@@ -2,6 +2,9 @@ package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Interaction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -15,6 +18,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public interface AUEntityBlock<T extends AUBlockEntity> extends AUBlockBase, EntityBlock {
@@ -62,6 +67,16 @@ public interface AUEntityBlock<T extends AUBlockEntity> extends AUBlockBase, Ent
         if (blockEntity instanceof AUBlockEntity sbe)
             sbe.destroy();
         level.removeBlockEntity(pos);
+    }
+
+    default InteractionResult openMenu(Level level, BlockPos pos, Player player){
+        if (level.isClientSide) return InteractionResult.sidedSuccess(true);
+        if (player.isCrouching()) return InteractionResult.PASS;
+        AtomicReference<OptionalInt> result = new AtomicReference<>(OptionalInt.empty());
+        withBlockEntityDo(level,pos,be->{
+            result.set(player.openMenu(be, pos));
+        });
+        return result.get().isPresent() ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
 }

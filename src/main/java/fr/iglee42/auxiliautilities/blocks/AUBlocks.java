@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockResonator;
 import fr.iglee42.auxiliautilities.blocks.gp.generators.BlockCreativeMill;
 import fr.iglee42.auxiliautilities.blocks.gp.generators.BlockManualMill;
 import fr.iglee42.auxiliautilities.items.AUBlockItem;
@@ -34,6 +35,8 @@ public class AUBlocks {
 
     public static final DeferredBlock<BlockManualMill> MANUAL_MILL = createBlock("manual_mill",()->new BlockManualMill(BlockBehaviour.Properties.of().noOcclusion()));
     public static final DeferredBlock<BlockCreativeMill> CREATIVE_MILL = createBlock("creative_mill",()->new BlockCreativeMill(BlockBehaviour.Properties.of().noOcclusion()));
+
+    public static final DeferredBlock<BlockResonator> RESONATOR = createBlock("resonator",()->new BlockResonator(BlockBehaviour.Properties.of().noOcclusion()));
 
     protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);

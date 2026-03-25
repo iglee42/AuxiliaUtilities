@@ -14,6 +14,11 @@ import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuil
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class AUItemModelsProvider extends ItemModelProvider {
     public AUItemModelsProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, AuxiliaUtilities.MODID, existingFileHelper);
@@ -88,6 +93,21 @@ public class AUItemModelsProvider extends ItemModelProvider {
 
         simpleBlockItem(AUBlocks.CREATIVE_MILL.get());
 
+        simpleBlockItem(AUBlocks.RESONATOR.get());
+
+        basicItem(AUItems.UPGRADE_BASE.get());
+        upgrade(AUItems.SPEED_UPGRADE);
+        upgrade(AUItems.ENCHANTED_SPEED_UPGRADE);
+        upgrade(AUItems.ULTIMATE_SPEED_UPGRADE);
+    }
+
+
+    private void upgrade(DeferredItem<? extends Item> item){
+        List<String> name = new ArrayList<>(Arrays.stream(item.getId().getPath().replace("_upgrade","").split("_")).toList());
+        Collections.reverse(name);
+        getBuilder(item.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0",AuxiliaUtilities.id("item/upgrade_" + String.join("_",name)));
     }
 
     private void handheldTool(DeferredItem<? extends Item> item){

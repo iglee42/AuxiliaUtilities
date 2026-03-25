@@ -5,7 +5,10 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
+import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.items.*;
+import fr.iglee42.auxiliautilities.menu.AUMenu;
+import fr.iglee42.auxiliautilities.menu.AUMenus;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
@@ -18,15 +21,12 @@ import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
@@ -144,5 +144,11 @@ public class AUClient {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(AUBlockEntityTypes.MANUAL_MILL.get(), ManualMillRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event){
+        AUMenus.MENU_TYPES.getEntries()
+                .forEach(menu->event.register((MenuType<AUMenu>)menu.get(), AUContainerScreen::new));
     }
 }

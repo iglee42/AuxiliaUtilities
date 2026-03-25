@@ -5,8 +5,10 @@ import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUCreativeTab;
 import fr.iglee42.auxiliautilities.items.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
 import fr.iglee42.auxiliautilities.potions.AUPotions;
+import fr.iglee42.auxiliautilities.recipes.AURecipes;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -27,6 +29,8 @@ public class AuxiliaUtilities {
         AUMobEffects.MOB_EFFECTS.register(modEventBus);
         AUPotions.POTIONS.register(modEventBus);
         AUCreativeTab.CREATIVE_TABS.register(modEventBus);
+        AURecipes.register(modEventBus);
+        AUMenus.MENU_TYPES.register(modEventBus);
 
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

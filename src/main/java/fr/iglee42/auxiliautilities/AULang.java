@@ -2,14 +2,19 @@ package fr.iglee42.auxiliautilities;
 
 import fr.iglee42.auxiliautilities.client.AUClient;
 import fr.iglee42.auxiliautilities.network.SendChatMessagePacket;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnegative;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
@@ -33,6 +38,7 @@ public enum AULang {
 
     MANUAL_MILL("block","manual_mill","Manual Mill"),
     CREATIVE_MILL("block","creative_mill","Creative Mill"),
+    RESONATOR("block","resonator","Resonator"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
@@ -59,6 +65,12 @@ public enum AULang {
     DEMON_NUGGET("item","demon_nugget","Demon Nugget"),
     ENCHANTED_NUGGET("item","enchanted_nugget","Enchanted Nugget"),
     EVIL_INFUSED_IRON_NUGGET("item","evil_infused_iron_nugget","Evil Infused Iron Nugget"),
+    UPGRADE_BASE("item","upgrade_base","Upgrade Base"),
+    SPEED_UPGRADE("item","speed_upgrade","Speed Upgrade"),
+    ENCHANTED_SPEED_UPGRADE("item","enchanted_speed_upgrade","Speed Upgrade (Magical)"),
+    ULTIMATE_SPEED_UPGRADE("item","ultimate_speed_upgrade","Speed Upgrade (Ultimate)"),
+
+    UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
     WOODEN_SICKLE("item","wooden_sickle","Wooden Sickle"),
     STONE_SICKLE("item","stone_sickle","Stone Sickle"),
@@ -85,6 +97,12 @@ public enum AULang {
     BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),
     BLOCK_GENERATE_GP("tooltip","block_generate_gp","Power Generating : %s GP"),
     BLOCK_DRAIN_GP("tooltip","block_drain_gp","Power Drain : %s GP"),
+
+    PROGRESS_TIME_TOOLTIP("tooltip","time_progress","%s / %s"),
+    SPEED_UPGRADES_TOOLTIP("tooltip","speed_upgrades","Speed Upgrades"),
+    MAX_UPGRADES_TOOLTIP("tooltip","max_upgrades","Max Upgrades : %s"),
+    POWER_PENALTY_TOOLTIP("tooltip","power_penalty","Power Penalty : +%s GP"),
+    POWER_PENALTY_TOOLTIP_LEVEL("tooltip","power_penalty_level","Power Penalty (level %s) : +%s GP"),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
@@ -149,4 +167,58 @@ public enum AULang {
         }
     }
 
+    public static String formatDurationSeconds(@Nonnegative long ticks, boolean incExtras) {
+        long t = ticks % 20L;
+        long s = (ticks % 1200L) / 20L;
+        long m = (ticks % 72000L) / 1200L;
+        long h = (ticks % 1728000L) / 72000L;
+        long d = ticks / 1728000L;
+
+        StringBuilder builder = new StringBuilder();
+        boolean hasHigherUnit = false;
+
+        if (d > 0L) {
+            builder.append(d).append("d");
+            hasHigherUnit = true;
+        }
+
+        if (h > 0L || (incExtras && hasHigherUnit)) {
+            builder.append(h).append("h");
+            hasHigherUnit = true;
+        }
+
+        if (m > 0L || (incExtras && hasHigherUnit)) {
+            builder.append(m).append("m");
+            hasHigherUnit = true;
+        }
+
+        if (s > 0L || t > 0L || incExtras) {
+            if (t == 0L || !incExtras) {
+                builder.append(s).append("s");
+            } else {
+                float seconds = s + (t / 20.0F);
+                builder.append(String.format(java.util.Locale.ROOT, "%.2f", seconds)).append("s");
+            }
+        }
+
+        return builder.toString();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private static int getTextSizeClient(Component text){
+        return Minecraft.getInstance().font.width(text);
+    }
+
+    @OnlyIn(Dist.DEDICATED_SERVER)
+    private static int getTextSizeServer(Component text){
+        return text.getString().length();
+    }
+
+    public static int getTextSize(Component text){
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            return getTextSizeClient(text);
+        } else {
+            return getTextSizeServer(text);
+        }
+    }
 }

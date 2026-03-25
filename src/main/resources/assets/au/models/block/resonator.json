@@ -1,12 +1,23 @@
 {
-  "parent": "minecraft:block/cube",
-  "textures": {
-    "down": "au:block/resonator_bottom",
-    "east": "au:block/resonator_side",
-    "north": "au:block/resonator_side",
-    "particle": "au:block/resonator_side",
-    "south": "au:block/resonator_side",
-    "up": "au:block/resonator_top",
-    "west": "au:block/resonator_side"
-  }
+	"parent": "block/block",
+	"textures": {
+		"0": "au:block/resonator_bottom",
+		"1": "au:block/resonator_side",
+		"2": "au:block/resonator_top",
+		"particle": "au:block/resonator_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 15, 16],
+			"faces": {
+				"north": {"uv": [0, 1, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 1, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 1, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 1, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
 }

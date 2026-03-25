@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
 import fr.iglee42.auxiliautilities.items.ItemSunCrystal;
@@ -16,6 +17,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.StainedGlassBlock;
@@ -193,6 +195,44 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
                 .define('S',Tags.Items.STONES)
                 .unlockedBy("has_item", has(AUItems.REDSTONE_GEAR.get()))
+                .save(output);
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                AuxiliaUtilities.id("red_coal"),
+                Ingredient.of(ItemTags.COALS),
+                new ItemStack(AUItems.RED_COAL.get()),
+                16
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                AuxiliaUtilities.id("lunar_reactive_dust"),
+                Ingredient.of(Tags.Items.GEMS_LAPIS),
+                new ItemStack(AUItems.LUNAR_REACTIVE_DUST.get()),
+                16
+        );
+        ResonatorRecipeBuilder.resonator(
+                output,
+                AuxiliaUtilities.id("quartzburnt"),
+                Items.QUARTZ_BLOCK,
+                AUBlocks.QUARTZBURNT.getBlock().asItem(),
+                8
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                AuxiliaUtilities.id("upgrade_base"),
+                Items.LIGHT_WEIGHTED_PRESSURE_PLATE,
+                AUItems.UPGRADE_BASE.get(),
+                8
+        );
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUItems.SPEED_UPGRADE)
+                .requires(AUItems.UPGRADE_BASE)
+                .requires(Tags.Items.INGOTS_GOLD)
+                .requires(Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .unlockedBy("has_item", has(AUItems.UPGRADE_BASE.get()))
                 .save(output);
     }
 

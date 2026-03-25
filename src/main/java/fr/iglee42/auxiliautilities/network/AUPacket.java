@@ -14,6 +14,10 @@ public abstract class AUPacket implements CustomPacketPayload {
     protected abstract void handle(IPayloadContext context);
 
 
+    public AUPackets getType() {
+        return type;
+    }
+
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return type.getType();

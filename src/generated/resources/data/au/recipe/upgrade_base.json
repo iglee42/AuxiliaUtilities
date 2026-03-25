@@ -1,0 +1,11 @@
+{
+  "type": "au:resonator",
+  "ingredient": {
+    "item": "minecraft:light_weighted_pressure_plate"
+  },
+  "required_gp": 8,
+  "result": {
+    "count": 1,
+    "id": "au:upgrade_base"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "au:resonator",
+  "ingredient": {
+    "tag": "minecraft:coals"
+  },
+  "required_gp": 16,
+  "result": {
+    "count": 1,
+    "id": "au:red_coal"
+  }
+}

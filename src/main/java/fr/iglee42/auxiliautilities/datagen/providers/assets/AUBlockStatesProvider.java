@@ -32,5 +32,8 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.MANUAL_MILL.get(),new ConfiguredModel(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/manual_mill_base"))));
         ResourceLocation creativeMillModel = models().cubeColumn(AUBlocks.CREATIVE_MILL.getId().getPath(), modLoc("block/creative_mill_side"), modLoc("block/creative_mill")).getUncheckedLocation();
         getVariantBuilder(AUBlocks.CREATIVE_MILL.get()).forAllStates($->new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(creativeMillModel)).buildLast()});
+
+
+        simpleBlock(AUBlocks.RESONATOR.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/resonator")));
     }
 }
