@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "c:wooden_stairs"
+    }
+  },
+  "pattern": [
+    "SP",
+    "PS"
+  ],
+  "result": {
+    "count": 5,
+    "id": "au:diagonal_wood"
+  }
+}

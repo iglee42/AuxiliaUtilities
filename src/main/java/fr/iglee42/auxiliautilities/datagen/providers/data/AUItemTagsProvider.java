@@ -11,6 +11,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -69,5 +70,8 @@ public class AUItemTagsProvider extends ItemTagsProvider {
             tag(ItemTags.SLABS).add(set.getSlab().asItem());
             tag(ItemTags.WALLS).add(set.getWall().asItem());
         }
+
+        tag(AUTags.Items.WOODEN_STAIRS).add(Items.OAK_STAIRS,Items.SPRUCE_STAIRS,Items.BIRCH_STAIRS,Items.JUNGLE_STAIRS,Items.ACACIA_STAIRS,Items.DARK_OAK_STAIRS,Items.MANGROVE_STAIRS,Items.CHERRY_STAIRS,Items.BAMBOO_STAIRS,Items.CRIMSON_STAIRS,Items.WARPED_STAIRS,Items.BAMBOO_MOSAIC_STAIRS);
+        tag(ItemTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.asItem());
     }
 }

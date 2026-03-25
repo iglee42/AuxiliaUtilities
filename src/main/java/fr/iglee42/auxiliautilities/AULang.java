@@ -46,6 +46,9 @@ public enum AULang {
     DRAGON_EGG_MILL("block","dragon_egg_mill","Dragon Egg Mill"),
     CREATIVE_MILL("block","creative_mill","Creative Mill"),
     RESONATOR("block","resonator","Resonator"),
+    MAGICAL_WOOD("block","magical_wood","Magical Wood"),
+    MAGICAL_PLANKS("block","magical_planks","Magical Planks"),
+    DIAGONAL_WOOD("block","diagonal_wood","Diagonal Wood"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),

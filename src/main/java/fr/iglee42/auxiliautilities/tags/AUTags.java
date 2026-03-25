@@ -28,6 +28,8 @@ public class AUTags {
 
         public static final TagKey<Item> SICKLES = mod("sickles");
 
+        public static final TagKey<Item> WOODEN_STAIRS = common("wooden_stairs");
+
         private static TagKey<Item> common(String path){
             return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c",path));
         }

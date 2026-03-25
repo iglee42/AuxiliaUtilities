@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stoneburnt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "au:stoneburnt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:stoneburnt_wall_from_stoneburnt_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stoneburnt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:stoneburnt_wall_from_stoneburnt_stonecutting"
+    ]
+  }
+}

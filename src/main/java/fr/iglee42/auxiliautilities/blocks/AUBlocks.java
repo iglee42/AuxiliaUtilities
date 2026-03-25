@@ -33,6 +33,10 @@ public class AUBlocks {
     public static final DecorativeBlockSet QUARTZBURNT = new DecorativeBlockSet("quartzburnt");
     public static final DecorativeBlockSet RAINBOW_STONE = new DecorativeBlockSet("rainbow_stone");
 
+    public static final DeferredBlock<BlockMagicalWood> MAGICAL_WOOD = createBlock("magical_wood",()->new BlockMagicalWood(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+    public static final DeferredBlock<Block> MAGICAL_PLANKS = createBlock("magical_planks",()->new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final DeferredBlock<Block> DIAGONAL_WOOD = createBlock("diagonal_wood",()->new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+
     public static final DeferredBlock<BlockManualMill> MANUAL_MILL = createBlock("manual_mill",()->new BlockManualMill(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<BlockSolarPanel> SOLAR_PANEL = createBlock("solar_panel",()->new BlockSolarPanel(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<BlockLunarPanel> LUNAR_PANEL = createBlock("lunar_panel",()->new BlockLunarPanel(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));

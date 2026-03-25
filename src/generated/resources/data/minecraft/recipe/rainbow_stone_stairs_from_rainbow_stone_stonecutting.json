@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "au:rainbow_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "au:rainbow_stone_stairs"
+  }
+}

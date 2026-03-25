@@ -7,6 +7,7 @@ import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -42,5 +43,7 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
             tag(BlockTags.WALLS).add(set.getWall().get());
         }
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.MANUAL_MILL.get(),AUBlocks.CREATIVE_MILL.get(),AUBlocks.WIND_MILL.get(),AUBlocks.FIRE_MILL.get(),AUBlocks.WATER_MILL.get(),AUBlocks.LUNAR_PANEL.get(),AUBlocks.SOLAR_PANEL.get(),AUBlocks.LAVA_MILL.get(),AUBlocks.DRAGON_EGG_MILL.get(),AUBlocks.RESONATOR.get());
+        tag(BlockTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.get());
+
     }
 }

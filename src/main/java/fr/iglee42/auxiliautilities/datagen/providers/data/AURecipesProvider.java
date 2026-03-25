@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StainedGlassBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -325,6 +327,71 @@ public class AURecipesProvider extends RecipeProvider {
                 AUBlocks.STONEBURNT.getBlock().asItem(),
                 8
         );
+
+        for (DecorativeBlockSet set : new DecorativeBlockSet[]{AUBlocks.POLISHED_STONE,AUBlocks.BORDER_STONE,AUBlocks.CROSSED_STONE}) {
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getBlock(), Blocks.STONE_BRICKS);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getStairs(), Blocks.STONE_BRICKS);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getSlab(), Blocks.STONE_BRICKS,2);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getWall(), Blocks.STONE_BRICKS);
+
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getBlock(), Blocks.STONE);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getStairs(), Blocks.STONE);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getSlab(), Blocks.STONE,2);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getWall(), Blocks.STONE);
+        }
+
+        stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,AUBlocks.CROSSED_STONE.getBlock(), AUBlocks.POLISHED_STONE.getBlock());
+        stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,AUBlocks.CROSSED_STONE.getStairs(), AUBlocks.POLISHED_STONE.getBlock());
+        stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,AUBlocks.CROSSED_STONE.getSlab(), AUBlocks.POLISHED_STONE.getBlock(),2);
+        stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,AUBlocks.CROSSED_STONE.getWall(), AUBlocks.POLISHED_STONE.getBlock());
+
+        for (DecorativeBlockSet set : DecorativeBlockSet.ALL_SETS) {
+            stairBuilder(set.getStairs().get(), Ingredient.of(set.getBlock().get()))
+                    .unlockedBy("has_item", has(set.getBlock().get()))
+                    .save(output);
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getStairs().get(),set.getBlock().get());
+            slab(output, RecipeCategory.BUILDING_BLOCKS, set.getSlab().get(), set.getBlock().get());
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getSlab().get(),set.getBlock().get(),2);
+            wall(output, RecipeCategory.BUILDING_BLOCKS, set.getWall().get(), set.getBlock().get());
+            stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getWall().get(),set.getBlock().get(),2);
+        }
+
+       ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,AUBlocks.DIAGONAL_WOOD,5)
+                .pattern("SP")
+                .pattern("PS")
+                .define('S',AUTags.Items.WOODEN_STAIRS)
+                .define('P',ItemTags.PLANKS)
+                .unlockedBy("has_item", has(ItemTags.PLANKS))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS,AUBlocks.MAGICAL_WOOD)
+                .requires(Items.BOOKSHELF)
+                .requires(Tags.Items.INGOTS_GOLD)
+                .unlockedBy("has_item", has(Items.BOOKSHELF))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS,AUBlocks.MAGICAL_PLANKS,4)
+                .requires(AUBlocks.MAGICAL_WOOD)
+                .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,AUItems.BUILDERS_WAND)
+                .pattern("  G")
+                .pattern(" P ")
+                .pattern("P  ")
+                .define('G',Tags.Items.INGOTS_GOLD)
+                .define('P',AUBlocks.MAGICAL_WOOD)
+                .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,AUItems.DESTRUCTION_WAND)
+                .pattern(" GG")
+                .pattern(" PG")
+                .pattern("P  ")
+                .define('G',Tags.Items.INGOTS_GOLD)
+                .define('P',AUBlocks.MAGICAL_WOOD)
+                .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD.get()))
+                .save(output);
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){

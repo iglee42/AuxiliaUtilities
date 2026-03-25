@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_border_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "au:border_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "au:border_stone_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_border_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "au:border_stone_wall"
+    ]
+  }
+}

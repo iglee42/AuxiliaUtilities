@@ -41,6 +41,9 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         getVariantBuilder(AUBlocks.CREATIVE_MILL.get()).forAllStates($->new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(creativeMillModel)).buildLast()});
 
 
+        simpleBlock(AUBlocks.MAGICAL_WOOD.get());
+        simpleBlock(AUBlocks.MAGICAL_PLANKS.get());
+        simpleBlock(AUBlocks.DIAGONAL_WOOD.get());
         simpleBlock(AUBlocks.RESONATOR.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/resonator")));
     }
 }

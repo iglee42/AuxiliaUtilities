@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_quartzburnt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "au:quartzburnt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:quartzburnt_slab_from_quartzburnt_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_quartzburnt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:quartzburnt_slab_from_quartzburnt_stonecutting"
+    ]
+  }
+}
