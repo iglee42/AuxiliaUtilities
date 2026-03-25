@@ -9,7 +9,7 @@
       "item": "au:redstone_gear"
     },
     "S": {
-      "tag": "c:stones"
+      "item": "au:polished_stone"
     }
   },
   "pattern": [

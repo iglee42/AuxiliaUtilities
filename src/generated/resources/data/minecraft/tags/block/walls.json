@@ -1,5 +1,8 @@
 {
   "values": [
+    "au:border_stone_wall",
+    "au:crossed_stone_wall",
+    "au:polished_stone_wall",
     "au:stoneburnt_wall",
     "au:quartzburnt_wall",
     "au:rainbow_stone_wall"

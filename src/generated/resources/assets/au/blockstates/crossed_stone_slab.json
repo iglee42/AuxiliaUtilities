@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "au:block/crossed_stone_slab"
+    },
+    "type=double": {
+      "model": "au:block/crossed_stone"
+    },
+    "type=top": {
+      "model": "au:block/crossed_stone_slab_top"
+    }
+  }
+}

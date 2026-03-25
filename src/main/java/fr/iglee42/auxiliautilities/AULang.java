@@ -37,6 +37,13 @@ public enum AULang {
     EVIL_INFUSED_IRON_BLOCK("block","evil_infused_iron_block","Evil Infused Iron Block"),
 
     MANUAL_MILL("block","manual_mill","Manual Mill"),
+    SOLAR_PANEL("block","solar_panel","Solar Panel"),
+    LUNAR_PANEL("block","lunar_panel","Lunar Panel"),
+    FIRE_MILL("block","fire_mill","Fire Mill"),
+    LAVA_MILL("block","lava_mill","Lava Mill"),
+    WATER_MILL("block","water_mill","Water Mill"),
+    WIND_MILL("block","wind_mill","Wind Mill"),
+    DRAGON_EGG_MILL("block","dragon_egg_mill","Dragon Egg Mill"),
     CREATIVE_MILL("block","creative_mill","Creative Mill"),
     RESONATOR("block","resonator","Resonator"),
 

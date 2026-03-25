@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "au:resonating_redstone_crystal"
+    },
+    "F": {
+      "item": "au:eye_of_redstone"
+    },
+    "G": {
+      "item": "au:redstone_gear"
+    },
+    "P": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "au:stoneburnt"
+    }
+  },
+  "pattern": [
+    "SGS",
+    "PCP",
+    "SFS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:dragon_egg_mill"
+  }
+}

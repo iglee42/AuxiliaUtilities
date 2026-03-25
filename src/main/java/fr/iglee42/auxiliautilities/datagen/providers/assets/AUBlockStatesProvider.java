@@ -31,6 +31,13 @@ public class AUBlockStatesProvider extends BlockStateProvider {
 
         simpleBlock(AUBlocks.MANUAL_MILL.get(),new ConfiguredModel(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/manual_mill_base"))));
         ResourceLocation creativeMillModel = models().cubeColumn(AUBlocks.CREATIVE_MILL.getId().getPath(), modLoc("block/creative_mill_side"), modLoc("block/creative_mill")).getUncheckedLocation();
+        simpleBlock(AUBlocks.SOLAR_PANEL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/solar_panel")));
+        simpleBlock(AUBlocks.LUNAR_PANEL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/lunar_panel")));
+        simpleBlock(AUBlocks.FIRE_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/fire_mill")));
+        simpleBlock(AUBlocks.WATER_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/water_mill")));
+        simpleBlock(AUBlocks.WIND_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/wind_mill")));
+        simpleBlock(AUBlocks.LAVA_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/lava_mill")));
+        simpleBlock(AUBlocks.DRAGON_EGG_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/dragon_egg_mill")));
         getVariantBuilder(AUBlocks.CREATIVE_MILL.get()).forAllStates($->new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(creativeMillModel)).buildLast()});
 
 

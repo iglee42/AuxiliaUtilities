@@ -1,12 +1,25 @@
 {
-  "parent": "minecraft:block/cube",
-  "textures": {
-    "down": "au:block/lunar_panel_bottom",
-    "east": "au:block/lunar_panel_side",
-    "north": "au:block/lunar_panel_side",
-    "particle": "au:block/lunar_panel_side",
-    "south": "au:block/lunar_panel_side",
-    "up": "au:block/lunar_panel",
-    "west": "au:block/lunar_panel_side"
-  }
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench and by iglee42",
+	"parent": "minecraft:block/cube",
+	"textures": {
+		"down": "au:block/lunar_panel_bottom",
+		"up": "au:block/lunar_panel",
+		"particle": "au:block/lunar_panel_side",
+		"west": "au:block/lunar_panel_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 4, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 16, 16], "texture": "#west", "cullface": "north"},
+				"east": {"uv": [0, 12, 16, 16], "texture": "#west", "cullface": "east"},
+				"south": {"uv": [0, 12, 16, 16], "texture": "#west", "cullface": "south"},
+				"west": {"uv": [0, 12, 16, 16], "texture": "#west", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#down", "cullface": "down"}
+			}
+		}
+	]
 }

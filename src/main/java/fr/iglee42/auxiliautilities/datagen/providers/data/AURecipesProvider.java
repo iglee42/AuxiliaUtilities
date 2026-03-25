@@ -20,6 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.block.StainedGlassBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -193,7 +194,7 @@ public class AURecipesProvider extends RecipeProvider {
                 .pattern("SCS")
                 .define('G',AUItems.REDSTONE_GEAR)
                 .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
-                .define('S',Tags.Items.STONES)
+                .define('S',AUBlocks.POLISHED_STONE.getBlock())
                 .unlockedBy("has_item", has(AUItems.REDSTONE_GEAR.get()))
                 .save(output);
 
@@ -234,6 +235,96 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(Tags.Items.STORAGE_BLOCKS_REDSTONE)
                 .unlockedBy("has_item", has(AUItems.UPGRADE_BASE.get()))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.RESONATOR)
+                .pattern("RCR")
+                .pattern("IAI")
+                .pattern("III")
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('C', Tags.Items.STORAGE_BLOCKS_COAL)
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('A',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.SOLAR_PANEL)
+                .pattern("LLL")
+                .pattern("SCS")
+                .define('L',Tags.Items.GEMS_LAPIS)
+                .define('S',AUBlocks.POLISHED_STONE.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.LUNAR_PANEL)
+                .pattern("LLL")
+                .pattern("SCS")
+                .define('L',AUItems.LUNAR_REACTIVE_DUST)
+                .define('S',AUBlocks.POLISHED_STONE.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.LAVA_MILL)
+                .pattern("SSS")
+                .pattern("SCS")
+                .pattern("SGS")
+                .define('G',Tags.Items.INGOTS_GOLD)
+                .define('S',AUBlocks.STONEBURNT.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.WATER_MILL)
+                .pattern("SSS")
+                .pattern("GCG")
+                .pattern("SSS")
+                .define('G', AUItems.REDSTONE_GEAR)
+                .define('S',AUBlocks.STONEBURNT.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.WIND_MILL)
+                .pattern("SSS")
+                .pattern(" GC")
+                .pattern("SSS")
+                .define('G', AUItems.REDSTONE_GEAR)
+                .define('S',AUBlocks.STONEBURNT.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.FIRE_MILL)
+                .pattern("SCS")
+                .pattern("SGS")
+                .pattern("SFS")
+                .define('G', AUItems.REDSTONE_GEAR)
+                .define('S',AUBlocks.STONEBURNT.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .define('F',Items.NETHER_BRICK_FENCE)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.DRAGON_EGG_MILL)
+                .pattern("SGS")
+                .pattern("PCP")
+                .pattern("SFS")
+                .define('G', AUItems.REDSTONE_GEAR)
+                .define('S',AUBlocks.STONEBURNT.getBlock())
+                .define('C',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .define('F',AUItems.EYE_OF_REDSTONE)
+                .define('P',Items.NETHER_STAR)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
+                .save(output);
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                AuxiliaUtilities.id("stoneburnt"),
+                AUBlocks.POLISHED_STONE.getBlock().asItem(),
+                AUBlocks.STONEBURNT.getBlock().asItem(),
+                8
+        );
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){

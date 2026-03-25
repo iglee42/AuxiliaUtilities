@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "au:block/polished_stone_slab"
+    },
+    "type=double": {
+      "model": "au:block/polished_stone"
+    },
+    "type=top": {
+      "model": "au:block/polished_stone_slab_top"
+    }
+  }
+}

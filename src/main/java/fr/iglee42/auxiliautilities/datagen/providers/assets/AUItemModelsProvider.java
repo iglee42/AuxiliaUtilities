@@ -91,8 +91,14 @@ public class AUItemModelsProvider extends ItemModelProvider {
                     .texture("wall", AuxiliaUtilities.id("block/"+set.getName()));
         }
 
+        simpleBlockItem(AUBlocks.SOLAR_PANEL.get());
+        simpleBlockItem(AUBlocks.LUNAR_PANEL.get());
+        simpleBlockItem(AUBlocks.WATER_MILL.get());
+        simpleBlockItem(AUBlocks.FIRE_MILL.get());
+        simpleBlockItem(AUBlocks.LAVA_MILL.get());
+        simpleBlockItem(AUBlocks.WIND_MILL.get());
+        simpleBlockItem(AUBlocks.DRAGON_EGG_MILL.get());
         simpleBlockItem(AUBlocks.CREATIVE_MILL.get());
-
         simpleBlockItem(AUBlocks.RESONATOR.get());
 
         basicItem(AUItems.UPGRADE_BASE.get());

@@ -1,5 +1,8 @@
 {
   "values": [
+    "au:border_stone_stairs",
+    "au:crossed_stone_stairs",
+    "au:polished_stone_stairs",
     "au:stoneburnt_stairs",
     "au:quartzburnt_stairs",
     "au:rainbow_stone_stairs"

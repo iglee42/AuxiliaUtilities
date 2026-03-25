@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 import com.google.common.collect.ImmutableMap;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -41,6 +42,9 @@ public class AULootTablesProvider extends LootTableProvider {
         private ImmutableMap<Block, Function<Block, LootTable.Builder>> createOverrides() {
             ImmutableMap.Builder<Block, Function<Block, LootTable.Builder>> builder = ImmutableMap.builder();
             builder.put(AUBlocks.ANGEL_BLOCK.get(), block->noDrop());
+            for (DecorativeBlockSet set : DecorativeBlockSet.ALL_SETS) {
+                builder.put(set.getSlab().get(), this::createSlabItemTable);
+            }
             return builder.build();
         }
 
