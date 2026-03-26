@@ -103,6 +103,7 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlockItem(AUBlocks.DIAGONAL_WOOD.get());
         simpleBlockItem(AUBlocks.SOUND_MUFFLER.get());
+        basicItem(AUBlocks.ENDER_LILLY.asItem());
 
         basicItem(AUItems.UPGRADE_BASE.get());
         upgrade(AUItems.SPEED_UPGRADE);

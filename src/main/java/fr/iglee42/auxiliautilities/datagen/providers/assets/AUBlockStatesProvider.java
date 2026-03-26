@@ -3,8 +3,19 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -47,5 +58,12 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.RESONATOR.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/resonator")));
 
         simpleBlock(AUBlocks.SOUND_MUFFLER.get());
+
+        getVariantBuilder(AUBlocks.ENDER_LILLY.get()).
+                forAllStates(state->{
+                    int age = state.getValue(CropBlock.AGE);
+                    ResourceLocation id = models().cross(AUBlocks.ENDER_LILLY.getRegisteredName() + "_stage_" +age, modLoc("block/plants/ender_lilly_stage_" + age)).renderType("cutout").getUncheckedLocation();
+                    return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(id)).buildLast()};
+                });
     }
 }

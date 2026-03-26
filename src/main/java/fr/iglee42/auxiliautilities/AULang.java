@@ -51,6 +51,8 @@ public enum AULang {
     MAGICAL_PLANKS("block","magical_planks","Magical Planks"),
     DIAGONAL_WOOD("block","diagonal_wood","Diagonal Wood"),
 
+    ENDER_LILLY("block","ender_lilly","Ender Lilly"),
+
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
     DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),

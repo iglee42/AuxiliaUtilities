@@ -8,6 +8,7 @@ import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -72,5 +73,7 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(AUTags.Items.WOODEN_STAIRS).add(Items.OAK_STAIRS,Items.SPRUCE_STAIRS,Items.BIRCH_STAIRS,Items.JUNGLE_STAIRS,Items.ACACIA_STAIRS,Items.DARK_OAK_STAIRS,Items.MANGROVE_STAIRS,Items.CHERRY_STAIRS,Items.BAMBOO_STAIRS,Items.CRIMSON_STAIRS,Items.WARPED_STAIRS,Items.BAMBOO_MOSAIC_STAIRS);
         tag(ItemTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.asItem());
         tag(ItemTags.DAMPENS_VIBRATIONS).add(AUBlocks.SOUND_MUFFLER.asItem());
+        tag(Tags.Items.CROPS).add(AUBlocks.ENDER_LILLY.asItem());
+
     }
 }
