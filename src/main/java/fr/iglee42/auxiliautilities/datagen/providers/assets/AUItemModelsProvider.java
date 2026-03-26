@@ -10,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -103,6 +102,7 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.MAGICAL_WOOD.get());
         simpleBlockItem(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlockItem(AUBlocks.DIAGONAL_WOOD.get());
+        simpleBlockItem(AUBlocks.SOUND_MUFFLER.get());
 
         basicItem(AUItems.UPGRADE_BASE.get());
         upgrade(AUItems.SPEED_UPGRADE);

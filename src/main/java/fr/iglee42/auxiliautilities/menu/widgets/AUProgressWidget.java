@@ -11,9 +11,9 @@ import java.util.List;
 
 public class AUProgressWidget extends AUWidgetBase{
 
-    public static final ResourceLocation TEXTURE = AuxiliaUtilities.id("progress");
-    public static final ResourceLocation TEXTURE_FULL = AuxiliaUtilities.id("progress_full");
-    public static final ResourceLocation TEXTURE_ERROR = AuxiliaUtilities.id("progress_fail");
+    public static final ResourceLocation TEXTURE = AuxiliaUtilities.id("progress/empty");
+    public static final ResourceLocation TEXTURE_FULL = AuxiliaUtilities.id("progress/full");
+    public static final ResourceLocation TEXTURE_ERROR = AuxiliaUtilities.id("progress/fail");
 
     float progress;
 

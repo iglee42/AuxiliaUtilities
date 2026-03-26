@@ -20,7 +20,7 @@ public class AUBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AuxiliaUtilities.MODID);
 
-    public static final DeferredBlock<Block> ANGEL_BLOCK = createBlockWithCustomItem("angel_block",()-> new BlockAngel(BlockBehaviour.Properties.of().instabreak()),block->new ItemAngelBlock(block,new Item.Properties()));
+    public static final DeferredBlock<Block> ANGEL_BLOCK = createBlockWithCustomItem("angel_block",()-> new BlockAngel(BlockBehaviour.Properties.of().instabreak()), block->new ItemAngelBlock(block,new Item.Properties()));
 
     public static final DeferredBlock<Block> DEMON_BLOCK = createBlock("demon_block",()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).strength(5,6)));
     public static final DeferredBlock<Block> ENCHANTED_BLOCK = createBlock("enchanted_block",()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).strength(5,6)));
@@ -47,6 +47,7 @@ public class AUBlocks {
     public static final DeferredBlock<BlockDragonEggMill> DRAGON_EGG_MILL = createBlock("dragon_egg_mill",()->new BlockDragonEggMill(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<BlockCreativeMill> CREATIVE_MILL = createBlock("creative_mill",()->new BlockCreativeMill(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
 
+    public static final DeferredBlock<BlockSoundMuffler> SOUND_MUFFLER = createBlock("sound_muffler",()->new BlockSoundMuffler(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion()));
     public static final DeferredBlock<BlockResonator> RESONATOR = createBlock("resonator",()->new BlockResonator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){

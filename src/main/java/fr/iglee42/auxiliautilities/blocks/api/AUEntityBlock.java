@@ -1,10 +1,8 @@
-package fr.iglee42.auxiliautilities.blocks;
+package fr.iglee42.auxiliautilities.blocks.api;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.Interaction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;

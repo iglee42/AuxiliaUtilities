@@ -6,7 +6,6 @@ import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
-import fr.iglee42.auxiliautilities.items.ItemSunCrystal;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -21,9 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.StainedGlassBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -391,6 +388,12 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('G',Tags.Items.INGOTS_GOLD)
                 .define('P',AUBlocks.MAGICAL_WOOD)
                 .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD.get()))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.SOUND_MUFFLER)
+                .requires(ItemTags.WOOL)
+                .requires(Items.NOTE_BLOCK)
+                .unlockedBy("has_item", has(Items.NOTE_BLOCK))
                 .save(output);
     }
 

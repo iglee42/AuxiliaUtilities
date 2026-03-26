@@ -1,12 +1,9 @@
 package fr.iglee42.auxiliautilities.mixins;
 
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
-import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.CommonHooks;

@@ -1,9 +1,8 @@
 package fr.iglee42.auxiliautilities.blocks.gp.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
-import fr.iglee42.auxiliautilities.blockentities.gp.generators.BECreativeMill;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.BEFireMill;
-import fr.iglee42.auxiliautilities.blocks.AUEntityBlock;
+import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;

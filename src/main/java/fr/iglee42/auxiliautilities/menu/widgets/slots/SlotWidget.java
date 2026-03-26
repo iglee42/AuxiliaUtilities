@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.menu.widgets.slots;
 
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidget;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class SlotWidget extends Slot implements AUWidget {
 
-    public static final ResourceLocation TEXTURE = ResourceLocation.withDefaultNamespace("container/slot");
+    public static final ResourceLocation TEXTURE = AuxiliaUtilities.id("slot/normal");
 
     private int x,y;
 

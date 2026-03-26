@@ -44,6 +44,7 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         }
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.MANUAL_MILL.get(),AUBlocks.CREATIVE_MILL.get(),AUBlocks.WIND_MILL.get(),AUBlocks.FIRE_MILL.get(),AUBlocks.WATER_MILL.get(),AUBlocks.LUNAR_PANEL.get(),AUBlocks.SOLAR_PANEL.get(),AUBlocks.LAVA_MILL.get(),AUBlocks.DRAGON_EGG_MILL.get(),AUBlocks.RESONATOR.get());
         tag(BlockTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.get());
+        tag(BlockTags.DAMPENS_VIBRATIONS).add(AUBlocks.SOUND_MUFFLER.get());
 
     }
 }

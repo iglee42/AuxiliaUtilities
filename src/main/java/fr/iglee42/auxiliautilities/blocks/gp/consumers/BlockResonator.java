@@ -2,14 +2,10 @@ package fr.iglee42.auxiliautilities.blocks.gp.consumers;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
-import fr.iglee42.auxiliautilities.blockentities.gp.generators.BECreativeMill;
-import fr.iglee42.auxiliautilities.blocks.AUEntityBlock;
+import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

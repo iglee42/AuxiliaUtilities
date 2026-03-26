@@ -2,6 +2,9 @@
   "values": {
     "au:diagonal_wood": {
       "burn_time": 300
+    },
+    "au:magical_wood": {
+      "burn_time": 300
     }
   }
 }

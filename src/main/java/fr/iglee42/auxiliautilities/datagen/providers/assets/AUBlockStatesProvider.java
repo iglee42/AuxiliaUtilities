@@ -45,5 +45,7 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlock(AUBlocks.DIAGONAL_WOOD.get());
         simpleBlock(AUBlocks.RESONATOR.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/resonator")));
+
+        simpleBlock(AUBlocks.SOUND_MUFFLER.get());
     }
 }

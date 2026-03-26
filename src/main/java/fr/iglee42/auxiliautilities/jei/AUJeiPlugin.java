@@ -2,25 +2,18 @@ package fr.iglee42.auxiliautilities.jei;
 
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
-import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.jei.categories.ResonatorCategory;
-import fr.iglee42.auxiliautilities.menu.widgets.AUProgressWidget;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @JeiPlugin
 public class AUJeiPlugin implements IModPlugin {

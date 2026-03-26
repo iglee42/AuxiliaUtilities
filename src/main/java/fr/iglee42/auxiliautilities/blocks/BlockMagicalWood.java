@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.blocks;
 
+import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
