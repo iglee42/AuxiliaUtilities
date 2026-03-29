@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.datagen.builders.EnchanterRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -395,6 +397,46 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(Items.NOTE_BLOCK)
                 .unlockedBy("has_item", has(Items.NOTE_BLOCK))
                 .save(output);
+
+        EnchanterRecipeBuilder.enchanter(output,
+                AuxiliaUtilities.id("enchanter/magical_wood"),
+                Items.BOOKSHELF,
+                1,
+                AUBlocks.MAGICAL_WOOD.asItem(),
+                64_000
+                );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                AuxiliaUtilities.id("enchanter/enchanted_metal_block"),
+                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_GOLD,1),
+                9,
+                new ItemStack(AUBlocks.ENCHANTED_BLOCK.asItem()),
+                24_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                AuxiliaUtilities.id("enchanter/enchanted_metal_ingot"),
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD,1),
+                1,
+                new ItemStack(AUItems.ENCHANTED_INGOT.asItem()),
+                8_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                AuxiliaUtilities.id("enchanter/evil_infused_iron_block"),
+                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_IRON,8),
+                SizedIngredient.of(Items.NETHER_STAR,8),
+                new ItemStack(AUBlocks.EVIL_INFUSED_IRON_BLOCK.asItem(),8),
+                192_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                AuxiliaUtilities.id("enchanter/evil_infused_iron_ingot"),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON,8),
+                SizedIngredient.of(Items.NETHER_STAR,1),
+                new ItemStack(AUItems.EVIL_INFUSED_IRON_INGOT.asItem(),8),
+                64_000
+        );
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){

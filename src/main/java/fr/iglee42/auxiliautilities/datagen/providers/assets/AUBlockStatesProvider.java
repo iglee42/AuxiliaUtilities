@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.BlockEnchanter;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -22,6 +23,10 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class AUBlockStatesProvider extends BlockStateProvider {
+
+    private static final ResourceLocation MACHINE_SIDE = AuxiliaUtilities.id("block/machines/side");
+    private static final ResourceLocation MACHINE_BOTTOM = AuxiliaUtilities.id("block/machines/bottom");
+
     public AUBlockStatesProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, AuxiliaUtilities.MODID, exFileHelper);
     }
@@ -65,5 +70,7 @@ public class AUBlockStatesProvider extends BlockStateProvider {
                     ResourceLocation id = models().cross(AUBlocks.ENDER_LILLY.getRegisteredName() + "_stage_" +age, modLoc("block/plants/ender_lilly_stage_" + age)).renderType("cutout").getUncheckedLocation();
                     return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(id)).buildLast()};
                 });
+
+        simpleBlock(AUBlocks.ENCHANTER.get(),new ModelFile.UncheckedModelFile(models().cubeBottomTop(AUBlocks.ENCHANTER.getRegisteredName(), modLoc("block/machines/enchanter_side"),MACHINE_BOTTOM,modLoc("block/machines/enchanter_top")).getUncheckedLocation()));
     }
 }

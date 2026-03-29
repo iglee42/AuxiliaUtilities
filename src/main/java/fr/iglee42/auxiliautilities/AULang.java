@@ -47,6 +47,7 @@ public enum AULang {
     CREATIVE_MILL("block","creative_mill","Creative Mill"),
     SOUND_MUFFLER("block","sound_muffler","Sound Muffler"),
     RESONATOR("block","resonator","Resonator"),
+    ENCHANTER("block","enchanter","Enchanter"),
     MAGICAL_WOOD("block","magical_wood","Magical Wood"),
     MAGICAL_PLANKS("block","magical_planks","Magical Planks"),
     DIAGONAL_WOOD("block","diagonal_wood","Diagonal Wood"),
@@ -110,6 +111,8 @@ public enum AULang {
     BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),
     BLOCK_GENERATE_GP("tooltip","block_generate_gp","Power Generating : %s GP"),
     BLOCK_DRAIN_GP("tooltip","block_drain_gp","Power Drain : %s GP"),
+
+    ENCHANTER_NEEDS_BOOKSHELVES("tooltip","enchanter_needs_bookshelves","Enchanter requires a full set of bookshelves nearby or other enchanting boosting block !"),
 
     PROGRESS_TIME_TOOLTIP("tooltip","time_progress","%s / %s"),
     SPEED_UPGRADES_TOOLTIP("tooltip","speed_upgrades","Speed Upgrades"),

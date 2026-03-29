@@ -26,12 +26,12 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
 
-    private final Ingredient ingredient;
+    private final SizedIngredient ingredient;
     private final SizedIngredient lapisIngredient;
     private final ItemStack result;
     private final int energy;
 
-    public EnchanterRecipe(Ingredient ingredient,SizedIngredient lapisIngredient, ItemStack result, int energy) {
+    public EnchanterRecipe(SizedIngredient ingredient,SizedIngredient lapisIngredient, ItemStack result, int energy) {
         this.ingredient = ingredient;
         this.lapisIngredient = lapisIngredient;
         this.result = result;
@@ -63,7 +63,7 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
         return result;
     }
 
-    public Ingredient getIngredient() {
+    public SizedIngredient getIngredient() {
         return ingredient;
     }
 
@@ -98,7 +98,7 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
 
         private static final MapCodec<EnchanterRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340782_ -> p_340782_.group(
-                                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(e -> e.ingredient),
+                                SizedIngredient.FLAT_CODEC.fieldOf("ingredient").forGetter(e -> e.ingredient),
                                 INGREDIENT_CODEC.fieldOf("lapis").forGetter(e->e.lapisIngredient),
                                 ItemStack.CODEC.fieldOf("result").forGetter(e->e.result),
                                 ExtraCodecs.POSITIVE_INT.fieldOf("energy").forGetter(e->e.energy)
@@ -106,7 +106,7 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
                         .apply(p_340782_, EnchanterRecipe::new)
         );
         public static final StreamCodec<RegistryFriendlyByteBuf, EnchanterRecipe> STREAM_CODEC = StreamCodec.composite(
-                Ingredient.CONTENTS_STREAM_CODEC, EnchanterRecipe::getIngredient,
+                SizedIngredient.STREAM_CODEC, EnchanterRecipe::getIngredient,
                 SizedIngredient.STREAM_CODEC, EnchanterRecipe::getLapisIngredient,
                 ItemStack.STREAM_CODEC, EnchanterRecipe::getResult,
                 ByteBufCodecs.INT, EnchanterRecipe::getEnergy,

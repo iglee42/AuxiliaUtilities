@@ -2,7 +2,6 @@ package fr.iglee42.auxiliautilities.menu;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
-import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -18,12 +17,17 @@ public class AUMenus {
 
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, AuxiliaUtilities.MODID);
 
-    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> RESONATOR = registerMenuType(AUMenus::createMenu,"resonator");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> RESONATOR = registerBEMenuType("resonator");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> ENCHANTER = registerBEMenuType("enchanter");
 
-    private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>,MenuType<T>> registerMenuType(IContainerFactory<T> factory,
-                                                                                                              String name) {
+    private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>,MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENU_TYPES.register(name, () -> IMenuTypeExtension.create(factory));
     }
+
+    private static DeferredHolder<MenuType<?>,MenuType<AUMenu>> registerBEMenuType(String name) {
+        return MENU_TYPES.register(name, () -> IMenuTypeExtension.create(AUMenus::createMenu));
+    }
+
 
     public static AUMenu createMenu(int id, Inventory inv, RegistryFriendlyByteBuf buffer){
         BlockPos pos = buffer.readBlockPos();

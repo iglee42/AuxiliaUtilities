@@ -49,5 +49,7 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.CROPS).add(AUBlocks.ENDER_LILLY.get());
         tag(BlockTags.SWORD_EFFICIENT).add(AUBlocks.ENDER_LILLY.get());
 
+        tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(AUBlocks.MAGICAL_WOOD.get());
+
     }
 }

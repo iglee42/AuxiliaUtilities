@@ -50,6 +50,7 @@ public class AUBlocks {
 
     public static final DeferredBlock<BlockSoundMuffler> SOUND_MUFFLER = createBlock("sound_muffler",()->new BlockSoundMuffler(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion()));
     public static final DeferredBlock<BlockResonator> RESONATOR = createBlock("resonator",()->new BlockResonator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final DeferredBlock<BlockEnchanter> ENCHANTER = createBlock("enchanter",()->new BlockEnchanter(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static final DeferredBlock<BlockEnderLilly> ENDER_LILLY = createBlock("ender_lilly",()->new BlockEnderLilly(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
 
