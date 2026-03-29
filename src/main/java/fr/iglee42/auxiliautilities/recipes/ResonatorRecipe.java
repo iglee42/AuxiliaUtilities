@@ -9,6 +9,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -95,7 +96,7 @@ public class ResonatorRecipe implements Recipe<RecipeInput> {
                 p_340782_ -> p_340782_.group(
                                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(e->e.ingredient),
                                 ItemStack.CODEC.fieldOf("result").forGetter(e->e.result),
-                                Codec.INT.fieldOf("required_gp").forGetter(e->e.requiredGP),
+                                ExtraCodecs.POSITIVE_INT.fieldOf("required_gp").forGetter(e->e.requiredGP),
                                 Codec.BOOL.optionalFieldOf("requires_rainbow_generator",false).forGetter(e->e.requiresRainbowGenerator)
                         )
                         .apply(p_340782_, ResonatorRecipe::new)

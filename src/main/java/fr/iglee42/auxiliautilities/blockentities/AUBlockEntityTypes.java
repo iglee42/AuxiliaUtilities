@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.blockentities;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.*;
+import fr.iglee42.auxiliautilities.blockentities.BEEnchanter;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +26,7 @@ public class AUBlockEntityTypes {
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BECreativeMill>> CREATIVE_MILL = register("creative_mill",BECreativeMill::new, AUBlocks.CREATIVE_MILL);
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEResonator>> RESONATOR = register("resonator",BEResonator::new, AUBlocks.RESONATOR);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEEnchanter>> ENCHANTER = register("enchanter",BEEnchanter::new, AUBlocks.ENCHANTER);
 
     private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block> block){
         return BLOCK_ENTITY_TYPES.register(name,()->BlockEntityType.Builder.of(supplier,block.get()).build(null));
