@@ -100,10 +100,12 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.CREATIVE_MILL.get());
         simpleBlockItem(AUBlocks.RESONATOR.get());
         simpleBlockItem(AUBlocks.ENCHANTER.get());
+        simpleBlockItem(AUBlocks.FURNACE.get());
         simpleBlockItem(AUBlocks.MAGICAL_WOOD.get());
         simpleBlockItem(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlockItem(AUBlocks.DIAGONAL_WOOD.get());
         simpleBlockItem(AUBlocks.SOUND_MUFFLER.get());
+        simpleBlockItem(AUBlocks.MACHINE_BLOCK.get());
         basicItem(AUBlocks.ENDER_LILLY.asItem());
 
         basicItem(AUItems.UPGRADE_BASE.get());

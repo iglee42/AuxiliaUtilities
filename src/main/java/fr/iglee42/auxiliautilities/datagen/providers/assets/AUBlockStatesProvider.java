@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockEnchanter;
+import fr.iglee42.auxiliautilities.blocks.BlockFurnace;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -71,6 +72,13 @@ public class AUBlockStatesProvider extends BlockStateProvider {
                     return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(id)).buildLast()};
                 });
 
+        horizontalBlock(AUBlocks.FURNACE.get(), state->{
+            boolean lit = state.getValue(BlockFurnace.LIT);
+            ResourceLocation model = models().orientable(AUBlocks.FURNACE.getRegisteredName() + (lit ? "_on" : ""), MACHINE_SIDE, modLoc("block/machines/furnace_front" + (lit?"_on":"")), MACHINE_BOTTOM).getUncheckedLocation();
+            return new ModelFile.UncheckedModelFile(model);
+        });
+
         simpleBlock(AUBlocks.ENCHANTER.get(),new ModelFile.UncheckedModelFile(models().cubeBottomTop(AUBlocks.ENCHANTER.getRegisteredName(), modLoc("block/machines/enchanter_side"),MACHINE_BOTTOM,modLoc("block/machines/enchanter_top")).getUncheckedLocation()));
+        simpleBlock(AUBlocks.MACHINE_BLOCK.get(),new ModelFile.UncheckedModelFile(models().cubeColumn(AUBlocks.MACHINE_BLOCK.getRegisteredName(), MACHINE_SIDE,MACHINE_BOTTOM).getUncheckedLocation()));
     }
 }

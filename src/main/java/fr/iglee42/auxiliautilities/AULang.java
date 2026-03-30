@@ -48,9 +48,11 @@ public enum AULang {
     SOUND_MUFFLER("block","sound_muffler","Sound Muffler"),
     RESONATOR("block","resonator","Resonator"),
     ENCHANTER("block","enchanter","Enchanter"),
+    FURNACE("block","furnace","Electric Furnace"),
     MAGICAL_WOOD("block","magical_wood","Magical Wood"),
     MAGICAL_PLANKS("block","magical_planks","Magical Planks"),
     DIAGONAL_WOOD("block","diagonal_wood","Diagonal Wood"),
+    MACHINE_BLOCK("block","machine_block","Machine Block"),
 
     ENDER_LILLY("block","ender_lilly","Ender Lilly"),
 

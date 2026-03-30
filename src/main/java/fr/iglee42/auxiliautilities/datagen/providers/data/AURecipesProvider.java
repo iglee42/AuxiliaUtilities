@@ -437,6 +437,36 @@ public class AURecipesProvider extends RecipeProvider {
                 new ItemStack(AUItems.EVIL_INFUSED_IRON_INGOT.asItem(),8),
                 64_000
         );
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.ENCHANTER)
+                .pattern(" B ")
+                .pattern("DMD")
+                .pattern("III")
+                .define('B',Items.ENCHANTED_BOOK)
+                .define('D',Tags.Items.GEMS_DIAMOND)
+                .define('M',AUBlocks.MACHINE_BLOCK)
+                .define('I',Tags.Items.INGOTS_IRON)
+                .unlockedBy("has_item", has(Items.ENCHANTED_BOOK))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.MACHINE_BLOCK,4)
+                .pattern("IRI")
+                .pattern("RCR")
+                .pattern("IRI")
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('C',Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.FURNACE)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I',Tags.Items.BRICKS_NORMAL)
+                .define('C',AUBlocks.MACHINE_BLOCK)
+                .unlockedBy("has_item", has(AUBlocks.MACHINE_BLOCK))
+                .save(output);
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){

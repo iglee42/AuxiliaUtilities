@@ -48,9 +48,11 @@ public class AUBlocks {
     public static final DeferredBlock<BlockDragonEggMill> DRAGON_EGG_MILL = createBlock("dragon_egg_mill",()->new BlockDragonEggMill(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<BlockCreativeMill> CREATIVE_MILL = createBlock("creative_mill",()->new BlockCreativeMill(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
 
+    public static final DeferredBlock<Block> MACHINE_BLOCK = createBlock("machine_block",()->new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
     public static final DeferredBlock<BlockSoundMuffler> SOUND_MUFFLER = createBlock("sound_muffler",()->new BlockSoundMuffler(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion()));
     public static final DeferredBlock<BlockResonator> RESONATOR = createBlock("resonator",()->new BlockResonator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
     public static final DeferredBlock<BlockEnchanter> ENCHANTER = createBlock("enchanter",()->new BlockEnchanter(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final DeferredBlock<BlockFurnace> FURNACE = createBlock("furnace", () -> new BlockFurnace(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static final DeferredBlock<BlockEnderLilly> ENDER_LILLY = createBlock("ender_lilly",()->new BlockEnderLilly(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
 

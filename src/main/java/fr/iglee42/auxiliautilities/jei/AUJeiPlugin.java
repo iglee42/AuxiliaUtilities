@@ -8,6 +8,8 @@ import fr.iglee42.auxiliautilities.recipes.EnchanterRecipe;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -34,6 +36,7 @@ public class AUJeiPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(AUBlocks.RESONATOR, ResonatorCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(AUBlocks.ENCHANTER, EnchanterCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(AUBlocks.FURNACE, RecipeTypes.SMELTING);
     }
 
     @Override

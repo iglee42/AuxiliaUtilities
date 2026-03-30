@@ -19,6 +19,7 @@ public class AUMenus {
 
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> RESONATOR = registerBEMenuType("resonator");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> ENCHANTER = registerBEMenuType("enchanter");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> FURNACE = registerBEMenuType("furnace");
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>,MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENU_TYPES.register(name, () -> IMenuTypeExtension.create(factory));
