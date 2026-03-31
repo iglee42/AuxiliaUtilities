@@ -2,7 +2,9 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.datagen.builders.CrusherRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.EnchanterRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
 import fr.iglee42.auxiliautilities.items.AUItems;
@@ -21,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -28,6 +31,9 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class AURecipesProvider extends RecipeProvider {
@@ -37,6 +43,10 @@ public class AURecipesProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
+
+        addCrusherRecipes(output);
+        addEnchanterRecipes(output);
+        addResonatorRecipes(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,AUItems.GLASS_CUTTER)
                 .pattern("  I")
@@ -199,37 +209,6 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUItems.REDSTONE_GEAR.get()))
                 .save(output);
 
-        ResonatorRecipeBuilder.resonator(
-                output,
-                AuxiliaUtilities.id("red_coal"),
-                Ingredient.of(ItemTags.COALS),
-                new ItemStack(AUItems.RED_COAL.get()),
-                16
-        );
-
-        ResonatorRecipeBuilder.resonator(
-                output,
-                AuxiliaUtilities.id("lunar_reactive_dust"),
-                Ingredient.of(Tags.Items.GEMS_LAPIS),
-                new ItemStack(AUItems.LUNAR_REACTIVE_DUST.get()),
-                16
-        );
-        ResonatorRecipeBuilder.resonator(
-                output,
-                AuxiliaUtilities.id("quartzburnt"),
-                Items.QUARTZ_BLOCK,
-                AUBlocks.QUARTZBURNT.getBlock().asItem(),
-                8
-        );
-
-        ResonatorRecipeBuilder.resonator(
-                output,
-                AuxiliaUtilities.id("upgrade_base"),
-                Items.LIGHT_WEIGHTED_PRESSURE_PLATE,
-                AUItems.UPGRADE_BASE.get(),
-                8
-        );
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUItems.SPEED_UPGRADE)
                 .requires(AUItems.UPGRADE_BASE)
                 .requires(Tags.Items.INGOTS_GOLD)
@@ -319,14 +298,6 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL.get()))
                 .save(output);
 
-        ResonatorRecipeBuilder.resonator(
-                output,
-                AuxiliaUtilities.id("stoneburnt"),
-                AUBlocks.POLISHED_STONE.getBlock().asItem(),
-                AUBlocks.STONEBURNT.getBlock().asItem(),
-                8
-        );
-
         for (DecorativeBlockSet set : new DecorativeBlockSet[]{AUBlocks.POLISHED_STONE,AUBlocks.BORDER_STONE,AUBlocks.CROSSED_STONE}) {
             stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getBlock(), Blocks.STONE_BRICKS);
             stonecutterResultFromBase(output,RecipeCategory.BUILDING_BLOCKS,set.getStairs(), Blocks.STONE_BRICKS);
@@ -398,46 +369,6 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.NOTE_BLOCK))
                 .save(output);
 
-        EnchanterRecipeBuilder.enchanter(output,
-                AuxiliaUtilities.id("enchanter/magical_wood"),
-                Items.BOOKSHELF,
-                1,
-                AUBlocks.MAGICAL_WOOD.asItem(),
-                64_000
-                );
-
-        EnchanterRecipeBuilder.enchanter(output,
-                AuxiliaUtilities.id("enchanter/enchanted_metal_block"),
-                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_GOLD,1),
-                9,
-                new ItemStack(AUBlocks.ENCHANTED_BLOCK.asItem()),
-                24_000
-        );
-
-        EnchanterRecipeBuilder.enchanter(output,
-                AuxiliaUtilities.id("enchanter/enchanted_metal_ingot"),
-                SizedIngredient.of(Tags.Items.INGOTS_GOLD,1),
-                1,
-                new ItemStack(AUItems.ENCHANTED_INGOT.asItem()),
-                8_000
-        );
-
-        EnchanterRecipeBuilder.enchanter(output,
-                AuxiliaUtilities.id("enchanter/evil_infused_iron_block"),
-                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_IRON,8),
-                SizedIngredient.of(Items.NETHER_STAR,8),
-                new ItemStack(AUBlocks.EVIL_INFUSED_IRON_BLOCK.asItem(),8),
-                192_000
-        );
-
-        EnchanterRecipeBuilder.enchanter(output,
-                AuxiliaUtilities.id("enchanter/evil_infused_iron_ingot"),
-                SizedIngredient.of(Tags.Items.INGOTS_IRON,8),
-                SizedIngredient.of(Items.NETHER_STAR,1),
-                new ItemStack(AUItems.EVIL_INFUSED_IRON_INGOT.asItem(),8),
-                64_000
-        );
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.ENCHANTER)
                 .pattern(" B ")
                 .pattern("DMD")
@@ -467,6 +398,51 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('C',AUBlocks.MACHINE_BLOCK)
                 .unlockedBy("has_item", has(AUBlocks.MACHINE_BLOCK))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.CRUSHER)
+                .pattern("IPI")
+                .pattern("ICI")
+                .pattern("IPI")
+                .define('I',Tags.Items.BRICKS_NORMAL)
+                .define('C',AUBlocks.MACHINE_BLOCK)
+                .define('P',Ingredient.of(Items.PISTON,Items.STICKY_PISTON))
+                .unlockedBy("has_item", has(AUBlocks.MACHINE_BLOCK))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD,AUItems.MAGICAL_APPLE,8)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I',Items.APPLE)
+                .define('C',AUBlocks.MAGICAL_WOOD)
+                .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD,AUItems.ENCHANTED_SPEED_UPGRADE)
+                .pattern("AIA")
+                .pattern("ICI")
+                .pattern("AIA")
+                .define('I',AUTags.Items.ENCHANTED_INGOTS)
+                .define('C',AUItems.SPEED_UPGRADE)
+                .define('A',AUItems.MAGICAL_APPLE)
+                .unlockedBy("has_item", has(AUTags.Items.ENCHANTED_INGOTS))
+                .save(output);
+
+        for (CompressedBlockSet set : CompressedBlockSet.ALL_SETS) {
+            for (int i = 1; i <= set.getMaxTier() ; i++) {
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,i == 1 ? set.getBaseBlock() : set.getBlock(i - 1),9)
+                        .requires(set.getBlock(i))
+                        .unlockedBy("has_item", has(set.getBaseBlock()))
+                        .save(output, AuxiliaUtilities.id("compressed/"+ set.getName() + "/" +i +"_uncompress"));
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, set.getBlock(i))
+                        .pattern("CCC")
+                        .pattern("CCC")
+                        .pattern("CCC")
+                        .define('C', i == 1 ? set.getBaseBlock() : set.getBlock(i - 1))
+                        .unlockedBy("has_item", has(set.getBaseBlock()))
+                        .save(output, AuxiliaUtilities.id("compressed/"+ set.getName() + "/" +i));
+            }
+        }
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){
@@ -506,5 +482,186 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('S',Tags.Items.RODS_WOODEN)
                 .unlockedBy("has_item", has(tag))
                 .save(output);
+    }
+
+    private void addCrusherRecipes(RecipeOutput output){
+        //WOOLS
+        for (DyeColor color : DyeColor.values()){
+            CrusherRecipeBuilder.crusher(output,
+                    "wool/"+color.getSerializedName(),
+                    BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getSerializedName()+"_wool")),
+                    Items.STRING,
+                    3,
+                    BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getSerializedName()+"_dye")),
+                    1,
+                    0.05f,
+                    4000
+            );
+            CrusherRecipeBuilder.crusher(output,
+                    "carpet/"+color.getSerializedName(),
+                    BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getSerializedName()+"_carpet")),
+                    Items.STRING,
+                    2,
+                    BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(color.getSerializedName()+"_dye")),
+                    1,
+                    0.05f,
+                    4000
+            );
+        }
+        //MISC
+        CrusherRecipeBuilder.crusher(output, "blaze_rod",Tags.Items.RODS_BLAZE,Items.BLAZE_POWDER,2,Items.BLAZE_POWDER,3,0.4f,4000);
+        CrusherRecipeBuilder.crusher(output, "bone",Tags.Items.BONES,Items.BONE_MEAL,3,Items.BONE_MEAL,3,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output,"cobblestone",Tags.Items.COBBLESTONES_NORMAL,Items.GRAVEL,Items.SAND,0.1f,4000);
+        CrusherRecipeBuilder.crusher(output,"gravel",Tags.Items.GRAVELS,Items.SAND,Items.CLAY,0.1f,4000);
+        CrusherRecipeBuilder.crusher(output,"ender_eye",Items.ENDER_EYE,Items.ENDER_PEARL,Items.BLAZE_POWDER,0.5f,4000);
+        CrusherRecipeBuilder.singleRecipe(output,"ores/glowstone",Items.GLOWSTONE,Items.GLOWSTONE_DUST,4,4000);
+        CrusherRecipeBuilder.singleRecipe(output,"ores/amethyst",Items.AMETHYST_BLOCK,Items.AMETHYST_SHARD,4,4000);
+
+        //FLOWERS
+        Map<Item,Item> flowers = new HashMap<>(Map.of(
+                Items.DANDELION,Items.YELLOW_DYE,
+                Items.POPPY,Items.RED_DYE,
+                Items.BLUE_ORCHID,Items.LIGHT_BLUE_DYE,
+                Items.ALLIUM,Items.MAGENTA_DYE,
+                Items.AZURE_BLUET,Items.LIGHT_GRAY_DYE,
+                Items.RED_TULIP,Items.RED_DYE,
+                Items.ORANGE_TULIP,Items.ORANGE_DYE,
+                Items.WHITE_TULIP,Items.LIGHT_GRAY_DYE,
+                Items.PINK_TULIP,Items.PINK_DYE,
+                Items.OXEYE_DAISY,Items.LIGHT_GRAY_DYE
+        ));
+        flowers.putAll(Map.of(
+                Items.CORNFLOWER,Items.BLUE_DYE,
+                Items.LILY_OF_THE_VALLEY,Items.WHITE_DYE,
+                Items.WITHER_ROSE,Items.BLACK_DYE,
+                Items.PINK_PETALS,Items.PINK_DYE,
+                Items.TORCHFLOWER,Items.ORANGE_DYE,
+                Items.BEETROOT,Items.RED_DYE,
+                Items.BONE_MEAL,Items.WHITE_DYE,
+                Items.INK_SAC,Items.BLACK_DYE,
+                Items.COCOA_BEANS,Items.BROWN_DYE
+                ));
+
+        flowers.forEach((flower,dye)->{
+            CrusherRecipeBuilder.singleRecipe(output,"flower/"+BuiltInRegistries.ITEM.getKey(flower).getPath(),flower,dye,2,4000);
+        });
+
+        Map<Item,Item> bigFlowers = new HashMap<>(Map.of(
+                Items.SUNFLOWER,Items.YELLOW_DYE,
+                Items.LILAC,Items.MAGENTA_DYE,
+                Items.ROSE_BUSH,Items.RED_DYE,
+                Items.PEONY,Items.PINK_DYE,
+                Items.PITCHER_PLANT,Items.CYAN_DYE
+        ));
+
+        bigFlowers.forEach((flower,dye)->{
+            CrusherRecipeBuilder.singleRecipe(output,"flower/"+BuiltInRegistries.ITEM.getKey(flower).getPath(),flower,dye,4,4000);
+        });
+
+        //ORES
+        CrusherRecipeBuilder.crusher(output, "ores/coal",Tags.Items.ORES_COAL,Items.COAL,4,Items.COAL,4,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/copper",Tags.Items.ORES_COPPER,Items.RAW_COPPER,2,Items.RAW_COPPER,2,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/iron",Tags.Items.ORES_IRON,Items.RAW_IRON,2,Items.RAW_IRON,2,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/gold",Tags.Items.ORES_GOLD,Items.RAW_GOLD,2,Items.RAW_GOLD,2,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/lapis",Tags.Items.ORES_LAPIS,Items.LAPIS_LAZULI,8,Items.LAPIS_LAZULI,4,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/redstone",Tags.Items.ORES_REDSTONE,Items.REDSTONE,8,Items.REDSTONE,4,0.5f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/quartz",Tags.Items.ORES_QUARTZ,Items.QUARTZ,2,Items.QUARTZ,4,0.75f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/diamond",Tags.Items.ORES_DIAMOND,Items.DIAMOND,2,Items.DIAMOND,2,0.2f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/emerald",Tags.Items.ORES_EMERALD,Items.EMERALD,2,Items.EMERALD,2,0.2f,4000);
+        CrusherRecipeBuilder.crusher(output, "ores/netherite",Tags.Items.ORES_NETHERITE_SCRAP,Items.NETHERITE_SCRAP,2,Items.NETHERITE_SCRAP,2,0.1f,4000);
+
+
+
+    }
+
+    private void addResonatorRecipes(RecipeOutput output){
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "stoneburnt",
+                AUBlocks.POLISHED_STONE.getBlock().asItem(),
+                AUBlocks.STONEBURNT.getBlock().asItem(),
+                8
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "red_coal",
+                Ingredient.of(ItemTags.COALS),
+                new ItemStack(AUItems.RED_COAL.get()),
+                16
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "lunar_reactive_dust",
+                Ingredient.of(Tags.Items.GEMS_LAPIS),
+                new ItemStack(AUItems.LUNAR_REACTIVE_DUST.get()),
+                16
+        );
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "quartzburnt",
+                Items.QUARTZ_BLOCK,
+                AUBlocks.QUARTZBURNT.getBlock().asItem(),
+                8
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "upgrade_base",
+                Items.LIGHT_WEIGHTED_PRESSURE_PLATE,
+                AUItems.UPGRADE_BASE.get(),
+                8
+        );
+
+    }
+
+    private void addEnchanterRecipes(RecipeOutput output){
+        EnchanterRecipeBuilder.enchanter(output,
+                "magical_wood",
+                Items.BOOKSHELF,
+                1,
+                AUBlocks.MAGICAL_WOOD.asItem(),
+                64_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                "enchanted_metal_block",
+                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_GOLD,1),
+                9,
+                new ItemStack(AUBlocks.ENCHANTED_BLOCK.asItem()),
+                24_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                "enchanted_metal_ingot",
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD,1),
+                1,
+                new ItemStack(AUItems.ENCHANTED_INGOT.asItem()),
+                8_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                "evil_infused_iron_block",
+                SizedIngredient.of(Tags.Items.STORAGE_BLOCKS_IRON,8),
+                SizedIngredient.of(Items.NETHER_STAR,8),
+                new ItemStack(AUBlocks.EVIL_INFUSED_IRON_BLOCK.asItem(),8),
+                192_000
+        );
+
+        EnchanterRecipeBuilder.enchanter(output,
+                "evil_infused_iron_ingot",
+                SizedIngredient.of(Tags.Items.INGOTS_IRON,8),
+                SizedIngredient.of(Items.NETHER_STAR,1),
+                new ItemStack(AUItems.EVIL_INFUSED_IRON_INGOT.asItem(),8),
+                64_000
+        );
+        EnchanterRecipeBuilder.enchanter(output,
+                "magical_apple",
+                SizedIngredient.of(Items.APPLE,16),
+                1,
+                new ItemStack(AUItems.MAGICAL_APPLE.get(),16),
+                16_000
+        );
     }
 }

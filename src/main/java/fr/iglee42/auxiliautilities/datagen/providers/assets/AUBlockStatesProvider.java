@@ -1,10 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.blocks.AUBlocks;
-import fr.iglee42.auxiliautilities.blocks.BlockEnchanter;
-import fr.iglee42.auxiliautilities.blocks.BlockFurnace;
-import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.blocks.*;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.data.PackOutput;
@@ -78,7 +75,28 @@ public class AUBlockStatesProvider extends BlockStateProvider {
             return new ModelFile.UncheckedModelFile(model);
         });
 
+        horizontalBlock(AUBlocks.CRUSHER.get(), state->{
+            boolean lit = state.getValue(BlockCrusher.LIT);
+            ResourceLocation model = models().orientable(AUBlocks.CRUSHER.getRegisteredName() + (lit ? "_on" : ""), MACHINE_SIDE, modLoc("block/machines/crusher_front" + (lit?"_on":"")), MACHINE_BOTTOM).getUncheckedLocation();
+            return new ModelFile.UncheckedModelFile(model);
+        });
+
+
         simpleBlock(AUBlocks.ENCHANTER.get(),new ModelFile.UncheckedModelFile(models().cubeBottomTop(AUBlocks.ENCHANTER.getRegisteredName(), modLoc("block/machines/enchanter_side"),MACHINE_BOTTOM,modLoc("block/machines/enchanter_top")).getUncheckedLocation()));
         simpleBlock(AUBlocks.MACHINE_BLOCK.get(),new ModelFile.UncheckedModelFile(models().cubeColumn(AUBlocks.MACHINE_BLOCK.getRegisteredName(), MACHINE_SIDE,MACHINE_BOTTOM).getUncheckedLocation()));
+
+        CompressedBlockSet.ALL_SETS.forEach(set-> {
+            for (int tier = 1; tier <= set.getMaxTier(); tier++) {
+                simpleBlock(set.getBlock(tier).get(), models().cubeAll(set.getBlock(tier).getRegisteredName(), modLoc("block/compressed/" + set.getName() + "/" + tier)));
+            }
+        });
+
+        ResourceLocation redstoneClockModel = models().cubeAll(AUBlocks.REDSTONE_CLOCK.getRegisteredName(), modLoc("block/redstone_clock")).getUncheckedLocation();
+        ResourceLocation redstoneClockModelOff = models().cubeAll(AUBlocks.REDSTONE_CLOCK.getRegisteredName() + "_off", modLoc("block/redstone_clock_off")).getUncheckedLocation();
+        getVariantBuilder(AUBlocks.REDSTONE_CLOCK.get())
+                .forAllStates(state->{
+                    boolean off = state.getValue(BlockRedstoneClock.POWER_STATE) == BlockRedstoneClock.PowerState.DISABLED;
+                    return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(off ? redstoneClockModelOff : redstoneClockModel)).buildLast()};
+                });
     }
 }

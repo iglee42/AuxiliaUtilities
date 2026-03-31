@@ -2,12 +2,15 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -51,5 +54,30 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(AUBlocks.MAGICAL_WOOD.get());
 
+        addCompressedSet(BlockTags.MINEABLE_WITH_PICKAXE,AUBlocks.COMPRESSED_COBBLESTONE);
+        addCompressedSet(Tags.Blocks.COBBLESTONES_NORMAL,AUBlocks.COMPRESSED_COBBLESTONE);
+        addCompressedSet(BlockTags.MINEABLE_WITH_PICKAXE,AUBlocks.COMPRESSED_BLACKSTONE);
+        addCompressedSet(BlockTags.MINEABLE_WITH_PICKAXE,AUBlocks.COMPRESSED_COBBLED_DEEPSLATE);
+        addCompressedSet(Tags.Blocks.COBBLESTONES_DEEPSLATE,AUBlocks.COMPRESSED_COBBLED_DEEPSLATE);
+        addCompressedSet(BlockTags.MINEABLE_WITH_PICKAXE,AUBlocks.COMPRESSED_END_STONE);
+        addCompressedSet(BlockTags.DRAGON_IMMUNE,AUBlocks.COMPRESSED_END_STONE);
+        addCompressedSet(Tags.Blocks.END_STONES,AUBlocks.COMPRESSED_END_STONE);
+        addCompressedSet(BlockTags.MINEABLE_WITH_PICKAXE,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(Tags.Blocks.NETHERRACKS,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(BlockTags.INFINIBURN_OVERWORLD,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(BlockTags.INFINIBURN_NETHER,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(BlockTags.INFINIBURN_END,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(BlockTags.MINEABLE_WITH_SHOVEL,AUBlocks.COMPRESSED_DIRT);
+        addCompressedSet(BlockTags.DIRT,AUBlocks.COMPRESSED_DIRT);
+        addCompressedSet(BlockTags.MINEABLE_WITH_SHOVEL,AUBlocks.COMPRESSED_GRAVEL);
+        addCompressedSet(Tags.Blocks.GRAVELS,AUBlocks.COMPRESSED_GRAVEL);
+        addCompressedSet(BlockTags.MINEABLE_WITH_SHOVEL,AUBlocks.COMPRESSED_SAND);
+        addCompressedSet(BlockTags.SAND,AUBlocks.COMPRESSED_SAND);
+    }
+
+    private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){
+        for (int tier = 1; tier <= set.getMaxTier(); tier++) {
+            tag(tag).add(set.getBlock(tier).get());
+        }
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "au:magical_wood"
+    },
+    "I": {
+      "item": "minecraft:apple"
+    }
+  },
+  "pattern": [
+    "III",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "count": 8,
+    "id": "au:magical_apple"
+  }
+}

@@ -53,8 +53,21 @@ public class AUBlocks {
     public static final DeferredBlock<BlockResonator> RESONATOR = createBlock("resonator",()->new BlockResonator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
     public static final DeferredBlock<BlockEnchanter> ENCHANTER = createBlock("enchanter",()->new BlockEnchanter(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
     public static final DeferredBlock<BlockFurnace> FURNACE = createBlock("furnace", () -> new BlockFurnace(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final DeferredBlock<BlockCrusher> CRUSHER = createBlock("crusher", () -> new BlockCrusher(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+
 
     public static final DeferredBlock<BlockEnderLilly> ENDER_LILLY = createBlock("ender_lilly",()->new BlockEnderLilly(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
+
+    public static final CompressedBlockSet COMPRESSED_COBBLESTONE = new CompressedBlockSet(Blocks.COBBLESTONE,8);
+    public static final CompressedBlockSet COMPRESSED_DIRT = new CompressedBlockSet(Blocks.DIRT,4);
+    public static final CompressedBlockSet COMPRESSED_COBBLED_DEEPSLATE = new CompressedBlockSet(Blocks.COBBLED_DEEPSLATE,8);
+    public static final CompressedBlockSet COMPRESSED_SAND = new CompressedBlockSet(Blocks.SAND,2);
+    public static final CompressedBlockSet COMPRESSED_GRAVEL = new CompressedBlockSet(Blocks.GRAVEL,2);
+    public static final CompressedBlockSet COMPRESSED_NETHERRACK = new CompressedBlockSet(Blocks.NETHERRACK,6);
+    public static final CompressedBlockSet COMPRESSED_BLACKSTONE = new CompressedBlockSet(Blocks.BLACKSTONE,8);
+    public static final CompressedBlockSet COMPRESSED_END_STONE = new CompressedBlockSet(Blocks.END_STONE,6);
+
+    public static final DeferredBlock<BlockRedstoneClock> REDSTONE_CLOCK = createBlock("redstone_clock",()->new BlockRedstoneClock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_BLOCK).noOcclusion()));
 
     protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);

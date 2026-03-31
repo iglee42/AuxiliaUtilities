@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "au:block/compressed/cobbled_deepslate/7"
+  }
+}

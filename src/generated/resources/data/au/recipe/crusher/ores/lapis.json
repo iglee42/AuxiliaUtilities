@@ -1,0 +1,16 @@
+{
+  "type": "au:crusher",
+  "energy": 4000,
+  "ingredient": {
+    "tag": "c:ores/lapis"
+  },
+  "result": {
+    "count": 8,
+    "id": "minecraft:lapis_lazuli"
+  },
+  "second_chance": 0.5,
+  "second_result": {
+    "count": 4,
+    "id": "minecraft:lapis_lazuli"
+  }
+}

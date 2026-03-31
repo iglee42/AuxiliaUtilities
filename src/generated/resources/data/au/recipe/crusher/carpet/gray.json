@@ -1,0 +1,16 @@
+{
+  "type": "au:crusher",
+  "energy": 4000,
+  "ingredient": {
+    "item": "minecraft:gray_carpet"
+  },
+  "result": {
+    "count": 2,
+    "id": "minecraft:string"
+  },
+  "second_chance": 0.05,
+  "second_result": {
+    "count": 1,
+    "id": "minecraft:gray_dye"
+  }
+}

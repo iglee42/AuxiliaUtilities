@@ -49,12 +49,15 @@ public enum AULang {
     RESONATOR("block","resonator","Resonator"),
     ENCHANTER("block","enchanter","Enchanter"),
     FURNACE("block","furnace","Electric Furnace"),
+    CRUSHER("block","crusher","Crusher"),
     MAGICAL_WOOD("block","magical_wood","Magical Wood"),
     MAGICAL_PLANKS("block","magical_planks","Magical Planks"),
     DIAGONAL_WOOD("block","diagonal_wood","Diagonal Wood"),
     MACHINE_BLOCK("block","machine_block","Machine Block"),
 
     ENDER_LILLY("block","ender_lilly","Ender Lilly"),
+    COMPRESSED_BLOCKS("block","compressed_blocks","%s Blocks"),
+    REDSTONE_CLOCK("block","redstone_clock","Redstone Clock"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
@@ -85,6 +88,7 @@ public enum AULang {
     SPEED_UPGRADE("item","speed_upgrade","Speed Upgrade"),
     ENCHANTED_SPEED_UPGRADE("item","enchanted_speed_upgrade","Speed Upgrade (Magical)"),
     ULTIMATE_SPEED_UPGRADE("item","ultimate_speed_upgrade","Speed Upgrade (Ultimate)"),
+    MAGICAL_APPLE("item","magical_apple","Magical Apple"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -98,6 +102,7 @@ public enum AULang {
     DOOM_MESSAGE("message","doom_effect","The Specter of Death will arrive in %s seconds."),
     SECOND_CHANCE_MESSAGE("message","second_chance_effect","Second Chance !"),
     SECOND_CHANCE_ALREADY_USED_MESSAGE("message","second_chance_effect.already_used","Unfortunately we can't be lucky too many times !"),
+    MAGICAL_APPLE_USE("message","magical_apple_use","You feel your luck is changing"),
 
     UNSTABLE_INGOT_TOOLTIP_0("tooltip","unstable_ingot.0","§cERROR : Divide by diamond"),
     UNSTABLE_INGOT_TOOLTIP_1("tooltip","unstable_ingot.1","This ingot is highly unstable and will explode after 10 seconds."),

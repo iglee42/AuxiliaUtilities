@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "au:compressed_blackstone_6"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "au:compressed_blackstone_5"
+  }
+}

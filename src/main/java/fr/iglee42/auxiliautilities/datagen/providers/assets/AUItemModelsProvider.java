@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.data.PackOutput;
@@ -101,6 +102,7 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.RESONATOR.get());
         simpleBlockItem(AUBlocks.ENCHANTER.get());
         simpleBlockItem(AUBlocks.FURNACE.get());
+        simpleBlockItem(AUBlocks.CRUSHER.get());
         simpleBlockItem(AUBlocks.MAGICAL_WOOD.get());
         simpleBlockItem(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlockItem(AUBlocks.DIAGONAL_WOOD.get());
@@ -109,9 +111,16 @@ public class AUItemModelsProvider extends ItemModelProvider {
         basicItem(AUBlocks.ENDER_LILLY.asItem());
 
         basicItem(AUItems.UPGRADE_BASE.get());
+        basicItem(AUItems.MAGICAL_APPLE.get());
         upgrade(AUItems.SPEED_UPGRADE);
         upgrade(AUItems.ENCHANTED_SPEED_UPGRADE);
         upgrade(AUItems.ULTIMATE_SPEED_UPGRADE);
+
+        for (CompressedBlockSet set : CompressedBlockSet.ALL_SETS) {
+            set.getBlocks().values().forEach(block-> simpleBlockItem(block.get()));
+        }
+
+        simpleBlockItem(AUBlocks.REDSTONE_CLOCK.get());
     }
 
 

@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.potions.AUPotions;
 import fr.iglee42.igleelib.api.utils.ModsUtils;
@@ -10,6 +11,8 @@ import net.minecraft.world.item.DyeColor;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class AULangProvider extends LanguageProvider {
+    private static final String[] COMPRESSED_PREFIX= {"", "Double ", "Triple ", "Quadruple ", "Quintuple ", "Sextuple ", "Septuple ", "Octuple ", "Nonuple ", "Decuple "};
+
     public AULangProvider(PackOutput output) {
         super(output, AuxiliaUtilities.MODID, "en_us");
     }
@@ -40,6 +43,12 @@ public class AULangProvider extends LanguageProvider {
             add("block." + AuxiliaUtilities.MODID + "." + set.getName() + "_slab", ModsUtils.getUpperName(set.getName(), "_") + " Slab");
             add("block." + AuxiliaUtilities.MODID + "." + set.getName() + "_stairs", ModsUtils.getUpperName(set.getName(), "_") + " Stairs");
             add("block." + AuxiliaUtilities.MODID + "." + set.getName() + "_wall", ModsUtils.getUpperName(set.getName(), "_") + " Wall");
+        }
+
+        for (CompressedBlockSet set : CompressedBlockSet.ALL_SETS) {
+            for (int i = 1; i <= set.getMaxTier(); i++) {
+                add("block." + AuxiliaUtilities.MODID + ".compressed_" + set.getName() + "_" + i, COMPRESSED_PREFIX[i - 1] + "Compressed " +  ModsUtils.getUpperName(set.getName(), "_"));
+            }
         }
     }
 }

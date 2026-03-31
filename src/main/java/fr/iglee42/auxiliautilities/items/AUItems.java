@@ -81,6 +81,8 @@ public class AUItems {
     public static final DeferredItem<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade",()-> new ItemSpeedUpgrade(new Item.Properties(),4));
     public static final DeferredItem<Item> ENCHANTED_SPEED_UPGRADE = ITEMS.register("enchanted_speed_upgrade",()-> new ItemSpeedUpgrade(new Item.Properties(),16));
     public static final DeferredItem<Item> ULTIMATE_SPEED_UPGRADE = ITEMS.register("ultimate_speed_upgrade",()-> new ItemSpeedUpgrade(new Item.Properties(),64));
+
+    public static final DeferredItem<Item> MAGICAL_APPLE = ITEMS.register("magical_apple",()->new ItemMagicalApple(new Item.Properties()));
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),LUX_SABER.get());

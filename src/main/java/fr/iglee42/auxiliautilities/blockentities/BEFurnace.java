@@ -2,6 +2,8 @@ package fr.iglee42.auxiliautilities.blockentities;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleUpgradeStackHandler;
+import fr.iglee42.auxiliautilities.blocks.BlockCrusher;
+import fr.iglee42.auxiliautilities.blocks.BlockFurnace;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUEnergyWidget;
@@ -129,6 +131,11 @@ public class BEFurnace extends AUBlockEntity {
             }
         }
 
+        boolean isLit = state.getValue(BlockFurnace.LIT);
+        if (isLit != canWork()) {
+            level.setBlock(pos, state.setValue(BlockFurnace.LIT, canWork()), 3);
+        }
+
         if (canWork()) {
             int maxProgress = calculateMaxProgress();
             if (progress >= maxProgress) {
@@ -206,8 +213,8 @@ public class BEFurnace extends AUBlockEntity {
             };
             progressWidget.jeiCategory(ResourceLocation.withDefaultNamespace("smelting"));
             addWidget(progressWidget);
-            addWidget(new SlotItemHandlerWidget(inventory, 0, 44, 42));
-            addWidget(new SlotItemHandlerWidget(inventory, 1, 110, 42) {
+            addWidget(new SlotItemHandlerWidget(inventory, 0, 50, 42));
+            addWidget(new SlotItemHandlerWidget(inventory, 1, 102, 42) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return false;

@@ -19,6 +19,9 @@ public class AURecipes {
     public static final DeferredHolder<RecipeType<?>,RecipeType<EnchanterRecipe>> ENCHANTER = RECIPE_TYPES.register(EnchanterRecipe.Type.ID, ()->EnchanterRecipe.Type.INSTANCE);
     public static final DeferredHolder<RecipeSerializer<?>,RecipeSerializer<EnchanterRecipe>> ENCHANTER_SERIALIZER = RECIPE_SERIALIZERS.register(EnchanterRecipe.Type.ID, EnchanterRecipe.Serializer::new);
 
+    public static final DeferredHolder<RecipeType<?>,RecipeType<CrusherRecipe>> CRUSHER = RECIPE_TYPES.register(CrusherRecipe.Type.ID, ()->CrusherRecipe.Type.INSTANCE);
+    public static final DeferredHolder<RecipeSerializer<?>,RecipeSerializer<CrusherRecipe>> CRUSHER_SERIALIZER = RECIPE_SERIALIZERS.register(CrusherRecipe.Type.ID, CrusherRecipe.Serializer::new);
+
     public static void register(IEventBus bus){
         RECIPE_TYPES.register(bus);
         RECIPE_SERIALIZERS.register(bus);

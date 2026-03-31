@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemSickle;
@@ -10,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -75,5 +77,19 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.DAMPENS_VIBRATIONS).add(AUBlocks.SOUND_MUFFLER.asItem());
         tag(Tags.Items.CROPS).add(AUBlocks.ENDER_LILLY.asItem());
 
+        addCompressedSet(Tags.Items.COBBLESTONES_NORMAL,AUBlocks.COMPRESSED_COBBLESTONE);
+        addCompressedSet(Tags.Items.COBBLESTONES_DEEPSLATE,AUBlocks.COMPRESSED_COBBLED_DEEPSLATE);
+        addCompressedSet(Tags.Items.END_STONES,AUBlocks.COMPRESSED_END_STONE);
+        addCompressedSet(Tags.Items.NETHERRACKS,AUBlocks.COMPRESSED_NETHERRACK);
+        addCompressedSet(ItemTags.DIRT,AUBlocks.COMPRESSED_DIRT);
+        addCompressedSet(Tags.Items.GRAVELS,AUBlocks.COMPRESSED_GRAVEL);
+        addCompressedSet(ItemTags.SAND,AUBlocks.COMPRESSED_SAND);
+
+    }
+
+    private void addCompressedSet(TagKey<Item> tag, CompressedBlockSet set){
+        for (int tier = 1; tier <= set.getMaxTier(); tier++) {
+            tag(tag).add(set.getBlock(tier).asItem());
+        }
     }
 }
