@@ -36,7 +36,7 @@ public abstract class AUTimedProgressWidget extends AUProgressWidget{
         if (getMaxTime() == 0)
             return List.of();
         return ImmutableList.of(
-                AULang.PROGRESS_TIME_TOOLTIP.get(AULang.formatDurationSeconds((long) getTime(),true),AULang.formatDurationSeconds((long) getMaxTime(),false)),
+                AULang.PROGRESS_TIME_TOOLTIP.get(AULang.formatDurationSeconds((long) getTime(),true),AULang.formatDurationSeconds((long) getMaxTime(),true)),
                 Component.literal(NumberFormat.getPercentInstance().format(getTime() / getMaxTime())).withStyle(ChatFormatting.GRAY)
         );
     }

@@ -19,6 +19,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class AUBlockStatesProvider extends BlockStateProvider {
 
@@ -98,5 +99,33 @@ public class AUBlockStatesProvider extends BlockStateProvider {
                     boolean off = state.getValue(BlockRedstoneClock.POWER_STATE) == BlockRedstoneClock.PowerState.DISABLED;
                     return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(off ? redstoneClockModelOff : redstoneClockModel)).buildLast()};
                 });
+
+        generator(AUBlocks.SURVIVAL_GENERATOR);
+        generator(AUBlocks.FURNACE_GENERATOR);
+        generator(AUBlocks.OVERCLOCKED_GENERATOR);
+        generator(AUBlocks.CULINARY_GENERATOR);
+        generator(AUBlocks.MAGMATIC_GENERATOR);
+        generator(AUBlocks.POTION_GENERATOR);
+        generator(AUBlocks.SLIMEY_GENERATOR);
+        generator(AUBlocks.DEATH_GENERATOR);
+        generator(AUBlocks.PINK_GENERATOR);
+        generator(AUBlocks.EXPLOSIVE_GENERATOR);
+        generator(AUBlocks.HEATED_REDSTONE_GENERATOR);
+        generator(AUBlocks.ENDER_GENERATOR);
+        generator(AUBlocks.DISENCHANTMENT_GENERATOR);
+        generator(AUBlocks.FROSTY_GENERATOR);
+        generator(AUBlocks.HALITOSIS_GENERATOR);
+        generator(AUBlocks.NETHER_STAR_GENERATOR);
+
+        simpleBlock(AUBlocks.RAINBOW_GENERATOR.get());
+    }
+
+    private void generator(DeferredBlock<BlockGenerator> generator){
+        horizontalBlock(generator.get(), state->{
+            boolean lit = state.getValue(BlockGenerator.LIT);
+            String id = generator.getId().getPath();
+            ResourceLocation model = models().orientable(generator.getRegisteredName() + (lit ? "_on" : ""), modLoc("block/machines/"+id+"/side"), modLoc("block/machines/"+id+"/front" + (lit?"_on":"")), modLoc("block/machines/"+id+"/top")).getUncheckedLocation();
+            return new ModelFile.UncheckedModelFile(model);
+        });
     }
 }

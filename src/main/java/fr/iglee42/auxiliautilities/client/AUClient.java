@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
+import fr.iglee42.auxiliautilities.client.renderers.RainbowGeneratorRenderer;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.items.*;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
@@ -144,6 +145,7 @@ public class AUClient {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(AUBlockEntityTypes.MANUAL_MILL.get(), ManualMillRenderer::new);
+        event.registerBlockEntityRenderer(AUBlockEntityTypes.RAINBOW_GENERATOR.get(), RainbowGeneratorRenderer::new);
     }
 
     @SubscribeEvent

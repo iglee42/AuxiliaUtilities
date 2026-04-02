@@ -121,6 +121,24 @@ public class AUItemModelsProvider extends ItemModelProvider {
         }
 
         simpleBlockItem(AUBlocks.REDSTONE_CLOCK.get());
+
+        simpleBlockItem(AUBlocks.SURVIVAL_GENERATOR.get());
+        simpleBlockItem(AUBlocks.FURNACE_GENERATOR.get());
+        simpleBlockItem(AUBlocks.OVERCLOCKED_GENERATOR.get());
+        simpleBlockItem(AUBlocks.CULINARY_GENERATOR.get());
+        simpleBlockItem(AUBlocks.MAGMATIC_GENERATOR.get());
+        simpleBlockItem(AUBlocks.POTION_GENERATOR.get());
+        simpleBlockItem(AUBlocks.SLIMEY_GENERATOR.get());
+        simpleBlockItem(AUBlocks.DEATH_GENERATOR.get());
+        simpleBlockItem(AUBlocks.PINK_GENERATOR.get());
+        simpleBlockItem(AUBlocks.EXPLOSIVE_GENERATOR.get());
+        simpleBlockItem(AUBlocks.HEATED_REDSTONE_GENERATOR.get());
+        simpleBlockItem(AUBlocks.ENDER_GENERATOR.get());
+        simpleBlockItem(AUBlocks.DISENCHANTMENT_GENERATOR.get());
+        simpleBlockItem(AUBlocks.FROSTY_GENERATOR.get());
+        simpleBlockItem(AUBlocks.HALITOSIS_GENERATOR.get());
+        simpleBlockItem(AUBlocks.NETHER_STAR_GENERATOR.get());
+        simpleBlockItem(AUBlocks.RAINBOW_GENERATOR.get());
     }
 
 

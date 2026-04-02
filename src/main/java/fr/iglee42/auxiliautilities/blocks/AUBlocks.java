@@ -1,6 +1,8 @@
 package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
+import fr.iglee42.auxiliautilities.blockentities.generators.BEGenHeatedRedstone;
 import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockResonator;
 import fr.iglee42.auxiliautilities.blocks.gp.generators.*;
 import fr.iglee42.auxiliautilities.items.AUBlockItem;
@@ -68,6 +70,25 @@ public class AUBlocks {
     public static final CompressedBlockSet COMPRESSED_END_STONE = new CompressedBlockSet(Blocks.END_STONE,6);
 
     public static final DeferredBlock<BlockRedstoneClock> REDSTONE_CLOCK = createBlock("redstone_clock",()->new BlockRedstoneClock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_BLOCK).noOcclusion()));
+
+    public static final DeferredBlock<BlockGenerator> SURVIVAL_GENERATOR = createBlock("survival_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.SURVIVAL_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> FURNACE_GENERATOR = createBlock("furnace_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.FURNACE_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> OVERCLOCKED_GENERATOR = createBlock("overclocked_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.OVERCLOCKED_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> CULINARY_GENERATOR = createBlock("culinary_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.CULINARY_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> POTION_GENERATOR = createBlock("potion_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.POTION_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> MAGMATIC_GENERATOR = createBlock("magmatic_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.MAGMATIC_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> SLIMEY_GENERATOR = createBlock("slimey_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.SLIMEY_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> PINK_GENERATOR = createBlock("pink_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.PINK_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> DEATH_GENERATOR = createBlock("death_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.DEATH_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> EXPLOSIVE_GENERATOR = createBlock("explosive_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.EXPLOSIVE_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> HEATED_REDSTONE_GENERATOR = createBlock("heated_redstone_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.HEATED_REDSTONE_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> ENDER_GENERATOR = createBlock("ender_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.ENDER_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> DISENCHANTMENT_GENERATOR = createBlock("disenchantment_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.DISENCHANTMENT_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> FROSTY_GENERATOR = createBlock("frosty_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.FROSTY_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> HALITOSIS_GENERATOR = createBlock("halitosis_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.HALITOSIS_GENERATOR.get()));
+    public static final DeferredBlock<BlockGenerator> NETHER_STAR_GENERATOR = createBlock("nether_star_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.NETHER_STAR_GENERATOR.get()));
+
+    public static final DeferredBlock<BlockRainbowGenerator> RAINBOW_GENERATOR = createBlock("rainbow_generator", () -> new BlockRainbowGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);

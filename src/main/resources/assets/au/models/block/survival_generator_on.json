@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/machines/survival_generator_front_on",
-    "side": "au:block/machines/survival_generator_side",
-    "top": "au:block/machines/survival_generator_top"
-  }
-}

@@ -443,6 +443,16 @@ public class AURecipesProvider extends RecipeProvider {
                         .save(output, AuxiliaUtilities.id("compressed/"+ set.getName() + "/" +i));
             }
         }
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,AUBlocks.REDSTONE_CLOCK)
+                .pattern("SRS")
+                .pattern("RTR")
+                .pattern("SRS")
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('T',Items.REDSTONE_TORCH)
+                .define('S',Tags.Items.STONES)
+                .unlockedBy("has_item", has(Items.REDSTONE_TORCH))
+                .save(output);
     }
 
     private void ingotSet(RecipeOutput output,DeferredItem<?> nugget, DeferredItem<?> ingot, DeferredBlock<?> block){
