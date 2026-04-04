@@ -22,10 +22,12 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -143,6 +145,21 @@ public class AUClient {
                 AUItems.BIOME_MARKER.asItem(),
                 AuxiliaUtilities.id("has_biome"),
                 (stack,level,entity,seed)-> stack.has(AUDataComponents.STORED_BIOME) ? 1f : 0f
+        );
+
+        ItemProperties.register(AUItems.COMPOUND_BOW.asItem(), ResourceLocation.withDefaultNamespace("pull"), (p_344163_, p_344164_, p_344165_, p_344166_) -> {
+            if (p_344165_ == null) {
+                return 0.0F;
+            } else if (p_344165_.getUseItem() != p_344163_) {
+                return 0.0F;
+            } else {
+                float progress = (float)(p_344163_.getUseDuration(p_344165_) - p_344165_.getUseItemRemainingTicks()) / 20.0F;
+                return  progress >= 1.0F ? 4F : (progress > 0.82F ? 3F : (progress > 0.4F ? 2F : 1F));
+            }
+        });
+        ItemProperties.register(AUItems.COMPOUND_BOW.asItem(),
+                ResourceLocation.withDefaultNamespace("pulling"),
+                (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F
         );
     }
 

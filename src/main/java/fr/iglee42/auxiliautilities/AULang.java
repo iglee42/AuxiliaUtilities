@@ -125,6 +125,7 @@ public enum AULang {
     ULTIMATE_SPEED_UPGRADE("item","ultimate_speed_upgrade","Speed Upgrade (Ultimate)"),
     MAGICAL_APPLE("item","magical_apple","Magical Apple"),
     BIOME_MARKER("item","biome_marker","Biome Marker"),
+    COMPOUND_BOW("item","compound_bow","Compound Bow"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 

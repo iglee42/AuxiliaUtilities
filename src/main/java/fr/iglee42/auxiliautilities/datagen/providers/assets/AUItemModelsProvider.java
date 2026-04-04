@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -182,6 +183,30 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 ))
                 .end()
                 .renderType("cutout");
+
+        getBuilder(AUItems.COMPOUND_BOW.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/tools/compound_bow"))
+                .override()
+                .predicate(ResourceLocation.withDefaultNamespace("pulling"), 1)
+                .predicate(ResourceLocation.withDefaultNamespace("pull"), 1)
+                .model(new ModelFile.UncheckedModelFile(handheldTool("compound_bow_pull_0").getUncheckedLocation()))
+                .end()
+                .override()
+                .predicate(ResourceLocation.withDefaultNamespace("pulling"), 1)
+                .predicate(ResourceLocation.withDefaultNamespace("pull"), 2f)
+                .model(new ModelFile.UncheckedModelFile(handheldTool("compound_bow_pull_1").getUncheckedLocation()))
+                .end()
+                .override()
+                .predicate(ResourceLocation.withDefaultNamespace("pulling"), 1)
+                .predicate(ResourceLocation.withDefaultNamespace("pull"), 3f)
+                .model(new ModelFile.UncheckedModelFile(handheldTool("compound_bow_pull_2").getUncheckedLocation()))
+                .end()
+                .override()
+                .predicate(ResourceLocation.withDefaultNamespace("pulling"), 1)
+                .predicate(ResourceLocation.withDefaultNamespace("pull"), 4f)
+                .model(new ModelFile.UncheckedModelFile(handheldTool("compound_bow_pull_charged").getUncheckedLocation()))
+                .end();
     }
 
 
@@ -197,6 +222,12 @@ public class AUItemModelsProvider extends ItemModelProvider {
         getBuilder(item.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/tools/"+item.getId().getPath()));
+    }
+
+    private ModelBuilder<?> handheldTool(String texture){
+        return getBuilder(AuxiliaUtilities.id(texture).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/tools/"+texture));
     }
 
     private void makeEnderShards(){

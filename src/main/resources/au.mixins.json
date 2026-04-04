@@ -4,6 +4,7 @@
   "package": "fr.iglee42.auxiliautilities.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ArrowAccessor",
     "BlockPropertiesAccessor",
     "CraftingMenuMixin",
     "PlayerAccessor",

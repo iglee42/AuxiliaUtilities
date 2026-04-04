@@ -18,8 +18,10 @@ public enum AUPackets {
     // TO CLIENT
     SEND_CHAT_MESSAGE(SendChatMessagePacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SYNC_GP_NETWORK(SyncGPNetworkPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
-    ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
     SEND_CURRENT_BLOCK_GP(SendCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+
+    // TO SERVER
+    ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
 
     ;
 

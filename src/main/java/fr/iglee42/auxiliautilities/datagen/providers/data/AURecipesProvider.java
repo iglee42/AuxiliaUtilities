@@ -485,6 +485,15 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUItems.LUNAR_REACTIVE_DUST))
                 .save(output);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,AUItems.COMPOUND_BOW)
+                .pattern(" OS")
+                .pattern("I S")
+                .pattern(" OS")
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('S',Tags.Items.STRINGS)
+                .define('O',AUBlocks.PERFECTED_OPINIUM_CORE)
+                .unlockedBy("has_item", has(AUBlocks.PERFECTED_OPINIUM_CORE))
+                .save(output);
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {
