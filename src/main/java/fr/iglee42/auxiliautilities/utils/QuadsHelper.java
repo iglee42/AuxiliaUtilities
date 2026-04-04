@@ -9,7 +9,10 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ClientHooks;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
+
 import javax.annotation.Nonnull;
 
 public class QuadsHelper {
@@ -77,10 +80,40 @@ public class QuadsHelper {
         return dest;
     }
 
+    public static BakedQuad applyMatrixTransform(BakedQuad quad, Matrix4f mat) {
+
+        int[] data = quad.getVertices().clone();
+
+        for (int v = 0; v < 4; v++) {
+
+            int i = v * 8;
+
+            float x = Float.intBitsToFloat(data[i]);
+            float y = Float.intBitsToFloat(data[i + 1]);
+            float z = Float.intBitsToFloat(data[i + 2]);
+
+            Vector4f pos = new Vector4f(x, y, z, 1.0F);
+            pos.mul(mat);
+
+            data[i]     = Float.floatToRawIntBits(pos.x);
+            data[i + 1] = Float.floatToRawIntBits(pos.y);
+            data[i + 2] = Float.floatToRawIntBits(pos.z);
+        }
+
+        return new BakedQuad(
+                data,
+                quad.getTintIndex(),
+                quad.getDirection(),
+                quad.getSprite(),
+                quad.isShade()
+        );
+    }
+
 
     public record UV(float x, float y, float z, float u, float v) {
         public Vector3f toVector3f() {
             return new Vector3f(x, y, z);
         }
     }
+
 }

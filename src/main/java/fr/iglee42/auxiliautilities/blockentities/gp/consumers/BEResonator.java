@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
+import fr.iglee42.auxiliautilities.blockentities.generators.BERainbowGenerator;
 import fr.iglee42.auxiliautilities.blockentities.gp.AUGPConsumerBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleUpgradeStackHandler;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
@@ -27,11 +28,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.NumberFormat;
@@ -74,7 +77,18 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
     }
 
     public boolean canWork(){
-        return GPNetworkManager.INSTANCE.hasEnoughPower(getNetworkId()) && inventory.insertItem(1,currentRecipe.value().getResultItem(level.registryAccess()),true).isEmpty();
+        if (currentRecipe == null) return false;
+        boolean work = GPNetworkManager.INSTANCE.hasEnoughPower(getNetworkId()) && inventory.insertItem(1,currentRecipe.value().getResultItem(level.registryAccess()),true).isEmpty();
+        if (currentRecipe.value().doesRequiresRainbowGenerator()){
+            MutableBoolean hasRainbow = new MutableBoolean(false);
+            BlockPos.betweenClosedStream(new AABB(getBlockPos()).inflate(BERainbowGenerator.RANGE)).forEach(
+                    pos-> level.getBlockEntity(pos, AUBlockEntityTypes.RAINBOW_GENERATOR.get()).ifPresent(be -> {
+                        if (be.isProviding()) hasRainbow.setTrue();
+                    })
+            );
+            work = work && hasRainbow.getValue();
+        }
+        return work;
     }
 
     @Override

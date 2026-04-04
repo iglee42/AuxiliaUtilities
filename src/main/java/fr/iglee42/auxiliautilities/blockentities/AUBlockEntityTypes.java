@@ -14,8 +14,11 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class AUBlockEntityTypes {
 
@@ -57,8 +60,11 @@ public class AUBlockEntityTypes {
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BERainbowGenerator>> RAINBOW_GENERATOR = register("rainbow_generator", BERainbowGenerator::new, AUBlocks.RAINBOW_GENERATOR);
 
-    private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block> block){
-        return BLOCK_ENTITY_TYPES.register(name,()->BlockEntityType.Builder.of(supplier,block.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEOpiniumCore>> OPINIUM_CORE = register("opinium_core", BEOpiniumCore::new, AUBlocks.MISERABLE_OPINIUM_CORE,AUBlocks.PATHETIC_OPINIUM_CORE,AUBlocks.MEDIOCRE_OPINIUM_CORE,AUBlocks.PASSABLE_OPINIUM_CORE,AUBlocks.DECENT_OPINIUM_CORE,AUBlocks.SOLID_OPINIUM_CORE,AUBlocks.GOOD_OPINIUM_CORE,AUBlocks.DAMN_GOOD_OPINIUM_CORE,AUBlocks.AMAZING_OPINIUM_CORE,AUBlocks.INSPIRING_OPINIUM_CORE,AUBlocks.PERFECTED_OPINIUM_CORE);
+
+    private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block>... block){
+        Supplier<List<Block>> blocks = ()->Arrays.stream(block).map(holder -> (Block) holder.get()).toList();
+        return BLOCK_ENTITY_TYPES.register(name,()->BlockEntityType.Builder.of(supplier, blocks.get().toArray(new Block[]{})).build(null));
     }
 
     private static <T extends AUGeneratorBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> registerGenerator(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block> block){

@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.neoforged.neoforge.client.model.EmptyModel;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -118,6 +119,18 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         generator(AUBlocks.NETHER_STAR_GENERATOR);
 
         simpleBlock(AUBlocks.RAINBOW_GENERATOR.get());
+
+        simpleBlock(AUBlocks.MISERABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MISERABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.PATHETIC_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PATHETIC_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.MEDIOCRE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MEDIOCRE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.PASSABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PASSABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.DECENT_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DECENT_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.SOLID_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.SOLID_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.DAMN_GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DAMN_GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.AMAZING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.AMAZING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.INSPIRING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.INSPIRING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.PERFECTED_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PERFECTED_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
     }
 
     private void generator(DeferredBlock<BlockGenerator> generator){

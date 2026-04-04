@@ -8,14 +8,19 @@ import fr.iglee42.auxiliautilities.blocks.gp.generators.*;
 import fr.iglee42.auxiliautilities.items.AUBlockItem;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemAngelBlock;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -88,8 +93,31 @@ public class AUBlocks {
     public static final DeferredBlock<BlockGenerator> HALITOSIS_GENERATOR = createBlock("halitosis_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.HALITOSIS_GENERATOR.get()));
     public static final DeferredBlock<BlockGenerator> NETHER_STAR_GENERATOR = createBlock("nether_star_generator",()->new BlockGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.NETHER_STAR_GENERATOR.get()));
 
-    public static final DeferredBlock<BlockRainbowGenerator> RAINBOW_GENERATOR = createBlock("rainbow_generator", () -> new BlockRainbowGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+    public static final DeferredBlock<BlockRainbowGenerator> RAINBOW_GENERATOR = createBlockWithCustomItem("rainbow_generator", () -> new BlockRainbowGenerator(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()),block->new AUBlockItem(block,new Item.Properties()){
+        @Override
+        public Component getName(ItemStack p_41458_) {
+            return getBlock().getName();
+        }
+    });
 
+    public static final Map<BlockOpiniumCore.Tier,DeferredBlock<BlockOpiniumCore>> OPINIUM_CORE = new HashMap<>();
+    public static final DeferredBlock<BlockOpiniumCore> MISERABLE_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.MISERABLE);
+    public static final DeferredBlock<BlockOpiniumCore> PATHETIC_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.PATHETIC);
+    public static final DeferredBlock<BlockOpiniumCore> MEDIOCRE_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.MEDIOCRE);
+    public static final DeferredBlock<BlockOpiniumCore> PASSABLE_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.PASSABLE);
+    public static final DeferredBlock<BlockOpiniumCore> DECENT_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.DECENT);
+    public static final DeferredBlock<BlockOpiniumCore> SOLID_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.SOLID);
+    public static final DeferredBlock<BlockOpiniumCore> GOOD_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.GOOD);
+    public static final DeferredBlock<BlockOpiniumCore> DAMN_GOOD_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.DAMN_GOOD);
+    public static final DeferredBlock<BlockOpiniumCore> AMAZING_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.AMAZING);
+    public static final DeferredBlock<BlockOpiniumCore> INSPIRING_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.INSPIRING);
+    public static final DeferredBlock<BlockOpiniumCore> PERFECTED_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.PERFECTED);
+
+    private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
+        DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));
+        OPINIUM_CORE.put(tier,block);
+        return block;
+    }
     protected static <T extends Block> DeferredBlock<T> createBlockWithoutItem(String name, Supplier<T> supplier){
         return BLOCKS.register(name, supplier);
     }

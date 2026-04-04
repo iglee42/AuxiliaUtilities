@@ -82,6 +82,18 @@ public enum AULang {
     RAINBOW_GENERATOR_BOTTOM("item","rainbow_generator_bottom","Rainbow Generator (Bottom Half)"),
     RAINBOW_GENERATOR_TOP("item","rainbow_generator_top","Rainbow Generator (Top Half)"),
 
+    MISERABLE_OPINIUM_CORE("block","miserable_opinium_core","Opinium Core (Miserable)"),
+    PATHETIC_OPINIUM_CORE("block","pathetic_opinium_core","Opinium Core (Pathetic)"),
+    MEDIOCRE_OPINIUM_CORE("block","mediocre_opinium_core","Opinium Core (Mediocre)"),
+    PASSABLE_OPINIUM_CORE("block","passable_opinium_core","Opinium Core (Passable)"),
+    DECENT_OPINIUM_CORE("block","decent_opinium_core","Opinium Core (Decent)"),
+    SOLID_OPINIUM_CORE("block","solid_opinium_core","Opinium Core (Solid)"),
+    GOOD_OPINIUM_CORE("block","good_opinium_core","Opinium Core (Good)"),
+    DAMN_GOOD_OPINIUM_CORE("block","damn_good_opinium_core","Opinium Core (Damn Good)"),
+    AMAZING_OPINIUM_CORE("block","amazing_opinium_core","Opinium Core (Amazing)"),
+    INSPIRING_OPINIUM_CORE("block","inspiring_opinium_core","Opinium Core (Inspiring)"),
+    PERFECTED_OPINIUM_CORE("block","perfected_opinium_core","Opinium Core (Perfected)"),
+
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
     DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),
@@ -112,6 +124,7 @@ public enum AULang {
     ENCHANTED_SPEED_UPGRADE("item","enchanted_speed_upgrade","Speed Upgrade (Magical)"),
     ULTIMATE_SPEED_UPGRADE("item","ultimate_speed_upgrade","Speed Upgrade (Ultimate)"),
     MAGICAL_APPLE("item","magical_apple","Magical Apple"),
+    BIOME_MARKER("item","biome_marker","Biome Marker"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -136,10 +149,12 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s MB"),
+    STORED_BIOME_TOOLTIP("tooltip","stored_biome","Stored Biome : %s"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
     RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),
     HOLD_SHIFT_TOOLTIP("tooltip","hold_shift","§7Hold Shift for description"),
     HOLD_CTRL_TOOLTIP("tooltip","hold_control","§7Hold Control for more info"),
+    RESONATOR_REQUIRES_RAINBOW_GENERATOR("tooltip","resonator_requires_rainbow_generator","Requires an active Rainbow Generator"),
 
     GP_TOOLTIP("tooltip","gp","Grid Power : %s / %s"),
     BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),

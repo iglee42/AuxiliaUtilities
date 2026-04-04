@@ -151,6 +151,37 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("bottom", AuxiliaUtilities.id("block/rainbow_generator_center"))
                 .texture("side", AuxiliaUtilities.id("block/rainbow_generator_top"))
                 .texture("top", AuxiliaUtilities.id("block/rainbow_generator"));
+
+        getBuilder(AUBlocks.MISERABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.PATHETIC_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.MEDIOCRE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.PASSABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.DECENT_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.SOLID_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.DAMN_GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.AMAZING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.INSPIRING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        getBuilder(AUBlocks.PERFECTED_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+
+        getBuilder(AUItems.BIOME_MARKER.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker"))
+                .override()
+                .predicate(AuxiliaUtilities.id("has_biome"), 1)
+                .model(new ModelFile.UncheckedModelFile(
+                        getBuilder(AUItems.BIOME_MARKER.getId() + "_full")
+                                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                                .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker_active"))
+                                .texture("layer1", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker_active_0"))
+                                .texture("layer2", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker_active_1"))
+                                .texture("layer3", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker_active_2"))
+                                .texture("layer4", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/biome_marker_active_3"))
+                                .renderType("cutout")
+                                .getUncheckedLocation()
+                ))
+                .end()
+                .renderType("cutout");
     }
 
 

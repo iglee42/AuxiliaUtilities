@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.jei.categories;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.BlockRainbowGenerator;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -13,8 +14,10 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.NotNull;
@@ -66,6 +69,17 @@ public class ResonatorCategory implements IRecipeCategory<RecipeHolder<Resonator
         stack.drawString(Minecraft.getInstance().font,  holder.value().getRequiredGP() +" GP",47,5, Color.GRAY.getRGB(),false);
         slot.draw(stack,18,13);
         slot.draw(stack,78,13);
+        if (holder.value().doesRequiresRainbowGenerator()){
+            stack.pose().pushPose();
+            stack.pose().scale(0.75f,0.75f,1);
+            drawCenteredString(Minecraft.getInstance().font,BlockRainbowGenerator.getRainbowName(AULang.RESONATOR_REQUIRES_RAINBOW_GENERATOR.get(),1), (int) (getWidth() / 2 * 1.25) + 5, (int) (40*1.25), 0xffffffff,false,stack);
+            stack.pose().popPose();
+        }
+    }
+
+    public void drawCenteredString(Font font, Component text, int x, int y, int color,boolean shadow,GuiGraphics stack) {
+        FormattedCharSequence formattedcharsequence = text.getVisualOrderText();
+        stack.drawString(font, formattedcharsequence, x - font.width(formattedcharsequence) / 2, y, color,shadow);
     }
 
 

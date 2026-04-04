@@ -1,0 +1,12 @@
+{
+  "type": "au:resonator",
+  "ingredient": {
+    "item": "au:stoneburnt"
+  },
+  "required_gp": 64,
+  "requires_rainbow_generator": true,
+  "result": {
+    "count": 1,
+    "id": "au:rainbow_stone"
+  }
+}

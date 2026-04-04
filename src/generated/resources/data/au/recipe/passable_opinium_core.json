@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:gold_block"
+    },
+    "I": {
+      "item": "minecraft:diamond_block"
+    },
+    "O": {
+      "item": "au:mediocre_opinium_core"
+    }
+  },
+  "pattern": [
+    " O ",
+    "CIC",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:passable_opinium_core"
+  }
+}

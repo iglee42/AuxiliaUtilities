@@ -10,6 +10,7 @@ import fr.iglee42.auxiliautilities.jei.categories.EnchanterCategory;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory.GeneratorWrapper;
 import fr.iglee42.auxiliautilities.jei.categories.ResonatorCategory;
+import fr.iglee42.auxiliautilities.jei.subtypes.BiomeMarkerSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.DamageItemSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.LuxSaberSubtype;
 import fr.iglee42.auxiliautilities.recipes.CrusherRecipe;
@@ -92,6 +93,7 @@ public class AUJeiPlugin implements IModPlugin {
         registration.registerSubtypeInterpreter(AUItems.SUN_CRYSTAL.asItem(), DamageItemSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.WATERING_CAN.asItem(), DamageItemSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.LUX_SABER.asItem(), LuxSaberSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.BIOME_MARKER.asItem(), BiomeMarkerSubtype.INSTANCE);
     }
 
     enum Generators {

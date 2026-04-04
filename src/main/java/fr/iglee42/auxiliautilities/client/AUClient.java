@@ -2,9 +2,12 @@ package fr.iglee42.auxiliautilities.client;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
+import fr.iglee42.auxiliautilities.client.renderers.OpiniumCoreItemRenderer;
+import fr.iglee42.auxiliautilities.client.renderers.OpiniumCoreRenderer;
 import fr.iglee42.auxiliautilities.client.renderers.RainbowGeneratorRenderer;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.items.*;
@@ -28,6 +31,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
@@ -135,6 +139,11 @@ public class AUClient {
                 AuxiliaUtilities.id("charged"),
                 (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ItemLuxSaber.ENERGY_THRESHOLD ? 1f : 0f
         );
+        ItemProperties.register(
+                AUItems.BIOME_MARKER.asItem(),
+                AuxiliaUtilities.id("has_biome"),
+                (stack,level,entity,seed)-> stack.has(AUDataComponents.STORED_BIOME) ? 1f : 0f
+        );
     }
 
     @SubscribeEvent
@@ -146,6 +155,12 @@ public class AUClient {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(AUBlockEntityTypes.MANUAL_MILL.get(), ManualMillRenderer::new);
         event.registerBlockEntityRenderer(AUBlockEntityTypes.RAINBOW_GENERATOR.get(), RainbowGeneratorRenderer::new);
+        event.registerBlockEntityRenderer(AUBlockEntityTypes.OPINIUM_CORE.get(), OpiniumCoreRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event){
+        event.registerItem(new OpiniumCoreItemRenderer.Extension(),AUBlocks.MISERABLE_OPINIUM_CORE.asItem(),AUBlocks.PATHETIC_OPINIUM_CORE.asItem(),AUBlocks.MEDIOCRE_OPINIUM_CORE.asItem(),AUBlocks.PASSABLE_OPINIUM_CORE.asItem(),AUBlocks.DECENT_OPINIUM_CORE.asItem(),AUBlocks.SOLID_OPINIUM_CORE.asItem(),AUBlocks.GOOD_OPINIUM_CORE.asItem(),AUBlocks.DAMN_GOOD_OPINIUM_CORE.asItem(),AUBlocks.AMAZING_OPINIUM_CORE.asItem(),AUBlocks.INSPIRING_OPINIUM_CORE.asItem(),AUBlocks.PERFECTED_OPINIUM_CORE.asItem());
     }
 
     @SubscribeEvent

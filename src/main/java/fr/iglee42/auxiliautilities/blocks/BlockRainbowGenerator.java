@@ -6,8 +6,12 @@ import fr.iglee42.auxiliautilities.blockentities.generators.BERainbowGenerator;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.items.AUItem;
 import fr.iglee42.auxiliautilities.items.AUItems;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +26,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -59,4 +64,29 @@ public class BlockRainbowGenerator extends AUBlock implements AUEntityBlock<BERa
         return openMenu(level,pos,player);
     }
 
+    public static int getRainbowColor(float speed) {
+        float hue = ((System.currentTimeMillis() % 10000L) / 3500f + speed) % 1.0f;
+        return Color.HSBtoRGB(hue, 1.0f, 1.0f);
+    }
+
+    @NotNull
+    public static MutableComponent getRainbowName(@NotNull Component baseNameComponent, float speed) {
+        String baseName = baseNameComponent.getString();
+        MutableComponent animatedName = Component.literal("");
+
+        for (int i = 0; i < baseName.length(); i++) {
+            float charSpeed = i * 0.05f;
+            int color = getRainbowColor(speed + charSpeed);
+
+            animatedName.append(Component.literal(String.valueOf(baseName.charAt(i)))
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));
+        }
+
+        return animatedName;
+    }
+
+    @Override
+    public MutableComponent getName() {
+        return getRainbowName(super.getName(),1f);
+    }
 }

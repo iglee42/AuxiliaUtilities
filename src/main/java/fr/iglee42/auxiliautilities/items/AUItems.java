@@ -87,6 +87,8 @@ public class AUItems {
     public static final DeferredItem<Item> RAINBOW_GENERATOR_BOTTOM = ITEMS.register("rainbow_generator_bottom",()-> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> RAINBOW_GENERATOR_TOP = ITEMS.register("rainbow_generator_top",()-> new Item(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> BIOME_MARKER = ITEMS.register("biome_marker",()-> new ItemBiomeMarker(new Item.Properties()));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),LUX_SABER.get());

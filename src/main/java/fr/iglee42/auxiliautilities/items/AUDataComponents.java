@@ -2,9 +2,12 @@ package fr.iglee42.auxiliautilities.items;
 
 import com.mojang.serialization.Codec;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -15,4 +18,5 @@ public class AUDataComponents {
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> DIMENSION = DATA_COMPONENTS.register("dimension", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> CONTAINER_ID = DATA_COMPONENTS.register("container_id", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> STORED_ENERGY = DATA_COMPONENTS.register("stored_energy", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>,DataComponentType<Holder<Biome>>> STORED_BIOME = DATA_COMPONENTS.register("stored_biome", ()-> DataComponentType.<Holder<Biome>>builder().persistent(Biome.CODEC).networkSynchronized(ByteBufCodecs.holderRegistry(Registries.BIOME)).build());
 }

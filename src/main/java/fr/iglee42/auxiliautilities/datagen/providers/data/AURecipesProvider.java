@@ -1,10 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.blocks.AUBlock;
-import fr.iglee42.auxiliautilities.blocks.AUBlocks;
-import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
-import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.blocks.*;
 import fr.iglee42.auxiliautilities.datagen.builders.CrusherRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.EnchanterRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
@@ -454,6 +451,40 @@ public class AURecipesProvider extends RecipeProvider {
                 .save(output);
 
         createGeneratorRecipes(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.MISERABLE_OPINIUM_CORE)
+                .pattern(" C ")
+                .pattern("CIC")
+                .pattern(" C ")
+                .define('C', BlockOpiniumCore.Tier.MISERABLE.getOrbit())
+                .define('I', BlockOpiniumCore.Tier.MISERABLE.getMain())
+                .unlockedBy("has_item", has(BlockOpiniumCore.Tier.MISERABLE.getMain()))
+                .save(output);
+
+        for (int i = 1; i < BlockOpiniumCore.Tier.values().length; i++) {
+            BlockOpiniumCore.Tier tier = BlockOpiniumCore.Tier.values()[i];
+            BlockOpiniumCore.Tier previous = BlockOpiniumCore.Tier.values()[i-1];
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.OPINIUM_CORE.get(tier))
+                    .pattern(" O ")
+                    .pattern("CIC")
+                    .pattern(" O ")
+                    .define('C', tier.getOrbit())
+                    .define('I', tier.getMain())
+                    .define('O', AUBlocks.OPINIUM_CORE.get(previous))
+                    .unlockedBy("has_item", has(AUBlocks.OPINIUM_CORE.get(previous)))
+                    .save(output);
+        }
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.BIOME_MARKER)
+                .pattern("ABA")
+                .pattern("BCB")
+                .pattern("ABA")
+                .define('A',AUItems.LUNAR_REACTIVE_DUST)
+                .define('B',Tags.Items.INGOTS_IRON)
+                .define('C',ItemTags.SAPLINGS)
+                .unlockedBy("has_item", has(AUItems.LUNAR_REACTIVE_DUST))
+                .save(output);
+
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {
@@ -731,6 +762,15 @@ public class AURecipesProvider extends RecipeProvider {
                 Items.LIGHT_WEIGHTED_PRESSURE_PLATE,
                 AUItems.UPGRADE_BASE.get(),
                 8
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "rainbow_stone",
+                Ingredient.of(AUBlocks.STONEBURNT.getBlock().asItem()),
+                new ItemStack(AUBlocks.RAINBOW_STONE.getBlock()),
+                64,
+                true
         );
 
     }
