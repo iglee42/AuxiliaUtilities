@@ -13,7 +13,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ResolvableProfile;
@@ -25,10 +24,8 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 public class ItemUnstableIngot extends AUItem{
     public static final int TIMEOUT = 200;
@@ -212,25 +209,14 @@ public class ItemUnstableIngot extends AUItem{
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
-        if (context.level() != null) {
-            if (stack.has(AUDataComponents.TIME)) {
-                long time = stack.get(AUDataComponents.TIME);
-                float remaining = (float) ((time + TIMEOUT) - context.level().getGameTime()) / 20;
-                if (remaining > 0)
-                    tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_EXPLOSION.get(NumberFormat.getInstance(Locale.UK).format(remaining)).withStyle(
-                            style -> style.withColor(getColor(stack,0))
-                    ));
-            } else {
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_0.get());
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_1.get());
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_2.get());
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_3.get());
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_4.get());
-                tooltips.add(Component.empty());
-                tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_5.get());
-            }
-        }
-        super.appendHoverText(stack, context, tooltips, flag);
+    public List<Component> getTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        List<Component> tooltips = new LinkedList<>();
+        tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_ERROR.get());
+        if (ctx.level() == null || !stack.has(AUDataComponents.TIME)) return tooltips;
+        long time = stack.get(AUDataComponents.TIME);
+        float remaining = (float) ((time + TIMEOUT) - ctx.level().getGameTime()) / 20;
+        if (remaining <= 0) return tooltips;
+        tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_EXPLOSION.get(formatFloat(remaining)).withColor(getColor(stack,0)));
+        return tooltips;
     }
 }

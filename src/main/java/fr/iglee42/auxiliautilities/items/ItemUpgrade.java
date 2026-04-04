@@ -21,8 +21,7 @@ public class ItemUpgrade extends AUItem implements UpgradeProvider{
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext p_339594_, List<Component> tooltips, TooltipFlag p_41424_) {
-        Upgrade.addTooltip(tooltips, stack,this,stack.getMaxStackSize());
-        super.appendHoverText(stack, p_339594_, tooltips, p_41424_);
+    public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        return Upgrade.getTooltips(stack,this,stack.getMaxStackSize());
     }
 }

@@ -1,11 +1,12 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.utils.AUTooltipProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Consumer;
 
-public interface AUItemBase {
+public interface AUItemBase extends AUTooltipProvider {
 
     default Item self(){
         return (Item) this;

@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.blocks.gp.consumers;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
+import fr.iglee42.auxiliautilities.blocks.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import net.minecraft.core.BlockPos;
@@ -20,7 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockResonator extends Block implements AUGPEntityBlock<BEResonator> {
+public class BlockResonator extends AUBlock implements AUGPEntityBlock<BEResonator> {
 
 
     public BlockResonator(Properties props) {

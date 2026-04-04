@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockEnchanter extends Block implements AUEntityBlock<BEEnchanter> {
+public class BlockEnchanter extends AUBlock implements AUEntityBlock<BEEnchanter> {
 
     public BlockEnchanter(Properties props) {
         super(props);

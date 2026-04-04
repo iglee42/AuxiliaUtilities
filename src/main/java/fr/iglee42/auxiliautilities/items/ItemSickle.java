@@ -113,9 +113,14 @@ public class ItemSickle extends DiggerItem implements AUItemBase {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext p_339594_, List<Component> tooltips, TooltipFlag p_41424_) {
+    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
+        addTooltips(stack, tooltips, ctx, flag);
+        super.appendHoverText(stack, ctx, tooltips, flag);
+    }
+
+    @Override
+    public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
         int range = 2*getRange(stack) +1;
-        tooltips.add(AULang.AREA_TOOLTIP.get(range,range).withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(stack, p_339594_, tooltips, p_41424_);
+        return List.of(AULang.AREA_TOOLTIP.get(range,range).withStyle(ChatFormatting.GRAY));
     }
 }

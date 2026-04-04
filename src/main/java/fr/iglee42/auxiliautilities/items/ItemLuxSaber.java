@@ -22,6 +22,7 @@ import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -127,9 +128,14 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase{
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        int energy = stack.getOrDefault(AUDataComponents.STORED_ENERGY,0);
-        tooltips.add(AULang.STORED_ENERGY_TOOLTIP.get(NumberFormat.getInstance(Locale.UK).format(energy), NumberFormat.getInstance(Locale.UK).format(MAX_ENERGY)).withStyle(ChatFormatting.GRAY));
+        addTooltips(stack, tooltips, ctx, flag);
         super.appendHoverText(stack, ctx, tooltips, flag);
+    }
+
+    @Override
+    public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        int energy = stack.getOrDefault(AUDataComponents.STORED_ENERGY,0);
+        return List.of(AULang.STORED_ENERGY_TOOLTIP.get(formatInt(energy), formatInt(MAX_ENERGY)).withStyle(ChatFormatting.GRAY));
     }
 
     public static class ItemEnergyStorage implements IEnergyStorage {

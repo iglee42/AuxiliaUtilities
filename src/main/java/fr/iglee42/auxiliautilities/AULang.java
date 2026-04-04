@@ -8,6 +8,7 @@ import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnegative;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public enum AULang {
@@ -76,6 +79,8 @@ public enum AULang {
     HALITOSIS_GENERATOR("block","halitosis_generator","Halitosis Generator"),
     NETHER_STAR_GENERATOR("block","nether_star_generator","Nether Star Generator"),
     RAINBOW_GENERATOR("block","rainbow_generator","Rainbow Generator"),
+    RAINBOW_GENERATOR_BOTTOM("item","rainbow_generator_bottom","Rainbow Generator (Bottom Half)"),
+    RAINBOW_GENERATOR_TOP("item","rainbow_generator_top","Rainbow Generator (Top Half)"),
 
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
@@ -122,16 +127,19 @@ public enum AULang {
     SECOND_CHANCE_ALREADY_USED_MESSAGE("message","second_chance_effect.already_used","Unfortunately we can't be lucky too many times !"),
     MAGICAL_APPLE_USE("message","magical_apple_use","You feel your luck is changing"),
 
-    UNSTABLE_INGOT_TOOLTIP_0("tooltip","unstable_ingot.0","§cERROR : Divide by diamond"),
-    UNSTABLE_INGOT_TOOLTIP_1("tooltip","unstable_ingot.1","This ingot is highly unstable and will explode after 10 seconds."),
-    UNSTABLE_INGOT_TOOLTIP_2("tooltip","unstable_ingot.2","Will also explode if the crafting window is closed or the ingot is thrown on the ground."),
-    UNSTABLE_INGOT_TOOLTIP_3("tooltip","unstable_ingot.3","Additionally these ingots do not stack."),
-    UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","§l - Do not craft unless ready -"),
-    UNSTABLE_INGOT_TOOLTIP_5("tooltip","unstable_ingot.5","Must be crafted in a vanilla crafting table."),
+    UNSTABLE_INGOT_TOOLTIP_ERROR("tooltip","unstable_ingot.error","§cERROR : Divide by diamond"),
+    UNSTABLE_INGOT_TOOLTIP_0("tooltip","unstable_ingot","This ingot is highly unstable and will explode after 10 seconds."),
+    UNSTABLE_INGOT_TOOLTIP_1("tooltip","unstable_ingot.1","Will also explode if the crafting window is closed or the ingot is thrown on the ground."),
+    UNSTABLE_INGOT_TOOLTIP_2("tooltip","unstable_ingot.2","Additionally these ingots do not stack."),
+    UNSTABLE_INGOT_TOOLTIP_3("tooltip","unstable_ingot.3","§l - Do not craft unless ready -\n"),
+    UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","Must be crafted in a vanilla crafting table."),
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s MB"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
+    RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),
+    HOLD_SHIFT_TOOLTIP("tooltip","hold_shift","§7Hold Shift for description"),
+    HOLD_CTRL_TOOLTIP("tooltip","hold_control","§7Hold Control for more info"),
 
     GP_TOOLTIP("tooltip","gp","Grid Power : %s / %s"),
     BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),
@@ -192,6 +200,22 @@ public enum AULang {
         sendMessageToPlayer(player,get(args),signature);
     }
 
+    public static final int MAX_TOOLTIP = 10;
+
+    public static List<Component> getTooltips(ItemStack stack){
+        List<Component> tooltips = new ArrayList<>();
+        String descriptionId = stack.getItem().getDescriptionId();
+        String[] parts = descriptionId.split("\\.");
+        if (parts.length < 3) return tooltips;
+        String base = "tooltip."+parts[1]+"."+parts[2];
+        for (int i = 0; i < MAX_TOOLTIP; i++) {
+            String key = base + (i == 0 ? "" : "." + i);
+            String translation = Component.translatable(key).getString();
+            if (translation.equals(key)) break;
+            tooltips.add(Component.translatable(key));
+        }
+        return tooltips;
+    }
 
     public static MessageSignature createSignatureFromUUID(UUID uuid){
         ByteBuffer buffer = ByteBuffer.allocate(256);

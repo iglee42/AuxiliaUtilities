@@ -4,28 +4,27 @@ import fr.iglee42.auxiliautilities.blockentities.generators.*;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockGenerator;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
+import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.jei.categories.CrusherCategory;
 import fr.iglee42.auxiliautilities.jei.categories.EnchanterCategory;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory.GeneratorWrapper;
 import fr.iglee42.auxiliautilities.jei.categories.ResonatorCategory;
+import fr.iglee42.auxiliautilities.jei.subtypes.DamageItemSubtype;
+import fr.iglee42.auxiliautilities.jei.subtypes.LuxSaberSubtype;
 import fr.iglee42.auxiliautilities.recipes.CrusherRecipe;
 import fr.iglee42.auxiliautilities.recipes.EnchanterRecipe;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
@@ -85,6 +84,14 @@ public class AUJeiPlugin implements IModPlugin {
                 AUContainerScreen.class,
                 new AUContainerScreenHandler(registration.getJeiHelpers())
         );
+    }
+
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.registerSubtypeInterpreter(AUItems.SUN_CRYSTAL.asItem(), DamageItemSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.WATERING_CAN.asItem(), DamageItemSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.LUX_SABER.asItem(), LuxSaberSubtype.INSTANCE);
     }
 
     enum Generators {

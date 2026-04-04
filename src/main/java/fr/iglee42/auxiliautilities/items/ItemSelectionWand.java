@@ -2,16 +2,20 @@ package fr.iglee42.auxiliautilities.items;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.*;
+import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.utils.PlayerHelper;
 import fr.iglee42.auxiliautilities.utils.PositionPool;
 import fr.iglee42.auxiliautilities.utils.SideHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -295,6 +299,11 @@ public abstract class ItemSelectionWand extends AUItem {
             if (ay != by) return 1;
             return 2;
         }
+    }
+
+    @Override
+    public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        return List.of(AULang.RANGE_TOOLTIP.get(formatInt(range)).withStyle(ChatFormatting.GRAY));
     }
 
     @OnlyIn(Dist.CLIENT)

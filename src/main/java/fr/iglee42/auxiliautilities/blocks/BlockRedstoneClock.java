@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockRedstoneClock extends Block implements AUBlockBase {
+public class BlockRedstoneClock extends AUBlock implements AUBlockBase {
 
     public static final EnumProperty<PowerState> POWER_STATE = EnumProperty.create("power_state", PowerState.class);
 

@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.blocks.gp.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.BELunarPanel;
+import fr.iglee42.auxiliautilities.blocks.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockLunarPanel extends Block implements AUGPEntityBlock<BELunarPanel> {
+public class BlockLunarPanel extends AUBlock implements AUGPEntityBlock<BELunarPanel> {
 
 
     public BlockLunarPanel(Properties props) {

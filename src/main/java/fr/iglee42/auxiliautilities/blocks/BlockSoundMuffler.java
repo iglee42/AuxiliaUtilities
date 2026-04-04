@@ -22,7 +22,7 @@ import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID, value = Dist.CLIENT)
-public class BlockSoundMuffler extends Block implements AUBlockBase {
+public class BlockSoundMuffler extends AUBlock implements AUBlockBase {
     public BlockSoundMuffler(Properties props) {
         super(props);
     }

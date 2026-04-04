@@ -22,7 +22,7 @@ public class CompressedBlockSet {
     private final Block block;
     private final String name;
     private final int maxTier;
-    private final Map<Integer,DeferredBlock<Block>> blocks;
+    private final Map<Integer,DeferredBlock<AUBlock>> blocks;
 
     public CompressedBlockSet(Block block, int maxTier) {
         this.block = block;
@@ -34,22 +34,21 @@ public class CompressedBlockSet {
             float destroyTime = (float) (((BlockPropertiesAccessor)props).getDestroyTime() * Math.pow(2.25D,tier + 1));
             float explosionResistance = (float) (((BlockPropertiesAccessor)props).getExplosionResistance() * Math.pow(1.5D,tier + 1));
             int finalTier = tier;
-            blocks.put(finalTier,AUBlocks.createBlock("compressed_"+name+"_"+tier,()->new Block(props.strength(destroyTime,explosionResistance)){
+            blocks.put(finalTier,AUBlocks.createBlock("compressed_"+name+"_"+tier,()->new AUBlock(props.strength(destroyTime,explosionResistance)){
                 @Override
-                public void appendHoverText(ItemStack p_49816_, Item.TooltipContext p_339606_, List<Component> tooltips, TooltipFlag p_49819_) {
-                    tooltips.add(AULang.COMPRESSED_BLOCKS.get(NumberFormat.getIntegerInstance(Locale.UK).format(Math.pow(9, finalTier))));
-                    super.appendHoverText(p_49816_, p_339606_, tooltips, p_49819_);
+                public Component getTooltip(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag) {
+                    return AULang.COMPRESSED_BLOCKS.get(formatInt((int) Math.pow(9,finalTier)));
                 }
             }));
         }
         ALL_SETS.add(this);
     }
 
-    public Map<Integer, DeferredBlock<Block>> getBlocks() {
+    public Map<Integer, DeferredBlock<AUBlock>> getBlocks() {
         return blocks;
     }
 
-    public DeferredBlock<Block> getBlock(int tier) {
+    public DeferredBlock<AUBlock> getBlock(int tier) {
         return blocks.get(tier);
     }
 

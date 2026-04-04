@@ -4,11 +4,16 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.BEEnchanter;
 import fr.iglee42.auxiliautilities.blockentities.generators.BERainbowGenerator;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
+import fr.iglee42.auxiliautilities.items.AUItem;
+import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,10 +22,20 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockRainbowGenerator extends Block implements AUEntityBlock<BERainbowGenerator> {
+import java.util.List;
+import java.util.function.Consumer;
+
+public class BlockRainbowGenerator extends AUBlock implements AUEntityBlock<BERainbowGenerator> {
 
     public BlockRainbowGenerator(Properties props) {
         super(props);
+    }
+
+    @Override
+    public void addToCreativeTab(Consumer<ItemStack> acceptor) {
+        acceptor.accept(new ItemStack(AUItems.RAINBOW_GENERATOR_BOTTOM.get()));
+        acceptor.accept(new ItemStack(AUItems.RAINBOW_GENERATOR_TOP.get()));
+        super.addToCreativeTab(acceptor);
     }
 
     @Override

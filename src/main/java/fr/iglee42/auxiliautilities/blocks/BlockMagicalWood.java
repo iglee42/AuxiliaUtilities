@@ -6,7 +6,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BlockMagicalWood extends Block implements AUBlockBase {
+public class BlockMagicalWood extends AUBlock implements AUBlockBase {
     public BlockMagicalWood(Properties props) {
         super(props);
     }

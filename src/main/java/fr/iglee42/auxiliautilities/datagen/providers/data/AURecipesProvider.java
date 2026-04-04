@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
@@ -31,9 +32,7 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class AURecipesProvider extends RecipeProvider {
@@ -452,6 +451,116 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('T',Items.REDSTONE_TORCH)
                 .define('S',Tags.Items.STONES)
                 .unlockedBy("has_item", has(Items.REDSTONE_TORCH))
+                .save(output);
+
+        createGeneratorRecipes(output);
+    }
+
+    private void createGeneratorRecipes(RecipeOutput output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.SURVIVAL_GENERATOR)
+                .pattern("CCC")
+                .pattern("CIC")
+                .pattern("RFR")
+                .define('C',ItemTags.STONE_CRAFTING_MATERIALS)
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('F',Items.FURNACE)
+                .unlockedBy("has_item", has(Items.FURNACE))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.FURNACE_GENERATOR)
+                .pattern("CCC")
+                .pattern("CIC")
+                .pattern("RFR")
+                .define('C',Tags.Items.INGOTS_IRON)
+                .define('I',AUBlocks.MACHINE_BLOCK)
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('F',Items.FURNACE)
+                .unlockedBy("has_item", has(AUBlocks.MACHINE_BLOCK))
+                .save(output);
+
+        List<Ingredient.Value> vegetables = new ArrayList<>(Collections.singleton(new Ingredient.ItemValue(Items.WHEAT.getDefaultInstance())));
+        vegetables.addAll(Arrays.stream(Ingredient.of(Tags.Items.FOODS_VEGETABLE).getValues()).toList());
+
+        List<Ingredient.Value> cooked = new ArrayList<>(Arrays.stream(Ingredient.of(Tags.Items.FOODS_COOKED_FISH).getValues()).toList());
+        cooked.addAll(Arrays.stream(Ingredient.of(Tags.Items.FOODS_COOKED_MEAT).getValues()).toList());
+        generatorRecipe(output,AUBlocks.CULINARY_GENERATOR,Ingredient.fromValues(vegetables.stream()),Ingredient.fromValues(cooked.stream()));
+
+        generatorRecipe(output,AUBlocks.MAGMATIC_GENERATOR,Ingredient.of(Tags.Items.INGOTS_GOLD),Ingredient.of(Tags.Items.BUCKETS_LAVA));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.HEATED_REDSTONE_GENERATOR)
+                .pattern("RRR")
+                .pattern("RIR")
+                .pattern("RFR")
+                .define('I',AUBlocks.MAGMATIC_GENERATOR)
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('F',Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .unlockedBy("has_item", has(AUBlocks.MAGMATIC_GENERATOR))
+                .save(output);
+
+        generatorRecipe(output,AUBlocks.ENDER_GENERATOR,Ingredient.of(Tags.Items.ENDER_PEARLS),Ingredient.of(Tags.Items.OBSIDIANS));
+        generatorRecipe(output,AUBlocks.POTION_GENERATOR,Ingredient.of(Tags.Items.RODS_BLAZE),Ingredient.of(Items.BREWING_STAND));
+        generatorRecipe(output,AUBlocks.PINK_GENERATOR,Ingredient.of(Tags.Items.DYES_PINK),Ingredient.of(Tags.Items.DYED_PINK));
+        generatorRecipe(output,AUBlocks.OVERCLOCKED_GENERATOR,Ingredient.of(Tags.Items.GEMS_LAPIS),Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD));
+        generatorRecipe(output,AUBlocks.EXPLOSIVE_GENERATOR,Ingredient.of(Tags.Items.GUNPOWDERS),Ingredient.of(Items.TNT));
+        generatorRecipe(output,AUBlocks.NETHER_STAR_GENERATOR,Ingredient.of(Items.WITHER_SKELETON_SKULL),Ingredient.of(Tags.Items.NETHER_STARS));
+        generatorRecipe(output,AUBlocks.HALITOSIS_GENERATOR,Ingredient.of(Items.PURPUR_BLOCK,Items.PURPUR_PILLAR),Ingredient.of(Items.END_ROD));
+        generatorRecipe(output,AUBlocks.FROSTY_GENERATOR,Ingredient.of(Items.SNOWBALL),Ingredient.of(Items.ICE));
+        generatorRecipe(output,AUBlocks.DEATH_GENERATOR,Ingredient.of(Items.BONE,Items.ROTTEN_FLESH),Ingredient.of(Items.SPIDER_EYE));
+        generatorRecipe(output,AUBlocks.DISENCHANTMENT_GENERATOR,Ingredient.of(AUBlocks.MAGICAL_WOOD),Ingredient.of(Items.ENCHANTING_TABLE));
+        generatorRecipe(output,AUBlocks.SLIMEY_GENERATOR,Ingredient.of(Tags.Items.SLIME_BALLS),Ingredient.of(Tags.Items.STORAGE_BLOCKS_SLIME));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.RAINBOW_GENERATOR_BOTTOM)
+                .pattern("ABC")
+                .pattern("DRE")
+                .pattern("FGH")
+                .define('A',AUBlocks.NETHER_STAR_GENERATOR)
+                .define('B',AUBlocks.OVERCLOCKED_GENERATOR)
+                .define('C',AUBlocks.PINK_GENERATOR)
+                .define('D',AUBlocks.POTION_GENERATOR)
+                .define('E',AUBlocks.HEATED_REDSTONE_GENERATOR)
+                .define('F',AUBlocks.SLIMEY_GENERATOR)
+                .define('G',AUBlocks.SURVIVAL_GENERATOR)
+                .define('H',AUBlocks.EXPLOSIVE_GENERATOR)
+                .define('R',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.RAINBOW_GENERATOR_TOP)
+                .pattern("ABC")
+                .pattern("DRE")
+                .pattern("FGH")
+                .define('A',AUBlocks.CULINARY_GENERATOR)
+                .define('B',AUBlocks.DEATH_GENERATOR)
+                .define('C',AUBlocks.HALITOSIS_GENERATOR)
+                .define('D',AUBlocks.DISENCHANTMENT_GENERATOR)
+                .define('E',AUBlocks.ENDER_GENERATOR)
+                .define('F',AUBlocks.FURNACE_GENERATOR)
+                .define('G',AUBlocks.FROSTY_GENERATOR)
+                .define('H',AUBlocks.MAGMATIC_GENERATOR)
+                .define('R',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.RAINBOW_GENERATOR)
+                .requires(AUItems.RAINBOW_GENERATOR_BOTTOM)
+                .requires(AUItems.RAINBOW_GENERATOR_TOP)
+                .unlockedBy("has_bottom", has(AUItems.RAINBOW_GENERATOR_BOTTOM))
+                .unlockedBy("has_top", has(AUItems.RAINBOW_GENERATOR_TOP))
+                .save(output);
+
+    }
+
+    private void generatorRecipe(RecipeOutput output,ItemLike generator, Ingredient C, Ingredient I){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,generator)
+                .pattern("CCC")
+                .pattern("CIC")
+                .pattern("RFR")
+                .define('C',C)
+                .define('I',I)
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('F', AUBlocks.FURNACE_GENERATOR)
+                .unlockedBy("has_item", has(AUBlocks.FURNACE_GENERATOR))
                 .save(output);
     }
 

@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.blocks.gp.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.BEManualMill;
+import fr.iglee42.auxiliautilities.blocks.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import fr.iglee42.auxiliautilities.utils.ConstantRightClickHandler;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class BlockManualMill extends Block implements AUGPEntityBlock<BEManualMill> {
+public class BlockManualMill extends AUBlock implements AUGPEntityBlock<BEManualMill> {
 
 
     public BlockManualMill(Properties props) {

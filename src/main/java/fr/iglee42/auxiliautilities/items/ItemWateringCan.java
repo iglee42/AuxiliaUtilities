@@ -198,8 +198,7 @@ public class ItemWateringCan extends AUItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> tooltips, TooltipFlag p_41424_) {
-        tooltips.add(AULang.AREA_TOOLTIP.get(7,7).withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(p_41421_, p_339594_, tooltips, p_41424_);
+    public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        return List.of(AULang.AREA_TOOLTIP.get(7,7).withStyle(ChatFormatting.GRAY));
     }
 }

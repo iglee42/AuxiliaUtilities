@@ -139,6 +139,18 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.HALITOSIS_GENERATOR.get());
         simpleBlockItem(AUBlocks.NETHER_STAR_GENERATOR.get());
         simpleBlockItem(AUBlocks.RAINBOW_GENERATOR.get());
+
+        getBuilder(AUItems.RAINBOW_GENERATOR_BOTTOM.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile("block/slab"))
+                .texture("bottom", AuxiliaUtilities.id("block/rainbow_generator"))
+                .texture("side", AuxiliaUtilities.id("block/rainbow_generator_bottom"))
+                .texture("top", AuxiliaUtilities.id("block/rainbow_generator_center"));
+
+        getBuilder(AUItems.RAINBOW_GENERATOR_TOP.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("item/slab_top")))
+                .texture("bottom", AuxiliaUtilities.id("block/rainbow_generator_center"))
+                .texture("side", AuxiliaUtilities.id("block/rainbow_generator_top"))
+                .texture("top", AuxiliaUtilities.id("block/rainbow_generator"));
     }
 
 

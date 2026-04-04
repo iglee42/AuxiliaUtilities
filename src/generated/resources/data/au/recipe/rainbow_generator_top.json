@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "au:culinary_generator"
+    },
+    "B": {
+      "item": "au:death_generator"
+    },
+    "C": {
+      "item": "au:halitosis_generator"
+    },
+    "D": {
+      "item": "au:disenchantment_generator"
+    },
+    "E": {
+      "item": "au:ender_generator"
+    },
+    "F": {
+      "item": "au:furnace_generator"
+    },
+    "G": {
+      "item": "au:frosty_generator"
+    },
+    "H": {
+      "item": "au:magmatic_generator"
+    },
+    "R": {
+      "item": "au:resonating_redstone_crystal"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DRE",
+    "FGH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:rainbow_generator_top"
+  }
+}

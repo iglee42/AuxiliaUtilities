@@ -6,6 +6,7 @@ import fr.iglee42.auxiliautilities.items.UpgradeProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public enum Upgrade {
@@ -36,7 +37,8 @@ public enum Upgrade {
     return maxLevel;
   }
 
-  public static void addTooltip(List<Component> tooltip, ItemStack stack, UpgradeProvider item, int stacklimitoverride) {
+  public static List<Component> getTooltips(ItemStack stack, UpgradeProvider item, int stacklimitoverride) {
+    List<Component> tooltip = new ArrayList<>();
     Upgrade upgrade = item.getUpgrade(stack);
     if (upgrade != null) {
       tooltip.add(upgrade.getDescription());
@@ -51,7 +53,8 @@ public enum Upgrade {
           if (stackSize > 1 && maxLevel > 1)
             tooltip.add(AULang.POWER_PENALTY_TOOLTIP_LEVEL.get(Math.min(stackSize, maxLevel),upgrade.getPowerUse(Math.min(stackSize, maxLevel))));
         }
-    } 
+    }
+    return tooltip;
   }
   
   public int getModifierLevel(int level) {

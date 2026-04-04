@@ -83,6 +83,10 @@ public class AUItems {
     public static final DeferredItem<Item> ULTIMATE_SPEED_UPGRADE = ITEMS.register("ultimate_speed_upgrade",()-> new ItemSpeedUpgrade(new Item.Properties(),64));
 
     public static final DeferredItem<Item> MAGICAL_APPLE = ITEMS.register("magical_apple",()->new ItemMagicalApple(new Item.Properties()));
+
+    public static final DeferredItem<Item> RAINBOW_GENERATOR_BOTTOM = ITEMS.register("rainbow_generator_bottom",()-> new Item(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> RAINBOW_GENERATOR_TOP = ITEMS.register("rainbow_generator_top",()-> new Item(new Item.Properties().stacksTo(1)));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),LUX_SABER.get());
