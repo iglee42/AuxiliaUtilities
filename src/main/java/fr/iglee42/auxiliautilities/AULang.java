@@ -126,6 +126,7 @@ public enum AULang {
     MAGICAL_APPLE("item","magical_apple","Magical Apple"),
     BIOME_MARKER("item","biome_marker","Biome Marker"),
     COMPOUND_BOW("item","compound_bow","Compound Bow"),
+    KIKOKU("item","kikoku","Kikoku"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -169,6 +170,9 @@ public enum AULang {
     MAX_UPGRADES_TOOLTIP("tooltip","max_upgrades","Max Upgrades : %s"),
     POWER_PENALTY_TOOLTIP("tooltip","power_penalty","Power Penalty : +%s GP"),
     POWER_PENALTY_TOOLTIP_LEVEL("tooltip","power_penalty_level","Power Penalty (level %s) : +%s GP"),
+
+    KIKOKU_TOOLTIP("tooltip","kikoku","A powerful katana used to slay powerful foes."),
+    KIKOKU_TOOLTIP_1("tooltip","kikoku.1","§7Thanks to RWTema for creating Extra Utilities §c❤§7."),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),

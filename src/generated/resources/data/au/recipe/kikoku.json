@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "O": {
+      "item": "au:perfected_opinium_core"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "O",
+    "O",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:kikoku"
+  }
+}

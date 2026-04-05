@@ -89,6 +89,7 @@ public class AUItems {
 
     public static final DeferredItem<Item> BIOME_MARKER = ITEMS.register("biome_marker",()-> new ItemBiomeMarker(new Item.Properties()));
     public static final DeferredItem<Item> COMPOUND_BOW = ITEMS.register("compound_bow",()-> new ItemCompoundBow(new Item.Properties()));
+    public static final DeferredItem<Item> KIKOKU = ITEMS.register("kikoku", ItemKikoku::new);
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){

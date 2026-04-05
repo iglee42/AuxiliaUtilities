@@ -49,7 +49,7 @@ public interface AUTooltipProvider {
 
     @OnlyIn(Dist.CLIENT)
     default List<Component> getAdvancedTooltips(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag){
-        return List.of();
+        return AULang.getTooltips(stack);
     }
 
     @OnlyIn(Dist.CLIENT)

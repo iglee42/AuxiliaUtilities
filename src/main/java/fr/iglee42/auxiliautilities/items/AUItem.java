@@ -19,8 +19,4 @@ public class AUItem extends Item implements AUItemBase {
         super.appendHoverText(stack, ctx, tooltips, flag);
     }
 
-    @Override
-    public List<Component> getAdvancedTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
-        return AULang.getTooltips(stack);
-    }
 }

@@ -85,6 +85,14 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         addCompressedSet(Tags.Items.GRAVELS,AUBlocks.COMPRESSED_GRAVEL);
         addCompressedSet(ItemTags.SAND,AUBlocks.COMPRESSED_SAND);
 
+        tag(ItemTags.SWORDS).add(AUItems.KIKOKU.asItem());
+        tag(Tags.Items.MELEE_WEAPON_TOOLS).add(AUItems.KIKOKU.asItem());
+        tag(ItemTags.DURABILITY_ENCHANTABLE).remove(AUItems.KIKOKU.asItem());
+
+        tag(Tags.Items.TOOLS_BOW).add(AUItems.COMPOUND_BOW.asItem());
+        tag(ItemTags.DURABILITY_ENCHANTABLE).remove(AUItems.COMPOUND_BOW.asItem());
+        tag(ItemTags.BOW_ENCHANTABLE).add(AUItems.COMPOUND_BOW.asItem());
+        tag(Tags.Items.RANGED_WEAPON_TOOLS).add(AUItems.COMPOUND_BOW.asItem());
     }
 
     private void addCompressedSet(TagKey<Item> tag, CompressedBlockSet set){

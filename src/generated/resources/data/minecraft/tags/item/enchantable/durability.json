@@ -1,6 +1,8 @@
 {
   "remove": [
-    "au:lux_saber"
+    "au:lux_saber",
+    "au:kikoku",
+    "au:compound_bow"
   ],
   "values": [
     "au:glass_cutter",

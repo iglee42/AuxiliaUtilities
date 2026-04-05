@@ -17,10 +17,19 @@ public abstract class BlockElementMixin {
     protected abstract Vector3f getVector3f(JsonObject p_111335_, String p_111336_);
 
     @Inject(method = "getTo",at = @At(value = "HEAD"),cancellable = true)
-    private void au$allowForLuxSaber(JsonObject object, CallbackInfoReturnable<Vector3f> cir){
+    private void au$allowBypassToLimits(JsonObject object, CallbackInfoReturnable<Vector3f> cir){
         if (object.has("disable_limits")){
             if (object.get("disable_limits").getAsBoolean()){
                 cir.setReturnValue(getVector3f(object,"to"));
+            }
+        }
+    }
+
+    @Inject(method = "getFrom",at = @At(value = "HEAD"),cancellable = true)
+    private void au$allowBypassFromLimits(JsonObject object, CallbackInfoReturnable<Vector3f> cir){
+        if (object.has("disable_limits")){
+            if (object.get("disable_limits").getAsBoolean()){
+                cir.setReturnValue(getVector3f(object,"from"));
             }
         }
     }

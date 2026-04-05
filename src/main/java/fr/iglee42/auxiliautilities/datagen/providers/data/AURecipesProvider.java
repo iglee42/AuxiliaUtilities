@@ -494,6 +494,14 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('O',AUBlocks.PERFECTED_OPINIUM_CORE)
                 .unlockedBy("has_item", has(AUBlocks.PERFECTED_OPINIUM_CORE))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,AUItems.KIKOKU)
+                .pattern("O")
+                .pattern("O")
+                .pattern("S")
+                .define('O',AUBlocks.PERFECTED_OPINIUM_CORE)
+                .define('S',Tags.Items.RODS_WOODEN)
+                .unlockedBy("has_item", has(AUBlocks.PERFECTED_OPINIUM_CORE))
+                .save(output);
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {

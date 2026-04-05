@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.client;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
@@ -18,7 +19,9 @@ import net.minecraft.client.GuiMessageTag;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.components.ComponentRenderUtils;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
@@ -128,6 +131,8 @@ public class AUClient {
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event){
         event.register(ManualMillRenderer.GEAR_MODEL);
+        event.register(KikokuSheathLayer.MODEL_LOCATION);
+        event.register(KikokuSheathLayer.EMPTY_LOCATION);
     }
 
     private static void registerItemProperties() {
@@ -184,5 +189,15 @@ public class AUClient {
     public static void registerScreens(RegisterMenuScreensEvent event){
         AUMenus.MENU_TYPES.getEntries()
                 .forEach(menu->event.register((MenuType<AUMenu>)menu.get(), AUContainerScreen::new));
+    }
+
+    @SubscribeEvent
+    public static void registerLayers(EntityRenderersEvent.AddLayers event){
+        for (PlayerSkin.Model type : event.getSkins()){
+            PlayerRenderer renderer = event.getSkin(type);
+            if (renderer != null){
+                renderer.addLayer(new KikokuSheathLayer<>(renderer));
+            }
+        }
     }
 }
