@@ -127,6 +127,8 @@ public enum AULang {
     BIOME_MARKER("item","biome_marker","Biome Marker"),
     COMPOUND_BOW("item","compound_bow","Compound Bow"),
     KIKOKU("item","kikoku","Kikoku"),
+    FLUID_DROPLET("item","fluid_droplet","Fluid Droplet"),
+    ENERGY_DROPLET("item","energy_droplet","Energy Droplet"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -151,6 +153,8 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s MB"),
+    STORED_ENERGY_TOOLTIP_ITEM("tooltip","stored_energy_item","Stored Energy : %s FE"),
+    STORED_FLUID_TOOLTIP_ITEM("tooltip","stored_fluid_item","Stored Fluid : %s MB of %s"),
     STORED_BIOME_TOOLTIP("tooltip","stored_biome","Stored Biome : %s"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
     RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),

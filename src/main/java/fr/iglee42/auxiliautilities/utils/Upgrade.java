@@ -41,7 +41,6 @@ public enum Upgrade {
     List<Component> tooltip = new ArrayList<>();
     Upgrade upgrade = item.getUpgrade(stack);
     if (upgrade != null) {
-      tooltip.add(upgrade.getDescription());
       int stackSize = stack.getCount();
       int maxLevel = (stacklimitoverride == -1) ? upgrade.maxLevel : stacklimitoverride;
       tooltip.add(AULang.MAX_UPGRADES_TOOLTIP.get(maxLevel));
@@ -68,7 +67,7 @@ public enum Upgrade {
     return v * this.power;
   }
 
-  private Component getDescription(){
+  public Component getDescription(){
     return Component.translatable("upgrade."+ AuxiliaUtilities.MODID +"." + this.name().toLowerCase());
   }
 }

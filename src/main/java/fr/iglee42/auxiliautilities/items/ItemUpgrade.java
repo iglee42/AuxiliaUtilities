@@ -24,4 +24,9 @@ public class ItemUpgrade extends AUItem implements UpgradeProvider{
     public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
         return Upgrade.getTooltips(stack,this,stack.getMaxStackSize());
     }
+
+    @Override
+    public List<Component> getAdvancedTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        return List.of(upgrade.getDescription());
+    }
 }

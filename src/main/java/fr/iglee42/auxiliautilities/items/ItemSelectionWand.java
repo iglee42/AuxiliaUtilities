@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.items;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.*;
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.utils.CommonKeysHandler;
 import fr.iglee42.auxiliautilities.utils.PlayerHelper;
 import fr.iglee42.auxiliautilities.utils.PositionPool;
 import fr.iglee42.auxiliautilities.utils.SideHelper;
@@ -87,10 +88,9 @@ public abstract class ItemSelectionWand extends AUItem {
         dirsToSearch.remove(side.getOpposite());
 
         boolean crouching = player.isCrouching();
-        boolean sprinting = false; // TODO implement packet to sync sprint key state
-
+        boolean sprinting = CommonKeysHandler.isHoldingSprint(player);
         if (sprinting){
-            if (side.getStepY() == 0){
+            if (side.getStepY() != 0){
                 Direction facing = player.getDirection().getAxis() == Direction.Axis.Y ? Direction.NORTH : player.getDirection().getClockWise();
                 dirsToSearch.remove(facing);
                 dirsToSearch.remove(facing.getOpposite());
@@ -101,15 +101,13 @@ public abstract class ItemSelectionWand extends AUItem {
                 dirsToSearch.remove(Direction.SOUTH);
             }
         } else if (crouching){
-            if (side.getStepY() == 0){
-                if (side.getStepY() == 0){
-                    Direction facing = player.getDirection().getAxis() == Direction.Axis.Y ? Direction.NORTH : player.getDirection().getClockWise();
-                    dirsToSearch.remove(facing);
-                    dirsToSearch.remove(facing.getOpposite());
-                } else {
-                    dirsToSearch.remove(Direction.UP);
-                    dirsToSearch.remove(Direction.DOWN);
-                }
+            if (side.getStepY() != 0){
+                Direction facing = player.getDirection().getAxis() == Direction.Axis.Y ? Direction.NORTH : player.getDirection().getClockWise();
+                dirsToSearch.remove(facing);
+                dirsToSearch.remove(facing.getOpposite());
+            } else {
+                dirsToSearch.remove(Direction.UP);
+                dirsToSearch.remove(Direction.DOWN);
             }
         }
         if (dirsToSearch.isEmpty())

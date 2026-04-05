@@ -22,6 +22,7 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +116,12 @@ public class ItemDestructionWand extends ItemSelectionWand{
             }
         }
         return true;
+    }
+
+    @SubscribeEvent
+    public void blockBreakForCreative(BlockEvent.BreakEvent event){
+        if (!event.getPlayer().isCreative() || !event.getPlayer().getMainHandItem().is(this)) return;
+        event.getPlayer().getMainHandItem().mineBlock(event.getPlayer().level(),event.getState(),event.getPos(),event.getPlayer());
     }
 
     @SubscribeEvent

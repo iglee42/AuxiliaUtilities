@@ -35,6 +35,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.EnchantingTableBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -183,6 +185,7 @@ public class BEEnchanter extends AUBlockEntity {
         return true;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
         super.clientTick(level, pos, state);

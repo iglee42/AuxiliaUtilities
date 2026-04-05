@@ -91,8 +91,20 @@ public class AUItems {
     public static final DeferredItem<Item> COMPOUND_BOW = ITEMS.register("compound_bow",()-> new ItemCompoundBow(new Item.Properties()));
     public static final DeferredItem<Item> KIKOKU = ITEMS.register("kikoku", ItemKikoku::new);
 
+    public static final DeferredItem<Item> FLUID_DROPLET = ITEMS.register("fluid_droplet",()-> new ItemFluidDroplet(new Item.Properties()));
+    public static final DeferredItem<Item> ENERGY_DROPLET = ITEMS.register("energy_droplet",()-> new ItemEnergyDroplet(new Item.Properties()));
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
-        event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),LUX_SABER.get());
+        event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());
+        event.registerItem(Capabilities.FluidHandler.ITEM, (it,v)->{
+            if (it.has(AUDataComponents.STORED_FLUID))
+                return new ItemFluidDroplet.FluidTank(it);
+            return null;
+        },AUItems.FLUID_DROPLET.get());
+        event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)->{
+            if (it.has(AUDataComponents.STORED_ENERGY))
+                return new ItemEnergyDroplet.EnergyTank(it);
+            return null;
+        },AUItems.ENERGY_DROPLET.get());
     }
 }

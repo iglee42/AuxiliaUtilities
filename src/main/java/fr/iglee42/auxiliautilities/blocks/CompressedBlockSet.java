@@ -36,8 +36,8 @@ public class CompressedBlockSet {
             int finalTier = tier;
             blocks.put(finalTier,AUBlocks.createBlock("compressed_"+name+"_"+tier,()->new AUBlock(props.strength(destroyTime,explosionResistance)){
                 @Override
-                public Component getTooltip(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag) {
-                    return AULang.COMPRESSED_BLOCKS.get(formatInt((int) Math.pow(9,finalTier)));
+                public List<Component> getStorageTooltips(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag) {
+                    return List.of(AULang.COMPRESSED_BLOCKS.get(formatInt((int) Math.pow(9,finalTier))));
                 }
             }));
         }

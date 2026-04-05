@@ -1,5 +1,7 @@
 package fr.iglee42.auxiliautilities.blockentities;
 
+import fr.iglee42.auxiliautilities.items.ItemEnergyDroplet;
+import fr.iglee42.auxiliautilities.items.ItemFluidDroplet;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -20,6 +22,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,6 +79,7 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {}
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {return false;}
 
@@ -89,7 +95,34 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     protected void changed(){}
 
     public void setPlacedBy(Player player){};
-    public void destroy(){}
+    public void destroy(){
+        if (level != null && !level.isClientSide){
+            var itemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK,getBlockPos(),getBlockState(),this,null);
+            if (itemHandler != null){
+                for (int slot = 0; slot < itemHandler.getSlots(); slot++){
+                    var stack = itemHandler.getStackInSlot(slot);
+                    if (!stack.isEmpty())
+                        Block.popResource(level, getBlockPos(), stack);
+                }
+            }
+
+            var fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK,getBlockPos(),getBlockState(),this,null);
+            if (fluidHandler != null){
+                for (int tank = 0; tank < fluidHandler.getTanks(); tank++){
+                    var stack = fluidHandler.getFluidInTank(tank);
+                    if (!stack.isEmpty())
+                        Block.popResource(level, getBlockPos(), ItemFluidDroplet.createWithFluid(stack));
+                }
+            }
+
+            var energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK,getBlockPos(),getBlockState(),this,null);
+            if (energyStorage != null) {
+                int energy = energyStorage.getEnergyStored();
+                if (energy > 0)
+                    Block.popResource(level, getBlockPos(), ItemEnergyDroplet.createWithEnergy(energy));
+            }
+        }
+    }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int id, Inventory playerInv, Player player) {

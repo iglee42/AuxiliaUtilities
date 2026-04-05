@@ -22,6 +22,7 @@ public enum AUPackets {
 
     // TO SERVER
     ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
+    UPDATE_TRACKED_KEYS(UpdateTrackedKeysPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
 
     ;
 

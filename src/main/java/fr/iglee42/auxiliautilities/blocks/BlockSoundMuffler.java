@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.sound.PlaySoundEvent;
@@ -27,6 +28,7 @@ public class BlockSoundMuffler extends AUBlock implements AUBlockBase {
         super(props);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onSound(PlaySoundEvent event) {
         ClientLevel level = Minecraft.getInstance().level;
