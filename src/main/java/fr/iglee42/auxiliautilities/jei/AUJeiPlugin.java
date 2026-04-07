@@ -85,6 +85,7 @@ public class AUJeiPlugin implements IModPlugin {
                 AUContainerScreen.class,
                 new AUContainerScreenHandler(registration.getJeiHelpers())
         );
+        registration.addGhostIngredientHandler(AUContainerScreen.class, new AUContainerScreenHandler(registration.getJeiHelpers()));
     }
 
 

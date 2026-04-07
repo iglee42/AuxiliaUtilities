@@ -6,16 +6,23 @@ import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTextWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.api.*;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotWidget;
+import fr.iglee42.auxiliautilities.network.AUPacket;
+import fr.iglee42.auxiliautilities.network.AUPackets;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
@@ -271,38 +278,94 @@ public abstract class AUMenu extends AbstractContainerMenu {
     }
 
     protected void validate() {
-        //boolean hasPriority = false;
+        boolean hasPriority = false;
 
         for (AUWidget widget : this.widgets) {
             widget.addToContainer(this);
 
-            /*if (!hasPriority && widget instanceof ITransferPriority) {
+            if (!hasPriority && widget instanceof TransferPriority) {
                 hasPriority = true;
-            }*/
+            }
         }
 
-        /*if (hasPriority) {
+        if (hasPriority) {
             this.slots.sort((s1, s2) -> {
-                int p1 = (s1 instanceof ITransferPriority)
-                        ? ((ITransferPriority) s1).getTransferPriority()
-                        : 0;
+                int p1 = (s1 instanceof TransferPriority prio1) ? prio1.getPriority() : 0;
 
-                int p2 = (s2 instanceof ITransferPriority)
-                        ? ((ITransferPriority) s2).getTransferPriority()
-                        : 0;
+                int p2 = (s2 instanceof TransferPriority prio2) ? prio2.getPriority() : 0;
 
                 int compare = -Integer.compare(p1, p2);
 
-                return compare != 0
-                        ? compare
-                        : Integer.compare(s1.index, s2.index);
+                return compare != 0 ? compare : Integer.compare(s1.index, s2.index);
             });
 
             for (int i = 0; i < this.slots.size(); i++) {
                 Slot slot = this.slots.get(i);
                 slot.index = i;
             }
-        }*/
+        }
+    }
+
+    @Override
+    public void clicked(int slot, int button, ClickType type, Player player) {
+        if (slot >= 0 && slot < this.slots.size()) {
+            Slot s = this.slots.get(slot);
+            if (s instanceof AUSlotClickWidget widget)
+                widget.onSlotClick(this,slot,button,type,player);
+        }
+        super.clicked(slot, button, type, player);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void sendInputPacket(AUWidgetClientNetwork widget,AUMenuPacket packet){
+        int i = widgetReceivers.indexOf(widget);
+        if (i < 0) {
+            AuxiliaUtilities.LOGGER.warn("Tried to send packet to widget {}, but it was not found in the menu's widget list.", widget);
+            return;
+        }
+        PacketDistributor.sendToServer(new MenuInputPacket(i, packet));
+    }
+    
+    public static class MenuInputPacket extends AUPacket {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf,MenuInputPacket> STREAM_CODEC = StreamCodec.of(
+            MenuInputPacket::encode,
+                MenuInputPacket::decode
+        );
+
+        private static void encode(RegistryFriendlyByteBuf buf, MenuInputPacket pkt) {
+            buf.writeVarInt(pkt.widgetId);
+            AUMenuPacket.encodeTyped(buf, pkt.packet);
+        }
+
+        private static MenuInputPacket decode(RegistryFriendlyByteBuf buf) {
+            int widgetId = buf.readVarInt();
+            AUMenuPacket packet = AUMenuPacket.decodeTyped(buf);
+            return new MenuInputPacket(widgetId, packet);
+        }
+
+        final int widgetId;
+        final AUMenuPacket packet;
+
+        public MenuInputPacket(int widgetId, AUMenuPacket packet) {
+            super(AUPackets.MENU_INPUT);
+            this.widgetId = widgetId;
+            this.packet = packet;
+        }
+
+        @Override
+        protected void handle(IPayloadContext context) {
+            context.enqueueWork(()->{
+               if (context.player().containerMenu instanceof AUMenu menu){
+                   if (widgetId < 0 || widgetId >= menu.widgetReceivers.size()) {
+                       AuxiliaUtilities.LOGGER.warn("Received packet for widget id {}, but it's out of bounds. Ignoring packet.", widgetId);
+                       return;
+                   }
+                   AUWidgetClientNetwork widget = menu.widgetReceivers.get(widgetId);
+                   widget.receiveClientPacket(context,packet);
+               }
+            });
+        }
     }
 }
 

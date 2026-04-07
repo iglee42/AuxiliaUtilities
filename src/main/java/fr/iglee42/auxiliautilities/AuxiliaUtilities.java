@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities;
 
+import com.mojang.logging.LogUtils;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.AUCreativeTab;
@@ -14,10 +15,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.slf4j.Logger;
+
 
 @Mod(AuxiliaUtilities.MODID)
 public class AuxiliaUtilities {
     public static final String MODID = "au";
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public AuxiliaUtilities(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);

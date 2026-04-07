@@ -34,7 +34,7 @@ public abstract class ItemSelectionWand extends AUItem {
 
     public static final float offset = 0.5f;
 
-    static double[][][] edgeLines = new double[12][2][3];
+    public static double[][][] edgeLines = new double[12][2][3];
 
     public final int range;
     public final float[] col;
@@ -239,7 +239,7 @@ public abstract class ItemSelectionWand extends AUItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private static void renderPreviewEdge(VertexConsumer consumer, PoseStack.Pose pose, Vec3 cameraPos, EdgeKey edge, float red, float green, float blue, float alpha, float offsetAmount) {
+    public static void renderPreviewEdge(VertexConsumer consumer, PoseStack.Pose pose, Vec3 cameraPos, EdgeKey edge, float red, float green, float blue, float alpha, float offsetAmount) {
         emitEdge(consumer, pose, cameraPos, edge, red, green, blue, alpha, 0.0F, 0.0F, 0.0F);
         if (offsetAmount <= 0.0F) {
             return;
@@ -284,8 +284,8 @@ public abstract class ItemSelectionWand extends AUItem {
         consumer.addVertex(pose, x2, y2, z2).setColor(red, green, blue, alpha).setNormal(normalX, normalY, normalZ);
     }
 
-    private record EdgeKey(int ax, int ay, int az, int bx, int by, int bz) {
-        private static EdgeKey of(int ax, int ay, int az, int bx, int by, int bz) {
+    public static record EdgeKey(int ax, int ay, int az, int bx, int by, int bz) {
+        public static EdgeKey of(int ax, int ay, int az, int bx, int by, int bz) {
             if (ax > bx || (ax == bx && ay > by) || (ax == bx && ay == by && az > bz)) {
                 return new EdgeKey(bx, by, bz, ax, ay, az);
             }

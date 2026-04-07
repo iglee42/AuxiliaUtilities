@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.utils.FluidColorHelper;
 import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -28,6 +29,12 @@ public class ItemFluidDroplet extends AUItem{
         ItemStack stack = new ItemStack(AUItems.FLUID_DROPLET.get());
         stack.set(AUDataComponents.STORED_FLUID, new StoredFluidStack(fluidStack));
         return stack;
+    }
+
+    @Override
+    public int getColor(ItemStack stack, int tintIndex) {
+        if (tintIndex != 0 || !stack.getOrDefault(AUDataComponents.STORED_FLUID,StoredFluidStack.EMPTY).stack().isEmpty()) return 0xFFFFFFFF;
+        return FluidColorHelper.getColor(stack.getOrDefault(AUDataComponents.STORED_FLUID,StoredFluidStack.EMPTY).stack());
     }
 
     @Override

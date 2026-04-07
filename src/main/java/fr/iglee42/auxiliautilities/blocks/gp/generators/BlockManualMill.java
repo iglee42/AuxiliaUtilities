@@ -2,7 +2,7 @@ package fr.iglee42.auxiliautilities.blocks.gp.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.BEManualMill;
-import fr.iglee42.auxiliautilities.blocks.AUBlock;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.blocks.gp.AUGPEntityBlock;
 import fr.iglee42.auxiliautilities.utils.ConstantRightClickHandler;

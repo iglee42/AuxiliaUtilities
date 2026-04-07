@@ -73,6 +73,8 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         addCompressedSet(Tags.Blocks.GRAVELS,AUBlocks.COMPRESSED_GRAVEL);
         addCompressedSet(BlockTags.MINEABLE_WITH_SHOVEL,AUBlocks.COMPRESSED_SAND);
         addCompressedSet(BlockTags.SAND,AUBlocks.COMPRESSED_SAND);
+
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.ENDER_PORCUPINE.get(),AUBlocks.KLEIN_BOTTLE.get(),AUBlocks.STONE_DRUM.get(),AUBlocks.IRON_DRUM.get(),AUBlocks.REINFORCED_LARGE_DRUM.get(),AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(),AUBlocks.CREATIVE_DRUM.get());
     }
 
     private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){

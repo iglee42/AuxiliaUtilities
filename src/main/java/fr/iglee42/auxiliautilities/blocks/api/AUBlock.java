@@ -1,6 +1,5 @@
-package fr.iglee42.auxiliautilities.blocks;
+package fr.iglee42.auxiliautilities.blocks.api;
 
-import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

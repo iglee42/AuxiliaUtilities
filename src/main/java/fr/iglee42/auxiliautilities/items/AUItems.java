@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.items;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.ClientGPManager;
+import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class AUItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems("au");
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AuxiliaUtilities.MODID);
 
     public static final DeferredItem<ItemBuildersWand> BUILDERS_WAND = ITEMS.register("builders_wand", ()->new ItemBuildersWand(
             new Item.Properties().stacksTo(1),
@@ -93,6 +94,12 @@ public class AUItems {
 
     public static final DeferredItem<Item> FLUID_DROPLET = ITEMS.register("fluid_droplet",()-> new ItemFluidDroplet(new Item.Properties()));
     public static final DeferredItem<Item> ENERGY_DROPLET = ITEMS.register("energy_droplet",()-> new ItemEnergyDroplet(new Item.Properties()));
+
+    public static final DeferredItem<Item> FLAT_ITEM_TRANSFER_NODE = ITEMS.register("flat_item_transfer_node",()-> new ItemFlatTransferNode(new Item.Properties(), FlatTransferNodeHandler.Type.ITEM));
+    public static final DeferredItem<Item> FLAT_FLUID_TRANSFER_NODE = ITEMS.register("flat_fluid_transfer_node",()-> new ItemFlatTransferNode(new Item.Properties(), FlatTransferNodeHandler.Type.FLUID));
+
+    public static final DeferredItem<Item> ITEM_FILTER = ITEMS.register("item_filter",()-> new ItemFilterItem(new Item.Properties()));
+    public static final DeferredItem<Item> FLUID_FILTER = ITEMS.register("fluid_filter",()-> new ItemFilterFluid(new Item.Properties()));
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());

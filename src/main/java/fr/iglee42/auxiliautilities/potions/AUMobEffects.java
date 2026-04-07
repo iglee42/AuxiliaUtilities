@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.potions;
 
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.potions.effects.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -8,7 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class AUMobEffects {
 
-    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, "au");
+    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, AuxiliaUtilities.MODID);
 
     public static final Holder<MobEffect> DOOM = MOB_EFFECTS.register("doom", DoomEffect::new);
     public static final Holder<MobEffect> FIZZY_LIFTING = MOB_EFFECTS.register("fizzy_lifting", FizzyLiftingEffect::new);

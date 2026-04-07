@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.BEOpiniumCore;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.world.item.Items;

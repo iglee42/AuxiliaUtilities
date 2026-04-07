@@ -3,14 +3,14 @@ package fr.iglee42.auxiliautilities.client;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
+import fr.iglee42.auxiliautilities.client.models.FlatTransferNodeModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
-import fr.iglee42.auxiliautilities.client.renderers.ManualMillRenderer;
-import fr.iglee42.auxiliautilities.client.renderers.OpiniumCoreItemRenderer;
-import fr.iglee42.auxiliautilities.client.renderers.OpiniumCoreRenderer;
-import fr.iglee42.auxiliautilities.client.renderers.RainbowGeneratorRenderer;
+import fr.iglee42.auxiliautilities.client.renderers.*;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
+import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.items.*;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
@@ -30,7 +30,6 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -111,6 +110,10 @@ public class AUClient {
                 (location,model)->new WandsModelWrapper(model,"destruction"));
         event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.SUN_CRYSTAL.getId(), "inventory"),
                 (location, model) -> new SunCrystalModelWrapper(model));
+        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.FLAT_ITEM_TRANSFER_NODE.getId(), "inventory"),
+                (location, model) -> new FlatTransferNodeModelWrapper(model));
+        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.FLAT_FLUID_TRANSFER_NODE.getId(), "inventory"),
+                (location, model) -> new FlatTransferNodeModelWrapper(model));
     }
 
     @SubscribeEvent
@@ -126,6 +129,16 @@ public class AUClient {
                 .map(AUItemBase.class::cast)
                 .forEach(i->
                     event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));
+    }
+
+    @SubscribeEvent
+    public static void registerColors(RegisterColorHandlersEvent.Block event){
+        AUBlocks.BLOCKS.getEntries().stream()
+                .map(DeferredHolder::get)
+                .filter(AUBlockBase.class::isInstance)
+                .map(AUBlockBase.class::cast)
+                .forEach(i->
+                        event.register((state,getter,pos, tintIndex)->getter != null && !state.isAir() ? i.getColor(state,getter,pos,tintIndex) : 0xFFFFFFFF, i.self()));
     }
 
     @SubscribeEvent
@@ -178,11 +191,13 @@ public class AUClient {
         event.registerBlockEntityRenderer(AUBlockEntityTypes.MANUAL_MILL.get(), ManualMillRenderer::new);
         event.registerBlockEntityRenderer(AUBlockEntityTypes.RAINBOW_GENERATOR.get(), RainbowGeneratorRenderer::new);
         event.registerBlockEntityRenderer(AUBlockEntityTypes.OPINIUM_CORE.get(), OpiniumCoreRenderer::new);
+        event.registerBlockEntityRenderer(AUBlockEntityTypes.KLEIN_BOTTLE.get(), KleinBottleRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event){
         event.registerItem(new OpiniumCoreItemRenderer.Extension(),AUBlocks.MISERABLE_OPINIUM_CORE.asItem(),AUBlocks.PATHETIC_OPINIUM_CORE.asItem(),AUBlocks.MEDIOCRE_OPINIUM_CORE.asItem(),AUBlocks.PASSABLE_OPINIUM_CORE.asItem(),AUBlocks.DECENT_OPINIUM_CORE.asItem(),AUBlocks.SOLID_OPINIUM_CORE.asItem(),AUBlocks.GOOD_OPINIUM_CORE.asItem(),AUBlocks.DAMN_GOOD_OPINIUM_CORE.asItem(),AUBlocks.AMAZING_OPINIUM_CORE.asItem(),AUBlocks.INSPIRING_OPINIUM_CORE.asItem(),AUBlocks.PERFECTED_OPINIUM_CORE.asItem());
+        event.registerItem(new KleinBottleItemRenderer.Extension(),AUBlocks.KLEIN_BOTTLE.asItem());
     }
 
     @SubscribeEvent

@@ -1,15 +1,16 @@
 package fr.iglee42.auxiliautilities.blockentities;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blockentities.drums.*;
 import fr.iglee42.auxiliautilities.blockentities.generators.*;
+import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEEnderPorcupine;
 import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.*;
+import fr.iglee42.auxiliautilities.blockentities.klein.BEKleinBottle;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -18,7 +19,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class AUBlockEntityTypes {
 
@@ -61,6 +61,15 @@ public class AUBlockEntityTypes {
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BERainbowGenerator>> RAINBOW_GENERATOR = register("rainbow_generator", BERainbowGenerator::new, AUBlocks.RAINBOW_GENERATOR);
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEOpiniumCore>> OPINIUM_CORE = register("opinium_core", BEOpiniumCore::new, AUBlocks.MISERABLE_OPINIUM_CORE,AUBlocks.PATHETIC_OPINIUM_CORE,AUBlocks.MEDIOCRE_OPINIUM_CORE,AUBlocks.PASSABLE_OPINIUM_CORE,AUBlocks.DECENT_OPINIUM_CORE,AUBlocks.SOLID_OPINIUM_CORE,AUBlocks.GOOD_OPINIUM_CORE,AUBlocks.DAMN_GOOD_OPINIUM_CORE,AUBlocks.AMAZING_OPINIUM_CORE,AUBlocks.INSPIRING_OPINIUM_CORE,AUBlocks.PERFECTED_OPINIUM_CORE);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEKleinBottle>> KLEIN_BOTTLE = register("klein_bottle", BEKleinBottle::new, AUBlocks.KLEIN_BOTTLE);
+
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEStoneDrum>> STONE_DRUM = register("stone_drum", BEStoneDrum::new, AUBlocks.STONE_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEIronDrum>> IRON_DRUM = register("iron_drum", BEIronDrum::new, AUBlocks.IRON_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEReinforcedLargeDrum>> REINFORCED_LARGE_DRUM = register("reinforced_large_drum", BEReinforcedLargeDrum::new, AUBlocks.REINFORCED_LARGE_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEDemonicallyGargantuanDrum>> DEMONICALLY_GARGANTUAN_DRUM = register("demonically_gargantuan_drum", BEDemonicallyGargantuanDrum::new, AUBlocks.DEMONICALLY_GARGANTUAN_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BECreativeDrum>> CREATIVE_DRUM = register("creative_drum", BECreativeDrum::new, AUBlocks.CREATIVE_DRUM);
+
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEEnderPorcupine>> ENDER_PORCUPINE = register("ender_porcupine", BEEnderPorcupine::new, AUBlocks.ENDER_PORCUPINE);
 
     private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block>... block){
         Supplier<List<Block>> blocks = ()->Arrays.stream(block).map(holder -> (Block) holder.get()).toList();

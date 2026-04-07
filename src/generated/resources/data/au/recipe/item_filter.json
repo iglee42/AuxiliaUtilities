@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "tag": "c:strings"
+    },
+    "T": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "RTR",
+    "TST",
+    "RTR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:item_filter"
+  }
+}
