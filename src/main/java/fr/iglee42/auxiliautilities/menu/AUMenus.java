@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.items.ItemFilterFluid;
 import fr.iglee42.auxiliautilities.items.ItemFilterItem;
 import fr.iglee42.auxiliautilities.items.ItemFlatTransferNode;
+import fr.iglee42.auxiliautilities.items.ItemPowerManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -31,6 +32,7 @@ public class AUMenus {
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> FLUID_FILTER = registerMenuType(ItemFilterFluid.FilterConfigContainer::new, "fluid_filter");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> ITEM_FILTER = registerMenuType(ItemFilterItem.FilterConfigContainer::new, "item_filter");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> FLAT_TRANSFER_NODE = registerMenuType(ItemFlatTransferNode.FlatTransferNodeMenu::new, "flat_transfer_node");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> POWER_REPORT = registerMenuType(ItemPowerManager.PowerReportMenu::new, "power_report");
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>,MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENU_TYPES.register(name, () -> IMenuTypeExtension.create(factory));

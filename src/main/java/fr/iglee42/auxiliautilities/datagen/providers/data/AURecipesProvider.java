@@ -590,10 +590,19 @@ public class AURecipesProvider extends RecipeProvider {
                 .pattern("RTR")
                 .pattern("TST")
                 .pattern("RTR")
-                .define('S',Items.PAPER)
+                .define('S',AUItems.POWER_MANAGER)
                 .define('T',Tags.Items.ENDER_PEARLS)
                 .define('R',Tags.Items.STRINGS)
-                .unlockedBy("has_item", has(Tags.Items.STRINGS))
+                .unlockedBy("has_item", has(AUItems.POWER_MANAGER))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.POWER_MANAGER)
+                .pattern(" R")
+                .pattern("SS")
+                .pattern("SS")
+                .define('S',Items.STONE)
+                .define('R',AUItems.RESONATING_REDSTONE_CRYSTAL)
+                .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL))
                 .save(output);
 
     }

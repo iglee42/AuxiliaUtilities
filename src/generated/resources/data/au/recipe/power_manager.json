@@ -3,22 +3,19 @@
   "category": "misc",
   "key": {
     "R": {
-      "tag": "c:strings"
+      "item": "au:resonating_redstone_crystal"
     },
     "S": {
-      "item": "au:power_manager"
-    },
-    "T": {
-      "tag": "c:ender_pearls"
+      "item": "minecraft:stone"
     }
   },
   "pattern": [
-    "RTR",
-    "TST",
-    "RTR"
+    " R",
+    "SS",
+    "SS"
   ],
   "result": {
     "count": 1,
-    "id": "au:ender_porcupine"
+    "id": "au:power_manager"
   }
 }

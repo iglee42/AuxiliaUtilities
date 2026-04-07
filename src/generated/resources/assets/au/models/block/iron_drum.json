@@ -1,7 +1,7 @@
 {
-  "parent": "au:block/drum_base",
-  "render_type": "minecraft:cutout",
+  "parent": "au:block/drum",
   "textures": {
-    "base": "au:block/drum/iron"
+    "side": "au:block/drum/iron",
+    "top": "au:block/drum/top_iron"
   }
 }

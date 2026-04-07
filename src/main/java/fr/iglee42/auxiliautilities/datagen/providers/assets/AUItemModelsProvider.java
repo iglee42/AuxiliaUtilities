@@ -219,11 +219,13 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .end();
 
 
-        drum(AUBlocks.STONE_DRUM);
-        drum(AUBlocks.IRON_DRUM);
-        drum(AUBlocks.REINFORCED_LARGE_DRUM);
-        drum(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM);
-        drum(AUBlocks.CREATIVE_DRUM);
+        simpleBlockItem(AUBlocks.STONE_DRUM.get());
+        simpleBlockItem(AUBlocks.COPPER_DRUM.get());
+        simpleBlockItem(AUBlocks.IRON_DRUM.get());
+        simpleBlockItem(AUBlocks.REINFORCED_LARGE_DRUM.get());
+        simpleBlockItem(AUBlocks.NETHERITE_DRUM.get());
+        simpleBlockItem(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get());
+        simpleBlockItem(AUBlocks.CREATIVE_DRUM.get());
 
         getBuilder(AUItems.ITEM_FILTER.getRegisteredName())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
@@ -233,16 +235,9 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("layer0", AuxiliaUtilities.id("item/filter_fluids"));
 
         simpleBlockItem(AUBlocks.ENDER_PORCUPINE.get());
-    }
-
-    private void drum(DeferredBlock<BlockDrum> drum){
-        getBuilder(drum.getRegisteredName())
-                .parent(new ModelFile.UncheckedModelFile("block/block"))
-                .customLoader((b,fh)-> CompositeModelBuilder.begin(b,fh)
-                        .child("tube", new ItemModelBuilder(AuxiliaUtilities.id("item/"+drum.getId().getPath()),fh).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/"+drum.getId().getPath()))))
-                        .child("top_bottom", new ItemModelBuilder(AuxiliaUtilities.id("item/"+drum.getId().getPath()+"_top_bottom"),fh).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/"+drum.getId().getPath()+"_top_bottom")))))
-                .end()
-                .renderType("cutout");
+        basicItem(AUItems.POWER_MANAGER.get());
+        basicItem(AUItems.FLUID_DROPLET.get());
+        basicItem(AUItems.ENERGY_DROPLET.get());
     }
 
 

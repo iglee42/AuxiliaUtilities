@@ -1,9 +1,6 @@
 package fr.iglee42.auxiliautilities.gp;
 
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class GPNetwork {
     private final UUID id;
@@ -75,6 +72,13 @@ public class GPNetwork {
             consumptionDirty = false;
         }
         return cachedConsumption;
+    }
+
+    public List<GPHolder> getHolders(){
+        List<GPHolder> list = new ArrayList<>();
+        list.addAll(generators);
+        list.addAll(consumers);
+        return list;
     }
 
     public boolean hasEnoughPower() {

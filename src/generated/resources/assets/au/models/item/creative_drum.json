@@ -1,17 +1,3 @@
 {
-  "parent": "minecraft:block/block",
-  "children": {
-    "top_bottom": {
-      "parent": "au:block/creative_drum_top_bottom"
-    },
-    "tube": {
-      "parent": "au:block/creative_drum"
-    }
-  },
-  "item_render_order": [
-    "tube",
-    "top_bottom"
-  ],
-  "loader": "neoforge:composite",
-  "render_type": "minecraft:cutout"
+  "parent": "au:block/creative_drum"
 }

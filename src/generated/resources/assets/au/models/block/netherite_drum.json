@@ -1,0 +1,7 @@
+{
+  "parent": "au:block/drum",
+  "textures": {
+    "side": "au:block/drum/netherite",
+    "top": "au:block/drum/top_netherite"
+  }
+}

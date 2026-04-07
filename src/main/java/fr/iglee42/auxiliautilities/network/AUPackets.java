@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.network;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.ItemFlatTransferNode;
+import fr.iglee42.auxiliautilities.items.ItemPowerManager;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -22,6 +23,7 @@ public enum AUPackets {
     SYNC_GP_NETWORK(SyncGPNetworkPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SEND_CURRENT_BLOCK_GP(SendCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SYNC_FLAT_TRANSFER_NODES(SyncFlatTransferNodesPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+    POWER_DATA(ItemPowerManager.PowerDataPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
 
     // TO SERVER
     ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),

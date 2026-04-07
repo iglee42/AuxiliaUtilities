@@ -137,44 +137,14 @@ public class AUBlockStatesProvider extends BlockStateProvider {
 
         simpleBlock(AUBlocks.KLEIN_BOTTLE.get(),models().getBuilder(AUBlocks.KLEIN_BOTTLE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",modLoc("block/klein_lighting")));
 
-        getMultipartBuilder(AUBlocks.STONE_DRUM.get())
-                .part().modelFile(drumModel(AUBlocks.STONE_DRUM)).addModel().end()
-                .part().modelFile(drumTopModel(AUBlocks.STONE_DRUM)).addModel().end();
+        simpleBlock(AUBlocks.STONE_DRUM.get(),models().getBuilder(AUBlocks.STONE_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/stone")).texture("top",AuxiliaUtilities.id("block/drum/top_stone")));
+        simpleBlock(AUBlocks.COPPER_DRUM.get(),models().getBuilder(AUBlocks.COPPER_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/copper")).texture("top",AuxiliaUtilities.id("block/drum/top_copper")));
+        simpleBlock(AUBlocks.IRON_DRUM.get(),models().getBuilder(AUBlocks.IRON_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/iron")).texture("top",AuxiliaUtilities.id("block/drum/top_iron")));
+        simpleBlock(AUBlocks.REINFORCED_LARGE_DRUM.get(),models().getBuilder(AUBlocks.REINFORCED_LARGE_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/reinforced_large")).texture("top",AuxiliaUtilities.id("block/drum/top_reinforced_large")));
+        simpleBlock(AUBlocks.NETHERITE_DRUM.get(),models().getBuilder(AUBlocks.NETHERITE_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/netherite")).texture("top",AuxiliaUtilities.id("block/drum/top_netherite")));
+        simpleBlock(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/demonically_gargantuan_drum")));
+        simpleBlock(AUBlocks.CREATIVE_DRUM.get(),models().getBuilder(AUBlocks.CREATIVE_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/creative")).texture("top",AuxiliaUtilities.id("block/drum/top_creative")));
 
-        getMultipartBuilder(AUBlocks.IRON_DRUM.get())
-                .part().modelFile(drumModel(AUBlocks.IRON_DRUM)).addModel().end()
-                .part().modelFile(drumTopModel(AUBlocks.IRON_DRUM)).addModel().end();
-
-        getMultipartBuilder(AUBlocks.REINFORCED_LARGE_DRUM.get())
-                .part().modelFile(drumModel(AUBlocks.REINFORCED_LARGE_DRUM)).addModel().end()
-                .part().modelFile(drumTopModel(AUBlocks.REINFORCED_LARGE_DRUM)).addModel().end();
-
-        getMultipartBuilder(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get())
-                .part().modelFile(drumModel(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)).addModel().end()
-                .part().modelFile(drumTopModel(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)).addModel().end();
-
-        getMultipartBuilder(AUBlocks.CREATIVE_DRUM.get())
-                .part().modelFile(drumModel(AUBlocks.CREATIVE_DRUM)).addModel().end()
-                .part().modelFile(drumTopModel(AUBlocks.CREATIVE_DRUM)).addModel().end();
-    }
-
-    private ModelFile drumTopModel(DeferredBlock<BlockDrum> drum){
-        BlockModelBuilder builder = models().getBuilder(drum.getRegisteredName()+"_top_bottom")
-                .customLoader((b,fileHelper)-> ObjModelBuilder.begin(b,fileHelper)
-                        .automaticCulling(false)
-                        .shadeQuads(true)
-                        .modelLocation(AuxiliaUtilities.id("models/block/drum_top_bottom.obj"))).end()
-                .texture("end",AuxiliaUtilities.id("block/drum/top_" + drum.getId().getPath().replace("_drum","")))
-                .renderType("cutout");
-        return new ModelFile.UncheckedModelFile(builder.getUncheckedLocation());
-    }
-
-    private ModelFile drumModel(DeferredBlock<BlockDrum> drum){
-        BlockModelBuilder builder = models().getBuilder(drum.getRegisteredName())
-                .renderType("cutout")
-                .parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum_base")))
-                .texture("base",modLoc("block/drum/" + drum.getId().getPath().replace("_drum","")));
-        return new ModelFile.UncheckedModelFile(builder.getUncheckedLocation());
     }
 
     private void generator(DeferredBlock<BlockGenerator> generator){

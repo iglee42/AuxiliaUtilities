@@ -100,6 +100,9 @@ public class AUItems {
 
     public static final DeferredItem<Item> ITEM_FILTER = ITEMS.register("item_filter",()-> new ItemFilterItem(new Item.Properties()));
     public static final DeferredItem<Item> FLUID_FILTER = ITEMS.register("fluid_filter",()-> new ItemFilterFluid(new Item.Properties()));
+
+    public static final DeferredItem<Item> POWER_MANAGER = ITEMS.register("power_manager",()-> new ItemPowerManager(new Item.Properties()));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());

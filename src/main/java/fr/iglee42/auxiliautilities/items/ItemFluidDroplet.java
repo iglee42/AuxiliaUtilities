@@ -33,7 +33,7 @@ public class ItemFluidDroplet extends AUItem{
 
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        if (tintIndex != 0 || !stack.getOrDefault(AUDataComponents.STORED_FLUID,StoredFluidStack.EMPTY).stack().isEmpty()) return 0xFFFFFFFF;
+        if (tintIndex != 0 || stack.getOrDefault(AUDataComponents.STORED_FLUID,StoredFluidStack.EMPTY).stack().isEmpty()) return 0xFFFFFFFF;
         return FluidColorHelper.getColor(stack.getOrDefault(AUDataComponents.STORED_FLUID,StoredFluidStack.EMPTY).stack());
     }
 

@@ -118,8 +118,10 @@ public class AUBlocks {
     public static final DeferredBlock<BlockKleinBottle> KLEIN_BOTTLE = createBlock("klein_bottle",()->new BlockKleinBottle(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
 
     public static final DeferredBlock<BlockDrum> STONE_DRUM = createBlock("stone_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), ()->AUBlockEntityTypes.STONE_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> COPPER_DRUM = createBlock("copper_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.COPPER_DRUM.get()));
     public static final DeferredBlock<BlockDrum> IRON_DRUM = createBlock("iron_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.IRON_DRUM.get()));
     public static final DeferredBlock<BlockDrum> REINFORCED_LARGE_DRUM = createBlock("reinforced_large_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.REINFORCED_LARGE_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> NETHERITE_DRUM = createBlock("netherite_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.NETHERITE_DRUM.get()));
     public static final DeferredBlock<BlockDrum> DEMONICALLY_GARGANTUAN_DRUM = createBlock("demonically_gargantuan_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.DEMONICALLY_GARGANTUAN_DRUM.get()));
     public static final DeferredBlock<BlockDrum> CREATIVE_DRUM = createBlock("creative_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), ()->AUBlockEntityTypes.CREATIVE_DRUM.get()));
 
