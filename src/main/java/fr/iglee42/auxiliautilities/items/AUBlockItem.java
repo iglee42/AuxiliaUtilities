@@ -19,4 +19,9 @@ public class AUBlockItem extends BlockItem implements AUItemBase {
          else
             acceptor.accept(new ItemStack(this));
     }
+
+    @Override
+    public int getColor(ItemStack stack, int tintIndex) {
+        return getBlock() instanceof AUBlockBase base ? base.getItemColor(stack,tintIndex) : AUItemBase.super.getColor(stack, tintIndex);
+    }
 }

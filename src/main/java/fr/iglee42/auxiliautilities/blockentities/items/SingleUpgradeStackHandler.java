@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.blockentities.items;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.UpgradeProvider;
+import fr.iglee42.auxiliautilities.menu.widgets.api.TransferPriority;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.utils.Upgrade;
 import net.minecraft.network.chat.Component;
@@ -50,11 +51,10 @@ public class SingleUpgradeStackHandler extends SingleItemStackHandler {
         return itemUpgrade.getMaxLevel();
     }
 
-    private class SlotSpeedUpgradeHandler extends SlotItemHandlerWidget {
+    private class SlotSpeedUpgradeHandler extends SlotItemHandlerWidget implements TransferPriority {
 
         public SlotSpeedUpgradeHandler( int x, int y) {
             super(SingleUpgradeStackHandler.this, 0, x, y);
-
             setBackground(InventoryMenu.BLOCK_ATLAS, AuxiliaUtilities.id("item/upgrade_speed_skeleton"));
         }
 
@@ -63,6 +63,11 @@ public class SingleUpgradeStackHandler extends SingleItemStackHandler {
             if (SingleUpgradeStackHandler.this.getStack().isEmpty())
                 return List.of(AULang.SPEED_UPGRADES_TOOLTIP.get());
             return super.getTooltips();
+        }
+
+        @Override
+        public int getPriority() {
+            return 1;
         }
     }
 }

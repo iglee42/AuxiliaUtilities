@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.*;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.data.PackOutput;
@@ -16,9 +17,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.EmptyModel;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -56,11 +59,11 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.DRAGON_EGG_MILL.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/dragon_egg_mill")));
         getVariantBuilder(AUBlocks.CREATIVE_MILL.get()).forAllStates($->new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(creativeMillModel)).buildLast()});
 
-
         simpleBlock(AUBlocks.MAGICAL_WOOD.get());
         simpleBlock(AUBlocks.MAGICAL_PLANKS.get());
         simpleBlock(AUBlocks.DIAGONAL_WOOD.get());
         simpleBlock(AUBlocks.RESONATOR.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/resonator")));
+        simpleBlock(AUBlocks.ENDER_PORCUPINE.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/ender_porcupine")));
 
         simpleBlock(AUBlocks.SOUND_MUFFLER.get());
 
@@ -120,17 +123,58 @@ public class AUBlockStatesProvider extends BlockStateProvider {
 
         simpleBlock(AUBlocks.RAINBOW_GENERATOR.get());
 
-        simpleBlock(AUBlocks.MISERABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MISERABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.PATHETIC_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PATHETIC_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.MEDIOCRE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MEDIOCRE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.PASSABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PASSABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.DECENT_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DECENT_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.SOLID_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.SOLID_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.DAMN_GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DAMN_GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.AMAZING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.AMAZING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.INSPIRING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.INSPIRING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
-        simpleBlock(AUBlocks.PERFECTED_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PERFECTED_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")));
+        simpleBlock(AUBlocks.MISERABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MISERABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.PATHETIC_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PATHETIC_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.MEDIOCRE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.MEDIOCRE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.PASSABLE_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PASSABLE_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.DECENT_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DECENT_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.SOLID_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.SOLID_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.DAMN_GOOD_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.DAMN_GOOD_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.AMAZING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.AMAZING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.INSPIRING_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.INSPIRING_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+        simpleBlock(AUBlocks.PERFECTED_OPINIUM_CORE.get(),models().getBuilder(AUBlocks.PERFECTED_OPINIUM_CORE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",mcLoc("block/iron_block")));
+
+        simpleBlock(AUBlocks.KLEIN_BOTTLE.get(),models().getBuilder(AUBlocks.KLEIN_BOTTLE.getRegisteredName()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).texture("particle",modLoc("block/klein_lighting")));
+
+        getMultipartBuilder(AUBlocks.STONE_DRUM.get())
+                .part().modelFile(drumModel(AUBlocks.STONE_DRUM)).addModel().end()
+                .part().modelFile(drumTopModel(AUBlocks.STONE_DRUM)).addModel().end();
+
+        getMultipartBuilder(AUBlocks.IRON_DRUM.get())
+                .part().modelFile(drumModel(AUBlocks.IRON_DRUM)).addModel().end()
+                .part().modelFile(drumTopModel(AUBlocks.IRON_DRUM)).addModel().end();
+
+        getMultipartBuilder(AUBlocks.REINFORCED_LARGE_DRUM.get())
+                .part().modelFile(drumModel(AUBlocks.REINFORCED_LARGE_DRUM)).addModel().end()
+                .part().modelFile(drumTopModel(AUBlocks.REINFORCED_LARGE_DRUM)).addModel().end();
+
+        getMultipartBuilder(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get())
+                .part().modelFile(drumModel(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)).addModel().end()
+                .part().modelFile(drumTopModel(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)).addModel().end();
+
+        getMultipartBuilder(AUBlocks.CREATIVE_DRUM.get())
+                .part().modelFile(drumModel(AUBlocks.CREATIVE_DRUM)).addModel().end()
+                .part().modelFile(drumTopModel(AUBlocks.CREATIVE_DRUM)).addModel().end();
+    }
+
+    private ModelFile drumTopModel(DeferredBlock<BlockDrum> drum){
+        BlockModelBuilder builder = models().getBuilder(drum.getRegisteredName()+"_top_bottom")
+                .customLoader((b,fileHelper)-> ObjModelBuilder.begin(b,fileHelper)
+                        .automaticCulling(false)
+                        .shadeQuads(true)
+                        .modelLocation(AuxiliaUtilities.id("models/block/drum_top_bottom.obj"))).end()
+                .texture("end",AuxiliaUtilities.id("block/drum/top_" + drum.getId().getPath().replace("_drum","")))
+                .renderType("cutout");
+        return new ModelFile.UncheckedModelFile(builder.getUncheckedLocation());
+    }
+
+    private ModelFile drumModel(DeferredBlock<BlockDrum> drum){
+        BlockModelBuilder builder = models().getBuilder(drum.getRegisteredName())
+                .renderType("cutout")
+                .parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum_base")))
+                .texture("base",modLoc("block/drum/" + drum.getId().getPath().replace("_drum","")));
+        return new ModelFile.UncheckedModelFile(builder.getUncheckedLocation());
     }
 
     private void generator(DeferredBlock<BlockGenerator> generator){

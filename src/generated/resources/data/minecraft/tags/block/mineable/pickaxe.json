@@ -72,6 +72,13 @@
     "au:compressed_netherrack_3",
     "au:compressed_netherrack_4",
     "au:compressed_netherrack_5",
-    "au:compressed_netherrack_6"
+    "au:compressed_netherrack_6",
+    "au:ender_porcupine",
+    "au:klein_bottle",
+    "au:stone_drum",
+    "au:iron_drum",
+    "au:reinforced_large_drum",
+    "au:demonically_gargantuan_drum",
+    "au:creative_drum"
   ]
 }

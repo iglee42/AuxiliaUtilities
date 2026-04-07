@@ -1,6 +1,8 @@
 package fr.iglee42.auxiliautilities.network;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.ItemFlatTransferNode;
+import fr.iglee42.auxiliautilities.menu.AUMenu;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.PacketFlow;
@@ -19,10 +21,14 @@ public enum AUPackets {
     SEND_CHAT_MESSAGE(SendChatMessagePacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SYNC_GP_NETWORK(SyncGPNetworkPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SEND_CURRENT_BLOCK_GP(SendCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+    SYNC_FLAT_TRANSFER_NODES(SyncFlatTransferNodesPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
 
     // TO SERVER
     ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
     UPDATE_TRACKED_KEYS(UpdateTrackedKeysPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
+    LEFT_CLICK_FLAT_TRANSFER_NODE(ItemFlatTransferNode.LeftClickFlatTransferNodePacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
+    MENU_INPUT(AUMenu.MenuInputPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
+    SUBMIT_GHOST_ITEM(SubmitGhostItemPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),
 
     ;
 

@@ -502,6 +502,100 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('S',Tags.Items.RODS_WOODEN)
                 .unlockedBy("has_item", has(AUBlocks.PERFECTED_OPINIUM_CORE))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.ITEM_FILTER)
+                .pattern("RTR")
+                .pattern("TST")
+                .pattern("RTR")
+                .define('R',Tags.Items.DUSTS_REDSTONE)
+                .define('T',Tags.Items.RODS_WOODEN)
+                .define('S',Tags.Items.STRINGS)
+                .unlockedBy("has_item", has(Tags.Items.STRINGS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.FLUID_FILTER)
+                .pattern("RTR")
+                .pattern("TST")
+                .pattern("RTR")
+                .define('R',Tags.Items.GEMS_LAPIS)
+                .define('T',Tags.Items.RODS_WOODEN)
+                .define('S',Tags.Items.STRINGS)
+                .unlockedBy("has_item", has(Tags.Items.STRINGS))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.KLEIN_BOTTLE)
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Tags.Items.ENDER_PEARLS)
+                .requires(Tags.Items.ENDER_PEARLS)
+                .unlockedBy("has_item", has(Items.GLASS_BOTTLE))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.STONE_DRUM)
+                .pattern("FSF")
+                .pattern("FBF")
+                .pattern("FSF")
+                .define('F',ItemTags.STONE_CRAFTING_MATERIALS)
+                .define('S',Ingredient.of(Items.COBBLESTONE_SLAB,Items.STONE_SLAB))
+                .define('B',Items.BOWL)
+                .unlockedBy("has_item", has(Items.BOWL))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.STONE_DRUM)
+                .requires(AUBlocks.STONE_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.STONE_DRUM))
+                .save(output, AuxiliaUtilities.id("stone_drum_clear"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.IRON_DRUM)
+                .pattern("FSF")
+                .pattern("FBF")
+                .pattern("FSF")
+                .define('F',Tags.Items.INGOTS_IRON)
+                .define('S',Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                .define('B',Items.CAULDRON)
+                .unlockedBy("has_item", has(Items.CAULDRON))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.IRON_DRUM)
+                .requires(AUBlocks.IRON_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.IRON_DRUM))
+                .save(output, AuxiliaUtilities.id("iron_drum_clear"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.REINFORCED_LARGE_DRUM)
+                .pattern("FSF")
+                .pattern("FBF")
+                .pattern("FSF")
+                .define('F',Tags.Items.GEMS_DIAMOND)
+                .define('S',Items.LIGHT_WEIGHTED_PRESSURE_PLATE)
+                .define('B',AUBlocks.IRON_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.IRON_DRUM))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.REINFORCED_LARGE_DRUM)
+                .requires(AUBlocks.REINFORCED_LARGE_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.REINFORCED_LARGE_DRUM))
+                .save(output, AuxiliaUtilities.id("reinforced_large_drum_clear"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)
+                .pattern("FSF")
+                .pattern("FBF")
+                .pattern("FSF")
+                .define('F',AUItems.DEMON_INGOT)
+                .define('S',AUBlocks.KLEIN_BOTTLE)
+                .define('B',AUBlocks.REINFORCED_LARGE_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.REINFORCED_LARGE_DRUM))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)
+                .requires(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM)
+                .unlockedBy("has_item", has(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM))
+                .save(output, AuxiliaUtilities.id("demonically_gargantuan_drum_clear"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.ENDER_PORCUPINE)
+                .pattern("RTR")
+                .pattern("TST")
+                .pattern("RTR")
+                .define('S',Items.PAPER)
+                .define('T',Tags.Items.ENDER_PEARLS)
+                .define('R',Tags.Items.STRINGS)
+                .unlockedBy("has_item", has(Tags.Items.STRINGS))
+                .save(output);
+
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {

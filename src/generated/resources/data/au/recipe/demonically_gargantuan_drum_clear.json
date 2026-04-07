@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "au:demonically_gargantuan_drum"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:demonically_gargantuan_drum"
+  }
+}

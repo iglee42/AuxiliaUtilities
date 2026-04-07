@@ -1,0 +1,14 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "au:block/demonically_gargantuan_drum"
+      }
+    },
+    {
+      "apply": {
+        "model": "au:block/demonically_gargantuan_drum_top_bottom"
+      }
+    }
+  ]
+}

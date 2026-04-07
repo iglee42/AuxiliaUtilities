@@ -1,0 +1,7 @@
+{
+  "parent": "au:block/drum_base",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "au:block/drum/reinforced_large"
+  }
+}

@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 
 public record StoredFluidStack(@NotNull FluidStack stack) {
 
-    public static final Codec<StoredFluidStack> CODEC = FluidStack.CODEC.xmap(StoredFluidStack::new, StoredFluidStack::stack);
+    public static final Codec<StoredFluidStack> CODEC = FluidStack.OPTIONAL_CODEC.xmap(StoredFluidStack::new, StoredFluidStack::stack);
     public static final StreamCodec<RegistryFriendlyByteBuf, StoredFluidStack> STREAM_CODEC = StreamCodec.composite(
-            FluidStack.STREAM_CODEC, StoredFluidStack::stack,
+            FluidStack.OPTIONAL_STREAM_CODEC, StoredFluidStack::stack,
             StoredFluidStack::new
     );
 

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "c:strings"
+    },
+    "S": {
+      "item": "minecraft:paper"
+    },
+    "T": {
+      "tag": "c:ender_pearls"
+    }
+  },
+  "pattern": [
+    "RTR",
+    "TST",
+    "RTR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:ender_porcupine"
+  }
+}

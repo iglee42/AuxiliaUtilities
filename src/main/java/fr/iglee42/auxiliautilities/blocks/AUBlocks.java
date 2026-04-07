@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.blocks;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.generators.BEGenHeatedRedstone;
+import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockEnderPorcupine;
 import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockResonator;
 import fr.iglee42.auxiliautilities.blocks.gp.generators.*;
 import fr.iglee42.auxiliautilities.items.AUBlockItem;
@@ -62,6 +63,7 @@ public class AUBlocks {
     public static final DeferredBlock<BlockFurnace> FURNACE = createBlock("furnace", () -> new BlockFurnace(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
     public static final DeferredBlock<BlockCrusher> CRUSHER = createBlock("crusher", () -> new BlockCrusher(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
+    public static final DeferredBlock<BlockEnderPorcupine> ENDER_PORCUPINE = createBlock("ender_porcupine",()->new BlockEnderPorcupine(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static final DeferredBlock<BlockEnderLilly> ENDER_LILLY = createBlock("ender_lilly",()->new BlockEnderLilly(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
 
@@ -112,6 +114,14 @@ public class AUBlocks {
     public static final DeferredBlock<BlockOpiniumCore> AMAZING_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.AMAZING);
     public static final DeferredBlock<BlockOpiniumCore> INSPIRING_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.INSPIRING);
     public static final DeferredBlock<BlockOpiniumCore> PERFECTED_OPINIUM_CORE = createOpiniumCore(BlockOpiniumCore.Tier.PERFECTED);
+
+    public static final DeferredBlock<BlockKleinBottle> KLEIN_BOTTLE = createBlock("klein_bottle",()->new BlockKleinBottle(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+
+    public static final DeferredBlock<BlockDrum> STONE_DRUM = createBlock("stone_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), ()->AUBlockEntityTypes.STONE_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> IRON_DRUM = createBlock("iron_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.IRON_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> REINFORCED_LARGE_DRUM = createBlock("reinforced_large_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.REINFORCED_LARGE_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> DEMONICALLY_GARGANTUAN_DRUM = createBlock("demonically_gargantuan_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.DEMONICALLY_GARGANTUAN_DRUM.get()));
+    public static final DeferredBlock<BlockDrum> CREATIVE_DRUM = createBlock("creative_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), ()->AUBlockEntityTypes.CREATIVE_DRUM.get()));
 
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));

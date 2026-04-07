@@ -94,6 +94,14 @@ public enum AULang {
     INSPIRING_OPINIUM_CORE("block","inspiring_opinium_core","Opinium Core (Inspiring)"),
     PERFECTED_OPINIUM_CORE("block","perfected_opinium_core","Opinium Core (Perfected)"),
 
+    STONE_DRUM("block","stone_drum","Stone Drum"),
+    IRON_DRUM("block","iron_drum","Iron Drum"),
+    REINFORCED_LARGE_DRUM("block","reinforced_large_drum","Reinforced Large Drum"),
+    DEMONICALLY_GARGANTUAN_DRUM("block","demonically_gargantuan_drum","Demonically Gargantuan Drum"),
+    CREATIVE_DRUM("block","creative_drum","Creative Drum"),
+    KLEIN_BOTTLE("block","klein_bottle","Klein Bottle"),
+    ENDER_PORCUPINE("block","ender_porcupine","Ender Porcupine"),
+
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
     DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),
@@ -129,6 +137,10 @@ public enum AULang {
     KIKOKU("item","kikoku","Kikoku"),
     FLUID_DROPLET("item","fluid_droplet","Fluid Droplet"),
     ENERGY_DROPLET("item","energy_droplet","Energy Droplet"),
+    FLAT_ITEM_TRANSFER_NODE("item","flat_item_transfer_node","Flat Transfer Node (Items)"),
+    FLAT_FLUID_TRANSFER_NODE("item","flat_fluid_transfer_node","Flat Transfer Node (Fluids)"),
+    FILTER_ITEMS("item","item_filter","Items Filter"),
+    FILTER_FLUIDS("item","fluid_filter","Fluids Filter"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -152,9 +164,9 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","Must be crafted in a vanilla crafting table."),
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
-    STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s MB"),
+    STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s mB"),
     STORED_ENERGY_TOOLTIP_ITEM("tooltip","stored_energy_item","Stored Energy : %s FE"),
-    STORED_FLUID_TOOLTIP_ITEM("tooltip","stored_fluid_item","Stored Fluid : %s MB of %s"),
+    STORED_FLUID_TOOLTIP_ITEM("tooltip","stored_fluid_item","Stored Fluid : %s mB of %s mB"),
     STORED_BIOME_TOOLTIP("tooltip","stored_biome","Stored Biome : %s"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
     RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),
@@ -177,6 +189,20 @@ public enum AULang {
 
     KIKOKU_TOOLTIP("tooltip","kikoku","A powerful katana used to slay powerful foes."),
     KIKOKU_TOOLTIP_1("tooltip","kikoku.1","§7Thanks to RWTema for creating Extra Utilities §c❤§7."),
+
+    ORIGIN_GUI_MESSAGE("gui","origin","Origin : [%s, %s, %s]"),
+    SCANNING_GUI_MESSAGE("gui","scanning","Scanning : [%s, %s, %s]"),
+    RANGE_START_GUI_MESSAGE("gui","range_start","Block Range Start"),
+    RANGE_END_GUI_MESSAGE("gui","range_end","Block Range End"),
+
+    FLAT_TRANSFER_NODE_TOOLTIP("tooltip","flat_transfer_node","Thinner than the thinnest of pancakes."),
+    FLAT_TRANSFER_NODE_TOOLTIP_1("tooltip","flat_transfer_node.1","Small enough to fit between blocks"),
+    FLAT_TRANSFER_NODE_TOOLTIP_2("tooltip","flat_transfer_node.2","Hold %s when placing to reverse pull/push."),
+
+    FILTER_FLAG_COMPONENTS_OFF("item","filter.flag.ignore_components_off","Match Components"),
+    FILTER_FLAG_COMPONENTS_ON("item","filter.flag.ignore_components_on","Ignore Components"),
+    FILTER_FLAG_INVERTED_OFF("item","filter.flag.inverted_off","Whitelist"),
+    FILTER_FLAG_INVERTED_ON("item","filter.flag.inverted_on","Blacklist"),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),

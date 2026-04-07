@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockEnderLilly;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.items.AUDataComponents;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -26,6 +27,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
@@ -55,6 +57,11 @@ public class AULootTablesProvider extends LootTableProvider {
                 builder.put(set.getSlab().get(), this::createSlabItemTable);
             }
             builder.put(AUBlocks.ENDER_LILLY.get(), this::enderLilly);
+            builder.put(AUBlocks.STONE_DRUM.get(), this::drum);
+            builder.put(AUBlocks.IRON_DRUM.get(), this::drum);
+            builder.put(AUBlocks.REINFORCED_LARGE_DRUM.get(), this::drum);
+            builder.put(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(), this::drum);
+            builder.put(AUBlocks.CREATIVE_DRUM.get(), this::drum);
             return builder.build();
         }
 
@@ -94,6 +101,15 @@ public class AULootTablesProvider extends LootTableProvider {
 
             return defaultBuilder(block).withPool(pool);
         }
+        private LootTable.Builder drum(Block block) {
+            LootPoolEntryContainer.Builder<?> entry = LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(
+                    CopyComponentsFunction.Source.BLOCK_ENTITY
+            ).include(AUDataComponents.STORED_FLUID.get()));
+            LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(entry)
+                    .when(ExplosionCondition.survivesExplosion());
+            return LootTable.lootTable().withPool(pool);
+        }
+
 
         protected final Holder<Enchantment> getEnchantment(ResourceKey<Enchantment> key) {
             return registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);

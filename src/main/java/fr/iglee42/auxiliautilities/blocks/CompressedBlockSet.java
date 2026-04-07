@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.mixins.BlockPropertiesAccessor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -11,8 +12,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-import java.lang.ref.WeakReference;
-import java.text.NumberFormat;
 import java.util.*;
 
 public class CompressedBlockSet {
