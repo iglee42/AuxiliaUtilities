@@ -155,6 +155,9 @@ public abstract class AUMenu extends AbstractContainerMenu {
             this.widgetReceivers.add(cw);
         if (w instanceof AUWidgetClientTick cw)
             this.widgetClientTick.add(cw);
+        if (w instanceof AUWidgetAdditionalWidgets cw)
+            for (AUWidget widget : cw.getAdditionalWidgets())
+                addWidget(widget);
     }
 
     public void addTitle(Component name) {

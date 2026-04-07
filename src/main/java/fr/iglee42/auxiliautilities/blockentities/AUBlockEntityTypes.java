@@ -64,8 +64,10 @@ public class AUBlockEntityTypes {
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEKleinBottle>> KLEIN_BOTTLE = register("klein_bottle", BEKleinBottle::new, AUBlocks.KLEIN_BOTTLE);
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEStoneDrum>> STONE_DRUM = register("stone_drum", BEStoneDrum::new, AUBlocks.STONE_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BECopperDrum>> COPPER_DRUM = register("copper_drum", BECopperDrum::new, AUBlocks.COPPER_DRUM);
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEIronDrum>> IRON_DRUM = register("iron_drum", BEIronDrum::new, AUBlocks.IRON_DRUM);
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEReinforcedLargeDrum>> REINFORCED_LARGE_DRUM = register("reinforced_large_drum", BEReinforcedLargeDrum::new, AUBlocks.REINFORCED_LARGE_DRUM);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BENetheriteDrum>> NETHERITE_DRUM = register("netherite_drum", BENetheriteDrum::new, AUBlocks.NETHERITE_DRUM);
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEDemonicallyGargantuanDrum>> DEMONICALLY_GARGANTUAN_DRUM = register("demonically_gargantuan_drum", BEDemonicallyGargantuanDrum::new, AUBlocks.DEMONICALLY_GARGANTUAN_DRUM);
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BECreativeDrum>> CREATIVE_DRUM = register("creative_drum", BECreativeDrum::new, AUBlocks.CREATIVE_DRUM);
 

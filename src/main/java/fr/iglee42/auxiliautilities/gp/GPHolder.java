@@ -11,5 +11,11 @@ public interface GPHolder {
     int getGPConsumption();
 
     UUID getNetworkId();
+
+    String name();
+
+    default int getGPBalance() {
+        return getGPGeneration() - getGPConsumption();
+    }
 }
 

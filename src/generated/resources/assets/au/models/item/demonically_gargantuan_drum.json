@@ -1,17 +1,3 @@
 {
-  "parent": "minecraft:block/block",
-  "children": {
-    "top_bottom": {
-      "parent": "au:block/demonically_gargantuan_drum_top_bottom"
-    },
-    "tube": {
-      "parent": "au:block/demonically_gargantuan_drum"
-    }
-  },
-  "item_render_order": [
-    "tube",
-    "top_bottom"
-  ],
-  "loader": "neoforge:composite",
-  "render_type": "minecraft:cutout"
+  "parent": "au:block/demonically_gargantuan_drum"
 }

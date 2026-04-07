@@ -74,4 +74,9 @@ public abstract class AUGPBlockEntity extends AUBlockEntity implements GPHolder 
     public UUID getNetworkId() {
         return owner;
     }
+
+    @Override
+    public String name() {
+        return getBlockState().getBlock().getDescriptionId();
+    }
 }

@@ -11,17 +11,25 @@ import net.neoforged.api.distmarker.OnlyIn;
 public abstract class AUTextWidget extends AUWidgetBase {
 
     private final int align;
+    private final boolean block;
 
     public AUTextWidget(int x, int y, int align) {
         super(x, y, 0, 9);
         this.align = align;
+        block = false;
+    }
+
+    public AUTextWidget(int x, int y, int width, int height) {
+        super(x, y, width, height);
+        this.align = 1;
+        block = true;
     }
 
     protected abstract Component getMessage();
 
     @Override
     public int getWidth() {
-        return AULang.getTextSize(getMessage());
+        return block ? width : AULang.getTextSize(getMessage());
     }
 
     @OnlyIn(Dist.CLIENT)

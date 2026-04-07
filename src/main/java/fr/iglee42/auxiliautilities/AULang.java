@@ -78,7 +78,7 @@ public enum AULang {
     FROSTY_GENERATOR("block","frosty_generator","Frosty Generator"),
     HALITOSIS_GENERATOR("block","halitosis_generator","Halitosis Generator"),
     NETHER_STAR_GENERATOR("block","nether_star_generator","Nether Star Generator"),
-    RAINBOW_GENERATOR("block","rainbow_generator","Rainbow Generator"),
+    RAINBOW_GENERATOR("block","rainbow_generator","Rainbow Generator !"),
     RAINBOW_GENERATOR_BOTTOM("item","rainbow_generator_bottom","Rainbow Generator (Bottom Half)"),
     RAINBOW_GENERATOR_TOP("item","rainbow_generator_top","Rainbow Generator (Top Half)"),
 
@@ -95,8 +95,10 @@ public enum AULang {
     PERFECTED_OPINIUM_CORE("block","perfected_opinium_core","Opinium Core (Perfected)"),
 
     STONE_DRUM("block","stone_drum","Stone Drum"),
+    COPPER_DRUM("block","copper_drum","Copper Drum"),
     IRON_DRUM("block","iron_drum","Iron Drum"),
     REINFORCED_LARGE_DRUM("block","reinforced_large_drum","Reinforced Large Drum"),
+    NETHERITE_DRUM("block","netherite_drum","Netherite Drum"),
     DEMONICALLY_GARGANTUAN_DRUM("block","demonically_gargantuan_drum","Demonically Gargantuan Drum"),
     CREATIVE_DRUM("block","creative_drum","Creative Drum"),
     KLEIN_BOTTLE("block","klein_bottle","Klein Bottle"),
@@ -141,6 +143,7 @@ public enum AULang {
     FLAT_FLUID_TRANSFER_NODE("item","flat_fluid_transfer_node","Flat Transfer Node (Fluids)"),
     FILTER_ITEMS("item","item_filter","Items Filter"),
     FILTER_FLUIDS("item","fluid_filter","Fluids Filter"),
+    POWER_MANAGER("item","power_manager","Power Manager"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -166,7 +169,7 @@ public enum AULang {
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s mB"),
     STORED_ENERGY_TOOLTIP_ITEM("tooltip","stored_energy_item","Stored Energy : %s FE"),
-    STORED_FLUID_TOOLTIP_ITEM("tooltip","stored_fluid_item","Stored Fluid : %s mB of %s mB"),
+    STORED_FLUID_TOOLTIP_ITEM("tooltip","stored_fluid_item","Stored Fluid : %s mB of %s"),
     STORED_BIOME_TOOLTIP("tooltip","stored_biome","Stored Biome : %s"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
     RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),
@@ -178,6 +181,10 @@ public enum AULang {
     BLOCK_NO_GP("tooltip","block_no_gp","No Power Used/Generated"),
     BLOCK_GENERATE_GP("tooltip","block_generate_gp","Power Generating : %s GP"),
     BLOCK_DRAIN_GP("tooltip","block_drain_gp","Power Drain : %s GP"),
+    NO_GP_HOLDERS("tooltip","no_gp_holders","No GP Holders"),
+    GP_GENERATORS("tooltip","gp_generators","GP Generators"),
+    GP_DRAINERS("tooltip","gp_drainers","GP Drainers"),
+    GP_INACTIVE("tooltip","gp_inactive","Inactive GP Holders"),
 
     ENCHANTER_NEEDS_BOOKSHELVES("tooltip","enchanter_needs_bookshelves","Enchanter requires a full set of bookshelves nearby or other enchanting boosting block !"),
 

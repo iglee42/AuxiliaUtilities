@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "au:block/iron_drum"
+      "model": "au:block/copper_drum"
     }
   }
 }

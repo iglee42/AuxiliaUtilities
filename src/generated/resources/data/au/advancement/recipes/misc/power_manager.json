@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "au:power_manager"
+            "items": "au:resonating_redstone_crystal"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "au:ender_porcupine"
+        "recipe": "au:power_manager"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "au:ender_porcupine"
+      "au:power_manager"
     ]
   }
 }

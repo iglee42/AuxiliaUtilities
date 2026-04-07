@@ -101,8 +101,10 @@ public class BEDrum extends AUBlockEntity {
 
     public static enum Type{
         STONE(16_000),
+        COPPER(64_000),
         IRON(256_000),
         REINFORCED_LARGE(4_096_000),
+        NETHERITE(16_384_000),
         DEMONICALLY_GARGANTUAN(65_536_000),
         CREATIVE(Integer.MAX_VALUE);
 
