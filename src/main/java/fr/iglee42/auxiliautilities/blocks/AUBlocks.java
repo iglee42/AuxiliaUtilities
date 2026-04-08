@@ -3,19 +3,30 @@ package fr.iglee42.auxiliautilities.blocks;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.generators.BEGenHeatedRedstone;
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
+import fr.iglee42.auxiliautilities.blocks.glass.AUBlockDarkGlass;
+import fr.iglee42.auxiliautilities.blocks.glass.AUBlockGlass;
+import fr.iglee42.auxiliautilities.blocks.glass.AUBlockRedstoneGlass;
 import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockEnderPorcupine;
 import fr.iglee42.auxiliautilities.blocks.gp.consumers.BlockResonator;
 import fr.iglee42.auxiliautilities.blocks.gp.generators.*;
 import fr.iglee42.auxiliautilities.items.AUBlockItem;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemAngelBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -126,6 +137,40 @@ public class AUBlocks {
     public static final DeferredBlock<BlockDrum> DEMONICALLY_GARGANTUAN_DRUM = createBlock("demonically_gargantuan_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), ()->AUBlockEntityTypes.DEMONICALLY_GARGANTUAN_DRUM.get()));
     public static final DeferredBlock<BlockDrum> CREATIVE_DRUM = createBlock("creative_drum",()->new BlockDrum(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), ()->AUBlockEntityTypes.CREATIVE_DRUM.get()));
 
+    public static final DeferredBlock<AUBlock> SANDY_GLASS = createBlock("sandy_glass",()->new AUBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final DeferredBlock<AUBlockGlass> THICKENED_GLASS = createBlock("thickened_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<AUBlockGlass> THICKENED_GLASS_BORDERED = createBlock("thickened_glass_bordered",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<AUBlockGlass> THICKENED_GLASS_PATTERNED = createBlock("thickened_glass_patterned",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<AUBlockDarkGlass> DARK_GLASS = createBlock("dark_glass",()->new AUBlockDarkGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<AUBlockGlass> GLOWING_GLASS = createBlock("glowing_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).lightLevel($->15).noOcclusion()));
+    public static final DeferredBlock<AUBlockRedstoneGlass> REDSTONE_GLASS = createBlock("redstone_glass",()->new AUBlockRedstoneGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<AUBlockGlass> ETHEREAL_GLASS = createBlock("ethereal_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()){
+        @Override
+        protected boolean blockEntity(Entity entity) {
+            return !(entity instanceof Player);
+        }
+    });
+    public static final DeferredBlock<AUBlockGlass> REVERSE_ETHEREAL_GLASS = createBlock("reverse_ethereal_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()){
+        @Override
+        protected boolean blockEntity(Entity entity) {
+            return entity instanceof Player;
+        }
+    });
+    public static final DeferredBlock<AUBlockGlass> INEFFABLE_GLASS = createBlock("ineffable_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()){
+        @Override
+        protected boolean blockEntity(Entity entity) {
+            return !(entity instanceof Player);
+        }
+    });
+    public static final DeferredBlock<AUBlockGlass> DARK_INEFFABLE_GLASS = createBlock("dark_ineffable_glass",()->new AUBlockDarkGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()){
+        @Override
+        protected boolean blockEntity(Entity entity) {
+            return !(entity instanceof Player);
+        }
+    });
+    public static final DeferredBlock<AUBlockGlass> OBSIDIAN_GLASS = createBlock("obsidian_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).strength(0.3F,1200.0F).noOcclusion()));
+
+
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));
         OPINIUM_CORE.put(tier,block);
@@ -146,4 +191,9 @@ public class AUBlocks {
         AUItems.ITEMS.register(name,()->itemFactory.apply(block.get()));
         return block;
     }
+
+    public static Boolean never(BlockState p_50779_, BlockGetter p_50780_, BlockPos p_50781_) {
+        return false;
+    }
+
 }

@@ -605,6 +605,88 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUItems.RESONATING_REDSTONE_CRYSTAL))
                 .save(output);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.SANDY_GLASS,4)
+                .requires(Tags.Items.SANDS)
+                .requires(Tags.Items.SANDS)
+                .requires(Blocks.GLASS)
+                .requires(Blocks.GLASS)
+                .unlockedBy("has_item", has(Blocks.GLASS))
+                .save(output);
+
+        SimpleCookingRecipeBuilder.smelting(
+            Ingredient.of(AUBlocks.SANDY_GLASS),
+            RecipeCategory.MISC,
+                AUBlocks.THICKENED_GLASS,
+                0.5f,
+                200
+        ).unlockedBy("has_item", has(AUBlocks.SANDY_GLASS)).save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.THICKENED_GLASS_BORDERED,4)
+                .pattern("GG")
+                .pattern("GG")
+                .define('G',AUBlocks.THICKENED_GLASS)
+                .unlockedBy("has_item", has(AUBlocks.THICKENED_GLASS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.THICKENED_GLASS_PATTERNED,4)
+                .pattern("GG")
+                .pattern("GG")
+                .define('G',AUBlocks.THICKENED_GLASS_BORDERED)
+                .unlockedBy("has_item", has(AUBlocks.THICKENED_GLASS_BORDERED))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.DARK_GLASS,2)
+                .requires(AUBlocks.THICKENED_GLASS,2)
+                .requires(Tags.Items.DYES_BLACK)
+                .unlockedBy("has_item", has(AUBlocks.THICKENED_GLASS))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.GLOWING_GLASS,2)
+                .requires(AUBlocks.THICKENED_GLASS,2)
+                .requires(Tags.Items.DUSTS_GLOWSTONE)
+                .unlockedBy("has_item", has(AUBlocks.THICKENED_GLASS))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.OBSIDIAN_GLASS,2)
+                .requires(AUBlocks.THICKENED_GLASS,2)
+                .requires(Tags.Items.OBSIDIANS)
+                .unlockedBy("has_item", has(AUBlocks.THICKENED_GLASS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.ETHEREAL_GLASS,8)
+                .pattern("GGG")
+                .pattern("GMG")
+                .pattern("GGG")
+                .define('G',Tags.Items.GLASS_BLOCKS_CHEAP)
+                .define('M',AUItems.MOON_STONE)
+                .unlockedBy("has_item", has(AUItems.MOON_STONE))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.INEFFABLE_GLASS,8)
+                .pattern("GGG")
+                .pattern("GMG")
+                .pattern("GGG")
+                .define('G',AUBlocks.THICKENED_GLASS)
+                .define('M',AUItems.MOON_STONE)
+                .unlockedBy("has_item", has(AUItems.MOON_STONE))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.DARK_INEFFABLE_GLASS,8)
+                .pattern("GGG")
+                .pattern("GMG")
+                .pattern("GGG")
+                .define('G',AUBlocks.DARK_GLASS)
+                .define('M',AUItems.MOON_STONE)
+                .unlockedBy("has_item", has(AUItems.MOON_STONE))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.REVERSE_ETHEREAL_GLASS)
+                .requires(AUBlocks.ETHEREAL_GLASS)
+                .requires(Items.REDSTONE_TORCH)
+                .unlockedBy("has_item", has(AUBlocks.ETHEREAL_GLASS))
+                .save(output);
+
+
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {
@@ -891,6 +973,14 @@ public class AURecipesProvider extends RecipeProvider {
                 new ItemStack(AUBlocks.RAINBOW_STONE.getBlock()),
                 64,
                 true
+        );
+
+        ResonatorRecipeBuilder.resonator(
+                output,
+                "redstone_glass",
+                AUBlocks.THICKENED_GLASS.asItem(),
+                AUBlocks.REDSTONE_GLASS.asItem(),
+                1
         );
 
     }

@@ -241,6 +241,19 @@ public class AUItemModelsProvider extends ItemModelProvider {
         basicItem(AUItems.POWER_MANAGER.get());
         basicItem(AUItems.FLUID_DROPLET.get());
         basicItem(AUItems.ENERGY_DROPLET.get());
+
+        simpleBlockItem(AUBlocks.DARK_GLASS.get());
+        simpleBlockItem(AUBlocks.DARK_INEFFABLE_GLASS.get());
+        simpleBlockItem(AUBlocks.INEFFABLE_GLASS.get());
+        simpleBlockItem(AUBlocks.ETHEREAL_GLASS.get());
+        simpleBlockItem(AUBlocks.REVERSE_ETHEREAL_GLASS.get());
+        simpleBlockItem(AUBlocks.REDSTONE_GLASS.get());
+        simpleBlockItem(AUBlocks.GLOWING_GLASS.get());
+        simpleBlockItem(AUBlocks.OBSIDIAN_GLASS.get());
+        simpleBlockItem(AUBlocks.THICKENED_GLASS.get());
+        simpleBlockItem(AUBlocks.THICKENED_GLASS_BORDERED.get());
+        simpleBlockItem(AUBlocks.THICKENED_GLASS_PATTERNED.get());
+        simpleBlockItem(AUBlocks.SANDY_GLASS.get());
     }
 
 

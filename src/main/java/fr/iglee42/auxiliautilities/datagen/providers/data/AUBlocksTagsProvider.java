@@ -75,6 +75,15 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         addCompressedSet(BlockTags.SAND,AUBlocks.COMPRESSED_SAND);
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.ENDER_PORCUPINE.get(),AUBlocks.KLEIN_BOTTLE.get(),AUBlocks.STONE_DRUM.get(),AUBlocks.IRON_DRUM.get(),AUBlocks.REINFORCED_LARGE_DRUM.get(),AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(),AUBlocks.CREATIVE_DRUM.get());
+
+        tag(BlockTags.DRAGON_IMMUNE).add(AUBlocks.OBSIDIAN_GLASS.get());
+        tag(BlockTags.DRAGON_TRANSPARENT).add(AUBlocks.OBSIDIAN_GLASS.get());
+        tag(BlockTags.WITHER_IMMUNE).add(AUBlocks.OBSIDIAN_GLASS.get());
+
+        tag(Tags.Blocks.GLASS_BLOCKS_COLORLESS).add(AUBlocks.ETHEREAL_GLASS.get(),AUBlocks.INEFFABLE_GLASS.get(),AUBlocks.REVERSE_ETHEREAL_GLASS.get(),AUBlocks.THICKENED_GLASS.get(),AUBlocks.THICKENED_GLASS_BORDERED.get(),AUBlocks.THICKENED_GLASS_PATTERNED.get());
+        tag(BlockTags.IMPERMEABLE).add(AUBlocks.ETHEREAL_GLASS.get(),AUBlocks.INEFFABLE_GLASS.get(),AUBlocks.OBSIDIAN_GLASS.get(),AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.GLOWING_GLASS.get(),AUBlocks.REDSTONE_GLASS.get(),AUBlocks.DARK_GLASS.get(),AUBlocks.REVERSE_ETHEREAL_GLASS.get(),AUBlocks.THICKENED_GLASS.get(),AUBlocks.THICKENED_GLASS_BORDERED.get(),AUBlocks.THICKENED_GLASS_PATTERNED.get());
+        tag(Tags.Blocks.GLASS_BLOCKS).add(AUBlocks.ETHEREAL_GLASS.get(),AUBlocks.INEFFABLE_GLASS.get(),AUBlocks.OBSIDIAN_GLASS.get(),AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.GLOWING_GLASS.get(),AUBlocks.REDSTONE_GLASS.get(),AUBlocks.DARK_GLASS.get(),AUBlocks.REVERSE_ETHEREAL_GLASS.get(),AUBlocks.THICKENED_GLASS.get(),AUBlocks.THICKENED_GLASS_BORDERED.get(),AUBlocks.THICKENED_GLASS_PATTERNED.get());
+        tag(Tags.Blocks.GLASS_BLOCKS_TINTED).add(AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.DARK_GLASS.get());
     }
 
     private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){

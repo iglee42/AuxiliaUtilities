@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.*;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
+import fr.iglee42.auxiliautilities.blocks.glass.AUBlockGlass;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.data.PackOutput;
@@ -153,6 +154,23 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/demonically_gargantuan_drum")));
         simpleBlock(AUBlocks.CREATIVE_DRUM.get(),models().getBuilder(AUBlocks.CREATIVE_DRUM.getRegisteredName()).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/drum"))).texture("side",AuxiliaUtilities.id("block/drum/creative")).texture("top",AuxiliaUtilities.id("block/drum/top_creative")));
 
+        glass(AUBlocks.ETHEREAL_GLASS,"ethereal");
+        glass(AUBlocks.REVERSE_ETHEREAL_GLASS,"reverse_ethereal");
+        glass(AUBlocks.DARK_GLASS,"dark");
+        glass(AUBlocks.DARK_INEFFABLE_GLASS,"dark_ineffable");
+        glass(AUBlocks.INEFFABLE_GLASS,"ineffable");
+        glass(AUBlocks.OBSIDIAN_GLASS,"obsidian");
+        glass(AUBlocks.REDSTONE_GLASS,"redstone");
+        glass(AUBlocks.GLOWING_GLASS,"glowing");
+        glass(AUBlocks.THICKENED_GLASS,"thickened");
+        simpleBlock(AUBlocks.THICKENED_GLASS_BORDERED.get(),models().cubeAll(AUBlocks.THICKENED_GLASS_BORDERED.getRegisteredName(), modLoc("block/glass/thickened_glass_bordered")).renderType("translucent"));
+        simpleBlock(AUBlocks.THICKENED_GLASS_PATTERNED.get(),models().cubeAll(AUBlocks.THICKENED_GLASS_PATTERNED.getRegisteredName(), modLoc("block/glass/thickened_glass_patterned")).renderType("translucent"));
+        simpleBlock(AUBlocks.SANDY_GLASS.get());
+
+    }
+
+    private void glass(DeferredBlock<? extends AUBlockGlass> glass, String texture){
+        simpleBlock(glass.get(),models().cubeAll(glass.getRegisteredName(), modLoc("block/glass/" + texture + "_glass")).renderType("translucent"));
     }
 
     private void generator(DeferredBlock<BlockGenerator> generator){
