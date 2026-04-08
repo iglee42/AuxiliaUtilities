@@ -2,71 +2,66 @@ package fr.iglee42.auxiliautilities.blocks;
 
 import com.mojang.serialization.MapCodec;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
-import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriState;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BlockEnderLilly extends BushBlock implements AUBlockBase {
-    public static final MapCodec<BlockEnderLilly> CODEC = simpleCodec(BlockEnderLilly::new);
+public class BlockRedOrchid extends BushBlock implements AUBlockBase, BonemealableBlock {
+    public static final MapCodec<BlockRedOrchid> CODEC = simpleCodec(BlockRedOrchid::new);
 
-        public static final int MAX_AGE = 7;
+        public static final int MAX_AGE = 6;
 
-        public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
+        public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(6.0, 0.0, 6.0, 10.0, 4.0, 10.0),
-            Block.box(5.0, 0.0, 5.0, 11.0, 7.0, 11.0),
-            Block.box(4.0, 0.0, 4.0, 12.0, 7.0, 12.0),
-            Block.box(2.0, 0.0, 2.0, 14.0, 8.0, 14.0),
-            Block.box(0.0, 0.0, 0.0, 16.0, 11.0, 16.0),
-            Block.box(0.0, 0.0, 0.0, 16.0, 12.0, 16.0),
-            Block.box(0.0, 0.0, 0.0, 16.0, 12.0, 16.0),
-            Block.box(0.0, 0.0, 0.0, 16.0, 14.0, 16.0)
+            Block.box(7.0, 0.0, 7.0, 9.0, 2.0, 9.0),
+            Block.box(7.0, 0.0, 7.0, 9.0, 4.0, 9.0),
+            Block.box(6.0, 0.0, 6.0, 10.0, 9.0, 10.0),
+            Block.box(5.0, 0.0, 5.0, 11.0, 9.0, 11.0),
+            Block.box(5.0, 0.0, 5.0, 11.0, 12.0, 11.0),
+            Block.box(4.0, 0.0, 4.0, 12.0, 13.0, 12.0),
+            Block.box(3.0, 0.0, 3.0, 13.0, 16.0, 13.0),
     };
 
-    public BlockEnderLilly(Properties props) {
+    public BlockRedOrchid(Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, context, flag);
-        super.appendHoverText(stack, context, tooltips, flag);
-    }
-
-    @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-        return state.is(Tags.Blocks.END_STONES);
+        return state.is(Tags.Blocks.ORES_REDSTONE);
     }
 
     @Override
@@ -108,7 +103,7 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
             if (i < this.getMaxAge()) {
                 float f = getGrowthSpeed(p_221050_, p_221051_, p_221052_);
                 if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_221051_, p_221052_, p_221050_, p_221053_.nextInt((int)(25.0F / f) + 1) == 0)) {
-                    p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), 2);
+                    p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), Block.UPDATE_ALL);
                     net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_221051_, p_221052_, p_221050_);
                 }
             }
@@ -124,7 +119,7 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
             for (int j = -1; j <= 1; j++) {
                 float f1 = 0.0F;
                 BlockState blockstate = p_52274_.getBlockState(blockpos.offset(i, 0, j));
-                net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
+                TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
                 if (soilDecision.isDefault() ? blockstate.getBlock() instanceof net.minecraft.world.level.block.FarmBlock : soilDecision.isTrue()) {
                     f1 = 1.0F;
                     if (blockstate.isFertile(p_52274_, p_52275_.offset(i, 0, j))) {
@@ -163,7 +158,7 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
 
 
     @Override
-    public MapCodec<BlockEnderLilly> codec() {
+    public MapCodec<BlockRedOrchid> codec() {
         return CODEC;
     }
 
@@ -192,9 +187,9 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
         if (!level.isClientSide){
             if (isMaxAge(state)) {
                 List<ItemStack> drops = getDrops(state, (ServerLevel) level,pos,null,player,player.getMainHandItem());
-                drops.removeIf(stack->stack.is(AUBlocks.ENDER_LILLY.asItem()));
+                drops.removeIf(stack->stack.is(AUBlocks.RED_ORCHID.asItem()));
                 drops.forEach(stack->popResource(level,pos,stack));
-                level.setBlock(pos, getStateForAge(0), 2);
+                level.setBlock(pos, getStateForAge(0), Block.UPDATE_ALL);
                 return InteractionResult.SUCCESS;
             }
         }
@@ -203,7 +198,18 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader p_304482_, BlockPos p_52255_, BlockState p_52256_) {
-        return new ItemStack(AUBlocks.ENDER_LILLY.asItem());
+        return new ItemStack(AUBlocks.RED_ORCHID.asItem());
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return isMaxAge(state);
+    }
+
+    @Override
+    protected int getSignal(BlockState state, BlockGetter p_60484_, BlockPos p_60485_, Direction p_60486_) {
+        if (isMaxAge(state)) return 15;
+        return super.getSignal(state, p_60484_, p_60485_, p_60486_);
     }
 
     @Override
@@ -212,4 +218,54 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
     }
 
 
+    @Override
+    public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState state) {
+        return !this.isMaxAge(state);
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
+        super.animateTick(state, level, pos, rand);
+        if (isMaxAge(state)){
+            VoxelShape shape = state.getShape(level, pos);
+            AABB bb = shape.bounds().move(pos);
+
+            for (int i = 0; i < 2; i++) {
+                double x = Mth.nextDouble(rand, bb.minX, bb.maxX);
+                double y = Mth.nextDouble(rand, bb.minY, bb.maxY);
+                double z = Mth.nextDouble(rand, bb.minZ, bb.maxZ);
+
+                level.addParticle(DustParticleOptions.REDSTONE, x, y, z, 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
+        addTooltips(stack, tooltips, context, flag);
+        super.appendHoverText(stack, context, tooltips, flag);
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level p_220878_, RandomSource p_220879_, BlockPos p_220880_, BlockState p_220881_) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource p_220875_, BlockPos pos, BlockState state) {
+        growCrops(level, pos, state);
+    }
+    public void growCrops(Level level, BlockPos pos, BlockState state) {
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(level);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+
+        level.setBlock(pos, this.getStateForAge(i), Block.UPDATE_ALL);
+    }
+
+    protected int getBonemealAgeIncrease(Level level) {
+        return Mth.nextInt(level.random, 2, 5);
+    }
 }

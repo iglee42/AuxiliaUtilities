@@ -74,6 +74,14 @@ public class AUBlockStatesProvider extends BlockStateProvider {
                     return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(id)).buildLast()};
                 });
 
+        getVariantBuilder(AUBlocks.RED_ORCHID.get()).
+                forAllStates(state->{
+                    int age = state.getValue(BlockRedOrchid.AGE);
+                    if (age == 0) return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/red_orchid"))).buildLast()};
+                    ResourceLocation id = models().getBuilder(AUBlocks.RED_ORCHID.getRegisteredName() + "_stage_" +age).parent(new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/red_orchid"))).texture("cross",modLoc("block/plants/redorchid_" + age)).texture("base",modLoc("block/plants/redorchid_base_" + age)).renderType("cutout").getUncheckedLocation();
+                    return new ConfiguredModel[]{ConfiguredModel.builder().modelFile(new ModelFile.UncheckedModelFile(id)).buildLast()};
+                });
+
         horizontalBlock(AUBlocks.FURNACE.get(), state->{
             boolean lit = state.getValue(BlockFurnace.LIT);
             ResourceLocation model = models().orientable(AUBlocks.FURNACE.getRegisteredName() + (lit ? "_on" : ""), MACHINE_SIDE, modLoc("block/machines/furnace_front" + (lit?"_on":"")), MACHINE_BOTTOM).getUncheckedLocation();

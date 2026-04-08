@@ -49,8 +49,8 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.get());
         tag(BlockTags.DAMPENS_VIBRATIONS).add(AUBlocks.SOUND_MUFFLER.get());
 
-        tag(BlockTags.CROPS).add(AUBlocks.ENDER_LILLY.get());
-        tag(BlockTags.SWORD_EFFICIENT).add(AUBlocks.ENDER_LILLY.get());
+        tag(BlockTags.CROPS).add(AUBlocks.ENDER_LILLY.get(),AUBlocks.RED_ORCHID.get());
+        tag(BlockTags.SWORD_EFFICIENT).add(AUBlocks.ENDER_LILLY.get(),AUBlocks.RED_ORCHID.get());
 
         tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(AUBlocks.MAGICAL_WOOD.get());
 

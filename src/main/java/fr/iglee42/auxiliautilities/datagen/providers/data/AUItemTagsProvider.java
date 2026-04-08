@@ -75,7 +75,7 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(AUTags.Items.WOODEN_STAIRS).add(Items.OAK_STAIRS,Items.SPRUCE_STAIRS,Items.BIRCH_STAIRS,Items.JUNGLE_STAIRS,Items.ACACIA_STAIRS,Items.DARK_OAK_STAIRS,Items.MANGROVE_STAIRS,Items.CHERRY_STAIRS,Items.BAMBOO_STAIRS,Items.CRIMSON_STAIRS,Items.WARPED_STAIRS,Items.BAMBOO_MOSAIC_STAIRS);
         tag(ItemTags.PLANKS).add(AUBlocks.MAGICAL_PLANKS.asItem());
         tag(ItemTags.DAMPENS_VIBRATIONS).add(AUBlocks.SOUND_MUFFLER.asItem());
-        tag(Tags.Items.CROPS).add(AUBlocks.ENDER_LILLY.asItem());
+        tag(Tags.Items.CROPS).add(AUBlocks.ENDER_LILLY.asItem(),AUBlocks.RED_ORCHID.asItem());
 
         addCompressedSet(Tags.Items.COBBLESTONES_NORMAL,AUBlocks.COMPRESSED_COBBLESTONE);
         addCompressedSet(Tags.Items.COBBLESTONES_DEEPSLATE,AUBlocks.COMPRESSED_COBBLED_DEEPSLATE);

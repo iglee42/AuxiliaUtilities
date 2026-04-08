@@ -66,6 +66,7 @@ public class AUBlocks {
     public static final DeferredBlock<BlockEnderPorcupine> ENDER_PORCUPINE = createBlock("ender_porcupine",()->new BlockEnderPorcupine(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static final DeferredBlock<BlockEnderLilly> ENDER_LILLY = createBlock("ender_lilly",()->new BlockEnderLilly(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
+    public static final DeferredBlock<BlockRedOrchid> RED_ORCHID = createBlock("red_orchid",()->new BlockRedOrchid(BlockBehaviour.Properties.ofFullCopy(Blocks.POTATOES)));
 
     public static final CompressedBlockSet COMPRESSED_COBBLESTONE = new CompressedBlockSet(Blocks.COBBLESTONE,8);
     public static final CompressedBlockSet COMPRESSED_DIRT = new CompressedBlockSet(Blocks.DIRT,4);

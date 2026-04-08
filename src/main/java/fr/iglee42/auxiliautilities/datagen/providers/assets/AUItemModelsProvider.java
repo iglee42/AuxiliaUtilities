@@ -115,6 +115,9 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.SOUND_MUFFLER.get());
         simpleBlockItem(AUBlocks.MACHINE_BLOCK.get());
         basicItem(AUBlocks.ENDER_LILLY.asItem());
+        getBuilder(AUBlocks.RED_ORCHID.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile(ResourceLocation.withDefaultNamespace("item/generated")))
+                .texture("layer0", AuxiliaUtilities.id("block/plants/redorchid_seeds"));
 
         basicItem(AUItems.UPGRADE_BASE.get());
         basicItem(AUItems.MAGICAL_APPLE.get());

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockEnderLilly;
+import fr.iglee42.auxiliautilities.blocks.BlockRedOrchid;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
 import fr.iglee42.auxiliautilities.items.AUDataComponents;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -24,9 +25,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
@@ -57,6 +60,7 @@ public class AULootTablesProvider extends LootTableProvider {
                 builder.put(set.getSlab().get(), this::createSlabItemTable);
             }
             builder.put(AUBlocks.ENDER_LILLY.get(), this::enderLilly);
+            builder.put(AUBlocks.RED_ORCHID.get(), this::redOrchid);
             builder.put(AUBlocks.STONE_DRUM.get(), this::drum);
             builder.put(AUBlocks.IRON_DRUM.get(), this::drum);
             builder.put(AUBlocks.REINFORCED_LARGE_DRUM.get(), this::drum);
@@ -91,11 +95,26 @@ public class AULootTablesProvider extends LootTableProvider {
             return LootTable.lootTable().withPool(pool);
         }
 
+        private LootTable.Builder redOrchid(Block block) {
+            LootItemCondition.Builder condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(AUBlocks.RED_ORCHID.get())
+                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockRedOrchid.AGE, 6));
+            LootPoolEntryContainer.Builder<?> redEntry = LootItem.lootTableItem(Items.REDSTONE)
+                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(getEnchantment(Enchantments.FORTUNE), 0.5714286F, 1)).when(condition);
+            LootPoolEntryContainer.Builder<?> seedsEntry = LootItem.lootTableItem(AUBlocks.RED_ORCHID.asItem());
+            LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(AlternativesEntry.alternatives(redEntry,seedsEntry));
+
+            LootPoolEntryContainer.Builder<?> bonusSeedsEntry = LootItem.lootTableItem(AUBlocks.RED_ORCHID.asItem())
+                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(getEnchantment(Enchantments.FORTUNE), 0.5714286F, 1));
+            LootPool.Builder bonusPool = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(bonusSeedsEntry).when(condition);
+
+            return LootTable.lootTable().apply(ApplyExplosionDecay.explosionDecay()).withPool(pool).withPool(bonusPool);
+        }
+
         private LootTable.Builder enderLilly(Block block) {
             LootItemCondition.Builder condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(AUBlocks.ENDER_LILLY.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockEnderLilly.AGE, 7));
             LootPoolEntryContainer.Builder<?> entry = LootItem.lootTableItem(Items.ENDER_PEARL)
-                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(getEnchantment(Enchantments.FORTUNE), 0.5714286F, 3));
+                    .apply(ApplyBonusCount.addBonusBinomialDistributionCount(getEnchantment(Enchantments.FORTUNE), 0.5714286F, 1));
             LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(entry)
                     .when(condition);
 

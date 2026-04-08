@@ -59,6 +59,7 @@ public enum AULang {
     MACHINE_BLOCK("block","machine_block","Machine Block"),
 
     ENDER_LILLY("block","ender_lilly","Ender Lilly"),
+    RED_ORCHID("block","red_orchid","Red Orchid"),
     COMPRESSED_BLOCKS("block","compressed_blocks","%s Blocks"),
     REDSTONE_CLOCK("block","redstone_clock","Redstone Clock"),
 
@@ -210,6 +211,14 @@ public enum AULang {
     FILTER_FLAG_COMPONENTS_ON("item","filter.flag.ignore_components_on","Ignore Components"),
     FILTER_FLAG_INVERTED_OFF("item","filter.flag.inverted_off","Whitelist"),
     FILTER_FLAG_INVERTED_ON("item","filter.flag.inverted_on","Blacklist"),
+
+    RED_ORCHID_TOOLTIP("tooltip","red_orchid","A beautiful flower that seems to thrive on redstone energy."),
+    RED_ORCHID_TOOLTIP_1("tooltip","red_orchid.1","Plant on any redstone ore."),
+    RED_ORCHID_TOOLTIP_2("tooltip","red_orchid.2","Can be found in spawner and stronghold chests."),
+
+    ENDER_LILLY_TOOLTIP("tooltip","ender_lilly","A beautiful flower that produces some teleportation pearls."),
+    ENDER_LILLY_TOOLTIP_1("tooltip","ender_lilly.1","Plant on end stone."),
+    ENDER_LILLY_TOOLTIP_2("tooltip","ender_lilly.2","Can be found in spawner and stronghold chests."),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
