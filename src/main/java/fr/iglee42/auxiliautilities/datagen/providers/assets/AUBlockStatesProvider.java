@@ -176,6 +176,8 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         directionalBlock(AUBlocks.NETHERITE_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/netherite_spike")));
         directionalBlock(AUBlocks.CREATIVE_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/creative_spike")));
 
+        simpleBlock(AUBlocks.CURSED_EARTH.get(),models().cubeBottomTop(AUBlocks.CURSED_EARTH.getRegisteredName(), modLoc("block/cursed_earth_side"), mcLoc("block/dirt"), modLoc("block/cursed_earth")));
+
     }
 
     private void glass(DeferredBlock<? extends AUBlockGlass> glass, String texture){

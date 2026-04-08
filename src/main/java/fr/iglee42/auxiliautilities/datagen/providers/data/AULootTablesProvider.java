@@ -66,6 +66,8 @@ public class AULootTablesProvider extends LootTableProvider {
             builder.put(AUBlocks.REINFORCED_LARGE_DRUM.get(), this::drum);
             builder.put(AUBlocks.DEMONICALLY_GARGANTUAN_DRUM.get(), this::drum);
             builder.put(AUBlocks.CREATIVE_DRUM.get(), this::drum);
+
+            builder.put(AUBlocks.CURSED_EARTH.get(),block->createSingleItemTableWithSilkTouch(block,Items.DIRT));
             return builder.build();
         }
 

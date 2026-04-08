@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.generators.BEGenHeatedRedstone;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
+import fr.iglee42.auxiliautilities.blocks.cursedearth.BlockCursedEarth;
 import fr.iglee42.auxiliautilities.blocks.glass.AUBlockDarkGlass;
 import fr.iglee42.auxiliautilities.blocks.glass.AUBlockGlass;
 import fr.iglee42.auxiliautilities.blocks.glass.AUBlockRedstoneGlass;
@@ -178,6 +179,8 @@ public class AUBlocks {
     public static final DeferredBlock<BlockSpike> DIAMOND_SPIKE = createBlock("diamond_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).noOcclusion(), BlockSpike.SpikeType.DIAMOND));
     public static final DeferredBlock<BlockSpike> NETHERITE_SPIKE = createBlock("netherite_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), BlockSpike.SpikeType.NETHERITE));
     public static final DeferredBlock<BlockSpike> CREATIVE_SPIKE = createBlock("creative_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), BlockSpike.SpikeType.CREATIVE));
+
+    public static final DeferredBlock<BlockCursedEarth> CURSED_EARTH = createBlock("cursed_earth",()->new BlockCursedEarth());
 
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));

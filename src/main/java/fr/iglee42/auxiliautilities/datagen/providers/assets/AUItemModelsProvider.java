@@ -254,6 +254,8 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.THICKENED_GLASS_BORDERED.get());
         simpleBlockItem(AUBlocks.THICKENED_GLASS_PATTERNED.get());
         simpleBlockItem(AUBlocks.SANDY_GLASS.get());
+
+        simpleBlockItem(AUBlocks.CURSED_EARTH.get());
     }
 
 
