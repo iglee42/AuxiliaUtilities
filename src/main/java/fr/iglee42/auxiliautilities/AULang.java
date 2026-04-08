@@ -220,6 +220,11 @@ public enum AULang {
     ENDER_LILLY_TOOLTIP_1("tooltip","ender_lilly.1","Plant on end stone."),
     ENDER_LILLY_TOOLTIP_2("tooltip","ender_lilly.2","Can be found in spawner and stronghold chests."),
 
+    DEMON_INGOT_TOOLTIP("tooltip","demon_ingot","Legends tell of an ancient god of the underworld that appeared way before you."),
+    DEMON_INGOT_TOOLTIP_1("tooltip","demon_ingot.1","After its death, his soul was trapped inside spooky scary creatures and fire weaved constructs."),
+    DEMON_INGOT_TOOLTIP_2("tooltip","demon_ingot.2","They created a cult around this god trapped inside of them and made some kind of offering in a lava well that can be found in the ruins of a terrifying fortress."),
+    DEMON_INGOT_TOOLTIP_3("tooltip","demon_ingot.3","These tributes of precious ingots were answered by some special ancient metals."),
+
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
     DOOM_DEATH_PLAYER("death.attack.doom.player","%s met their doom whilst fighting %s"),
