@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "c:storage_blocks/diamond"
+    },
+    "P": {
+      "tag": "c:gems/diamond"
+    },
+    "S": {
+      "item": "minecraft:diamond_sword"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SPS",
+    "PLP"
+  ],
+  "result": {
+    "count": 4,
+    "id": "au:diamond_spike"
+  }
+}

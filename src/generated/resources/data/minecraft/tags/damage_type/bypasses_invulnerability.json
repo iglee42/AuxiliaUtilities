@@ -7,6 +7,10 @@
     {
       "id": "au:unstable",
       "required": false
+    },
+    {
+      "id": "au:creative_spike",
+      "required": false
     }
   ]
 }

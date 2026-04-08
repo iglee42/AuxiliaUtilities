@@ -1,0 +1,12 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "au:models/block/spike.obj",
+  "mtl_override": "au:models/block/stone_spike.mtl",
+  "render_type": "minecraft:solid",
+  "shade_quads": true,
+  "textures": {
+    "particle": "au:block/spikes/stone_spikes_base"
+  }
+}

@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.blocks.BlockSpike;
 import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
 import fr.iglee42.auxiliautilities.potions.effects.DoomEffect;
 import net.minecraft.core.HolderLookup;
@@ -20,9 +21,10 @@ public class AUDamageTypeTagsProvider extends DamageTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(DamageTypeTags.BYPASSES_ARMOR).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location());
-        tag(DamageTypeTags.BYPASSES_INVULNERABILITY).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location());
-        tag(DamageTypeTags.BYPASSES_RESISTANCE).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location());
-        tag(DamageTypeTags.NO_KNOCKBACK).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location());
+        tag(DamageTypeTags.BYPASSES_ARMOR).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location()).addOptional(BlockSpike.CREATIVE_SPIKE_DAMAGE.location());
+        tag(DamageTypeTags.BYPASSES_INVULNERABILITY).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location()).addOptional(BlockSpike.CREATIVE_SPIKE_DAMAGE.location());
+        tag(DamageTypeTags.BYPASSES_RESISTANCE).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location()).addOptional(BlockSpike.CREATIVE_SPIKE_DAMAGE.location());
+        tag(DamageTypeTags.NO_KNOCKBACK).addOptional(DoomEffect.DOOM_DAMAGE.location()).addOptional(ItemUnstableIngot.UNSTABLE_DAMAGE.location()).addOptional(BlockSpike.CREATIVE_SPIKE_DAMAGE.location()).addOptional(BlockSpike.SPIKE_DAMAGE.location());
+        tag(DamageTypeTags.BYPASSES_ARMOR).addOptional(BlockSpike.SPIKE_DAMAGE.location());
     }
 }

@@ -170,6 +170,14 @@ public class AUBlocks {
     });
     public static final DeferredBlock<AUBlockGlass> OBSIDIAN_GLASS = createBlock("obsidian_glass",()->new AUBlockGlass(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).strength(0.3F,1200.0F).noOcclusion()));
 
+    public static final DeferredBlock<BlockSpike> WOODEN_SPIKE = createBlock("wooden_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).noOcclusion(), BlockSpike.SpikeType.WOOD));
+    public static final DeferredBlock<BlockSpike> STONE_SPIKE = createBlock("stone_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion(), BlockSpike.SpikeType.STONE));
+    public static final DeferredBlock<BlockSpike> COPPER_SPIKE = createBlock("copper_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).noOcclusion(), BlockSpike.SpikeType.COPPER));
+    public static final DeferredBlock<BlockSpike> IRON_SPIKE = createBlock("iron_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), BlockSpike.SpikeType.IRON));
+    public static final DeferredBlock<BlockSpike> GOLDEN_SPIKE = createBlock("golden_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion(), BlockSpike.SpikeType.GOLDEN));
+    public static final DeferredBlock<BlockSpike> DIAMOND_SPIKE = createBlock("diamond_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).noOcclusion(), BlockSpike.SpikeType.DIAMOND));
+    public static final DeferredBlock<BlockSpike> NETHERITE_SPIKE = createBlock("netherite_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), BlockSpike.SpikeType.NETHERITE));
+    public static final DeferredBlock<BlockSpike> CREATIVE_SPIKE = createBlock("creative_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), BlockSpike.SpikeType.CREATIVE));
 
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));

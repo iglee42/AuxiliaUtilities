@@ -84,6 +84,9 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.IMPERMEABLE).add(AUBlocks.ETHEREAL_GLASS.get(),AUBlocks.INEFFABLE_GLASS.get(),AUBlocks.OBSIDIAN_GLASS.get(),AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.GLOWING_GLASS.get(),AUBlocks.REDSTONE_GLASS.get(),AUBlocks.DARK_GLASS.get(),AUBlocks.REVERSE_ETHEREAL_GLASS.get(),AUBlocks.THICKENED_GLASS.get(),AUBlocks.THICKENED_GLASS_BORDERED.get(),AUBlocks.THICKENED_GLASS_PATTERNED.get());
         tag(Tags.Blocks.GLASS_BLOCKS).add(AUBlocks.ETHEREAL_GLASS.get(),AUBlocks.INEFFABLE_GLASS.get(),AUBlocks.OBSIDIAN_GLASS.get(),AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.GLOWING_GLASS.get(),AUBlocks.REDSTONE_GLASS.get(),AUBlocks.DARK_GLASS.get(),AUBlocks.REVERSE_ETHEREAL_GLASS.get(),AUBlocks.THICKENED_GLASS.get(),AUBlocks.THICKENED_GLASS_BORDERED.get(),AUBlocks.THICKENED_GLASS_PATTERNED.get());
         tag(Tags.Blocks.GLASS_BLOCKS_TINTED).add(AUBlocks.DARK_INEFFABLE_GLASS.get(),AUBlocks.DARK_GLASS.get());
+
+        tag(BlockTags.MINEABLE_WITH_AXE).add(AUBlocks.WOODEN_SPIKE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.STONE_SPIKE.get(),AUBlocks.COPPER_SPIKE.get(),AUBlocks.IRON_SPIKE.get(),AUBlocks.GOLDEN_SPIKE.get(),AUBlocks.DIAMOND_SPIKE.get(),AUBlocks.NETHERITE_SPIKE.get(),AUBlocks.CREATIVE_SPIKE.get());
     }
 
     private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){

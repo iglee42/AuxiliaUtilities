@@ -79,6 +79,13 @@
     "au:iron_drum",
     "au:reinforced_large_drum",
     "au:demonically_gargantuan_drum",
-    "au:creative_drum"
+    "au:creative_drum",
+    "au:stone_spike",
+    "au:copper_spike",
+    "au:iron_spike",
+    "au:golden_spike",
+    "au:diamond_spike",
+    "au:netherite_spike",
+    "au:creative_spike"
   ]
 }

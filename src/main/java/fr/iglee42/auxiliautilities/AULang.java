@@ -118,6 +118,15 @@ public enum AULang {
     INEFFABLE_GLASS("block","ineffable_glass","Ineffable Glass"),
     REVERSE_ETHEREAL_GLASS("block","reverse_ethereal_glass","Reverse Ethereal Glass"),
 
+    WOODEN_SPIKE("block","wooden_spike","Wooden Spike"),
+    STONE_SPIKE("block","stone_spike","Stone Spike"),
+    COPPER_SPIKE("block","copper_spike","Copper Spike"),
+    IRON_SPIKE("block","iron_spike","Iron Spike"),
+    GOLDEN_SPIKE("block","golden_spike","Golden Spike"),
+    DIAMOND_SPIKE("block","diamond_spike","Diamond Spike"),
+    NETHERITE_SPIKE("block","netherite_spike","Netherite Spike"),
+    CREATIVE_SPIKE("block","creative_spike","Creative Spike"),
+
     BUILDERS_WAND_ITEM("item","builders_wand","Builder's Wand"),
     CREATIVE_BUILDERS_WAND_ITEM("item","creative_builders_wand","Creative Builder's Wand"),
     DESTRUCTION_WAND_ITEM("item","destruction_wand","Destruction Wand"),
@@ -250,13 +259,28 @@ public enum AULang {
     INEFFABLE_GLASS_TOOLTIP("tooltip","ineffable_glass","A glass that lets player pass through."),
     DARK_INEFFABLE_GLASS_TOOLTIP("tooltip","dark_ineffable_glass","A glass that doesn't let player and light pass through."),
 
+    WOODEN_SPIKE_TOOLTIP("tooltip","wooden_spike","Reduces health to 1 heart, but doesn't kill"),
+    STONE_SPIKE_TOOLTIP("tooltip","stone_spike","Reduces health to half a heart, but doesn't kill"),
+    GOLDEN_SPIKE_TOOLTIP("tooltip","golden_spike","Mobs drop experience"),
+    DIAMOND_SPIKE_TOOLTIP("tooltip","diamond_spike","Mobs drop 'Player-Kill Only' items"),
+    NETHERITE_SPIKE_TOOLTIP("tooltip","netherite_spike","Mobs drop experience, 'Player-Kill Only' and 'Fire Only' items"),
+    CREATIVE_SPIKE_TOOLTIP("tooltip","creative_spike","Instantly kills any mob, even in creative mode"),
+
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
     DOOM_DEATH_PLAYER("death.attack.doom.player","%s met their doom whilst fighting %s"),
 
     UNSTABLE_DEATH("death.attack.unstable","%s suffered a fatal (java.lang.ArithmeticException : / by diamond)"),
     UNSTABLE_DEATH_ITEM("death.attack.unstable.item","%s suffered a fatal (java.lang.ArithmeticException : / by diamond)"),
-    UNSTABLE_DEATH_PLAYER("death.attack.unstable.player","%s suffered a fatal (java.lang.ArithmeticException : / by diamond) whilst fighting %s")
+    UNSTABLE_DEATH_PLAYER("death.attack.unstable.player","%s suffered a fatal (java.lang.ArithmeticException : / by diamond) whilst fighting %s"),
+
+    SPIKE_DEATH("death.attack.spike","%s walked on a pointy spike (ouchies)"),
+    SPIKE_DEATH_ITEM("death.attack.spike.item","%s walked on a pointy spike (ouchies)"),
+    SPIKE_DEATH_PLAYER("death.attack.spike.player","%s walked on a pointy spike (ouchies)"),
+
+    SPIKE_CREATIVE_DEATH("death.attack.creative_spike","%s failed to become the guy"),
+    SPIKE_CREATIVE_DEATH_ITEM("death.attack.creative_spike.item","%s failed to become the guy"),
+    SPIKE_CREATIVE_DEATH_PLAYER("death.attack.creative_spike.player","%s failed to become the guy")
     ;
 
     private final String key;

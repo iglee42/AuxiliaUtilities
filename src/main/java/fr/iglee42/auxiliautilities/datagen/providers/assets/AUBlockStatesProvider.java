@@ -167,6 +167,15 @@ public class AUBlockStatesProvider extends BlockStateProvider {
         simpleBlock(AUBlocks.THICKENED_GLASS_PATTERNED.get(),models().cubeAll(AUBlocks.THICKENED_GLASS_PATTERNED.getRegisteredName(), modLoc("block/glass/thickened_glass_patterned")).renderType("translucent"));
         simpleBlock(AUBlocks.SANDY_GLASS.get());
 
+        directionalBlock(AUBlocks.WOODEN_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/wooden_spike")));
+        directionalBlock(AUBlocks.STONE_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/stone_spike")));
+        directionalBlock(AUBlocks.COPPER_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/copper_spike")));
+        directionalBlock(AUBlocks.IRON_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/iron_spike")));
+        directionalBlock(AUBlocks.GOLDEN_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/golden_spike")));
+        directionalBlock(AUBlocks.DIAMOND_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/diamond_spike")));
+        directionalBlock(AUBlocks.NETHERITE_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/netherite_spike")));
+        directionalBlock(AUBlocks.CREATIVE_SPIKE.get(), new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/creative_spike")));
+
     }
 
     private void glass(DeferredBlock<? extends AUBlockGlass> glass, String texture){

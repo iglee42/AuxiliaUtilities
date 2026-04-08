@@ -687,6 +687,76 @@ public class AURecipesProvider extends RecipeProvider {
                 .save(output);
 
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.WOODEN_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.WOODEN_SWORD)
+                .define('P',ItemTags.PLANKS)
+                .define('L',ItemTags.LOGS)
+                .unlockedBy("has_item", has(Items.WOODEN_SWORD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.STONE_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.STONE_SWORD)
+                .define('P',ItemTags.STONE_CRAFTING_MATERIALS)
+                .define('L',AUBlocks.COMPRESSED_COBBLESTONE.getBlock(1))
+                .unlockedBy("has_item", has(Items.STONE_SWORD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.COPPER_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',AUBlocks.STONE_SPIKE)
+                .define('P',Tags.Items.INGOTS_COPPER)
+                .define('L',Tags.Items.STORAGE_BLOCKS_COPPER)
+                .unlockedBy("has_item", has(AUBlocks.STONE_SPIKE))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.IRON_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.IRON_SWORD)
+                .define('P',Tags.Items.INGOTS_IRON)
+                .define('L',Tags.Items.STORAGE_BLOCKS_IRON)
+                .unlockedBy("has_item", has(Items.IRON_SWORD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.GOLDEN_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.GOLDEN_SWORD)
+                .define('P',Tags.Items.INGOTS_GOLD)
+                .define('L',Tags.Items.STORAGE_BLOCKS_GOLD)
+                .unlockedBy("has_item", has(Items.GOLDEN_SWORD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.DIAMOND_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.DIAMOND_SWORD)
+                .define('P',Tags.Items.GEMS_DIAMOND)
+                .define('L',Tags.Items.STORAGE_BLOCKS_DIAMOND)
+                .unlockedBy("has_item", has(Items.DIAMOND_SWORD))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.NETHERITE_SPIKE,4)
+                .pattern(" S ")
+                .pattern("SPS")
+                .pattern("PLP")
+                .define('S',Items.NETHERITE_SWORD)
+                .define('P',Tags.Items.INGOTS_NETHERITE)
+                .define('L',Tags.Items.STORAGE_BLOCKS_NETHERITE)
+                .unlockedBy("has_item", has(Items.NETHERITE_SWORD))
+                .save(output);
+
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {

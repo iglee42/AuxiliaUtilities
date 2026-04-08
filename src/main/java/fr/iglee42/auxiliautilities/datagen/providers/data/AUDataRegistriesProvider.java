@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockEnderLilly;
+import fr.iglee42.auxiliautilities.blocks.BlockSpike;
 import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
 import fr.iglee42.auxiliautilities.potions.effects.DoomEffect;
 import net.minecraft.core.Holder;
@@ -49,6 +50,10 @@ public class AUDataRegistriesProvider {
                     new DamageType(DoomEffect.DOOM_DAMAGE.location().getPath(),0.0f));
             bootstrap.register(ItemUnstableIngot.UNSTABLE_DAMAGE,
                     new DamageType(ItemUnstableIngot.UNSTABLE_DAMAGE.location().getPath(),0.0f));
+            bootstrap.register(BlockSpike.SPIKE_DAMAGE,
+                    new DamageType("spike",0.0f));
+            bootstrap.register(BlockSpike.CREATIVE_SPIKE_DAMAGE,
+                    new DamageType("creative_spike",0.0f));
         });
 
         AtomicReference<Holder<ConfiguredFeature<?, ?>>> enderLilly = new AtomicReference<>();
