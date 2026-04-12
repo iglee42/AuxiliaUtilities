@@ -87,6 +87,11 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.MINEABLE_WITH_AXE).add(AUBlocks.WOODEN_SPIKE.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.STONE_SPIKE.get(),AUBlocks.COPPER_SPIKE.get(),AUBlocks.IRON_SPIKE.get(),AUBlocks.GOLDEN_SPIKE.get(),AUBlocks.DIAMOND_SPIKE.get(),AUBlocks.NETHERITE_SPIKE.get(),AUBlocks.CREATIVE_SPIKE.get());
+
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(AUBlocks.CURSED_EARTH.get());
+        tag(BlockTags.DIRT).add(AUBlocks.CURSED_EARTH.get());
+        tag(BlockTags.VALID_SPAWN).add(AUBlocks.CURSED_EARTH.get());
+
     }
 
     private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){

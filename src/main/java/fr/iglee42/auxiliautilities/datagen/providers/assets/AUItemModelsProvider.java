@@ -239,6 +239,7 @@ public class AUItemModelsProvider extends ItemModelProvider {
 
         simpleBlockItem(AUBlocks.ENDER_PORCUPINE.get());
         basicItem(AUItems.POWER_MANAGER.get());
+        basicItem(AUItems.DROP_OF_EVIL.get());
         basicItem(AUItems.FLUID_DROPLET.get());
         basicItem(AUItems.ENERGY_DROPLET.get());
 

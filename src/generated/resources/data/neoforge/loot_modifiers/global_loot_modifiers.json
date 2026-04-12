@@ -1,6 +1,7 @@
 {
   "entries": [
-    "au:add_ender_lilly"
+    "au:add_ender_lilly",
+    "au:add_drop_of_evil"
   ],
   "replace": false
 }

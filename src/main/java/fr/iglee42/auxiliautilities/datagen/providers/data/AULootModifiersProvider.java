@@ -28,5 +28,12 @@ public class AULootModifiersProvider extends GlobalLootModifierProvider {
                         LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/simple_dungeon")).or(LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_corridor"))).build()
                 },ResourceKey.create(Registries.LOOT_TABLE,AuxiliaUtilities.id("chests/plants")))
         );
+
+        add(
+                "add_drop_of_evil",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/wither_skeleton")).build()
+                },ResourceKey.create(Registries.LOOT_TABLE,AuxiliaUtilities.id("entities/wither_skeleton")))
+        );
     }
 }

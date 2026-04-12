@@ -103,6 +103,8 @@ public class AUItems {
 
     public static final DeferredItem<Item> POWER_MANAGER = ITEMS.register("power_manager",()-> new ItemPowerManager(new Item.Properties()));
 
+    public static final DeferredItem<Item> DROP_OF_EVIL = ITEMS.register("drop_of_evil",()-> new ItemDropOfEvil(new Item.Properties()));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());

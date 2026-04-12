@@ -104,6 +104,7 @@ public enum AULang {
     CREATIVE_DRUM("block","creative_drum","Creative Drum"),
     KLEIN_BOTTLE("block","klein_bottle","Klein Bottle"),
     ENDER_PORCUPINE("block","ender_porcupine","Ender Porcupine"),
+    CURSED_EARTH("block","cursed_earth","Cursed Earth"),
 
     SANDY_GLASS("block","sandy_glass","Sandy Glass"),
     THICKENED_GLASS("block","thickened_glass","Thickened Glass"),
@@ -167,6 +168,7 @@ public enum AULang {
     FILTER_ITEMS("item","item_filter","Items Filter"),
     FILTER_FLUIDS("item","fluid_filter","Fluids Filter"),
     POWER_MANAGER("item","power_manager","Power Manager"),
+    DROP_OF_EVIL("item","drop_of_evil","Drop of Evil"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
@@ -265,6 +267,11 @@ public enum AULang {
     DIAMOND_SPIKE_TOOLTIP("tooltip","diamond_spike","Mobs drop 'Player-Kill Only' items"),
     NETHERITE_SPIKE_TOOLTIP("tooltip","netherite_spike","Mobs drop experience, 'Player-Kill Only' and 'Fire Only' items"),
     CREATIVE_SPIKE_TOOLTIP("tooltip","creative_spike","Instantly kills any mob, even in creative mode"),
+
+    CURSED_EARTH_TOOLTIP("tooltip","cursed_earth","A corrupted dirt that spawns a lot of powerful mobs on it."),
+    CURSED_EARTH_TOOLTIP_1("tooltip","cursed_earth.1","This block can burn if it is exposed too longer to sun."),
+    DROP_OF_EVIL_TOOLTIP("tooltip","drop_of_evil","A corrupted shard dropped from wither skeletons."),
+    DROP_OF_EVIL_TOOLTIP_1("tooltip","drop_of_evil.1","Produces a 5x5 of Cursed Earth when used on dirt/grass."),
 
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),

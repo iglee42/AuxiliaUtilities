@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "au:drop_of_evil"
+    },
+    "C": {
+      "item": "au:enchanted_speed_upgrade"
+    },
+    "I": {
+      "tag": "c:ingots/evil_infused_iron"
+    }
+  },
+  "pattern": [
+    "AIA",
+    "ICI",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:ultimate_speed_upgrade"
+  }
+}

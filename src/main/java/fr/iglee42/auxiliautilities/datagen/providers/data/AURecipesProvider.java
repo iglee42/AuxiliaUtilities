@@ -414,7 +414,7 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(AUBlocks.MAGICAL_WOOD))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD,AUItems.ENCHANTED_SPEED_UPGRADE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.ENCHANTED_SPEED_UPGRADE)
                 .pattern("AIA")
                 .pattern("ICI")
                 .pattern("AIA")
@@ -422,6 +422,16 @@ public class AURecipesProvider extends RecipeProvider {
                 .define('C',AUItems.SPEED_UPGRADE)
                 .define('A',AUItems.MAGICAL_APPLE)
                 .unlockedBy("has_item", has(AUTags.Items.ENCHANTED_INGOTS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.ULTIMATE_SPEED_UPGRADE)
+                .pattern("AIA")
+                .pattern("ICI")
+                .pattern("AIA")
+                .define('I',AUTags.Items.EVIL_INFUSED_IRON_INGOTS)
+                .define('C',AUItems.ENCHANTED_SPEED_UPGRADE)
+                .define('A',AUItems.DROP_OF_EVIL)
+                .unlockedBy("has_item", has(AUTags.Items.EVIL_INFUSED_IRON_INGOTS))
                 .save(output);
 
         for (CompressedBlockSet set : CompressedBlockSet.ALL_SETS) {

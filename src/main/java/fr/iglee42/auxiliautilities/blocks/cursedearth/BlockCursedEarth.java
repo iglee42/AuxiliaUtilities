@@ -1,23 +1,18 @@
 package fr.iglee42.auxiliautilities.blocks.cursedearth;
 
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.*;
 
@@ -49,6 +43,12 @@ public class BlockCursedEarth extends AUBlock {
     }
 
     @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState p_60569_, boolean p_60570_) {
+        super.onPlace(state, level, pos, p_60569_, p_60570_);
+        level.scheduleTick(pos,state.getBlock(),20);
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DECAY);
     }
@@ -56,6 +56,11 @@ public class BlockCursedEarth extends AUBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         performTick(level, pos, random);
+    }
+
+    @Override
+    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+        performTick(level, pos, rand);
     }
 
     private void performTick(ServerLevel level, BlockPos pos, RandomSource rand) {
@@ -86,6 +91,8 @@ public class BlockCursedEarth extends AUBlock {
         if (!spread && rand.nextInt(8) == 0) {
             spawnMob(level, pos);
         }
+
+        level.scheduleTick(pos,level.getBlockState(pos).getBlock(),20);
     }
 
     private boolean trySpread(ServerLevel level, BlockPos origin, BlockPos pos, RandomSource rand) {
@@ -189,6 +196,20 @@ public class BlockCursedEarth extends AUBlock {
                     0,0,0
             );
         }
+    }
+
+    public static void startFastSpread(ServerLevel level, BlockPos origin, int radius) {
+        
+        level.setBlockAndUpdate(origin, AUBlocks.CURSED_EARTH.get().defaultBlockState().setValue(DECAY, 0));
+        for (int i = 1; i <= radius; i++) {
+            for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-i,0,-i), origin.offset(i,0,i))) {
+                if ((level.getBlockState(pos).is(Blocks.GRASS_BLOCK) || level.getBlockState(pos).is(Blocks.DIRT))) {
+                    level.setBlockAndUpdate(pos, AUBlocks.CURSED_EARTH.get().defaultBlockState().setValue(DECAY, 0));
+                }
+            }
+        }
+
+
     }
 
 }
