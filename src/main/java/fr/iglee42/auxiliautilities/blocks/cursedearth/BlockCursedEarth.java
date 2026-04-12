@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.blocks.cursedearth;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -13,13 +14,16 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
@@ -63,13 +67,31 @@ public class BlockCursedEarth extends AUBlock {
         performTick(level, pos, rand);
     }
 
+
+    private static boolean canSurvive(BlockState state, Level level, BlockPos pos) {
+        BlockPos blockpos = pos.above();
+        BlockState blockstate = level.getBlockState(blockpos);
+        if (level.canSeeSky(blockpos) && level.isDay()) return false;
+        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
+            return true;
+        } else if (blockstate.getFluidState().getAmount() == 8) {
+            return false;
+        } else {
+            int i = LightEngine.getLightBlockInto(
+                    level, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(level, blockpos)
+            );
+            return i < level.getMaxLightLevel();
+        }
+    }
+
     private void performTick(ServerLevel level, BlockPos pos, RandomSource rand) {
 
-        int light = level.getMaxLocalRawBrightness(pos.above());
+        boolean seeSun = !canSurvive(level.getBlockState(pos), level, pos);
 
-        if (light >= 9) {
+        level.scheduleTick(pos,level.getBlockState(pos).getBlock(),20);
+        if (seeSun) {
+            if (level.getBlockState(pos.above()).canBeReplaced()) level.setBlockAndUpdate(pos.above(), Blocks.FIRE.defaultBlockState());
             if (rand.nextInt(5) == 0) {
-                level.setBlockAndUpdate(pos.above(), Blocks.FIRE.defaultBlockState());
                 level.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
             }
             return;
@@ -92,7 +114,6 @@ public class BlockCursedEarth extends AUBlock {
             spawnMob(level, pos);
         }
 
-        level.scheduleTick(pos,level.getBlockState(pos).getBlock(),20);
     }
 
     private boolean trySpread(ServerLevel level, BlockPos origin, BlockPos pos, RandomSource rand) {

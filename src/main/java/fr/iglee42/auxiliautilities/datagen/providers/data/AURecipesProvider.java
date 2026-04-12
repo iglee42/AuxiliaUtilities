@@ -78,9 +78,19 @@ public class AURecipesProvider extends RecipeProvider {
                 .pattern("S")
                 .pattern("D")
                 .define('I', Tags.Items.INGOTS_IRON)
-                .define('S',Tags.Items.RODS_WOODEN)
+                .define('S',AUItems.DIVISION_SIGIL)
                 .define('D',Tags.Items.GEMS_DIAMOND)
-                .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
+                .unlockedBy("has_item", has(AUItems.DIVISION_SIGIL))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.STABLE_UNSTABLE_INGOT)
+                .pattern("I")
+                .pattern("S")
+                .pattern("D")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('S',AUItems.PSEUDO_INVERSION_SIGIL)
+                .define('D',Tags.Items.GEMS_DIAMOND)
+                .unlockedBy("has_item", has(AUItems.DIVISION_SIGIL))
                 .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.STABLE_UNSTABLE_INGOT)
@@ -89,14 +99,14 @@ public class AURecipesProvider extends RecipeProvider {
                 .pattern("III")
                 .define('I', AUItems.STABLE_UNSTABLE_NUGGET.get())
                 .unlockedBy("has_item", has(AUItems.STABLE_UNSTABLE_NUGGET))
-                .save(output);
+                .save(output,AuxiliaUtilities.id("stable_unstable_ingot_from_nuggets"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUItems.STABLE_UNSTABLE_NUGGET)
                 .pattern("I")
                 .pattern("S")
                 .pattern("D")
                 .define('I', Tags.Items.NUGGETS_IRON)
-                .define('S',Tags.Items.RODS_WOODEN)
+                .define('S',AUTags.Items.DIVISION_SIGILS)
                 .define('D',Tags.Items.GEMS_DIAMOND)
                 .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
                 .save(output);

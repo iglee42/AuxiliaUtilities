@@ -9,7 +9,7 @@
       "tag": "c:ingots/iron"
     },
     "S": {
-      "tag": "c:rods/wooden"
+      "item": "au:division_sigil"
     }
   },
   "pattern": [

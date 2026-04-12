@@ -105,6 +105,10 @@ public class AUItems {
 
     public static final DeferredItem<Item> DROP_OF_EVIL = ITEMS.register("drop_of_evil",()-> new ItemDropOfEvil(new Item.Properties()));
 
+    public static final DeferredItem<Item> UNACTIVATED_DIVISION_SIGIL = ITEMS.register("unactivated_division_sigil",()-> new ItemDivisionSigilUnactivated(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> DIVISION_SIGIL = ITEMS.register("division_sigil",()-> new ItemDivisionSigil(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> PSEUDO_INVERSION_SIGIL = ITEMS.register("pseudo_inversion_sigil",()-> new ItemPseudoInversionSigil(new Item.Properties().stacksTo(1)));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());

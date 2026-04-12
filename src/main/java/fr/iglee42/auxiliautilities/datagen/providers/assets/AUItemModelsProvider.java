@@ -257,6 +257,12 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.SANDY_GLASS.get());
 
         simpleBlockItem(AUBlocks.CURSED_EARTH.get());
+
+        getBuilder(AUItems.UNACTIVATED_DIVISION_SIGIL.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", AuxiliaUtilities.id("item/division_sigil"));
+        basicItem(AUItems.DIVISION_SIGIL.asItem());
+        basicItem(AUItems.PSEUDO_INVERSION_SIGIL.asItem());
     }
 
 

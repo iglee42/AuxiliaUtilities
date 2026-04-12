@@ -97,6 +97,8 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.GLASS_BLOCKS_COLORLESS).add(AUBlocks.ETHEREAL_GLASS.asItem(),AUBlocks.INEFFABLE_GLASS.asItem(),AUBlocks.REVERSE_ETHEREAL_GLASS.asItem(),AUBlocks.THICKENED_GLASS.asItem(),AUBlocks.THICKENED_GLASS_BORDERED.asItem(),AUBlocks.THICKENED_GLASS_PATTERNED.asItem());
         tag(Tags.Items.GLASS_BLOCKS).add(AUBlocks.ETHEREAL_GLASS.asItem(),AUBlocks.INEFFABLE_GLASS.asItem(),AUBlocks.OBSIDIAN_GLASS.asItem(),AUBlocks.DARK_INEFFABLE_GLASS.asItem(),AUBlocks.GLOWING_GLASS.asItem(),AUBlocks.REDSTONE_GLASS.asItem(),AUBlocks.DARK_GLASS.asItem(),AUBlocks.REVERSE_ETHEREAL_GLASS.asItem(),AUBlocks.THICKENED_GLASS.asItem(),AUBlocks.THICKENED_GLASS_BORDERED.asItem(),AUBlocks.THICKENED_GLASS_PATTERNED.asItem());
         tag(Tags.Items.GLASS_BLOCKS_TINTED).add(AUBlocks.DARK_INEFFABLE_GLASS.asItem(),AUBlocks.DARK_GLASS.asItem());
+
+        tag(AUTags.Items.DIVISION_SIGILS).add(AUItems.DIVISION_SIGIL.asItem(),AUItems.PSEUDO_INVERSION_SIGIL.asItem());
     }
 
     private void addCompressedSet(TagKey<Item> tag, CompressedBlockSet set){

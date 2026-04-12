@@ -24,6 +24,7 @@ public enum AUPackets {
     SEND_CURRENT_BLOCK_GP(SendCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     SYNC_FLAT_TRANSFER_NODES(SyncFlatTransferNodesPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     POWER_DATA(ItemPowerManager.PowerDataPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+    PLAY_SOUND(PlaySoundPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
 
     // TO SERVER
     ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),

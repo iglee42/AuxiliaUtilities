@@ -170,6 +170,10 @@ public enum AULang {
     POWER_MANAGER("item","power_manager","Power Manager"),
     DROP_OF_EVIL("item","drop_of_evil","Drop of Evil"),
 
+    UNACTIVATED_DIVISION_SIGIL("item","unactivated_division_sigil","Division Sigil"),
+    DIVISION_SIGIL("item","division_sigil","Division Sigil (Activated)"),
+    PSEUDO_INVERSION_SIGIL("item","pseudo_inversion_sigil","Pseudo-Inversion Sigil"),
+
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
     WOODEN_SICKLE("item","wooden_sickle","Wooden Sickle"),
@@ -226,6 +230,22 @@ public enum AULang {
     SCANNING_GUI_MESSAGE("gui","scanning","Scanning : [%s, %s, %s]"),
     RANGE_START_GUI_MESSAGE("gui","range_start","Block Range Start"),
     RANGE_END_GUI_MESSAGE("gui","range_end","Block Range End"),
+
+    ACTIVATION_RITUAL("message","activation_ritual","Activation Ritual :"),
+    ACTIVATION_RITUAL_VALID("message","activation_ritual.valid","Perform the sacrifice !"),
+    ACTIVATION_RITUAL_SKY_INVALID("message","activation_ritual.can_see_sky.invalid","Altar cannot see the moon"),
+    ACTIVATION_RITUAL_SKY_VALID("message","activation_ritual.can_see_sky.valid","Altar can see the moon"),
+    ACTIVATION_RITUAL_REDSTONE_INVALID("message","activation_ritual.redstone_circle.invalid","Altar does not have a redstone circle"),
+    ACTIVATION_RITUAL_REDSTONE_VALID("message","activation_ritual.redstone_circle.valid","Altar has a redstone circle"),
+    ACTIVATION_RITUAL_DIRT_INVALID("message","activation_ritual.dirt_under.invalid","Altar and Circle not placed on dirt"),
+    ACTIVATION_RITUAL_DIRT_VALID("message","activation_ritual.dirt_under.valid","Altar and Circle placed on dirt"),
+    ACTIVATION_RITUAL_NATURAL_INVALID("message","activation_ritual.enough_natural.invalid","Area lacks sufficient natural earth"),
+    ACTIVATION_RITUAL_NATURAL_VALID("message","activation_ritual.enough_natural.valid","Altar has sufficient natural earth"),
+    ACTIVATION_RITUAL_MIDNIGHT_INVALID("message","activation_ritual.midnight.invalid","Sacrifice must be made at midnight"),
+    ACTIVATION_RITUAL_MIDNIGHT_VALID("message","activation_ritual.midnight.valid","Time is right"),
+    ACTIVATION_RITUAL_LIGHT_INVALID("message","activation_ritual.no_light.invalid","Altar must not be lit by outside sources"),
+    ACTIVATION_RITUAL_LIGHT_VALID("message","activation_ritual.no_light.valid","Altar is in darkness"),
+
 
     FLAT_TRANSFER_NODE_TOOLTIP("tooltip","flat_transfer_node","Thinner than the thinnest of pancakes."),
     FLAT_TRANSFER_NODE_TOOLTIP_1("tooltip","flat_transfer_node.1","Small enough to fit between blocks"),
