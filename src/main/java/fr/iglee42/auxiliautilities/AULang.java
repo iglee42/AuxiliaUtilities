@@ -246,6 +246,33 @@ public enum AULang {
     ACTIVATION_RITUAL_LIGHT_INVALID("message","activation_ritual.no_light.invalid","Altar must not be lit by outside sources"),
     ACTIVATION_RITUAL_LIGHT_VALID("message","activation_ritual.no_light.valid","Altar is in darkness"),
 
+    STABILIZATION_RITUAL("message","stabilization_ritual","Stabilization Ritual :"),
+    STABILIZATION_RITUAL_OVERWORLD("message","stabilization_ritual.overworld","Too much natural earth"),
+    STABILIZATION_RITUAL_NETHER("message","stabilization_ritual.nether","Too hot"),
+    STABILIZATION_RITUAL_OTHER("message","stabilization_ritual.other_dimension","This dimension doesn't seems to have a power source"),
+    STABILIZATION_RITUAL_NOT_MAIN_END("message","stabilization_ritual.end_too_far","Too far from the power source"),
+    STABILIZATION_RITUAL_READY("message","stabilization_ritual.ready","Everything is prepared."),
+    STABILIZATION_RITUAL_SACRIFICE("message","stabilization_ritual.sacrifice","Sacrifice one who would sacrifice himself."),
+    STABILIZATION_RITUAL_NO_MARKINGS("message","stabilization_ritual.no_markings","Ritual Markings: No markings present"),
+    STABILIZATION_RITUAL_ONE_MARKING("message","stabilization_ritual.one_marking","Ritual Markings: Only 1 type of marking present"),
+    STABILIZATION_RITUAL_STRENGTH("message","stabilization_ritual.strength","Ritual Markings: Strength - %s"),
+    STABILIZATION_RITUAL_MISSING_CHEST("message","stabilization_ritual.missing_chest","%s Chest not present"),
+    STABILIZATION_RITUAL_NORTH_CHEST("message","stabilization_ritual.north_chest","To the north, Children of Fire : %s / %s"),
+    STABILIZATION_RITUAL_SOUTH_CHEST("message","stabilization_ritual.south_chest","To the south, Gifts of Earth : %s / %s"),
+    STABILIZATION_RITUAL_EAST_CHEST("message","stabilization_ritual.east_chest","To the east, Descendants of Water : %s / %s"),
+    STABILIZATION_RITUAL_WEST_CHEST("message","stabilization_ritual.west_chest","To the south, Spices of Air : %s / %s"),
+
+    END_SIEGE("message","end_siege","The End Siege"),
+    END_SIEGE_BEGIN("message","end_siege_begin","The Siege of the End has begun !"),
+    END_SIEGE_END("message","end_siege_end","The Siege of the End has ended !"),
+
+    SIGIL_UPGRADED("message","sigil_upgrades","Your sigil has been upgraded !"),
+    KILLS("message","kills","Kills : %s"),
+
+    NORTHERN("message","northern","Northern"),
+    SOUTHERN("message","southern","Southern"),
+    WESTERN("message","western","Western"),
+    EASTERN("message","eastern","Eastern"),
 
     FLAT_TRANSFER_NODE_TOOLTIP("tooltip","flat_transfer_node","Thinner than the thinnest of pancakes."),
     FLAT_TRANSFER_NODE_TOOLTIP_1("tooltip","flat_transfer_node.1","Small enough to fit between blocks"),
