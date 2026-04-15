@@ -66,7 +66,7 @@ public class BlockRainbowGenerator extends AUBlock implements AUEntityBlock<BERa
     @NotNull
     public static MutableComponent getRainbowName(@NotNull Component baseNameComponent, float speed) {
         String baseName = baseNameComponent.getString();
-        MutableComponent animatedName = Component.literal("");
+        MutableComponent animatedName = Component.empty();
 
         for (int i = 0; i < baseName.length(); i++) {
             float charSpeed = i * 0.05f;
