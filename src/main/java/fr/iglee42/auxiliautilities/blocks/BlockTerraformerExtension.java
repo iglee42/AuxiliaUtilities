@@ -82,7 +82,7 @@ public class BlockTerraformerExtension extends HorizontalDirectionalBlock implem
 
     @Override
     public Component getTooltip(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag) {
-        return AULang.CLIMOGRAPH_BLOCK.get();
+        return AULang.CLIMOGRAPH_TOOLTIP.get();
     }
 
     @Override
