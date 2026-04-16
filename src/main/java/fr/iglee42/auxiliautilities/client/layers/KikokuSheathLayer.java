@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -1,23 +1,19 @@
-package fr.iglee42.auxiliautilities.items;
+package fr.iglee42.auxiliautilities.items.registries;
 
-import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.client.ClientGPManager;
+import fr.iglee42.auxiliautilities.gp.GPCapabilities;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
+import fr.iglee42.auxiliautilities.items.*;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.api.gp.AUGPItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.List;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class AUItems {
@@ -109,6 +105,8 @@ public class AUItems {
     public static final DeferredItem<Item> DIVISION_SIGIL = ITEMS.register("division_sigil",()-> new ItemDivisionSigil(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> PSEUDO_INVERSION_SIGIL = ITEMS.register("pseudo_inversion_sigil",()-> new ItemPseudoInversionSigil(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> ANGEL_RING = ITEMS.register("angel_ring",()-> new ItemAngelRing(new Item.Properties().stacksTo(1)));
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerItem(Capabilities.EnergyStorage.ITEM, (it,v)-> new ItemLuxSaber.ItemEnergyStorage(it),AUItems.LUX_SABER.get());
@@ -122,5 +120,6 @@ public class AUItems {
                 return new ItemEnergyDroplet.EnergyTank(it);
             return null;
         },AUItems.ENERGY_DROPLET.get());
+        event.registerItem(GPCapabilities.ITEM, AUGPItem.AUGPItemHolder::new,AUItems.ANGEL_RING.get());
     }
 }

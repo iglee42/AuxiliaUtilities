@@ -4,7 +4,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.BEOpiniumCore;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.entity.BlockEntityType;

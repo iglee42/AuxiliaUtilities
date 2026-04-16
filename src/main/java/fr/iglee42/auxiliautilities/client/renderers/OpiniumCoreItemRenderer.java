@@ -2,7 +2,7 @@ package fr.iglee42.auxiliautilities.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import fr.iglee42.auxiliautilities.blocks.BlockOpiniumCore;
-import fr.iglee42.auxiliautilities.items.AUBlockItem;
+import fr.iglee42.auxiliautilities.items.api.AUBlockItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;

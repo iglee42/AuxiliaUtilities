@@ -4,6 +4,9 @@ import com.mojang.datafixers.util.Pair;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleItemStackHandler;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import net.minecraft.client.Minecraft;
@@ -26,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ItemBiomeMarker extends AUItem{
+public class ItemBiomeMarker extends AUItem {
 
 
     public ItemBiomeMarker(Properties props) {

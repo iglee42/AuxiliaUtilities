@@ -3,7 +3,7 @@ package fr.iglee42.auxiliautilities.blockentities.items;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.menu.widgets.api.TransferPriority;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.utils.IFluidFilter;

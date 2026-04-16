@@ -1,8 +1,8 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import fr.iglee42.auxiliautilities.mixins.ArrowAccessor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -16,23 +16,18 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
-import java.lang.ref.WeakReference;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID, value = Dist.CLIENT)
-public class ItemCompoundBow extends BowItem implements AUItemBase{
+public class ItemCompoundBow extends BowItem implements AUItemBase {
 
     public ItemCompoundBow(Properties properties) {
         super(properties);

@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.utils.Upgrade;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

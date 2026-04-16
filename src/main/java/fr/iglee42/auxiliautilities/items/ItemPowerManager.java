@@ -6,6 +6,7 @@ import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.gp.GPHolder;
 import fr.iglee42.auxiliautilities.gp.GPNetwork;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTextScrollWidget;

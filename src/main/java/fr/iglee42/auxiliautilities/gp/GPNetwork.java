@@ -30,6 +30,7 @@ public class GPNetwork {
     public void unregisterGenerator(GPHolder generator) {
         if (generator == null) return;
         if (generators.remove(generator)) {
+            if (generator instanceof GPItemHolder) ((GPItemHolder) generator).onRemoved();
             markGeneratorDirty();
         }
     }
@@ -44,6 +45,7 @@ public class GPNetwork {
     public void unregisterConsumer(GPHolder consumer) {
         if (consumer == null) return;
         if (consumers.remove(consumer)) {
+            if (consumer instanceof GPItemHolder) ((GPItemHolder) consumer).onRemoved();
             markConsumerDirty();
         }
     }

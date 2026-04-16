@@ -185,6 +185,8 @@ public enum AULang {
     DIVISION_SIGIL("item","division_sigil","Division Sigil (Activated)"),
     PSEUDO_INVERSION_SIGIL("item","pseudo_inversion_sigil","Pseudo-Inversion Sigil"),
 
+    ANGEL_RING("item","angel_ring","Angel Ring"),
+
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
     WOODEN_SICKLE("item","wooden_sickle","Wooden Sickle"),
@@ -247,6 +249,9 @@ public enum AULang {
     MAGIC_ABSORBER_TOOLTIP("tooltip","magic_absorber","Absorbs magical energy of the area."),
     MAGIC_INFUSER_TOOLTIP("tooltip","magic_infuser","Infuses magical energy into the area."),
     ANTENNA_TOOLTIP("tooltip","antenna","A device that used to send all the terraforming force (TF) to the terraformer."),
+
+    ANGEL_RING_TOOLTIP("tooltip","angel_ring","Fly like the god of this world."),
+    ANGEL_RING_TOOLTIP_1("tooltip","angel_ring.1","Uses 32 GP."),
 
     ORIGIN_GUI_MESSAGE("gui","origin","Origin : [%s, %s, %s]"),
     SCANNING_GUI_MESSAGE("gui","scanning","Scanning : [%s, %s, %s]"),

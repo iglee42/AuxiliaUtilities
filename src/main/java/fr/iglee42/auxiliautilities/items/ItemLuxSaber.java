@@ -2,8 +2,10 @@ package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.api.AUItemBase;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -15,19 +17,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Consumer;
 
-public class ItemLuxSaber extends SwordItem implements AUItemBase{
+public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
     public static final int MAX_ENERGY = 40000;
     public static final int ENERGY_THRESHOLD = 200;

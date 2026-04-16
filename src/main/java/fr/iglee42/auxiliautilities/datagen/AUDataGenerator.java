@@ -39,5 +39,6 @@ public class AUDataGenerator {
         generator.addProvider(event.includeServer(), new AUDamageTypeTagsProvider(output,registries,fileHelper));
         generator.addProvider(event.includeServer(), new AUDataMapProvider(output,registries));
         generator.addProvider(event.includeServer(), new AULootModifiersProvider(output,registries));
+        generator.addProvider(event.includeServer(), new AUCuriosProvider(output,fileHelper,registries));
     }
 }

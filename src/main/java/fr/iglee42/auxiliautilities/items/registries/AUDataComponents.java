@@ -1,16 +1,16 @@
-package fr.iglee42.auxiliautilities.items;
+package fr.iglee42.auxiliautilities.items.registries;
 
 import com.mojang.serialization.Codec;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.ItemAngelRing.AngelRingWings;
+import fr.iglee42.auxiliautilities.items.ItemFilterFluid;
 import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -26,6 +26,7 @@ public class AUDataComponents {
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Holder<Biome>>> STORED_BIOME = DATA_COMPONENTS.register("stored_biome", ()-> DataComponentType.<Holder<Biome>>builder().persistent(Biome.CODEC).networkSynchronized(ByteBufCodecs.holderRegistry(Registries.BIOME)).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<StoredFluidStack>> STORED_FLUID = DATA_COMPONENTS.register("stored_fluid", ()-> DataComponentType.<StoredFluidStack>builder().persistent(StoredFluidStack.CODEC).networkSynchronized(StoredFluidStack.STREAM_CODEC).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> FILTER_FLAGS = DATA_COMPONENTS.register("filter_flags", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>,DataComponentType<AngelRingWings>> WINGS = DATA_COMPONENTS.register("wings", ()-> DataComponentType.<AngelRingWings>builder().persistent(AngelRingWings.CODEC).networkSynchronized(AngelRingWings.STREAM_CODEC).build());
 
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<List<ItemStack>>> FILTER_ITEMS=
             DATA_COMPONENTS.register("filter_items",

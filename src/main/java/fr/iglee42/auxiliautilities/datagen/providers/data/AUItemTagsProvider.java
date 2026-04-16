@@ -3,13 +3,12 @@ package fr.iglee42.auxiliautilities.datagen.providers.data;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemSickle;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -17,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import top.theillusivec4.curios.api.CuriosTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -99,6 +99,8 @@ public class AUItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.GLASS_BLOCKS_TINTED).add(AUBlocks.DARK_INEFFABLE_GLASS.asItem(),AUBlocks.DARK_GLASS.asItem());
 
         tag(AUTags.Items.DIVISION_SIGILS).add(AUItems.DIVISION_SIGIL.asItem(),AUItems.PSEUDO_INVERSION_SIGIL.asItem());
+
+        tag(CuriosTags.RING).add(AUItems.ANGEL_RING.asItem());
     }
 
     private void addCompressedSet(TagKey<Item> tag, CompressedBlockSet set){

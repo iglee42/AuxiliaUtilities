@@ -1,9 +1,8 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.mixins.PlayerAccessor;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
-public class ItemMagicalApple extends AUItem{
+public class ItemMagicalApple extends AUItem {
 
     private static final FoodProperties FOOD_PROPS = new FoodProperties.Builder()
             .nutrition(4)

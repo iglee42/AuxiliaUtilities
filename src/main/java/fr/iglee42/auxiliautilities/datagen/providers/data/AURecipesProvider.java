@@ -5,7 +5,8 @@ import fr.iglee42.auxiliautilities.blocks.*;
 import fr.iglee42.auxiliautilities.datagen.builders.CrusherRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.EnchanterRecipeBuilder;
 import fr.iglee42.auxiliautilities.datagen.builders.ResonatorRecipeBuilder;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemAngelRing;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
 import fr.iglee42.auxiliautilities.tags.AUTags;
 import net.minecraft.core.HolderLookup;
@@ -857,6 +858,22 @@ public class AURecipesProvider extends RecipeProvider {
                 .requires(Items.ENCHANTING_TABLE)
                 .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
                 .save(output);
+
+        angelRing(output,Ingredient.of(Tags.Items.GLASS_BLOCKS_CHEAP),Ingredient.of(Tags.Items.GLASS_BLOCKS_CHEAP), ItemAngelRing.AngelRingWings.NONE);
+        angelRing(output,Ingredient.of(Tags.Items.FEATHERS),Ingredient.of(Tags.Items.FEATHERS), ItemAngelRing.AngelRingWings.FEATHER);
+        angelRing(output,Ingredient.of(Tags.Items.DYES_PURPLE),Ingredient.of(Tags.Items.DYES_PINK), ItemAngelRing.AngelRingWings.BUTTERFLY);
+        angelRing(output,Ingredient.of(Tags.Items.LEATHERS),Ingredient.of(Tags.Items.LEATHERS), ItemAngelRing.AngelRingWings.BAT);
+        angelRing(output,Ingredient.of(Tags.Items.NUGGETS_GOLD),Ingredient.of(Tags.Items.NUGGETS_GOLD), ItemAngelRing.AngelRingWings.GOLDEN);
+        angelRing(output,Ingredient.of(Items.COAL),Ingredient.of(Items.CHARCOAL), ItemAngelRing.AngelRingWings.DEMON);
+    }
+
+    private void angelRing(RecipeOutput output, Ingredient input, Ingredient input2, ItemAngelRing.AngelRingWings wings){
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS,ItemAngelRing.getWithWings(wings))
+                .requires(AUItems.ANGEL_RING)
+                .requires(input)
+                .requires(input2)
+                .unlockedBy("has_item", has(AUItems.ANGEL_RING))
+                .save(output, AuxiliaUtilities.id("angel_ring_"+wings.name().toLowerCase()+"_convert"));
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {

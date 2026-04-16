@@ -6,9 +6,9 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler.FlatTransferNode;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler.Type;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
-import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.network.AUPacket;
 import fr.iglee42.auxiliautilities.network.AUPackets;
 import fr.iglee42.auxiliautilities.utils.CommonKeysHandler;
@@ -24,7 +24,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
@@ -46,7 +45,7 @@ import java.util.List;
 import java.util.Optional;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
-public class ItemFlatTransferNode extends AUItem{
+public class ItemFlatTransferNode extends AUItem {
 
     private final Type type;
 

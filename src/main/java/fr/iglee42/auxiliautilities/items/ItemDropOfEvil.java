@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.blocks.cursedearth.BlockCursedEarth;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
@@ -10,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ItemDropOfEvil extends AUItem{
+public class ItemDropOfEvil extends AUItem {
     public ItemDropOfEvil(Properties props) {
         super(props);
     }

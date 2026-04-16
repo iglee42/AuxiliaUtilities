@@ -1,4 +1,4 @@
-package fr.iglee42.auxiliautilities.items;
+package fr.iglee42.auxiliautilities.items.api;
 
 import net.minecraft.world.item.ItemStack;
 

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "au:angel_ring"
+    },
+    {
+      "tag": "c:leathers"
+    },
+    {
+      "tag": "c:leathers"
+    }
+  ],
+  "result": {
+    "components": {
+      "au:wings": "bat"
+    },
+    "count": 1,
+    "id": "au:angel_ring"
+  }
+}

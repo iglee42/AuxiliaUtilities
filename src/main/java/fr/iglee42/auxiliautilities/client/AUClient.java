@@ -4,14 +4,17 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
+import fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
 import fr.iglee42.auxiliautilities.client.models.FlatTransferNodeModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.*;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
-import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.items.*;
+import fr.iglee42.auxiliautilities.items.api.AUItemBase;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import net.minecraft.client.GuiMessage;
@@ -146,6 +149,10 @@ public class AUClient {
         event.register(ManualMillRenderer.GEAR_MODEL);
         event.register(KikokuSheathLayer.MODEL_LOCATION);
         event.register(KikokuSheathLayer.EMPTY_LOCATION);
+        for (ItemAngelRing.AngelRingWings wing : ItemAngelRing.AngelRingWings.values()) {
+            if (wing == ItemAngelRing.AngelRingWings.NONE) continue;
+            event.register(AngelRingRenderer.getWingLocation(wing));
+        }
     }
 
     private static void registerItemProperties() {
@@ -179,6 +186,9 @@ public class AUClient {
                 ResourceLocation.withDefaultNamespace("pulling"),
                 (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F
         );
+        ItemProperties.register(AUItems.ANGEL_RING.asItem(),
+                AuxiliaUtilities.id("wings"),
+                (stack,level,entity,seed)->stack.getOrDefault(AUDataComponents.WINGS, ItemAngelRing.AngelRingWings.NONE).ordinal());
     }
 
     @SubscribeEvent
@@ -212,6 +222,7 @@ public class AUClient {
             PlayerRenderer renderer = event.getSkin(type);
             if (renderer != null){
                 renderer.addLayer(new KikokuSheathLayer<>(renderer));
+                renderer.addLayer(new AngelRingRenderer<>(renderer));
             }
         }
     }

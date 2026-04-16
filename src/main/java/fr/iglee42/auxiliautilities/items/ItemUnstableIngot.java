@@ -2,6 +2,8 @@ package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.utils.GetterSetter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
@@ -27,7 +29,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ItemUnstableIngot extends AUItem{
+public class ItemUnstableIngot extends AUItem {
     public static final int TIMEOUT = 200;
     public static final ResourceKey<DamageType> UNSTABLE_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, AuxiliaUtilities.id("unstable"));

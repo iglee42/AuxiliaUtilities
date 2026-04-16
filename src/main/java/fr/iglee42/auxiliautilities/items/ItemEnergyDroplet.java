@@ -1,6 +1,9 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
@@ -8,13 +11,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ItemEnergyDroplet extends AUItem{
+public class ItemEnergyDroplet extends AUItem {
     public ItemEnergyDroplet(Properties props) {
         super(props.component(AUDataComponents.STORED_ENERGY,0));
     }
@@ -59,11 +60,11 @@ public class ItemEnergyDroplet extends AUItem{
         return super.useOn(ctx);
     }
 
-    protected static class EnergyTank implements IEnergyStorage {
+    public static class EnergyTank implements IEnergyStorage {
 
         private final ItemStack stack;
 
-        protected EnergyTank(ItemStack stack){
+        public EnergyTank(ItemStack stack){
             this.stack = stack;
         }
 

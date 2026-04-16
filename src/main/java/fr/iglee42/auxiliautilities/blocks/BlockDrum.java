@@ -4,7 +4,7 @@ import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.blockentities.drums.BEDrum;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
-import fr.iglee42.auxiliautilities.items.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.utils.FluidColorHelper;
 import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
 import net.minecraft.core.BlockPos;

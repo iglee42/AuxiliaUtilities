@@ -1,7 +1,6 @@
 package fr.iglee42.auxiliautilities.jei.subtypes;
 
-import fr.iglee42.auxiliautilities.items.AUDataComponents;
-import fr.iglee42.auxiliautilities.items.ItemLuxSaber;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
 import net.minecraft.core.component.DataComponents;

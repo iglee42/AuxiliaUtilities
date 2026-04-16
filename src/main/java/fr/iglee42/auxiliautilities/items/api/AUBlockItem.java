@@ -1,4 +1,4 @@
-package fr.iglee42.auxiliautilities.items;
+package fr.iglee42.auxiliautilities.items.api;
 
 import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import net.minecraft.world.item.BlockItem;

@@ -1,23 +1,21 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.utils.FluidColorHelper;
 import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ItemFluidDroplet extends AUItem{
+public class ItemFluidDroplet extends AUItem {
     public ItemFluidDroplet(Properties props) {
         super(props.component(AUDataComponents.STORED_FLUID, StoredFluidStack.EMPTY));
     }
@@ -47,11 +45,11 @@ public class ItemFluidDroplet extends AUItem{
         return super.getStorageTooltips(stack, ctx, flag);
     }
 
-    protected static class FluidTank implements IFluidHandlerItem {
+    public static class FluidTank implements IFluidHandlerItem {
 
         private final ItemStack stack;
 
-        protected FluidTank(ItemStack stack){
+        public FluidTank(ItemStack stack){
             this.stack = stack;
         }
 

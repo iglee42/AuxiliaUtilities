@@ -83,6 +83,10 @@ repositories {
             includeGroup "team.chisel.ctm"
         }
     }
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
@@ -92,6 +96,9 @@ dependencies {
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
     implementation "fr.iglee42:IgleeLib:${minecraft_version}-${lib_version}"
+
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
 
     runtimeOnly "team.chisel.ctm:CTM:1.21-1.2.1+3"
 

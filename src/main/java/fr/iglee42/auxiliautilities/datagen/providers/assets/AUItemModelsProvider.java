@@ -4,8 +4,11 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
+import fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemAngelRing;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -270,6 +273,23 @@ public class AUItemModelsProvider extends ItemModelProvider {
         simpleBlockItem(AUBlocks.DESHOSTILIFIER.get());
         simpleBlockItem(AUBlocks.ANTENNA.get());
         simpleBlockItem(AUBlocks.CLIMOGRAPH_BLOCK.get());
+
+        ItemModelBuilder angelRingBuilder = getBuilder(AUItems.ANGEL_RING.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", AuxiliaUtilities.id("item/tools/angel_ring"));
+        for (int i = 1; i < ItemAngelRing.AngelRingWings.values().length; i++){
+            ItemAngelRing.AngelRingWings wing = ItemAngelRing.AngelRingWings.values()[i];
+            angelRingBuilder = angelRingBuilder.override()
+                    .predicate(AuxiliaUtilities.id("wings"),i)
+                    .model( getBuilder(AUItems.ANGEL_RING.getRegisteredName()+"_"+wing.name().toLowerCase())
+                            .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                            .texture("layer0", AuxiliaUtilities.id("item/tools/angel_ring_"+wing.name().toLowerCase())))
+                    .end();
+
+            getBuilder(AuxiliaUtilities.id(wing.getSerializedName()+"_wing").toString())
+                    .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                    .texture("layer0", AuxiliaUtilities.id("item/wings/"+wing.name().toLowerCase()));
+        }
     }
 
 

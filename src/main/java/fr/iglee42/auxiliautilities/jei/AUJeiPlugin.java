@@ -6,9 +6,10 @@ import fr.iglee42.auxiliautilities.blockentities.terraformer.TerraformerType;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockGenerator;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
-import fr.iglee42.auxiliautilities.items.AUItems;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.jei.categories.*;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory.GeneratorWrapper;
+import fr.iglee42.auxiliautilities.jei.subtypes.AngelRingSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.BiomeMarkerSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.DamageItemSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.LuxSaberSubtype;
@@ -110,6 +111,7 @@ public class AUJeiPlugin implements IModPlugin {
         registration.registerSubtypeInterpreter(AUItems.WATERING_CAN.asItem(), DamageItemSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.LUX_SABER.asItem(), LuxSaberSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.BIOME_MARKER.asItem(), BiomeMarkerSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.ANGEL_RING.asItem(), AngelRingSubtype.INSTANCE);
     }
 
     enum Generators {

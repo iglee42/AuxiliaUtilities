@@ -1,5 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -7,7 +9,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Consumer;
 
-public class ItemSunCrystal extends AUItem{
+public class ItemSunCrystal extends AUItem {
     public static final int MAX_DAMAGE = 250;
     public ItemSunCrystal(Properties props) {
         super(props.durability(MAX_DAMAGE).component(DataComponents.DAMAGE,MAX_DAMAGE));
