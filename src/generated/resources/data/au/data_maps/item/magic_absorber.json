@@ -1,0 +1,10 @@
+{
+  "values": {
+    "#c:ingots/gold": {
+      "energyProvided": 2
+    },
+    "minecraft:book": {
+      "energyProvided": 2
+    }
+  }
+}

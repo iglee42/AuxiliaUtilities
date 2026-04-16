@@ -92,6 +92,7 @@ public class AUBlocksTagsProvider extends BlockTagsProvider {
         tag(BlockTags.DIRT).add(AUBlocks.CURSED_EARTH.get());
         tag(BlockTags.VALID_SPAWN).add(AUBlocks.CURSED_EARTH.get());
 
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(AUBlocks.ANTENNA.get(),AUBlocks.CLIMOGRAPH_BLOCK.get(),AUBlocks.TERRAFORMER.get(),AUBlocks.HEATER.get(),AUBlocks.COOLER.get(),AUBlocks.HUMIDIFIER.get(),AUBlocks.DEHUMIDIFIER.get(),AUBlocks.DESHOSTILIFIER.get(),AUBlocks.MAGIC_INFUSER.get(),AUBlocks.MAGIC_ABSORBER.get());
     }
 
     private void addCompressedSet(TagKey<Block> tag,CompressedBlockSet set){

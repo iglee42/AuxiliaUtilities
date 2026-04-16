@@ -13,6 +13,7 @@ import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.recipes.CrusherRecipe;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,6 +31,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -37,6 +39,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashSet;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public abstract class AUGeneratorBlockEntity extends AUBlockEntity {
@@ -109,6 +113,7 @@ public abstract class AUGeneratorBlockEntity extends AUBlockEntity {
 
     @Override
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {
+        sendEnergy(level,pos);
         boolean isLit = state.getValue(BlockCrusher.LIT);
         if (isLit != active) {
             level.setBlock(pos, state.setValue(BlockCrusher.LIT, active), 3);
@@ -287,6 +292,35 @@ public abstract class AUGeneratorBlockEntity extends AUBlockEntity {
 
     public BlockPos getRainbowPos() {
         return rainbowPos;
+    }
+
+    public void sendEnergy(ServerLevel level,BlockPos pos){
+        if (energyStorage.getEnergyStored() <= 0) return;
+        int maxSend = energyStorage.getEnergyStored();
+        LinkedHashSet<IEnergyStorage> receivers = new LinkedHashSet<>();
+        for (Direction dir : Direction.values()) {
+            BlockPos neighborPos = pos.relative(dir);
+            IEnergyStorage neighborEnergy = level.getCapability( Capabilities.EnergyStorage.BLOCK,neighborPos, dir.getOpposite());
+            if (neighborEnergy != null){
+                receivers.add(neighborEnergy);
+            }
+        }
+        if (receivers.isEmpty()) return;
+        int toSend = maxSend / receivers.size();
+        if (toSend > 0)
+            for (IEnergyStorage receiver : receivers){
+                int energy = receiver.receiveEnergy(toSend,false);
+                maxSend -= energy;
+                energyStorage.setEnergy(energyStorage.getEnergyStored() - energy);
+                if (maxSend <= 0) break;
+            }
+        for (IEnergyStorage receiver : receivers){
+            int energy = receiver.receiveEnergy(maxSend,false);
+            maxSend -= energy;
+            energyStorage.setEnergy(energyStorage.getEnergyStored() - energy);
+            if (maxSend <= 0) break;
+        }
+        setChanged();
     }
 
     @Override

@@ -86,6 +86,16 @@
     "au:golden_spike",
     "au:diamond_spike",
     "au:netherite_spike",
-    "au:creative_spike"
+    "au:creative_spike",
+    "au:antenna",
+    "au:climograph_block",
+    "au:terraformer",
+    "au:heater",
+    "au:cooler",
+    "au:humidifier",
+    "au:dehumidifier",
+    "au:deshostilifier",
+    "au:magic_infuser",
+    "au:magic_absorber"
   ]
 }

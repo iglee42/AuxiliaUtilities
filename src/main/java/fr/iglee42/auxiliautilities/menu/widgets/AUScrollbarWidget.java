@@ -23,9 +23,6 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
 
     public boolean hideWhenInvalid;
 
-    @OnlyIn(Dist.CLIENT)
-    boolean allowGeneralMouseWheel;
-
     private float drawValue;
 
     private boolean isScrolling;
@@ -63,6 +60,13 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
         float a = (this.scrollValue - this.minValue);
         this.drawValue = Mth.clamp( a * (getHeight() - (float) BAR_WIDTH / 2) / (this.maxValue - this.minValue),0,(getHeight() - 17));
         onChange();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void reScrollNoUpdate(){
+        this.scrollValue = Mth.clamp(scrollValue, minValue, maxValue);
+        float a = (this.scrollValue - this.minValue);
+        this.drawValue = Mth.clamp( a * (getHeight() - (float) BAR_WIDTH / 2) / (this.maxValue - this.minValue),0,(getHeight() - 17));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -108,8 +112,8 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
             graphics.blitSprite(BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,height);
         } else if (height < 112){
             int h = height / 2;
-            graphics.blitSprite(BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,h);
-            graphics.blitSprite(BACKGROUND,guiLeft + getX(),guiTop + getY() + height - h-1, BAR_WIDTH,h + 1);
+            graphics.blitSprite(BACKGROUND,BAR_WIDTH,112,0,0,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,h);
+            graphics.blitSprite(BACKGROUND,BAR_WIDTH,112,0,112-h-1,guiLeft + getX(),guiTop + getY() + height - h-1, BAR_WIDTH,h + 1);
         } else {
             graphics.blitSprite(BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,16);
             int k = 16;
@@ -125,13 +129,13 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
         if (this.hideWhenInvalid && this.minValue == this.maxValue)
             return;
-        graphics.blitSprite(ENABLED,guiLeft + getX() + 1,guiTop + getY() + (int) drawValue, 12, 15);
+        graphics.blitSprite(ENABLED,guiLeft + getX() + 1,guiTop + getY() + 1 + (int) drawValue, 12, 15);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY, boolean isHovered) {
-        if (!isHovered && !allowGeneralMouseWheel)
+        if (!allowScroll(mouseX,mouseY))
             return;
         if (deltaY == 0)return;
         if (deltaY > 0)
@@ -150,9 +154,17 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
         }
     }
 
-    @Override
-    public void addToGui(AUContainerScreen gui) {
-        super.addToGui(gui);
-        this.allowGeneralMouseWheel = true;
+
+    @OnlyIn(Dist.CLIENT)
+    public void setValueNoUpdate(int newValue){
+        newValue = Mth.clamp(newValue, minValue, maxValue);
+        if (newValue != this.scrollValue) {
+            this.scrollValue = newValue;
+            reScrollNoUpdate();
+        }
+    }
+
+    public boolean allowScroll(double mouseX, double mouseY){
+        return true;
     }
 }

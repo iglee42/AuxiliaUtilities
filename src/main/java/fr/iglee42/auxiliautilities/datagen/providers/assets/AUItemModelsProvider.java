@@ -2,10 +2,8 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
-import fr.iglee42.auxiliautilities.blocks.BlockDrum;
 import fr.iglee42.auxiliautilities.blocks.CompressedBlockSet;
 import fr.iglee42.auxiliautilities.blocks.DecorativeBlockSet;
-import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.items.AUItems;
 import net.minecraft.data.PackOutput;
@@ -15,9 +13,7 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.ArrayList;
@@ -263,6 +259,17 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("layer0", AuxiliaUtilities.id("item/division_sigil"));
         basicItem(AUItems.DIVISION_SIGIL.asItem());
         basicItem(AUItems.PSEUDO_INVERSION_SIGIL.asItem());
+
+        simpleBlockItem(AUBlocks.TERRAFORMER.get());
+        simpleBlockItem(AUBlocks.COOLER.get());
+        simpleBlockItem(AUBlocks.HEATER.get());
+        simpleBlockItem(AUBlocks.HUMIDIFIER.get());
+        simpleBlockItem(AUBlocks.DEHUMIDIFIER.get());
+        simpleBlockItem(AUBlocks.MAGIC_INFUSER.get());
+        simpleBlockItem(AUBlocks.MAGIC_ABSORBER.get());
+        simpleBlockItem(AUBlocks.DESHOSTILIFIER.get());
+        simpleBlockItem(AUBlocks.ANTENNA.get());
+        simpleBlockItem(AUBlocks.CLIMOGRAPH_BLOCK.get());
     }
 
 

@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.datagen.providers.data;
 
 import fr.iglee42.auxiliautilities.blockentities.generators.*;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.AUTerraformerDataMaps;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -54,5 +55,38 @@ public class AUDataMapProvider extends DataMapProvider {
             builder(AUGeneratorsDataMaps.FROSTY_ITEMS)
                     .add(item.getItem().asItem().builtInRegistryHolder(),new AUGeneratorsDataMaps.SimpleMapItem(item.getTime(), item.getEnergyPerTick()),false);
         }
+
+        builder(AUTerraformerDataMaps.COOLER)
+                .add(Items.ICE.builtInRegistryHolder(), new AUTerraformerDataMaps.TerraformerItem(1),false)
+                .add(Items.PACKED_ICE.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(8),false)
+                .add(Items.BLUE_ICE.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(16),false)
+                .add(Tags.Items.BUCKETS_WATER,new AUTerraformerDataMaps.TerraformerItem(1),false);
+
+        builder(AUTerraformerDataMaps.HEATER)
+                .add(Tags.Items.BUCKETS_LAVA,new AUTerraformerDataMaps.TerraformerItem(4),false)
+                .add(Tags.Items.RODS_BLAZE,new AUTerraformerDataMaps.TerraformerItem(8),false)
+                .add(Items.BLAZE_POWDER.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(1),false);
+
+        builder(AUTerraformerDataMaps.HUMIDIFIER)
+                .add(Items.LILY_PAD.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(8),false)
+                .add(Tags.Items.CROPS_SUGAR_CANE,new AUTerraformerDataMaps.TerraformerItem(4),false)
+                .add(Tags.Items.BUCKETS_WATER,new AUTerraformerDataMaps.TerraformerItem(1),false);
+
+        builder(AUTerraformerDataMaps.DEHUMIDIFIER)
+                .add(Tags.Items.SANDS,new AUTerraformerDataMaps.TerraformerItem(1),false)
+                .add(Tags.Items.CROPS_CACTUS,new AUTerraformerDataMaps.TerraformerItem(4),false);
+
+        builder(AUTerraformerDataMaps.MAGIC_INFUSER)
+                .add(Items.ENCHANTED_BOOK.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(4),false)
+                .add(Items.EXPERIENCE_BOTTLE.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(16),false)
+                .add(Tags.Items.GEMS_LAPIS,new AUTerraformerDataMaps.TerraformerItem(1),false)
+                .add(AUBlocks.MAGICAL_WOOD.getId(),new AUTerraformerDataMaps.TerraformerItem(16),false);
+
+        builder(AUTerraformerDataMaps.MAGIC_ABSORBER)
+                .add(Items.BOOK.builtInRegistryHolder(),new AUTerraformerDataMaps.TerraformerItem(2),false)
+                .add(Tags.Items.INGOTS_GOLD,new AUTerraformerDataMaps.TerraformerItem(2),false);
+
+        builder(AUTerraformerDataMaps.DESHOSTILIFIER)
+                .add(Tags.Items.NETHER_STARS,new AUTerraformerDataMaps.TerraformerItem(16),false);
     }
 }

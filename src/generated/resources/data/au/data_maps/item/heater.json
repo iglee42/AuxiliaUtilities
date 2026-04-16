@@ -1,0 +1,13 @@
+{
+  "values": {
+    "#c:buckets/lava": {
+      "energyProvided": 4
+    },
+    "#c:rods/blaze": {
+      "energyProvided": 8
+    },
+    "minecraft:blaze_powder": {
+      "energyProvided": 1
+    }
+  }
+}

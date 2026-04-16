@@ -2,27 +2,13 @@ package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.*;
-import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.glass.AUBlockGlass;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.blockstates.PropertyDispatch;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
-import net.minecraft.data.models.model.ModelTemplates;
-import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.neoforged.neoforge.client.model.EmptyModel;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -178,6 +164,24 @@ public class AUBlockStatesProvider extends BlockStateProvider {
 
         simpleBlock(AUBlocks.CURSED_EARTH.get(),models().cubeBottomTop(AUBlocks.CURSED_EARTH.getRegisteredName(), modLoc("block/cursed_earth_side"), mcLoc("block/dirt"), modLoc("block/cursed_earth")));
 
+        simpleBlock(AUBlocks.CLIMOGRAPH_BLOCK.get(), models().cubeColumn(AUBlocks.CLIMOGRAPH_BLOCK.getRegisteredName(), modLoc("block/terraformer/terraformer_side"), modLoc("block/terraformer/terraformer_base")));
+        horizontalBlock(AUBlocks.TERRAFORMER.get(), models().orientable(AUBlocks.TERRAFORMER.getRegisteredName(), modLoc("block/terraformer/terraformer_side"), modLoc("block/terraformer/controller"), modLoc("block/terraformer/terraformer_base")));
+        climograph(AUBlocks.COOLER);
+        climograph(AUBlocks.HEATER);
+        climograph(AUBlocks.HUMIDIFIER);
+        climograph(AUBlocks.DEHUMIDIFIER);
+        climograph(AUBlocks.MAGIC_INFUSER);
+        climograph(AUBlocks.MAGIC_ABSORBER);
+        climograph(AUBlocks.DESHOSTILIFIER);
+        simpleBlock(AUBlocks.ANTENNA.get(),new ModelFile.UncheckedModelFile(AuxiliaUtilities.id("block/antenna")));
+    }
+
+    private void climograph(DeferredBlock<BlockTerraformerExtension> climograph){
+        horizontalBlock(climograph.get(), state->{
+            String id = climograph.getId().getPath();
+            ResourceLocation model = models().orientable(climograph.getRegisteredName(), modLoc("block/terraformer/terraformer_side"), modLoc("block/terraformer/"+id), modLoc("block/terraformer/terraformer_base")).getUncheckedLocation();
+            return new ModelFile.UncheckedModelFile(model);
+        });
     }
 
     private void glass(DeferredBlock<? extends AUBlockGlass> glass, String texture){

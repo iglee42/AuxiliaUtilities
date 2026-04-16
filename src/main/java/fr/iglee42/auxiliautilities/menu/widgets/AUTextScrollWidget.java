@@ -22,9 +22,18 @@ public abstract class AUTextScrollWidget extends AUTextWidget implements AUWidge
         this.scrollbar = new AUScrollbarWidget(x+width -14,y,height,0,1){
             @Override
             protected void onChange() {}
+
+            @Override
+            public boolean allowScroll(double mouseX, double mouseY) {
+                return gui.isInArea((int) mouseX, (int) mouseY,AUTextScrollWidget.this) || gui.isInArea((int) mouseX, (int) mouseY,this);
+            }
         };
         this.scrollbar.hideWhenInvalid = true;
         this.numLines = height / 9;
+    }
+
+    public AUScrollbarWidget getScrollbar() {
+        return scrollbar;
     }
 
     @Override
@@ -66,4 +75,5 @@ public abstract class AUTextScrollWidget extends AUTextWidget implements AUWidge
     public List<AUWidget> getAdditionalWidgets() {
         return Lists.newArrayList(scrollbar);
     }
+
 }

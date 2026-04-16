@@ -28,6 +28,8 @@ public class AUMenus {
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> CRUSHER = registerBEMenuType("crusher");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> GENERATORS = registerBEMenuType("generators");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> ENDER_PORCUPINE = registerBEMenuType("ender_porcupine");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> TERRAFORMER_EXTENSION = registerBEMenuType("terraformer_extension");
+    public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> TERRAFORMER = registerBEMenuType("terraformer");
 
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> FLUID_FILTER = registerMenuType(ItemFilterFluid.FilterConfigContainer::new, "fluid_filter");
     public static final DeferredHolder<MenuType<?>,MenuType<AUMenu>> ITEM_FILTER = registerMenuType(ItemFilterItem.FilterConfigContainer::new, "item_filter");

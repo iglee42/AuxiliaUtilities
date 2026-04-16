@@ -2,7 +2,6 @@ package fr.iglee42.auxiliautilities.blocks;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
-import fr.iglee42.auxiliautilities.blockentities.generators.BEGenHeatedRedstone;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.cursedearth.BlockCursedEarth;
 import fr.iglee42.auxiliautilities.blocks.glass.AUBlockDarkGlass;
@@ -17,22 +16,18 @@ import fr.iglee42.auxiliautilities.items.ItemAngelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -181,6 +176,17 @@ public class AUBlocks {
     public static final DeferredBlock<BlockSpike> CREATIVE_SPIKE = createBlock("creative_spike",()->new BlockSpike(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).noOcclusion(), BlockSpike.SpikeType.CREATIVE));
 
     public static final DeferredBlock<BlockCursedEarth> CURSED_EARTH = createBlock("cursed_earth",()->new BlockCursedEarth());
+
+    public static final DeferredBlock<AUBlock> CLIMOGRAPH_BLOCK = createBlock("climograph_block",()->new AUBlock(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get())));
+    public static final DeferredBlock<BlockTerraformer> TERRAFORMER = createBlock("terraformer",()->new BlockTerraformer(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get())));
+    public static final DeferredBlock<BlockTerraformerExtension> COOLER = createBlock("cooler",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.COOLER));
+    public static final DeferredBlock<BlockTerraformerExtension> HEATER = createBlock("heater",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.HEATER));
+    public static final DeferredBlock<BlockTerraformerExtension> HUMIDIFIER = createBlock("humidifier",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.HUMIDIFIER));
+    public static final DeferredBlock<BlockTerraformerExtension> DEHUMIDIFIER = createBlock("dehumidifier",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.DEHUMIDIFIER));
+    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_INFUSER = createBlock("magic_infuser",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.MAGIC_INFUSER));
+    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_ABSORBER = createBlock("magic_absorber",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.MAGIC_ABSORBER));
+    public static final DeferredBlock<BlockTerraformerExtension> DESHOSTILIFIER = createBlock("deshostilifier",()->new BlockTerraformerExtension(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion(), AUBlockEntityTypes.DESHOSTILIFIER));
+    public static final DeferredBlock<AUBlock> ANTENNA = createBlock("antenna",()->new AUBlock(BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion()));
 
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", () -> new BlockOpiniumCore(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion(), tier));

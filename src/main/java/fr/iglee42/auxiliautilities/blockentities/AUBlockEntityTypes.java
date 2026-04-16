@@ -7,6 +7,9 @@ import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEEnderPorcupine;
 import fr.iglee42.auxiliautilities.blockentities.gp.consumers.BEResonator;
 import fr.iglee42.auxiliautilities.blockentities.gp.generators.*;
 import fr.iglee42.auxiliautilities.blockentities.klein.BEKleinBottle;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.BETerraformer;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.BETerraformerExtension;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.TerraformerType;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -72,6 +75,15 @@ public class AUBlockEntityTypes {
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BECreativeDrum>> CREATIVE_DRUM = register("creative_drum", BECreativeDrum::new, AUBlocks.CREATIVE_DRUM);
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BEEnderPorcupine>> ENDER_PORCUPINE = register("ender_porcupine", BEEnderPorcupine::new, AUBlocks.ENDER_PORCUPINE);
+
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformer>> TERRAFORMER = register("terraformer", BETerraformer::new, AUBlocks.TERRAFORMER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> COOLER = register("cooler", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.COOLER.get(),pos,state, TerraformerType.COOLER), AUBlocks.COOLER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> HEATER = register("heater", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.HEATER.get(),pos,state, TerraformerType.HEATER), AUBlocks.HEATER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> HUMIDIFIER = register("humidifier", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.HUMIDIFIER.get(),pos,state, TerraformerType.HUMIDIFIER), AUBlocks.HUMIDIFIER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> DEHUMIDIFIER = register("dehumidifier", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.DEHUMIDIFIER.get(),pos,state, TerraformerType.DEHUMIDIFIER), AUBlocks.DEHUMIDIFIER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> MAGIC_INFUSER = register("magic_infuser", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.MAGIC_INFUSER.get(),pos,state, TerraformerType.MAGIC_INFUSER), AUBlocks.MAGIC_INFUSER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> MAGIC_ABSORBER = register("magic_absorber", (pos,state)->new BETerraformerExtension(AUBlockEntityTypes.MAGIC_ABSORBER.get(),pos,state, TerraformerType.MAGIC_ABSORBER), AUBlocks.MAGIC_ABSORBER);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<BETerraformerExtension>> DESHOSTILIFIER = register("deshostilifier", (pos, state)->new BETerraformerExtension(AUBlockEntityTypes.DESHOSTILIFIER.get(),pos,state, TerraformerType.DESHOSTILIFIER), AUBlocks.DESHOSTILIFIER);
 
     private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block>... block){
         Supplier<List<Block>> blocks = ()->Arrays.stream(block).map(holder -> (Block) holder.get()).toList();

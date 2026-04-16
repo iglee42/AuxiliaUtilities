@@ -777,6 +777,86 @@ public class AURecipesProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.NETHERITE_SWORD))
                 .save(output);
 
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.CLIMOGRAPH_BLOCK)
+                .pattern("IDI")
+                .pattern("SMS")
+                .pattern("IDI")
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('D',Tags.Items.GEMS_DIAMOND)
+                .define('S',ItemTags.SAPLINGS)
+                .define('M',AUBlocks.MACHINE_BLOCK)
+                .unlockedBy("has_item", has(AUBlocks.MACHINE_BLOCK))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.TERRAFORMER)
+                .pattern("SMS")
+                .pattern("IDI")
+                .define('I',Tags.Items.DUSTS_REDSTONE)
+                .define('D',Items.COMPARATOR)
+                .define('S',Tags.Items.ENDER_PEARLS)
+                .define('M',AUBlocks.CLIMOGRAPH_BLOCK)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,AUBlocks.ANTENNA)
+                .pattern("R R")
+                .pattern("ISI")
+                .pattern(" I ")
+                .define('I',Tags.Items.INGOTS_IRON)
+                .define('R',Items.END_ROD)
+                .define('S',ItemTags.SAPLINGS)
+                .unlockedBy("has_item", has(Items.END_ROD))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.HUMIDIFIER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Tags.Items.BUCKETS_WATER)
+                .requires(Tags.Items.BUCKETS_WATER)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.DEHUMIDIFIER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Tags.Items.SANDS)
+                .requires(Tags.Items.SANDS)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.HEATER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Tags.Items.BUCKETS_LAVA)
+                .requires(Tags.Items.BUCKETS_LAVA)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.COOLER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Items.SNOWBALL)
+                .requires(Items.SNOWBALL)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.DESHOSTILIFIER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Items.MYCELIUM)
+                .requires(Items.MYCELIUM)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.MAGIC_ABSORBER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(ItemTags.ANVIL)
+                .requires(ItemTags.ANVIL)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,AUBlocks.MAGIC_INFUSER)
+                .requires(AUBlocks.CLIMOGRAPH_BLOCK)
+                .requires(Items.ENCHANTING_TABLE)
+                .requires(Items.ENCHANTING_TABLE)
+                .unlockedBy("has_item", has(AUBlocks.CLIMOGRAPH_BLOCK))
+                .save(output);
     }
 
     private void createGeneratorRecipes(RecipeOutput output) {

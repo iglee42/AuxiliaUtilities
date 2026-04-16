@@ -1,9 +1,9 @@
 {
 	"parent": "block/block",
-    "render_type": "cutout",
+    "render_type": "cutout_mipped",
 	"textures": {
-		"0": "au:block/stoneburnt",
-		"particle": "au:block/stoneburnt"
+		"0": "au:block/solar_panel_bottom",
+		"particle": "#0"
 	},
 	"elements": [
 		{

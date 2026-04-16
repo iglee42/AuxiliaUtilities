@@ -1,0 +1,16 @@
+{
+  "values": {
+    "#c:buckets/water": {
+      "energyProvided": 1
+    },
+    "minecraft:blue_ice": {
+      "energyProvided": 16
+    },
+    "minecraft:ice": {
+      "energyProvided": 1
+    },
+    "minecraft:packed_ice": {
+      "energyProvided": 8
+    }
+  }
+}

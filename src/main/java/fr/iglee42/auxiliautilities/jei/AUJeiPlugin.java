@@ -1,15 +1,14 @@
 package fr.iglee42.auxiliautilities.jei;
 
 import fr.iglee42.auxiliautilities.blockentities.generators.*;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.AUTerraformerDataMaps;
+import fr.iglee42.auxiliautilities.blockentities.terraformer.TerraformerType;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.BlockGenerator;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.items.AUItems;
-import fr.iglee42.auxiliautilities.jei.categories.CrusherCategory;
-import fr.iglee42.auxiliautilities.jei.categories.EnchanterCategory;
-import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory;
+import fr.iglee42.auxiliautilities.jei.categories.*;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory.GeneratorWrapper;
-import fr.iglee42.auxiliautilities.jei.categories.ResonatorCategory;
 import fr.iglee42.auxiliautilities.jei.subtypes.BiomeMarkerSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.DamageItemSubtype;
 import fr.iglee42.auxiliautilities.jei.subtypes.LuxSaberSubtype;
@@ -32,10 +31,7 @@ import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 @JeiPlugin
@@ -50,6 +46,7 @@ public class AUJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new ResonatorCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new EnchanterCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CrusherCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TerraformerCategory(registration.getJeiHelpers().getGuiHelper()));
         for (Generators gen : Generators.values()) {
             registration.addRecipeCategories(new GeneratorCategory(registration.getJeiHelpers().getGuiHelper(), gen.block));
         }
@@ -61,6 +58,7 @@ public class AUJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(AUBlocks.ENCHANTER, EnchanterCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(AUBlocks.FURNACE, RecipeTypes.SMELTING);
         registration.addRecipeCatalyst(AUBlocks.CRUSHER, CrusherCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(AUBlocks.TERRAFORMER, TerraformerCategory.RECIPE_TYPE);
         for (Generators gen : Generators.values()) {
             registration.addRecipeCatalyst(gen.block.get(), GeneratorCategory.getGeneratorRecipeType(gen.block));
         }
@@ -74,6 +72,23 @@ public class AUJeiPlugin implements IModPlugin {
                 new ArrayList<>(Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE)));
         registration.addRecipes(CrusherCategory.RECIPE_TYPE,
                 new ArrayList<>(Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(CrusherRecipe.Type.INSTANCE)));
+
+        List<TerraformerCategory.ExtensionWrapper> recipes = new ArrayList<>();
+        for (TerraformerType type : TerraformerType.values()) {
+            registration.getIngredientManager().getAllItemStacks().stream()
+                    .map((stack) -> {
+                        Holder<Item> itemHolder = stack.getItemHolder();
+                       AUTerraformerDataMaps.TerraformerItem data = itemHolder.getData(type.getDataMapType());
+                        if (data != null) {
+                            return new TerraformerCategory.ExtensionWrapper(Ingredient.of(stack),data.energyProvided(),type);
+                        }
+                        return null;
+                    })
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparingInt(TerraformerCategory.ExtensionWrapper::tfEnergy))
+                    .forEach(recipes::add);
+        }
+        registration.addRecipes(TerraformerCategory.RECIPE_TYPE, recipes);
         for (Generators gen : Generators.values()) {
             registration.addRecipes(GeneratorCategory.getGeneratorRecipeType(gen.block), gen.recipes.apply(registration.getIngredientManager()));
         }

@@ -1,0 +1,13 @@
+{
+  "values": {
+    "#c:buckets/water": {
+      "energyProvided": 1
+    },
+    "#c:crops/sugar_cane": {
+      "energyProvided": 4
+    },
+    "minecraft:lily_pad": {
+      "energyProvided": 8
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "au:block/deshostilifier",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "au:block/deshostilifier"
+    },
+    "facing=south": {
+      "model": "au:block/deshostilifier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "au:block/deshostilifier",
+      "y": 270
+    }
+  }
+}
