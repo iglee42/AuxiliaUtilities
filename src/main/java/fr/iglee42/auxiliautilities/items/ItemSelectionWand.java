@@ -87,8 +87,8 @@ public abstract class ItemSelectionWand extends AUItem {
         dirsToSearch.remove(side);
         dirsToSearch.remove(side.getOpposite());
 
-        boolean crouching = player.isCrouching();
-        boolean sprinting = CommonKeysHandler.isHoldingSprint(player);
+        boolean crouching = CommonKeysHandler.isHoldingModKey(player,"wand_fix_horizontal_axis");
+        boolean sprinting = CommonKeysHandler.isHoldingModKey(player,"wand_fix_vertical_axis");
         if (sprinting){
             if (side.getStepY() != 0){
                 Direction facing = player.getDirection().getAxis() == Direction.Axis.Y ? Direction.NORTH : player.getDirection().getClockWise();

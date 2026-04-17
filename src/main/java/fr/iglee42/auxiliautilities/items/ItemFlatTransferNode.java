@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.items;
 import com.google.common.collect.Multimap;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.client.AUKeymappings;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler.FlatTransferNode;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler.Type;
@@ -115,7 +116,7 @@ public class ItemFlatTransferNode extends AUItem {
         if (be != null){
             if ((type == Type.ITEM && level.getCapability(Capabilities.ItemHandler.BLOCK,pos,level.getBlockState(pos),be,side) != null)
             || (type == Type.FLUID && level.getCapability(Capabilities.FluidHandler.BLOCK,pos,level.getBlockState(pos),be,side) != null)){
-                FlatTransferNode newNode = new FlatTransferNode(pos,side,type,!CommonKeysHandler.isHoldingSprint(player));
+                FlatTransferNode newNode = new FlatTransferNode(pos,side,type,!CommonKeysHandler.isHoldingModKey(player,"invert_flat_transfer_node"));
                 boolean flag = false;
                 for (FlatTransferNodeHandler.FlatTransferNode node : FlatTransferNodeHandler.getNodes(level).get(pos)) {
                     if (node.side == side) {
@@ -176,7 +177,7 @@ public class ItemFlatTransferNode extends AUItem {
         tooltips.add(AULang.FLAT_TRANSFER_NODE_TOOLTIP.get());
         tooltips.add(AULang.FLAT_TRANSFER_NODE_TOOLTIP_1.get());
         tooltips.add(Component.empty());
-        tooltips.add(AULang.FLAT_TRANSFER_NODE_TOOLTIP_2.get(Minecraft.getInstance().options.keySprint.getTranslatedKeyMessage().getString()));
+        tooltips.add(AULang.FLAT_TRANSFER_NODE_TOOLTIP_2.get(AUKeymappings.INVERT_FLAT_TRANSFER_NODE.getTranslatedKeyMessage()));
         return tooltips;
     }
 

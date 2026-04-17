@@ -221,8 +221,8 @@ public enum AULang {
     STORED_BIOME_TOOLTIP("tooltip","stored_biome","Stored Biome : %s"),
     AREA_TOOLTIP("tooltip","area","Area : %sx%s blocks"),
     RANGE_TOOLTIP("tooltip","range","Range : %s blocks"),
-    HOLD_SHIFT_TOOLTIP("tooltip","hold_shift","§7Hold Shift for description"),
-    HOLD_CTRL_TOOLTIP("tooltip","hold_control","§7Hold Control for more info"),
+    HOLD_DESCRIPTION_TOOLTIP("tooltip","hold_shift","Hold [%s] for description"),
+    HOLD_DETAILS_TOOLTIP("tooltip","hold_control","Hold [%s] for details"),
     RESONATOR_REQUIRES_RAINBOW_GENERATOR("tooltip","resonator_requires_rainbow_generator","Requires an active Rainbow Generator"),
 
     GP_TOOLTIP("tooltip","gp","Grid Power : %s / %s"),
@@ -326,7 +326,7 @@ public enum AULang {
 
     FLAT_TRANSFER_NODE_TOOLTIP("tooltip","flat_transfer_node","Thinner than the thinnest of pancakes."),
     FLAT_TRANSFER_NODE_TOOLTIP_1("tooltip","flat_transfer_node.1","Small enough to fit between blocks"),
-    FLAT_TRANSFER_NODE_TOOLTIP_2("tooltip","flat_transfer_node.2","Hold %s when placing to reverse pull/push."),
+    FLAT_TRANSFER_NODE_TOOLTIP_2("tooltip","flat_transfer_node.2","Hold [%s] when placing to reverse pull/push."),
 
     FILTER_FLAG_COMPONENTS_OFF("item","filter.flag.ignore_components_off","Match Components"),
     FILTER_FLAG_COMPONENTS_ON("item","filter.flag.ignore_components_on","Ignore Components"),
@@ -467,7 +467,15 @@ public enum AULang {
     SPIKE_CREATIVE_DEATH_ITEM("death.attack.creative_spike.item","%s failed to become the guy"),
     SPIKE_CREATIVE_DEATH_PLAYER("death.attack.creative_spike.player","%s failed to become the guy"),
 
-    CREEPY_LAUGH_SUBTITLE("subtitle","creepy_laugh","A distant creepy laugh")
+    CREEPY_LAUGH_SUBTITLE("subtitle","creepy_laugh","A distant creepy laugh"),
+
+    KEY_CATEGORY("key","category","Auxilia Utilities"),
+    KEY_DESCRIPTION("key","show_description","Show Description"),
+    KEY_DETAILS("key","show_details","Show Details"),
+    KEY_INVERT_FLAT_TRANSFER_NODE("key","invert_flat_transfer_node","Invert Flat Transfer Node"),
+    KEY_WAND_FIX_VERTICAL("key","wand_fix_vertical_axis","Fix Wands' Vertical Axis"),
+    KEY_WAND_FIX_HORIZONTAL("key","wand_fix_horizontal_axis","Fix Wands' Horizontal Axis"),
+
     ;
 
     private final String key;

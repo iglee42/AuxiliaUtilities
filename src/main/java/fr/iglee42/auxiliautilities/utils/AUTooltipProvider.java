@@ -1,6 +1,8 @@
 package fr.iglee42.auxiliautilities.utils;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.client.AUKeymappings;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -20,18 +22,18 @@ public interface AUTooltipProvider {
         tooltips.addAll(getTooltips(stack, ctx, flag));
         List<Component> advanced = getAdvancedTooltips(stack, ctx, flag);
         if (!advanced.isEmpty()){
-            if (flag.hasShiftDown())
+            if (CommonKeysHandler.isKeyPressed(AUKeymappings.SHOW_DESCRIPTION))
                 tooltips.addAll(advanced);
             else
-                tooltips.add(AULang.HOLD_SHIFT_TOOLTIP.get());
+                tooltips.add(AULang.HOLD_DESCRIPTION_TOOLTIP.get(AUKeymappings.SHOW_DESCRIPTION.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
         }
 
         List<Component> storage = getStorageTooltips(stack, ctx, flag);
         if (!storage.isEmpty()){
-            if (flag.hasControlDown())
+            if (CommonKeysHandler.isKeyPressed(AUKeymappings.SHOW_DETAILS))
                 tooltips.addAll(storage);
             else
-                tooltips.add(AULang.HOLD_CTRL_TOOLTIP.get());
+                tooltips.add(AULang.HOLD_DETAILS_TOOLTIP.get(AUKeymappings.SHOW_DETAILS.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
         }
     }
 
