@@ -1,7 +1,8 @@
 {
   "entries": [
     "au:add_ender_lilly",
-    "au:add_drop_of_evil"
+    "au:add_drop_of_evil",
+    "au:add_unactivated_division_sigil"
   ],
   "replace": false
 }

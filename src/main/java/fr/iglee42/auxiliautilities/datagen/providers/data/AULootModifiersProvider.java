@@ -35,5 +35,12 @@ public class AULootModifiersProvider extends GlobalLootModifierProvider {
                         LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/wither_skeleton")).build()
                 },ResourceKey.create(Registries.LOOT_TABLE,AuxiliaUtilities.id("entities/wither_skeleton")))
         );
+
+        add(
+                "add_unactivated_division_sigil",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/trial_chambers/reward_ominous_rare")).or(LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library"))).build()
+                },ResourceKey.create(Registries.LOOT_TABLE,AuxiliaUtilities.id("chests/unactivated_division_sigil")))
+        );
     }
 }
