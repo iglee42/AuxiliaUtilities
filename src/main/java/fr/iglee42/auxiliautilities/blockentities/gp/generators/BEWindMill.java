@@ -50,8 +50,8 @@ public class BEWindMill extends AUGPGeneratorBlockEntity {
 
         return (int)( (0.5F
                         + v1 * 2.0F
-                        + (level.isRaining() ? 1.0F : 0.0F)
-                        + (level.isThundering() ? 2.0F : 0.0F)) * 10);
+                        + (level.isRaining() ? 0.25F : 0.0F)
+                        + (level.isThundering() ? 0.5F : 0.0F)) * 10);
     }
 
 

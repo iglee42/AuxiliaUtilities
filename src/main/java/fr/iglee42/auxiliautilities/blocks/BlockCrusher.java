@@ -7,10 +7,13 @@ import fr.iglee42.auxiliautilities.blockentities.BEFurnace;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -23,6 +26,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BlockCrusher extends HorizontalDirectionalBlock implements AUEntityBlock<BECrusher> {
 
@@ -67,6 +72,12 @@ public class BlockCrusher extends HorizontalDirectionalBlock implements AUEntity
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
         return super.getStateForPlacement(ctx).setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
+        addTooltips(stack, tooltips, ctx, flag);
+        super.appendHoverText(stack, ctx, tooltips, flag);
     }
 }
 

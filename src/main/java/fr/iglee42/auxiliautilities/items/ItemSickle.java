@@ -115,6 +115,11 @@ public class ItemSickle extends DiggerItem implements AUItemBase {
     }
 
     @Override
+    public List<Component> getAdvancedTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
+        return List.of(AULang.SICKLE_TOOLTIP.get(),AULang.SICKLE_TOOLTIP_1.get());
+    }
+
+    @Override
     public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
         int range = 2*getRange(stack) +1;
         return List.of(AULang.AREA_TOOLTIP.get(range,range).withStyle(ChatFormatting.GRAY));

@@ -213,6 +213,7 @@ public enum AULang {
     UNSTABLE_INGOT_TOOLTIP_3("tooltip","unstable_ingot.3","§l - Do not craft unless ready -\n"),
     UNSTABLE_INGOT_TOOLTIP_4("tooltip","unstable_ingot.4","Must be crafted in a vanilla crafting table."),
     UNSTABLE_INGOT_TOOLTIP_EXPLOSION("tooltip","unstable_ingot.explosion","Explosion in %s"),
+    SEMI_STABLE_INGOT_TOOLTIP_ERROR("tooltip","stable_unstable_ingot","An unstable ingot that has been stabilized with a Pseudo Inversion Sigil"),
     STORED_ENERGY_TOOLTIP("tooltip","stored_energy","%s FE / %s FE"),
     STORED_FLUID_TOOLTIP("tooltip","stored_fluid","%s of %s mB"),
     STORED_ENERGY_TOOLTIP_ITEM("tooltip","stored_energy_item","Stored Energy : %s FE"),
@@ -373,6 +374,83 @@ public enum AULang {
     DROP_OF_EVIL_TOOLTIP("tooltip","drop_of_evil","A corrupted shard dropped from wither skeletons."),
     DROP_OF_EVIL_TOOLTIP_1("tooltip","drop_of_evil.1","Produces a 5x5 of Cursed Earth when used on dirt/grass."),
 
+    BUILDERS_WAND_TOOLTIP("tooltip","builders_wand","A wand that can place multiple blocks at the same time for you."),
+    DESTRUCTION_WAND_TOOLTIP("tooltip","destruction_wand","A wand that can break multiple blocks at the same time for you."),
+    WATERING_CAN_TOOLTIP("tooltip","watering_can","A can that can help crops to grow faster."),
+    WATERING_CAN_1_TOOLTIP("tooltip","watering_can.1","Helps grass to spread."),
+    LUX_SABER_TOOLTIP("tooltip","lux_saber","A light saber which does a lot of damage and always has fire aspect."),
+    SUN_CRYSTAL_TOOLTIP("tooltip","sun_crystal","A crystal that can store the power of the sun."),
+    SICKLE_TOOLTIP("tooltip","sickle","A tool that can break multiple crops at the same time."),
+    SICKLE_TOOLTIP_1("tooltip","sickle.1","Works with crops that support right-clicking."),
+    MAGICAL_APPLE_TOOLTIP("tooltip","magical_apple","A magical apple that reset the enchantment suggested in the enchanting table."),
+    BIOME_MARKER_TOOLTIP("tooltip","biome_marker","A marker that can store the biome of the area it is used on."),
+    BIOME_MARKER_TOOLTIP_1("tooltip","biome_marker.1","Useful to select the biome inside a Terraformer."),
+    ITEM_FILTER_TOOLTIP("tooltip","item_filter","A filter that can be used to filter items in a Flat Item Transfer Node."),
+    FLUID_FILTER_TOOLTIP("tooltip","fluid_filter","A filter that can be used to filter fluids in a Flat Fluid Transfer Node."),
+    UNACTIVATED_DIVISION_SIGIL_TOOLTIP("tooltip","unactivated_division_sigil","A sigil that can be stabilized with the Stabilization Ritual."),
+    UNACTIVATED_DIVISION_SIGIL_TOOLTIP_1("tooltip","unactivated_division_sigil.1","Shift-Right Click on a Enchanting Table for more information."),
+    DIVISION_SIGIL_TOOLTIP("tooltip","division_sigil","A stabilized sigil used to be craft unstable ingots."),
+    DIVISION_SIGIL_TOOLTIP_1("tooltip","division_sigil.1","Unstable Ingots can be made stable by crafting them with the upgraded sigil obtained after the End Siege."),
+    DIVISION_SIGIL_TOOLTIP_2("tooltip","division_sigil.2","Shift-Right Click on a Beacon for more information."),
+    PSEUDO_INVERSION_SIGIL_TOOLTIP("tooltip","pseudo_inversion_sigil","A fully stabilized sigil used to be craft stable ingots."),
+    PSEUDO_INVERSION_SIGIL_TOOLTIP_1("tooltip","pseudo_inversion_sigil.1","Obtain after defeating the End Siege."),
+    MAGICAL_WOOD_TOOLTIP("tooltip","magical_wood","A magical wood that boost enchanting power by 2.5."),
+    MAGICAL_WOOD_TOOLTIP_1("tooltip","magical_wood.1","Requires 4 experience levels to be crafted in a crafting table."),
+    MANUAL_MILL_TOOLTIP("tooltip","manual_mill","A manual mill that can be used to generate a few GP."),
+    MANUAL_MILL_TOOLTIP_1("tooltip","manual_mill.1","Right click once to start generating GP."),
+    MANUAL_MILL_TOOLTIP_2("tooltip","manual_mill.2","Power Given : 15 GP"),
+    SOLAR_PANEL_TOOLTIP("tooltip","solar_panel","A solar panel that generates GP during the day."),
+    SOLAR_PANEL_TOOLTIP_1("tooltip","solar_panel.1","Generates 8 GP during the day (6 GP if raining)."),
+    SOLAR_PANEL_TOOLTIP_2("tooltip","solar_panel.2","Doesn't work during the night."),
+    LUNAR_PANEL_TOOLTIP("tooltip","lunar_panel","A lunar panel that generates GP during the night."),
+    LUNAR_PANEL_TOOLTIP_1("tooltip","lunar_panel.1","Generates 8 GP during the night (Boosted by full moon)."),
+    LUNAR_PANEL_TOOLTIP_2("tooltip","lunar_panel.2","Doesn't work during the day."),
+    LAVA_MILL_TOOLTIP("tooltip","lava_mill","A lava mill that generates GP with adjacent lava."),
+    LAVA_MILL_TOOLTIP_1("tooltip","lava_mill.1","Power Given : 2 GP"),
+    WATER_MILL_TOOLTIP("tooltip","water_mill","A water mill that generates GP with adjacent flowing water."),
+    WATER_MILL_TOOLTIP_1("tooltip","water_mill.1","Power Given : 16 GP"),
+    WIND_MILL_TOOLTIP("tooltip","wind_mill","A wind mill that generates GP with wind."),
+    WIND_MILL_TOOLTIP_1("tooltip","wind_mill.1","Power Given : 8 GP (Boosted by rain)"),
+    FIRE_MILL_TOOLTIP("tooltip","fire_mill","A fire mill that generates GP with fire under."),
+    FIRE_MILL_TOOLTIP_1("tooltip","fire_mill.1","Power Given : 4 GP"),
+    DRAGON_EGG_MILL_TOOLTIP("tooltip","dragon_egg_mill","A dragon egg mill that generates GP with a dragon egg on top."),
+    DRAGON_EGG_MILL_TOOLTIP_1("tooltip","dragon_egg_mill.1","Power Given : 500 GP"),
+    CREATIVE_MILL_TOOLTIP("tooltip","creative_mill","A creative mill that generates GP."),
+    CREATIVE_MILL_TOOLTIP_1("tooltip","creative_mill.1","Power Given : 10000 GP"),
+
+    SOUND_MUFFLER_TOOLTIP("tooltip","sound_muffler","A sound muffler that can reduce the sound of nearby blocks."),
+    RESONATOR_TOOLTIP("tooltip","resonator","A machine that transform items with GP."),
+    ENCHANTER_TOOLTIP("tooltip","enchanter","A machine that transform items with lapis/nether star and enchanting power."),
+    FURNACE_TOOLTIP("tooltip","furnace","A furnace that can smelt items with FE."),
+    CRUSHER_TOOLTIP("tooltip","crusher","A crusher that can crush items with FE."),
+
+    ENDER_PORCUPINE_TOOLTIP("tooltip","ender_porcupine","A block that acts as a portal to remote block locations."),
+    ENDER_PORCUPINE_TOOLTIP_1("tooltip","ender_porcupine.1","Use the GUI to choose the range of block where it must act."),
+    ENDER_PORCUPINE_TOOLTIP_2("tooltip","ender_porcupine.2","The remote block changes once a second."),
+    ENDER_PORCUPINE_TOOLTIP_3("tooltip","ender_porcupine.3","Blocks can be placed through this portal."),
+    ENDER_PORCUPINE_TOOLTIP_4("tooltip","ender_porcupine.4","Items/Fluids/Energy can travel through the portal."),
+    ENDER_PORCUPINE_TOOLTIP_5("tooltip","ender_porcupine.5","Requires GP, proportional to the distance covered by the portal."),
+
+    REDSTONE_CLOCK_TOOLTIP("tooltip","redstone_clock","A block that provides a redstone signal every second."),
+    REDSTONE_CLOCK_TOOLTIP_1("tooltip","redstone_clock.1","Can be stopped by applying a redstone signal to it."),
+
+    COMPOUND_BOW_TOOLTIP("tooltip","compound_bow","A powerful bow that can shoot arrows with higher velocity."),
+
+    GOLDEN_LASSO_TOOLTIP("tooltip","golden_lasso","A lasso that can capture passive mobs."),
+    GOLDEN_LASSO_TOOLTIP_1("tooltip","golden_lasso.1","Right click on a passive mob to capture it, then right click again to release it."),
+    GOLDEN_LASSO_TOOLTIP_2("tooltip","golden_lasso.2","Requires 8 experience levels to be crafted."),
+
+    CURSED_LASSO_TOOLTIP("tooltip","cursed_lasso","A lasso that can capture hostile mobs."),
+    CURSED_LASSO_TOOLTIP_1("tooltip","cursed_lasso.1","Right click on a hostile mob to capture it, then right click again to release it."),
+    CURSED_LASSO_TOOLTIP_2("tooltip","cursed_lasso.2","Captured Mobs must be at 1/4 of their health or less"),
+
+    GLASS_CUTTER_TOOLTIP("tooltip","glass_cutter","A tool that can break glass and drop it."),
+
+    ANGEL_BLOCK_TOOLTIP("tooltip","angel_block","A block that can be placed in the air."),
+    ANGEL_BLOCK_TOOLTIP_1("tooltip","angel_block.1","When broken, it is always regiven in the player's inventory."),
+
+    RAINBOW_GENERATOR_TOOLTIP("tooltip","rainbow_generator","A machine that generates a rainbow beam and a lot of power when all the other generators are active."),
+
     DOOM_DEATH("death.attack.doom","%s met their doom"),
     DOOM_DEATH_ITEM("death.attack.doom.item","%s met their doom"),
     DOOM_DEATH_PLAYER("death.attack.doom.player","%s met their doom whilst fighting %s"),
@@ -387,7 +465,9 @@ public enum AULang {
 
     SPIKE_CREATIVE_DEATH("death.attack.creative_spike","%s failed to become the guy"),
     SPIKE_CREATIVE_DEATH_ITEM("death.attack.creative_spike.item","%s failed to become the guy"),
-    SPIKE_CREATIVE_DEATH_PLAYER("death.attack.creative_spike.player","%s failed to become the guy")
+    SPIKE_CREATIVE_DEATH_PLAYER("death.attack.creative_spike.player","%s failed to become the guy"),
+
+    CREEPY_LAUGH_SUBTITLE("subtitle","creepy_laugh","A distant creepy laugh")
     ;
 
     private final String key;
