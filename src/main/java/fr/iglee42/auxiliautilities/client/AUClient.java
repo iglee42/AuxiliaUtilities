@@ -12,6 +12,7 @@ import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
 import fr.iglee42.auxiliautilities.client.renderers.*;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.items.*;
 import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
@@ -165,7 +166,7 @@ public class AUClient {
         ItemProperties.register(
                 AUItems.LUX_SABER.asItem(),
                 AuxiliaUtilities.id("charged"),
-                (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ItemLuxSaber.ENERGY_THRESHOLD ? 1f : 0f
+                (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= AUConfig.SABER_THRESHOLD.get() ? 1f : 0f
         );
         ItemProperties.register(
                 AUItems.BIOME_MARKER.asItem(),

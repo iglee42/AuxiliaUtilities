@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.items.api.AUFoilItem;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
@@ -58,7 +59,6 @@ public class ItemDivisionSigil extends AUFoilItem {
 
     public static final int[] ddx = new int[]{-1, 0, 1, 0};
     public static final int[] ddz = new int[]{0, -1, 0, 1};
-    public static final int ITEMS_PER_CHESTS = 12;
     private static final UUID messageUUID = UUID.fromString("d1c9e8b0-5f1a-4c3b-9a1e-2f3b6c7d8e9f");
 
     public ItemDivisionSigil(Properties props) {
@@ -166,28 +166,28 @@ public class ItemDivisionSigil extends AUFoilItem {
         int north = 0, south = 0, east = 0, west = 0;
         if (northHandler != null) {
             north = SiegeHandler.checkNorthChest(northHandler, false);
-            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_NORTH_CHEST.get(Math.min(north, ITEMS_PER_CHESTS), ITEMS_PER_CHESTS).withStyle(north >= ITEMS_PER_CHESTS ? ChatFormatting.GREEN : ChatFormatting.RED));
+            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_NORTH_CHEST.get(Math.min(north, AUConfig.END_SIEGE_ITEMS_CHESTS.get()), AUConfig.END_SIEGE_ITEMS_CHESTS.get()).withStyle(north >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() ? ChatFormatting.GREEN : ChatFormatting.RED));
         } else {
             message.append("\n ! ").append(AULang.STABILIZATION_RITUAL_MISSING_CHEST.get(AULang.NORTHERN.get()).withStyle(ChatFormatting.RED));
         }
 
         if (southHandler != null) {
             south = SiegeHandler.checkSouthChest(southHandler, false);
-            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_SOUTH_CHEST.get(Math.min(south, ITEMS_PER_CHESTS), ITEMS_PER_CHESTS).withStyle(south >= ITEMS_PER_CHESTS ? ChatFormatting.GREEN : ChatFormatting.RED));
+            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_SOUTH_CHEST.get(Math.min(south, AUConfig.END_SIEGE_ITEMS_CHESTS.get()), AUConfig.END_SIEGE_ITEMS_CHESTS.get()).withStyle(south >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() ? ChatFormatting.GREEN : ChatFormatting.RED));
         } else {
             message.append("\n ! ").append(AULang.STABILIZATION_RITUAL_MISSING_CHEST.get(AULang.SOUTHERN.get()).withStyle(ChatFormatting.RED));
         }
 
         if (eastHandler != null) {
             east = SiegeHandler.checkEastChest(eastHandler, false);
-            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_EAST_CHEST.get(Math.min(east, ITEMS_PER_CHESTS), ITEMS_PER_CHESTS).withStyle(east >= ITEMS_PER_CHESTS ? ChatFormatting.GREEN : ChatFormatting.RED));
+            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_EAST_CHEST.get(Math.min(east, AUConfig.END_SIEGE_ITEMS_CHESTS.get()), AUConfig.END_SIEGE_ITEMS_CHESTS.get()).withStyle(east >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() ? ChatFormatting.GREEN : ChatFormatting.RED));
         } else {
             message.append("\n ! ").append(AULang.STABILIZATION_RITUAL_MISSING_CHEST.get(AULang.EASTERN.get()).withStyle(ChatFormatting.RED));
         }
 
         if (westHandler != null) {
             west = SiegeHandler.checkWestChest(westHandler, false);
-            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_WEST_CHEST.get(Math.min(west, ITEMS_PER_CHESTS), ITEMS_PER_CHESTS).withStyle(west >= ITEMS_PER_CHESTS ? ChatFormatting.GREEN : ChatFormatting.RED));
+            message.append("\n - ").append(AULang.STABILIZATION_RITUAL_WEST_CHEST.get(Math.min(west, AUConfig.END_SIEGE_ITEMS_CHESTS.get()), AUConfig.END_SIEGE_ITEMS_CHESTS.get()).withStyle(west >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() ? ChatFormatting.GREEN : ChatFormatting.RED));
         } else {
             message.append("\n ! ").append(AULang.STABILIZATION_RITUAL_MISSING_CHEST.get(AULang.WESTERN.get()).withStyle(ChatFormatting.RED));
         }
@@ -206,7 +206,7 @@ public class ItemDivisionSigil extends AUFoilItem {
             message.append("\n\n").append(AULang.STABILIZATION_RITUAL_STRENGTH.get(strString.toString()).withStyle(strength[0] >= 64 ? ChatFormatting.GREEN : ChatFormatting.RED));
         }
 
-        if (north >= ITEMS_PER_CHESTS && south >= ITEMS_PER_CHESTS && east >= ITEMS_PER_CHESTS && west >= ITEMS_PER_CHESTS && strength[0] >= 64 && level.getBiome(pos).is(Biomes.THE_END)) {
+        if (north >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() && south >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() && east >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() && west >= AUConfig.END_SIEGE_ITEMS_CHESTS.get() && strength[0] >= 64 && level.getBiome(pos).is(Biomes.THE_END)) {
             message.append("\n\n").append(AULang.STABILIZATION_RITUAL_READY.get().withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));
             message.append("\n\n").append(AULang.STABILIZATION_RITUAL_SACRIFICE.get().withStyle(ChatFormatting.GREEN, ChatFormatting.UNDERLINE));
         }
@@ -217,9 +217,7 @@ public class ItemDivisionSigil extends AUFoilItem {
 
     @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
     private static class SiegeHandler {
-
-        private static final int KILLS_TO_UPGRADE = 100;
-
+        
         private static final UUID messageSignature = UUID.fromString("a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6");
         private static final List<UUID> siegeParticipants = new ArrayList<>();
         private static final List<MobSpawnSettings.SpawnerData> mobSpawns = List.of(
@@ -289,7 +287,7 @@ public class ItemDivisionSigil extends AUFoilItem {
                     bar.setOverlay(CustomBossEvent.BossBarOverlay.PROGRESS);
                     bar.addPlayer((ServerPlayer) player);
                     bar.setVisible(true);
-                    bar.setMax(KILLS_TO_UPGRADE);
+                    bar.setMax(AUConfig.END_SIEGE_KILLS.get());
                     bar.setProgress(0);
                 }
 
@@ -297,7 +295,7 @@ public class ItemDivisionSigil extends AUFoilItem {
         }
 
         static MutableComponent getKillMessage(int kills){
-            return AULang.END_SIEGE.get().append(" : ").append(AULang.KILLS.get(kills)).append(" / "+KILLS_TO_UPGRADE);
+            return AULang.END_SIEGE.get().append(" : ").append(AULang.KILLS.get(kills)).append(" / "+AUConfig.END_SIEGE_KILLS.get());
         }
 
         static void startSiege(Level level){
@@ -376,13 +374,13 @@ public class ItemDivisionSigil extends AUFoilItem {
                     int[] strength = getRitualStrength(event.getEntity().level(), pos);
                     if (strength[0] >= 64){
                         boolean valid = true;
-                        if (checkNorthChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.north(5), Direction.SOUTH), true) < ITEMS_PER_CHESTS )
+                        if (checkNorthChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.north(5), Direction.SOUTH), true) < AUConfig.END_SIEGE_ITEMS_CHESTS.get() )
                             valid = false;
-                        if (valid && checkSouthChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.south(5), Direction.NORTH), true) < ITEMS_PER_CHESTS )
+                        if (valid && checkSouthChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.south(5), Direction.NORTH), true) < AUConfig.END_SIEGE_ITEMS_CHESTS.get() )
                             valid = false;
-                        if (valid && checkEastChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.east(5), Direction.WEST), true) < ITEMS_PER_CHESTS )
+                        if (valid && checkEastChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.east(5), Direction.WEST), true) < AUConfig.END_SIEGE_ITEMS_CHESTS.get() )
                             valid = false;
-                        if (valid && checkWestChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.west(5), Direction.EAST), true) < ITEMS_PER_CHESTS )
+                        if (valid && checkWestChest(level.getCapability(Capabilities.ItemHandler.BLOCK, pos.west(5), Direction.EAST), true) < AUConfig.END_SIEGE_ITEMS_CHESTS.get() )
                             valid = false;
                         if (valid){
                             /*level.destroyBlock(pos, false);
@@ -432,9 +430,9 @@ public class ItemDivisionSigil extends AUFoilItem {
                     CustomBossEvent bar = events.get(barId);
                     if (bar != null){
                         bar.setName(getKillMessage(kills));
-                        bar.setProgress((float) kills / KILLS_TO_UPGRADE);
+                        bar.setProgress((float) kills / AUConfig.END_SIEGE_KILLS.get());
                     }
-                    if (kills >= KILLS_TO_UPGRADE){
+                    if (kills >= AUConfig.END_SIEGE_KILLS.get()){
                         upgradeSigil(player);
                         removePlayerFromSiege(level,player.getGameProfile().getId());
                         AULang.SIGIL_UPGRADED.sendToPlayer(player,messageSignature);
@@ -514,66 +512,60 @@ public class ItemDivisionSigil extends AUFoilItem {
         }
 
         static int checkNorthChest(IItemHandler handler, boolean destroy){
-            ItemStack[] stacks = Stream.of(
-                    Items.STONE,
-                    Items.GLASS,
-                    Items.TERRACOTTA,
-                    Items.CHARCOAL,
-                    Items.IRON_INGOT,
-                    Items.COPPER_INGOT,
-                    Items.GOLD_INGOT,
-                    Items.COOKED_PORKCHOP,
-                    Items.BRICK,
-                    Items.COOKED_COD,
-                    Items.COOKED_BEEF,
-                    Items.COOKED_CHICKEN,
-                    Items.COOKED_RABBIT,
-                    Items.COOKED_SALMON,
-                    Items.COOKED_MUTTON,
-                    Items.GREEN_DYE,
-                    Items.NETHER_BRICK
-            ).map(ItemStack::new).toArray(ItemStack[]::new);
+            ItemStack[] stacks = AUConfig.NORTH_CHEST_ITEMS.get().stream().map(String.class::cast)
+                    .map(ResourceLocation::tryParse)
+                    .filter(Objects::nonNull)
+                    .map(BuiltInRegistries.ITEM::get)
+                    .map(ItemStack::new)
+                    .toArray(ItemStack[]::new);
             return checkItemHandler(handler, stacks, destroy);
         }
         static int checkSouthChest(IItemHandler handler, boolean destroy){
-            ItemStack[] stacks = Stream.of(
-                    Items.GRASS_BLOCK,
-                    Items.DIRT,
-                    Items.SAND,
-                    Items.GRAVEL,
-                    Items.CLAY,
-                    Items.COAL_ORE,
-                    Items.IRON_ORE,
-                    Items.COPPER_ORE,
-                    Items.GOLD_ORE,
-                    Items.DIAMOND_ORE,
-                    Items.EMERALD_ORE,
-                    Items.REDSTONE_ORE,
-                    Items.LAPIS_ORE,
-                    Items.NETHER_QUARTZ_ORE,
-                    Items.NETHER_GOLD_ORE,
-                    Items.ANCIENT_DEBRIS,
-                    Items.OBSIDIAN
-            ).map(ItemStack::new).toArray(ItemStack[]::new);
+            ItemStack[] stacks = AUConfig.SOUTH_CHEST_ITEMS.get().stream().map(String.class::cast)
+                    .map(ResourceLocation::tryParse)
+                    .filter(Objects::nonNull)
+                    .map(BuiltInRegistries.ITEM::get)
+                    .map(ItemStack::new)
+                    .toArray(ItemStack[]::new);
             return checkItemHandler(handler, stacks, destroy);
         }
         static int checkEastChest(IItemHandler handler, boolean destroy){
-            ItemStack[] stacks = BuiltInRegistries.POTION.holders()
-                    .filter(h -> h.getKey() != null && h.getKey().location().getNamespace().equals("minecraft"))
-                    .map(potionHolder -> {
-                                ItemStack potionStack = new ItemStack(Items.POTION);
-                                potionStack.set(DataComponents.POTION_CONTENTS, new PotionContents(potionHolder));
-                                return potionStack;
-                            }
-                    ).toArray(ItemStack[]::new);
+            ItemStack[] stacks;
+            if (AUConfig.DEFAULT_EAST_CHEST.get()){
+                stacks = BuiltInRegistries.POTION.holders()
+                        .filter(h -> h.getKey() != null && h.getKey().location().getNamespace().equals("minecraft"))
+                        .map(potionHolder -> {
+                                    ItemStack potionStack = new ItemStack(Items.POTION);
+                                    potionStack.set(DataComponents.POTION_CONTENTS, new PotionContents(potionHolder));
+                                    return potionStack;
+                                }
+                        ).toArray(ItemStack[]::new);;
+            } else {
+                stacks = AUConfig.EAST_CHEST_ITEMS.get().stream().map(String.class::cast)
+                        .map(ResourceLocation::tryParse)
+                        .filter(Objects::nonNull)
+                        .map(BuiltInRegistries.ITEM::get)
+                        .map(ItemStack::new)
+                        .toArray(ItemStack[]::new);
+            }
             return checkItemHandler(handler, stacks, destroy);
         }
 
         static int checkWestChest(IItemHandler handler, boolean destroy){
-            ItemStack[] stacks = BuiltInRegistries.ITEM.holders()
-                    .filter(h -> h.getKey() != null && h.getKey().location().getPath().startsWith("music_disc_"))
-                    .map(ItemStack::new)
-                    .toArray(ItemStack[]::new);
+            ItemStack[] stacks;
+            if (AUConfig.DEFAULT_WEST_CHEST.get()){
+                stacks = BuiltInRegistries.ITEM.holders()
+                        .filter(h -> h.getKey() != null && h.getKey().location().getPath().startsWith("music_disc_"))
+                        .map(ItemStack::new)
+                        .toArray(ItemStack[]::new);
+            } else {
+                stacks = AUConfig.WEST_CHEST_ITEMS.get().stream().map(String.class::cast)
+                        .map(ResourceLocation::tryParse)
+                        .filter(Objects::nonNull)
+                        .map(BuiltInRegistries.ITEM::get)
+                        .map(ItemStack::new)
+                        .toArray(ItemStack[]::new);
+            }
             return checkItemHandler(handler, stacks, destroy);
         }
 

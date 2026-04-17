@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.items;
 import com.mojang.serialization.Codec;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.terraformer.TerraformerType;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
 import fr.iglee42.auxiliautilities.items.api.gp.AUGPConsumerItem;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
@@ -87,7 +88,7 @@ public class ItemAngelRing extends AUGPConsumerItem {
 
     @Override
     protected int getGPConsumption(ItemStack stack, Player player) {
-        return player.getAbilities().flying ? 32 : 1;
+        return player.getAbilities().flying ? AUConfig.ANGEL_CONSUMPTION.get() : AUConfig.ANGEL_PASSIVE_CONSUMPTION.get();
     }
 
     public static enum AngelRingWings implements StringRepresentable{

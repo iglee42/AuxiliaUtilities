@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
@@ -25,9 +26,6 @@ import java.util.function.Consumer;
 
 public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
-    public static final int MAX_ENERGY = 40000;
-    public static final int ENERGY_THRESHOLD = 200;
-
     public static final Tier TIER = new SimpleTier(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
             0,
@@ -44,7 +42,7 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
         ItemAttributeModifiers modifiers = super.getDefaultAttributeModifiers(stack);
-        if (stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ENERGY_THRESHOLD){
+        if (stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= AUConfig.SABER_THRESHOLD.get()){
             modifiers = createAttributes(TIER,3f,0f);
         }
         return modifiers.withModifierAdded(
@@ -71,8 +69,8 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
     @Override
     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= ENERGY_THRESHOLD){
-            if (!(attacker instanceof Player player) || !player.isCreative()) stack.set(AUDataComponents.STORED_ENERGY, stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) - ENERGY_THRESHOLD);
+        if (stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= AUConfig.SABER_THRESHOLD.get()){
+            if (!(attacker instanceof Player player) || !player.isCreative()) stack.set(AUDataComponents.STORED_ENERGY, stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) - AUConfig.SABER_THRESHOLD.get());
             target.igniteForSeconds(5);
         }
     }
@@ -80,7 +78,7 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
     @Override
     public int getBarWidth(ItemStack stack) {
         int energy = stack.getOrDefault(AUDataComponents.STORED_ENERGY,0);
-        return Math.round(13.0F * energy / MAX_ENERGY);
+        return Math.round(13.0F * energy / AUConfig.SABER_MAX_ENERGY.get());
     }
 
     @Override
@@ -95,12 +93,12 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
     @Override
     public boolean isBarVisible(ItemStack stack) {
         int energy = stack.getOrDefault(AUDataComponents.STORED_ENERGY,0);
-        return energy < MAX_ENERGY;
+        return energy < AUConfig.SABER_MAX_ENERGY.get();
     }
 
     public static ItemStack getStack(DyeColor color, boolean charged){
         ItemStack stack = new ItemStack(AUItems.LUX_SABER.get());
-        stack.set(AUDataComponents.STORED_ENERGY, charged ? MAX_ENERGY : 0);
+        stack.set(AUDataComponents.STORED_ENERGY, charged ? AUConfig.SABER_MAX_ENERGY.get() : 0);
         stack.set(DataComponents.BASE_COLOR, color);
         return stack;
     }
@@ -131,7 +129,7 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
     @Override
     public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {
         int energy = stack.getOrDefault(AUDataComponents.STORED_ENERGY,0);
-        return List.of(AULang.STORED_ENERGY_TOOLTIP.get(formatInt(energy), formatInt(MAX_ENERGY)).withStyle(ChatFormatting.GRAY));
+        return List.of(AULang.STORED_ENERGY_TOOLTIP.get(formatInt(energy), formatInt(AUConfig.SABER_MAX_ENERGY.get())).withStyle(ChatFormatting.GRAY));
     }
 
     public static class ItemEnergyStorage implements IEnergyStorage {
@@ -145,9 +143,9 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
         public ItemEnergyStorage(ItemStack stack) {
             this.stack = stack;
-            this.capacity = MAX_ENERGY;
-            this.maxReceive = ENERGY_THRESHOLD;
-            this.maxExtract = ENERGY_THRESHOLD;
+            this.capacity = AUConfig.SABER_MAX_ENERGY.get();
+            this.maxReceive = AUConfig.SABER_THRESHOLD.get();
+            this.maxExtract = AUConfig.SABER_THRESHOLD.get();
         }
 
         public int receiveEnergy(int maxReceive, boolean simulate) {

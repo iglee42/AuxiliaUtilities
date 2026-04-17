@@ -7,6 +7,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.generators.BERainbowGenerator;
 import fr.iglee42.auxiliautilities.blockentities.gp.AUGPConsumerBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleUpgradeStackHandler;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
@@ -81,7 +82,7 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
         boolean work = GPNetworkManager.INSTANCE.hasEnoughPower(getNetworkId()) && inventory.insertItem(1,currentRecipe.value().getResultItem(level.registryAccess()),true).isEmpty();
         if (currentRecipe.value().doesRequiresRainbowGenerator()){
             MutableBoolean hasRainbow = new MutableBoolean(false);
-            BlockPos.betweenClosedStream(new AABB(getBlockPos()).inflate(BERainbowGenerator.RANGE)).forEach(
+            BlockPos.betweenClosedStream(new AABB(getBlockPos()).inflate(AUConfig.RAINBOW_RANGE.get())).forEach(
                     pos-> level.getBlockEntity(pos, AUBlockEntityTypes.RAINBOW_GENERATOR.get()).ifPresent(be -> {
                         if (be.isProviding()) hasRainbow.setTrue();
                     })

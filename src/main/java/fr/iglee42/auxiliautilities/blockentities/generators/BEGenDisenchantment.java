@@ -22,10 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static fr.iglee42.auxiliautilities.blockentities.generators.BEGenPotion.getPotionEnergy;
+import static fr.iglee42.auxiliautilities.config.AUConfig.DISENCHANTMENT_RATE;
 
 public class BEGenDisenchantment extends AUGeneratorBlockEntity{
-
-    public static final int ENERGY_RATE = 40;
 
     public BEGenDisenchantment(BlockPos pos, BlockState state) {
         super(AUBlockEntityTypes.DISENCHANTMENT_GENERATOR.get(), pos, state);
@@ -43,12 +42,12 @@ public class BEGenDisenchantment extends AUGeneratorBlockEntity{
 
     @Override
     protected int getProgressPerItem(int slot, ItemStack stack) {
-        return getBookEnergy(stack) / ENERGY_RATE;
+        return getBookEnergy(stack) / DISENCHANTMENT_RATE.get();
     }
 
     @Override
     protected int getEnergyPerProgress(ItemStack item, FluidStack fluid) {
-        return ENERGY_RATE;
+        return DISENCHANTMENT_RATE.get();
     }
 
     @Override

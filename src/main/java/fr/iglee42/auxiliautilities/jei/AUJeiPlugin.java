@@ -32,6 +32,8 @@ import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import java.util.*;
 import java.util.function.Function;
 
+import static fr.iglee42.auxiliautilities.config.AUConfig.DISENCHANTMENT_RATE;
+
 @JeiPlugin
 public class AUJeiPlugin implements IModPlugin {
     @Override
@@ -176,7 +178,7 @@ public class AUJeiPlugin implements IModPlugin {
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
                             if (BEGenDisenchantment.getBookEnergy(stack) > 0) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), BEGenDisenchantment.ENERGY_RATE, BEGenDisenchantment.getBookEnergy(stack) / BEGenDisenchantment.ENERGY_RATE));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), DISENCHANTMENT_RATE.get(), BEGenDisenchantment.getBookEnergy(stack) / DISENCHANTMENT_RATE.get()));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))

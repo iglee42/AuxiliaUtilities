@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.*;
@@ -62,7 +63,6 @@ public class BETerraformer extends AUBlockEntity {
     static final int MAX_CONTAINER_RANGE = 4;
     static final int MAX_TRANSFORMATION_RANGE = 64;
     static final int POWER_PER_TICK = 80;
-    private static final int TRANSFORM_TIME = 20;
 
     private BlockPos.MutableBlockPos targetPos = new BlockPos.MutableBlockPos();
     private final EnergyStorage energyStorage = new EnergyStorage(16000,16000) {
@@ -158,7 +158,7 @@ public class BETerraformer extends AUBlockEntity {
                 return true;
             }
             BlockPos.MutableBlockPos tempPos = new BlockPos.MutableBlockPos();
-            int range = Mth.clamp(this.range,0,MAX_TRANSFORMATION_RANGE);
+            int range = Mth.clamp(this.range,0,AUConfig.TERRAFORMER_RANGE.get());
             RandomSource random = level.getRandom();
             if (range == 0){
                 Holder<Biome> blockBiome = level.getBiome(pos);
@@ -239,7 +239,7 @@ public class BETerraformer extends AUBlockEntity {
         }
 
         if (!needsEnergy){
-            transformTime = TRANSFORM_TIME;
+            transformTime = AUConfig.TERRAFORMER_TIME.get();
         } else {
             List<BETerraformerExtension> extensions = getExtensions(level,pos,MAX_CONTAINER_RANGE);
             presentTypes.clear();
@@ -375,7 +375,7 @@ public class BETerraformer extends AUBlockEntity {
                 }
             };
             addWidget(textScroll);
-            AUScrollbarNetworkWidget scrollbar = new AUScrollbarNetworkWidget(4,35,70,0,MAX_TRANSFORMATION_RANGE) {
+            AUScrollbarNetworkWidget scrollbar = new AUScrollbarNetworkWidget(4,35,70,0,AUConfig.TERRAFORMER_RANGE.get()) {
 
 
                 @Override

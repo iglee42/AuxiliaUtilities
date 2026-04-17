@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.blockentities.generators;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -24,8 +25,7 @@ import java.util.List;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class BERainbowGenerator extends AUBlockEntity {
-    public static final int PER_TICK = 25000000;
-    public static final int RANGE = 8;
+
     private int extractBuffer = 0;
     private boolean providing = false;
 
@@ -47,9 +47,9 @@ public class BERainbowGenerator extends AUBlockEntity {
 
         @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
 
-        @Override public int getEnergyStored() { return providing ? PER_TICK : 0; }
+        @Override public int getEnergyStored() { return providing ? AUConfig.RAINBOW_RATE.get() : 0; }
 
-        @Override public int getMaxEnergyStored() { return PER_TICK; }
+        @Override public int getMaxEnergyStored() { return AUConfig.RAINBOW_RATE.get(); }
 
         @Override public boolean canExtract() { return true; }
 
@@ -80,7 +80,7 @@ public class BERainbowGenerator extends AUBlockEntity {
 
         List<BlockPos> generators = new ArrayList<>();
 
-        BlockPos.betweenClosedStream(new AABB(pos).inflate(RANGE)).forEach(p -> {
+        BlockPos.betweenClosedStream(new AABB(pos).inflate(AUConfig.RAINBOW_RANGE.get())).forEach(p -> {
             BlockEntity be = level.getBlockEntity(p);
             if (be instanceof AUGeneratorBlockEntity generator) {
                if (generator.getRainbowPos() == null)
@@ -120,7 +120,7 @@ public class BERainbowGenerator extends AUBlockEntity {
         }
         providing = true;
 
-        extractBuffer = PER_TICK;
+        extractBuffer = AUConfig.RAINBOW_RATE.get();
 
         distributeEnergy();
         return true;

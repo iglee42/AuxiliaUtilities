@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
 import fr.iglee42.auxiliautilities.items.api.gp.AUGPConsumerItem;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
@@ -72,7 +73,7 @@ public class ItemFlyingSquidRing extends AUGPConsumerItem {
 
     @Override
     protected int getGPConsumption(ItemStack stack, Player player) {
-        return 16;
+        return AUConfig.FLYING_SQUID_CONSUMPTION.get();
     }
 
 }

@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.utils.GetterSetter;
@@ -30,7 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemUnstableIngot extends AUItem {
-    public static final int TIMEOUT = 200;
     public static final ResourceKey<DamageType> UNSTABLE_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, AuxiliaUtilities.id("unstable"));
 
@@ -61,7 +61,7 @@ public class ItemUnstableIngot extends AUItem {
             if (baseTime > 0L) {
                 float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 
-                float time = (float) (TIMEOUT + baseTime - level.getGameTime())
+                float time = (float) (AUConfig.UNSTABLE_TIME.get() + baseTime - level.getGameTime())
                         - partialTick
                         + (tintIndex * 3);
 
@@ -69,11 +69,11 @@ public class ItemUnstableIngot extends AUItem {
                     return rgba(1.0F, 0.0F, 0.0F, 1f);
                 }
 
-                if (time > TIMEOUT) {
+                if (time > AUConfig.UNSTABLE_TIME.get()) {
                     return -1;
                 }
 
-                float v = time / TIMEOUT;
+                float v = time / AUConfig.UNSTABLE_TIME.get();
                 float r = 1.0F;
                 float g;
                 float b;
@@ -186,7 +186,7 @@ public class ItemUnstableIngot extends AUItem {
             int dim = stack.get(AUDataComponents.DIMENSION);
             int storedContainer = stack.get(AUDataComponents.CONTAINER_ID);
 
-            if (time + TIMEOUT > level.getGameTime()
+            if (time + AUConfig.UNSTABLE_TIME.get() > level.getGameTime()
                     && dim == level.dimension().hashCode()
                     && storedContainer == windowId) {
                 continue;
@@ -216,7 +216,7 @@ public class ItemUnstableIngot extends AUItem {
         tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_ERROR.get());
         if (ctx.level() == null || !stack.has(AUDataComponents.TIME)) return tooltips;
         long time = stack.get(AUDataComponents.TIME);
-        float remaining = (float) ((time + TIMEOUT) - ctx.level().getGameTime()) / 20;
+        float remaining = (float) ((time + AUConfig.UNSTABLE_TIME.get()) - ctx.level().getGameTime()) / 20;
         if (remaining <= 0) return tooltips;
         tooltips.add(AULang.UNSTABLE_INGOT_TOOLTIP_EXPLOSION.get(formatFloat(remaining)).withColor(getColor(stack,0)));
         return tooltips;

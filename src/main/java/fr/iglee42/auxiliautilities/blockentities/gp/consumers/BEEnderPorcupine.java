@@ -7,6 +7,7 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.AUGPConsumerBlockEntity;
+import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTextWidget;
@@ -127,7 +128,7 @@ public class BEEnderPorcupine extends AUGPConsumerBlockEntity {
     @Override
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
-        if (level.getGameTime() % 20 == 0){
+        if (level.getGameTime() % AUConfig.PORCUPINE_TIME.get() == 0){
             nextPos();
             consumption = Math.abs(target.getX()) + Math.abs(target.getY()) + Math.abs(target.getZ());
             level.updateNeighborsAt(getBlockPos(),getBlockState().getBlock());
