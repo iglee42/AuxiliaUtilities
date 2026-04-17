@@ -52,7 +52,6 @@ public class AUConfig {
 
 
     static {
-        BUILDER.push(AuxiliaUtilities.MODID);
 
         BUILDER.push("blocks");
         {
@@ -177,8 +176,6 @@ public class AUConfig {
 
         }
         BUILDER.pop();*/
-
-        BUILDER.pop();
         SPEC = BUILDER.build();
     }
 
