@@ -24,6 +24,8 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriPredicate;
 import org.jetbrains.annotations.NotNull;
@@ -111,6 +113,7 @@ public class ItemLasso extends AUItem {
         return InventoryHelper.isStackNotEmpty(stack) && stack.has(AUDataComponents.STORED_ENTITY);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         if (!hasEntity(stack)) return super.getColor(stack, tintIndex);

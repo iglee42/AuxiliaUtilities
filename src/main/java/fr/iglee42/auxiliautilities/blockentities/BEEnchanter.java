@@ -1,26 +1,17 @@
 package fr.iglee42.auxiliautilities.blockentities;
 
-import java.text.NumberFormat;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleUpgradeStackHandler;
-import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUEnergyWidget;
-import fr.iglee42.auxiliautilities.menu.widgets.AUTextWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTimedProgressWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.recipes.EnchanterRecipe;
-import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
 import fr.iglee42.auxiliautilities.recipes.inputs.EnchanterRecipeInput;
 import fr.iglee42.auxiliautilities.utils.Upgrade;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,6 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EnchantingTableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
@@ -44,6 +36,9 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Optional;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class BEEnchanter extends AUBlockEntity {
@@ -187,7 +182,7 @@ public class BEEnchanter extends AUBlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {
         super.clientTick(level, pos, state);
         if (canWork()){
             RandomSource random = RandomSource.create();

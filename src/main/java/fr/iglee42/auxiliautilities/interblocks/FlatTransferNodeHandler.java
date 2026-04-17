@@ -2,21 +2,21 @@ package fr.iglee42.auxiliautilities.interblocks;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.items.SingleFilterStackHandler;
 import fr.iglee42.auxiliautilities.client.TintingVertexConsumer;
-import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.items.ItemFlatTransferNode;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.network.SyncFlatTransferNodesPacket;
 import fr.iglee42.auxiliautilities.utils.IFluidFilter;
 import fr.iglee42.auxiliautilities.utils.IItemFilter;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -71,13 +71,9 @@ import java.util.function.IntFunction;
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class FlatTransferNodeHandler extends SavedData {
 
-    @OnlyIn(Dist.CLIENT)
     public static final ResourceLocation ITEM_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_items");
-    @OnlyIn(Dist.CLIENT)
     public static final ResourceLocation FLUID_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_fluids");
-    @OnlyIn(Dist.CLIENT)
     public static final ResourceLocation BACK_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_back");
-    @OnlyIn(Dist.CLIENT)
     public static final ResourceLocation SELECTION_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_selection");
 
     public static final StreamCodec<RegistryFriendlyByteBuf, FlatTransferNodeHandler> STREAM_CODEC = StreamCodec.of(
@@ -90,7 +86,6 @@ public class FlatTransferNodeHandler extends SavedData {
             }
     );
 
-    @OnlyIn(Dist.CLIENT)
     public static Multimap<BlockPos, FlatTransferNode> CLIENT_NODES = HashMultimap.create();
 
     private final Multimap<BlockPos, FlatTransferNode> nodes;
@@ -170,7 +165,7 @@ public class FlatTransferNodeHandler extends SavedData {
             return;
 
         Minecraft mc = Minecraft.getInstance();
-        ClientLevel level = mc.level;
+        var level = mc.level;
         Entity cameraEntity = mc.getCameraEntity();
 
         if (level == null || cameraEntity == null)

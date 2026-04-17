@@ -52,7 +52,7 @@ public class ItemUnstableIngot extends AUItem {
 
     @OnlyIn(Dist.CLIENT)
     public int getColor(ItemStack stack, int tintIndex) {
-        Level level = Minecraft.getInstance().level;
+        var level = Minecraft.getInstance().level;
 
         if (level != null && stack.getDamageValue() == 0 && stack.has(AUDataComponents.TIME)) {
 

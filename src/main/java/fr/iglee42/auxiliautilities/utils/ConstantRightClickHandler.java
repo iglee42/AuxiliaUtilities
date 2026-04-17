@@ -33,7 +33,7 @@ public class ConstantRightClickHandler {
 
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
-        Level level = mc.level;
+        var level = mc.level;
 
         if (player == null || level == null) {
             stop();

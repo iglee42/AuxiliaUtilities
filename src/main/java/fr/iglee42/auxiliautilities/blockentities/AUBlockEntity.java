@@ -2,7 +2,6 @@ package fr.iglee42.auxiliautilities.blockentities;
 
 import fr.iglee42.auxiliautilities.items.ItemEnergyDroplet;
 import fr.iglee42.auxiliautilities.items.ItemFluidDroplet;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -11,7 +10,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +17,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
@@ -71,7 +68,7 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     public void tick(Level level, BlockPos pos, BlockState state){
         if (level == null || pos == null || state == null) return;
         if (level.isClientSide)
-            clientTick((ClientLevel) level,pos,state);
+            clientTick(level,pos,state);
         else {
             boolean sendUpdatePacket = serverTick((ServerLevel) level,pos,state);
             tickCount++;
@@ -80,7 +77,7 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {}
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {}
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {return false;}
 
     @Override

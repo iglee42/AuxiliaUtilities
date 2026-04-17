@@ -4,7 +4,6 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundManager;
@@ -12,6 +11,7 @@ import net.minecraft.client.sounds.WeighedSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -30,7 +30,7 @@ public class BlockSoundMuffler extends AUBlock implements AUBlockBase {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onSound(PlaySoundEvent event) {
-        ClientLevel level = Minecraft.getInstance().level;
+        var level = Minecraft.getInstance().level;
         if (level == null) return;
         SoundInstance instance = event.getOriginalSound();
         if (instance instanceof MuffledSoundInstance) return;

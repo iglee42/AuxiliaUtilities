@@ -16,7 +16,6 @@ import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -31,9 +30,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -161,8 +163,9 @@ public class BETerraformerExtension extends AUBlockEntity {
         return true;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {
         if (sprinkerActive > 0 && hasAntennaAbove()){
             int[] colors = this.terraformerType.getColors();
             for (int i = 0; i < 10; i++){

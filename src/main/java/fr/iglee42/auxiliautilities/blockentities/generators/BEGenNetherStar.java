@@ -1,8 +1,6 @@
 package fr.iglee42.auxiliautilities.blockentities.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
-import fr.iglee42.auxiliautilities.potions.AUMobEffects;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,8 +9,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Endermite;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
@@ -52,7 +50,7 @@ public class BEGenNetherStar extends AUGeneratorBlockEntity{
     }
 
     @Override
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {
         super.clientTick(level, pos, state);
         if (burnTime > 0) {
             for (int i = 0; i < 4; i++) {

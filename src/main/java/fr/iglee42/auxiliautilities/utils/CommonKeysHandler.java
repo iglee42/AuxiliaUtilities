@@ -69,6 +69,7 @@ public class CommonKeysHandler {
 
     /*Code from Mekanism for key detection*/
 
+    @OnlyIn(Dist.CLIENT)
     public static boolean isKeyPressed(KeyMapping keyBinding) {
         if (keyBinding.isDown()) {
             return true;
@@ -81,6 +82,7 @@ public class CommonKeysHandler {
         return KeyModifier.isKeyCodeModifier(keyBinding.getKey()) && isKeyDown(keyBinding);
     }
 
+    @OnlyIn(Dist.CLIENT)
     private static boolean isKeyDown(KeyMapping keyBinding) {
         InputConstants.Key key = keyBinding.getKey();
         int keyCode = key.getValue();

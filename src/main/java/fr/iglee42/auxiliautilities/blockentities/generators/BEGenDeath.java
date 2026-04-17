@@ -1,25 +1,19 @@
 package fr.iglee42.auxiliautilities.blockentities.generators;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
 public class BEGenDeath extends AUGeneratorBlockEntity {
@@ -48,7 +42,7 @@ public class BEGenDeath extends AUGeneratorBlockEntity {
     }
 
     @Override
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {
         super.clientTick(level, pos, state);
         if (burnTime > 0) {
             for (int i = 0; i < 4; i++) {

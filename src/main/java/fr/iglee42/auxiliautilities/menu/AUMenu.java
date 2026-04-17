@@ -2,7 +2,6 @@ package fr.iglee42.auxiliautilities.menu;
 
 import com.google.common.collect.ImmutableList;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
-import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTextWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.api.*;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotWidget;
@@ -275,10 +274,6 @@ public abstract class AUMenu extends AbstractContainerMenu {
         return true;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public void updateGuiSize(AUContainerScreen screen) {
-        screen.setWidthAndHeight(this.width, this.height);
-    }
 
     protected void validate() {
         boolean hasPriority = false;

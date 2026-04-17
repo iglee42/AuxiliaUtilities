@@ -2,11 +2,11 @@ package fr.iglee42.auxiliautilities.blockentities.gp.generators;
 
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blockentities.gp.AUGPGeneratorBlockEntity;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BEManualMill extends AUGPGeneratorBlockEntity {
@@ -38,7 +38,7 @@ public class BEManualMill extends AUGPGeneratorBlockEntity {
     }
 
     @Override
-    protected void clientTick(ClientLevel level, BlockPos pos, BlockState state) {
+    protected void clientTick(Level level, BlockPos pos, BlockState state) {
 
         if (animationTime <= 0F) {
             return;

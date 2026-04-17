@@ -1,17 +1,14 @@
 package fr.iglee42.auxiliautilities.network;
 
-import fr.iglee42.auxiliautilities.client.ClientGPManager;
-import fr.iglee42.auxiliautilities.utils.AUSounds;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class PlaySoundPacket extends AUPacket{
@@ -42,7 +39,7 @@ public class PlaySoundPacket extends AUPacket{
     @Override
     protected void handle(IPayloadContext context) {
         context.enqueueWork(()->{
-            ClientLevel level = Minecraft.getInstance().level;
+            var level = Minecraft.getInstance().level;
             if (level != null){
                 SoundEvent event = BuiltInRegistries.SOUND_EVENT.get(soundId);
                 if (event != null){

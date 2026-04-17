@@ -25,7 +25,7 @@ public class AUContainerScreen extends AbstractContainerScreen<AUMenu> {
     protected void init() {
         super.init();
         int y = 0;
-        menu.updateGuiSize(this);
+        this.setWidthAndHeight(menu.width, menu.height);
         menu.getWidgets().forEach(widget->widget.addToGui(this));
     }
 
