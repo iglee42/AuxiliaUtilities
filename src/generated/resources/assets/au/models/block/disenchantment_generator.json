@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/machines/disenchantment_generator/front",
-    "side": "au:block/machines/disenchantment_generator/side",
-    "top": "au:block/machines/disenchantment_generator/top"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/machines/halitosis_generator/front",
-    "side": "au:block/machines/halitosis_generator/side",
-    "top": "au:block/machines/halitosis_generator/top"
-  }
-}

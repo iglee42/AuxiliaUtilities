@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "layer0": "au:item/unstable_ingot",
-    "layer1": "au:item/unstable_ingot_inner"
-  }
-}

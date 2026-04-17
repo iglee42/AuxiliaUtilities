@@ -1,10 +1,10 @@
 {
   "values": [
-    "au:ethereal_glass",
-    "au:ineffable_glass",
-    "au:reverse_ethereal_glass",
-    "au:thickened_glass",
-    "au:thickened_glass_bordered",
-    "au:thickened_glass_patterned"
+    "auxiliautilities:ethereal_glass",
+    "auxiliautilities:ineffable_glass",
+    "auxiliautilities:reverse_ethereal_glass",
+    "auxiliautilities:thickened_glass",
+    "auxiliautilities:thickened_glass_bordered",
+    "auxiliautilities:thickened_glass_patterned"
   ]
 }

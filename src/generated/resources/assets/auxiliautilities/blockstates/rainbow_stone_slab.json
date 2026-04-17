@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "auxiliautilities:block/rainbow_stone_slab"
+    },
+    "type=double": {
+      "model": "auxiliautilities:block/rainbow_stone"
+    },
+    "type=top": {
+      "model": "auxiliautilities:block/rainbow_stone_slab_top"
+    }
+  }
+}

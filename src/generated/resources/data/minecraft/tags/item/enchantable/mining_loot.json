@@ -1,10 +1,10 @@
 {
   "values": [
-    "au:wooden_sickle",
-    "au:stone_sickle",
-    "au:iron_sickle",
-    "au:golden_sickle",
-    "au:diamond_sickle",
-    "au:netherite_sickle"
+    "auxiliautilities:wooden_sickle",
+    "auxiliautilities:stone_sickle",
+    "auxiliautilities:iron_sickle",
+    "auxiliautilities:golden_sickle",
+    "auxiliautilities:diamond_sickle",
+    "auxiliautilities:netherite_sickle"
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "auxiliautilities:item/angel_ring_feather",
+      "predicate": {
+        "auxiliautilities:wings": 1.0
+      }
+    },
+    {
+      "model": "auxiliautilities:item/angel_ring_bat",
+      "predicate": {
+        "auxiliautilities:wings": 2.0
+      }
+    },
+    {
+      "model": "auxiliautilities:item/angel_ring_butterfly",
+      "predicate": {
+        "auxiliautilities:wings": 3.0
+      }
+    },
+    {
+      "model": "auxiliautilities:item/angel_ring_golden",
+      "predicate": {
+        "auxiliautilities:wings": 4.0
+      }
+    },
+    {
+      "model": "auxiliautilities:item/angel_ring_demon",
+      "predicate": {
+        "auxiliautilities:wings": 5.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "auxiliautilities:item/tools/angel_ring"
+  }
+}

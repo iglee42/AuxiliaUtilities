@@ -1,10 +1,10 @@
 {
   "values": [
-    "au:border_stone_wall",
-    "au:crossed_stone_wall",
-    "au:polished_stone_wall",
-    "au:stoneburnt_wall",
-    "au:quartzburnt_wall",
-    "au:rainbow_stone_wall"
+    "auxiliautilities:border_stone_wall",
+    "auxiliautilities:crossed_stone_wall",
+    "auxiliautilities:polished_stone_wall",
+    "auxiliautilities:stoneburnt_wall",
+    "auxiliautilities:quartzburnt_wall",
+    "auxiliautilities:rainbow_stone_wall"
   ]
 }

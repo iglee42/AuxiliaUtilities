@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/machines/nether_star_generator/front",
-    "side": "au:block/machines/nether_star_generator/side",
-    "top": "au:block/machines/nether_star_generator/top"
-  }
-}

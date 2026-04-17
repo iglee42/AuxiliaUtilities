@@ -1,8 +1,0 @@
-{
-  "parent": "au:block/red_orchid",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "base": "au:block/plants/redorchid_base_1",
-    "cross": "au:block/plants/redorchid_1"
-  }
-}

@@ -1,7 +1,7 @@
 {
   "values": [
-    "au:demon_block",
-    "au:enchanted_block",
-    "au:evil_infused_iron_block"
+    "auxiliautilities:demon_block",
+    "auxiliautilities:enchanted_block",
+    "auxiliautilities:evil_infused_iron_block"
   ]
 }

@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 
 @Mod(AuxiliaUtilities.MODID)
 public class AuxiliaUtilities {
-    public static final String MODID = "au";
+    public static final String MODID = "auxiliautilities";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public AuxiliaUtilities(IEventBus modEventBus, ModContainer modContainer) {

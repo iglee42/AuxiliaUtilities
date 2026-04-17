@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:climograph_block"
+    },
+    {
+      "item": "minecraft:mycelium"
+    },
+    {
+      "item": "minecraft:mycelium"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:deshostilifier"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "au:block/rainbow_stone",
-    "side": "au:block/rainbow_stone",
-    "top": "au:block/rainbow_stone"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/machines/ender_generator/front",
-    "side": "au:block/machines/ender_generator/side",
-    "top": "au:block/machines/ender_generator/top"
-  }
-}

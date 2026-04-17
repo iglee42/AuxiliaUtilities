@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "auxiliautilities:magical_apple"
+    },
+    "C": {
+      "item": "auxiliautilities:speed_upgrade"
+    },
+    "I": {
+      "tag": "c:ingots/enchanted"
+    }
+  },
+  "pattern": [
+    "AIA",
+    "ICI",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:enchanted_speed_upgrade"
+  }
+}

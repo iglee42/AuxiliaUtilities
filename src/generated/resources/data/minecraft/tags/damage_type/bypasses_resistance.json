@@ -1,15 +1,15 @@
 {
   "values": [
     {
-      "id": "au:doom",
+      "id": "auxiliautilities:doom",
       "required": false
     },
     {
-      "id": "au:unstable",
+      "id": "auxiliautilities:unstable",
       "required": false
     },
     {
-      "id": "au:creative_spike",
+      "id": "auxiliautilities:creative_spike",
       "required": false
     }
   ]

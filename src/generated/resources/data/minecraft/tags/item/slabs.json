@@ -1,10 +1,10 @@
 {
   "values": [
-    "au:border_stone_slab",
-    "au:crossed_stone_slab",
-    "au:polished_stone_slab",
-    "au:stoneburnt_slab",
-    "au:quartzburnt_slab",
-    "au:rainbow_stone_slab"
+    "auxiliautilities:border_stone_slab",
+    "auxiliautilities:crossed_stone_slab",
+    "auxiliautilities:polished_stone_slab",
+    "auxiliautilities:stoneburnt_slab",
+    "auxiliautilities:quartzburnt_slab",
+    "auxiliautilities:rainbow_stone_slab"
   ]
 }

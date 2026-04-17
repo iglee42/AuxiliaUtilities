@@ -1,10 +1,10 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "au:rainbow_stone"
+    "item": "auxiliautilities:rainbow_stone"
   },
   "result": {
     "count": 1,
-    "id": "au:rainbow_stone_stairs"
+    "id": "auxiliautilities:rainbow_stone_stairs"
   }
 }

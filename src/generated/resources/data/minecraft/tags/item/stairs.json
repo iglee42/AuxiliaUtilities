@@ -1,10 +1,10 @@
 {
   "values": [
-    "au:border_stone_stairs",
-    "au:crossed_stone_stairs",
-    "au:polished_stone_stairs",
-    "au:stoneburnt_stairs",
-    "au:quartzburnt_stairs",
-    "au:rainbow_stone_stairs"
+    "auxiliautilities:border_stone_stairs",
+    "auxiliautilities:crossed_stone_stairs",
+    "auxiliautilities:polished_stone_stairs",
+    "auxiliautilities:stoneburnt_stairs",
+    "auxiliautilities:quartzburnt_stairs",
+    "auxiliautilities:rainbow_stone_stairs"
   ]
 }

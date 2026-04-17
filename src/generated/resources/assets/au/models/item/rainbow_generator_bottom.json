@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "au:block/rainbow_generator",
-    "side": "au:block/rainbow_generator_bottom",
-    "top": "au:block/rainbow_generator_center"
-  }
-}

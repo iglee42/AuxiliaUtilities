@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "au:block/terraformer/magic_absorber",
-    "side": "au:block/terraformer/terraformer_side",
-    "top": "au:block/terraformer/terraformer_base"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "au:block/drum",
-  "textures": {
-    "side": "au:block/drum/copper",
-    "top": "au:block/drum/top_copper"
-  }
-}

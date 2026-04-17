@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "au:block/stripped_ferrous_juniper_log_top",
-    "side": "au:block/stripped_ferrous_juniper_log"
-  }
-}

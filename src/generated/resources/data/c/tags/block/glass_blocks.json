@@ -1,15 +1,15 @@
 {
   "values": [
-    "au:ethereal_glass",
-    "au:ineffable_glass",
-    "au:obsidian_glass",
-    "au:dark_ineffable_glass",
-    "au:glowing_glass",
-    "au:redstone_glass",
-    "au:dark_glass",
-    "au:reverse_ethereal_glass",
-    "au:thickened_glass",
-    "au:thickened_glass_bordered",
-    "au:thickened_glass_patterned"
+    "auxiliautilities:ethereal_glass",
+    "auxiliautilities:ineffable_glass",
+    "auxiliautilities:obsidian_glass",
+    "auxiliautilities:dark_ineffable_glass",
+    "auxiliautilities:glowing_glass",
+    "auxiliautilities:redstone_glass",
+    "auxiliautilities:dark_glass",
+    "auxiliautilities:reverse_ethereal_glass",
+    "auxiliautilities:thickened_glass",
+    "auxiliautilities:thickened_glass_bordered",
+    "auxiliautilities:thickened_glass_patterned"
   ]
 }
