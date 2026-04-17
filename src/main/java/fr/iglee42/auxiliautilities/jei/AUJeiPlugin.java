@@ -9,10 +9,7 @@ import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.jei.categories.*;
 import fr.iglee42.auxiliautilities.jei.categories.GeneratorCategory.GeneratorWrapper;
-import fr.iglee42.auxiliautilities.jei.subtypes.AngelRingSubtype;
-import fr.iglee42.auxiliautilities.jei.subtypes.BiomeMarkerSubtype;
-import fr.iglee42.auxiliautilities.jei.subtypes.DamageItemSubtype;
-import fr.iglee42.auxiliautilities.jei.subtypes.LuxSaberSubtype;
+import fr.iglee42.auxiliautilities.jei.subtypes.*;
 import fr.iglee42.auxiliautilities.recipes.CrusherRecipe;
 import fr.iglee42.auxiliautilities.recipes.EnchanterRecipe;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
@@ -112,6 +109,8 @@ public class AUJeiPlugin implements IModPlugin {
         registration.registerSubtypeInterpreter(AUItems.LUX_SABER.asItem(), LuxSaberSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.BIOME_MARKER.asItem(), BiomeMarkerSubtype.INSTANCE);
         registration.registerSubtypeInterpreter(AUItems.ANGEL_RING.asItem(), AngelRingSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.GOLDEN_LASSO.asItem(), LassoSubtype.INSTANCE);
+        registration.registerSubtypeInterpreter(AUItems.CURSED_LASSO.asItem(), LassoSubtype.INSTANCE);
     }
 
     enum Generators {

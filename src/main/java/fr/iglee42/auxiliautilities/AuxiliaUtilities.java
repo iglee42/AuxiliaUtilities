@@ -10,6 +10,7 @@ import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
 import fr.iglee42.auxiliautilities.potions.AUPotions;
 import fr.iglee42.auxiliautilities.recipes.AURecipes;
+import fr.iglee42.auxiliautilities.recipes.ingredients.AUIngredients;
 import fr.iglee42.auxiliautilities.utils.AUCuriosHelper;
 import fr.iglee42.auxiliautilities.utils.AUSounds;
 import net.minecraft.resources.ResourceLocation;
@@ -39,6 +40,7 @@ public class AuxiliaUtilities {
         AURecipes.register(modEventBus);
         AUMenus.MENU_TYPES.register(modEventBus);
         AUSounds.SOUND_EVENTS.register(modEventBus);
+        AUIngredients.INGREDIENT_TYPES.register(modEventBus);
         if (LoadingModList.get().getModFileById("curios") != null) new AUCuriosHelper(modEventBus);
 
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

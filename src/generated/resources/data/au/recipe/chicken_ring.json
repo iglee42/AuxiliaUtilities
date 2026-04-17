@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "type": "au:lasso",
+      "entity": "minecraft:chicken",
+      "golden": true
+    },
+    "F": {
+      "tag": "c:feathers"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "item": "au:resonating_redstone_crystal"
+    }
+  },
+  "pattern": [
+    "FIF",
+    "ICI",
+    "RIR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "au:chicken_ring"
+  }
+}

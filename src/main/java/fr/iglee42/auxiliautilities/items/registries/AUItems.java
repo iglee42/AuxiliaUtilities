@@ -1,11 +1,20 @@
 package fr.iglee42.auxiliautilities.items.registries;
 
+import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.gp.GPCapabilities;
 import fr.iglee42.auxiliautilities.interblocks.FlatTransferNodeHandler;
 import fr.iglee42.auxiliautilities.items.*;
 import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.api.gp.AUGPItem;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ambient.AmbientCreature;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -109,6 +118,33 @@ public class AUItems {
     public static final DeferredItem<Item> FLYING_SQUID_RING = ITEMS.register("flying_squid_ring",()-> new ItemFlyingSquidRing(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> ANGEL_RING = ITEMS.register("angel_ring",()-> new ItemAngelRing(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> GOLDEN_LASSO = ITEMS.register("golden_lasso",()->new ItemLasso(new Item.Properties().stacksTo(1),(stack,player,target)->{
+        if (target instanceof Enemy){
+            AULang.LASSO_HOSTILE_MOB.sendToPlayer(player,target.getUUID(),target.getDisplayName());
+            return false;
+        }
+        if (!(target instanceof AmbientCreature) && !(target instanceof WaterAnimal) && !(target instanceof Animal) && !(target instanceof Villager)) return false;
+        if (((Mob) target).getTarget() != null){
+            AULang.LASSO_ATTACKING.sendToPlayer(player,target.getUUID(),target.getDisplayName());
+            return false;
+        }
+        return true;
+    }));
+
+    public static final DeferredItem<Item> CURSED_LASSO = ITEMS.register("cursed_lasso",()->new ItemLasso(new Item.Properties().stacksTo(1),(stack,player,target)->{
+        if (!(target instanceof Enemy)){
+            AULang.LASSO_NOT_HOSTILE_MOB.sendToPlayer(player,target.getUUID(),target.getDisplayName());
+            return false;
+        }
+        float health = target.getHealth();
+        float maxHealth = target.getMaxHealth();
+        float threshold = Mth.clamp(maxHealth / 4, 4, 10);
+        if (health > threshold){
+            AULang.LASSO_TOO_MANY_HEALTH.sendToPlayer(player,target.getUUID(),target.getDisplayName(),Math.floor(health / 2),Math.floor(threshold / 2));
+            return false;
+        }
+        return true;
+    }));
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){

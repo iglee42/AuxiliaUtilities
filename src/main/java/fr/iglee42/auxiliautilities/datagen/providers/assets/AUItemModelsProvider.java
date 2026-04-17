@@ -298,6 +298,25 @@ public class AUItemModelsProvider extends ItemModelProvider {
         getBuilder(AUItems.CHICKEN_RING.getRegisteredName())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", AuxiliaUtilities.id("item/tools/chicken_ring"));
+
+        handheldTool(AUItems.GOLDEN_LASSO)
+                .override()
+                .predicate(AuxiliaUtilities.id("has_entity"),1)
+                .model(getBuilder(AuxiliaUtilities.id("golden_lasso_full").toString())
+                        .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                        .texture("layer0",AuxiliaUtilities.id("item/tools/golden_lasso"))
+                        .texture("layer1",AuxiliaUtilities.id("item/tools/lasso_internal_1"))
+                        .texture("layer2",AuxiliaUtilities.id("item/tools/lasso_internal_2"))
+                );
+        handheldTool(AUItems.CURSED_LASSO)
+                .override()
+                .predicate(AuxiliaUtilities.id("has_entity"),1)
+                .model(getBuilder(AuxiliaUtilities.id("cursed_lasso_full").toString())
+                        .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                        .texture("layer0",AuxiliaUtilities.id("item/tools/cursed_lasso"))
+                        .texture("layer1",AuxiliaUtilities.id("item/tools/lasso_internal_1"))
+                        .texture("layer2",AuxiliaUtilities.id("item/tools/lasso_internal_2"))
+                );
     }
 
 
@@ -309,8 +328,8 @@ public class AUItemModelsProvider extends ItemModelProvider {
                 .texture("layer0",AuxiliaUtilities.id("item/upgrade_" + String.join("_",name)));
     }
 
-    private void handheldTool(DeferredItem<? extends Item> item){
-        getBuilder(item.getId().toString())
+    private ItemModelBuilder handheldTool(DeferredItem<? extends Item> item){
+       return getBuilder(item.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "item/tools/"+item.getId().getPath()));
     }

@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "c:feathers"
+    },
+    "B": {
+      "tag": "c:feathers"
+    },
+    "C": {
+      "type": "au:lasso",
+      "entity": "minecraft:ghast",
+      "golden": false
+    },
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "L": {
+      "type": "au:lasso",
+      "entity": "minecraft:bat",
+      "golden": true
+    },
+    "S": {
+      "item": "au:flying_squid_ring"
+    }
+  },
+  "pattern": [
+    "AGB",
+    "GSG",
+    "LGC"
+  ],
+  "result": {
+    "components": {
+      "au:wings": "feather"
+    },
+    "count": 1,
+    "id": "au:angel_ring"
+  }
+}

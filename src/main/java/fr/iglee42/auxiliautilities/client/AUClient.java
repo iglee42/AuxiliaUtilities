@@ -190,6 +190,14 @@ public class AUClient {
         ItemProperties.register(AUItems.ANGEL_RING.asItem(),
                 AuxiliaUtilities.id("wings"),
                 (stack,level,entity,seed)->stack.getOrDefault(AUDataComponents.WINGS, ItemAngelRing.AngelRingWings.NONE).ordinal());
+
+        ItemProperties.register(AUItems.GOLDEN_LASSO.asItem(),
+                AuxiliaUtilities.id("has_entity"),
+                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);
+
+        ItemProperties.register(AUItems.CURSED_LASSO.asItem(),
+                AuxiliaUtilities.id("has_entity"),
+                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);
     }
 
     @SubscribeEvent

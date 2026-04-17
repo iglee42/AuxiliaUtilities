@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "au:item/tools/cursed_lasso",
+    "layer1": "au:item/tools/lasso_internal_1",
+    "layer2": "au:item/tools/lasso_internal_2"
+  }
+}

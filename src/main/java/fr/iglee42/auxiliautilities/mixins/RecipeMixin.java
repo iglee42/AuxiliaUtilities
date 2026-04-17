@@ -1,6 +1,9 @@
 package fr.iglee42.auxiliautilities.mixins;
 
 import fr.iglee42.auxiliautilities.blocks.BlockMagicalWood;
+import fr.iglee42.auxiliautilities.items.ItemLasso;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +32,9 @@ public interface RecipeMixin {
         if (craftingPlayer.containerMenu instanceof CraftingMenu){
             if (getResultItem(craftingPlayer.registryAccess()).getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockMagicalWood){
                 craftingPlayer.giveExperienceLevels(-4);
+            }
+            if (getResultItem(craftingPlayer.registryAccess()).getItem() instanceof ItemLasso && getResultItem(craftingPlayer.registryAccess()).getItem() == AUItems.GOLDEN_LASSO.asItem()){
+                craftingPlayer.giveExperienceLevels(-8);
             }
         }
     }

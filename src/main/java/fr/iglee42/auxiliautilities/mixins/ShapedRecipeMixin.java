@@ -1,6 +1,8 @@
 package fr.iglee42.auxiliautilities.mixins;
 
+import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.items.ItemUnstableIngot;
+import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +30,17 @@ public abstract class ShapedRecipeMixin {
                 return;
             }
             if (!(CommonHooks.getCraftingPlayer().containerMenu instanceof CraftingMenu)){
+                cir.setReturnValue(false);
+                return;
+            }
+        }
+
+        if (getResultItem(level.registryAccess()).getItem().equals(AUItems.GOLDEN_LASSO.asItem())){
+            if (CommonHooks.getCraftingPlayer() == null){
+                cir.setReturnValue(false);
+                return;
+            }
+            if (CommonHooks.getCraftingPlayer().experienceLevel < 8){
                 cir.setReturnValue(false);
                 return;
             }

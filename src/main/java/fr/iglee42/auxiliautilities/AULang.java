@@ -189,6 +189,9 @@ public enum AULang {
     FLYING_SQUID_RING("item","flying_squid_ring","Ring of the Flying Squid"),
     ANGEL_RING("item","angel_ring","Angel Ring"),
 
+    GOLDEN_LASSO("item","golden_lasso","Golden Lasso"),
+    CURSED_LASSO("item","cursed_lasso","Cursed Lasso"),
+
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
 
     WOODEN_SICKLE("item","wooden_sickle","Wooden Sickle"),
@@ -315,6 +318,11 @@ public enum AULang {
     WESTERN("message","western","Western"),
     EASTERN("message","eastern","Eastern"),
 
+    LASSO_HOSTILE_MOB("message","lasso.hostile_mob","%s is a hostile mob."),
+    LASSO_NOT_HOSTILE_MOB("message","lasso.not_hostile_mob","%s is not a hostile mob."),
+    LASSO_ATTACKING("message","lasso.attacking","%s is too busy attacking someone."),
+    LASSO_TOO_MANY_HEALTH("message","lasso.too_many_health","%s has too much health (%s hearts). Reduces to %s hearts."),
+
     FLAT_TRANSFER_NODE_TOOLTIP("tooltip","flat_transfer_node","Thinner than the thinnest of pancakes."),
     FLAT_TRANSFER_NODE_TOOLTIP_1("tooltip","flat_transfer_node.1","Small enough to fit between blocks"),
     FLAT_TRANSFER_NODE_TOOLTIP_2("tooltip","flat_transfer_node.2","Hold %s when placing to reverse pull/push."),
@@ -355,6 +363,10 @@ public enum AULang {
     DIAMOND_SPIKE_TOOLTIP("tooltip","diamond_spike","Mobs drop 'Player-Kill Only' items"),
     NETHERITE_SPIKE_TOOLTIP("tooltip","netherite_spike","Mobs drop experience, 'Player-Kill Only' and 'Fire Only' items"),
     CREATIVE_SPIKE_TOOLTIP("tooltip","creative_spike","Instantly kills any mob, even in creative mode"),
+
+    LASSO_STORED_ENTITY_TOOLTIP("tooltip","lasso.stored_entity","Stored Entity : %s"),
+    LASSO_HEALTH_TOOLTIP("tooltip","lasso.health","Health : %s/%s"),
+    LASSO_PROFESSION_TOOLTIP("tooltip","lasso.profession","Profession : %s"),
 
     CURSED_EARTH_TOOLTIP("tooltip","cursed_earth","A corrupted dirt that spawns a lot of powerful mobs on it."),
     CURSED_EARTH_TOOLTIP_1("tooltip","cursed_earth.1","This block can burn if it is exposed too longer to sun."),

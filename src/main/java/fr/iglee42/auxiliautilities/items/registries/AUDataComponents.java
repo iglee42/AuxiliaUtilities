@@ -8,6 +8,7 @@ import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
@@ -28,6 +29,7 @@ public class AUDataComponents {
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> FILTER_FLAGS = DATA_COMPONENTS.register("filter_flags", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<AngelRingWings>> WINGS = DATA_COMPONENTS.register("wings", ()-> DataComponentType.<AngelRingWings>builder().persistent(AngelRingWings.CODEC).networkSynchronized(AngelRingWings.STREAM_CODEC).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> REMAINING_FLYING_TICKS = DATA_COMPONENTS.register("remaining_flying_ticks", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>,DataComponentType<CompoundTag>> STORED_ENTITY = DATA_COMPONENTS.register("stored_entity", ()-> DataComponentType.<CompoundTag>builder().persistent(CompoundTag.CODEC).networkSynchronized(ByteBufCodecs.COMPOUND_TAG).build());
 
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<List<ItemStack>>> FILTER_ITEMS=
             DATA_COMPONENTS.register("filter_items",
