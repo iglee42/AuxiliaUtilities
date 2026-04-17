@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "c:storage_blocks/copper"
+    },
+    "P": {
+      "tag": "c:ingots/copper"
+    },
+    "S": {
+      "item": "auxiliautilities:stone_spike"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SPS",
+    "PLP"
+  ],
+  "result": {
+    "count": 4,
+    "id": "auxiliautilities:copper_spike"
+  }
+}

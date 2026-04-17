@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:reinforced_large_drum"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:reinforced_large_drum"
+  }
+}

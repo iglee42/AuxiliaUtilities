@@ -1,0 +1,16 @@
+{
+  "type": "auxiliautilities:enchanter",
+  "energy": 64000,
+  "ingredient": {
+    "count": 1,
+    "item": "minecraft:bookshelf"
+  },
+  "lapis": {
+    "count": 1,
+    "tag": "c:gems/lapis"
+  },
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:magical_wood"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "auxiliautilities:block/ferrous_juniper_leaves"
+  }
+}

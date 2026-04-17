@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "auxiliautilities:block/ferrous_juniper_log_top",
+    "side": "auxiliautilities:block/ferrous_juniper_log"
+  }
+}

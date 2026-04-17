@@ -1,0 +1,16 @@
+{
+  "type": "auxiliautilities:enchanter",
+  "energy": 8000,
+  "ingredient": {
+    "count": 1,
+    "tag": "c:ingots/gold"
+  },
+  "lapis": {
+    "count": 1,
+    "tag": "c:gems/lapis"
+  },
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:enchanted_ingot"
+  }
+}

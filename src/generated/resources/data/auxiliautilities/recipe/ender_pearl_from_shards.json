@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    },
+    {
+      "item": "auxiliautilities:ender_shard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:ender_pearl"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/machines/frosty_generator/front_on",
+    "side": "auxiliautilities:block/machines/frosty_generator/side",
+    "top": "auxiliautilities:block/machines/frosty_generator/top"
+  }
+}

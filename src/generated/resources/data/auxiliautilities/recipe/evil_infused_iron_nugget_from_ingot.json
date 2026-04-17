@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:evil_infused_iron_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "auxiliautilities:evil_infused_iron_nugget"
+  }
+}

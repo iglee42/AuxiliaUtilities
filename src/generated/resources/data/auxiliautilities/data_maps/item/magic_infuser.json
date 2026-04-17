@@ -1,0 +1,16 @@
+{
+  "values": {
+    "#c:gems/lapis": {
+      "energyProvided": 1
+    },
+    "auxiliautilities:magical_wood": {
+      "energyProvided": 16
+    },
+    "minecraft:enchanted_book": {
+      "energyProvided": 4
+    },
+    "minecraft:experience_bottle": {
+      "energyProvided": 16
+    }
+  }
+}

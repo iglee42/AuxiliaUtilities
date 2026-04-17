@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/machines/furnace_front_on",
+    "side": "auxiliautilities:block/machines/side",
+    "top": "auxiliautilities:block/machines/bottom"
+  }
+}

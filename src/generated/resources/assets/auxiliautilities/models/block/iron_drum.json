@@ -1,0 +1,7 @@
+{
+  "parent": "auxiliautilities:block/drum",
+  "textures": {
+    "side": "auxiliautilities:block/drum/iron",
+    "top": "auxiliautilities:block/drum/top_iron"
+  }
+}

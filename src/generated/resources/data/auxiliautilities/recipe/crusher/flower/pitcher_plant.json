@@ -1,0 +1,11 @@
+{
+  "type": "auxiliautilities:crusher",
+  "energy": 4000,
+  "ingredient": {
+    "item": "minecraft:pitcher_plant"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:cyan_dye"
+  }
+}

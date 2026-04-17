@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:upgrade_base"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:speed_upgrade"
+  }
+}

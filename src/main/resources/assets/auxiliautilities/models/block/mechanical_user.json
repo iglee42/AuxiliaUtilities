@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/furnace_top",
+    "east": "auxiliautilities:block/mechanical_side",
+    "north": "auxiliautilities:block/mechanical_side",
+    "particle": "auxiliautilities:block/mechanical_side",
+    "south": "auxiliautilities:block/mechanical_side",
+    "up": "auxiliautilities:block/mechanical_user",
+    "west": "auxiliautilities:block/mechanical_side"
+  }
+}

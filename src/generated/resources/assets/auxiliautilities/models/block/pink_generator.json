@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/machines/pink_generator/front",
+    "side": "auxiliautilities:block/machines/pink_generator/side",
+    "top": "auxiliautilities:block/machines/pink_generator/top"
+  }
+}

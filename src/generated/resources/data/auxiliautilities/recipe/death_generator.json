@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": [
+      {
+        "item": "minecraft:bone"
+      },
+      {
+        "item": "minecraft:rotten_flesh"
+      }
+    ],
+    "F": {
+      "item": "auxiliautilities:furnace_generator"
+    },
+    "I": {
+      "item": "minecraft:spider_eye"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CIC",
+    "RFR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:death_generator"
+  }
+}

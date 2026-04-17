@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "auxiliautilities:iron_drum"
+    },
+    "F": {
+      "tag": "c:gems/diamond"
+    },
+    "S": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    }
+  },
+  "pattern": [
+    "FSF",
+    "FBF",
+    "FSF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:reinforced_large_drum"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "auxiliautilities:resonator",
+  "ingredient": {
+    "item": "minecraft:quartz_block"
+  },
+  "required_gp": 8,
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:quartzburnt"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "auxiliautilities:block/ferrous_juniper_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "auxiliautilities:block/ferrous_juniper_wood"
+    },
+    "axis=z": {
+      "model": "auxiliautilities:block/ferrous_juniper_wood",
+      "x": 90
+    }
+  }
+}

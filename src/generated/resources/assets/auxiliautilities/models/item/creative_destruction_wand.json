@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "auxiliautilities:item/tools/creative_destruction_wand"
+  }
+}

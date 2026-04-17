@@ -1,0 +1,12 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "auxiliautilities:models/block/spike.obj",
+  "mtl_override": "auxiliautilities:models/block/copper_spike.mtl",
+  "render_type": "minecraft:solid",
+  "shade_quads": true,
+  "textures": {
+    "particle": "auxiliautilities:block/spikes/copper_spikes_base"
+  }
+}

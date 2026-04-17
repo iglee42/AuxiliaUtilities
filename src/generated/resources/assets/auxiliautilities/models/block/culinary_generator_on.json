@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/machines/culinary_generator/front_on",
+    "side": "auxiliautilities:block/machines/culinary_generator/side",
+    "top": "auxiliautilities:block/machines/culinary_generator/top"
+  }
+}

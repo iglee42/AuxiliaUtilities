@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "auxiliautilities:block/compressed/blackstone/2"
+  }
+}

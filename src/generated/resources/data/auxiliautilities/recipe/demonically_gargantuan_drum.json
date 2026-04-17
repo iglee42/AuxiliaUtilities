@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "auxiliautilities:reinforced_large_drum"
+    },
+    "F": {
+      "item": "auxiliautilities:demon_ingot"
+    },
+    "S": {
+      "item": "auxiliautilities:klein_bottle"
+    }
+  },
+  "pattern": [
+    "FSF",
+    "FBF",
+    "FSF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:demonically_gargantuan_drum"
+  }
+}

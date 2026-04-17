@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "auxiliautilities:resonating_redstone_crystal"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    " R",
+    "SS",
+    "SS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:power_manager"
+  }
+}

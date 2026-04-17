@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "auxiliautilities:block/lava_mill",
+    "east": "auxiliautilities:block/stoneburnt",
+    "north": "auxiliautilities:block/stoneburnt",
+    "particle": "auxiliautilities:block/lava_mill",
+    "south": "auxiliautilities:block/stoneburnt",
+    "up": "auxiliautilities:block/lava_mill",
+    "west": "auxiliautilities:block/stoneburnt"
+  }
+}

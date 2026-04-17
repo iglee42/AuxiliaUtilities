@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_quartzburnt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "auxiliautilities:quartzburnt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "auxiliautilities:quartzburnt_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_quartzburnt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "auxiliautilities:quartzburnt_slab"
+    ]
+  }
+}

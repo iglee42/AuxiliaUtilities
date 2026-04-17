@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:diamond_block"
+    },
+    "I": {
+      "item": "minecraft:emerald_block"
+    },
+    "O": {
+      "item": "auxiliautilities:passable_opinium_core"
+    }
+  },
+  "pattern": [
+    " O ",
+    "CIC",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:decent_opinium_core"
+  }
+}

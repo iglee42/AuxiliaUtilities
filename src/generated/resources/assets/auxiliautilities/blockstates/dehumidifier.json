@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "auxiliautilities:block/dehumidifier",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "auxiliautilities:block/dehumidifier"
+    },
+    "facing=south": {
+      "model": "auxiliautilities:block/dehumidifier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "auxiliautilities:block/dehumidifier",
+      "y": 270
+    }
+  }
+}

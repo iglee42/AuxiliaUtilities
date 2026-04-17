@@ -1,0 +1,14 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"SOLID",
+        "textures":[
+            "auxiliautilities:block/crossed_stone_connected"
+        ],
+        "extra":{
+        	"ignore_states":true,
+        	"connect_inside":false
+        }
+    }
+}

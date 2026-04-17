@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "auxiliautilities:block/cooler",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "auxiliautilities:block/cooler"
+    },
+    "facing=south": {
+      "model": "auxiliautilities:block/cooler",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "auxiliautilities:block/cooler",
+      "y": 270
+    }
+  }
+}

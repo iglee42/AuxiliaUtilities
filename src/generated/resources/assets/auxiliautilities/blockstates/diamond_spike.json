@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "auxiliautilities:block/diamond_spike",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "auxiliautilities:block/diamond_spike",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "auxiliautilities:block/diamond_spike",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "auxiliautilities:block/diamond_spike",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "auxiliautilities:block/diamond_spike"
+    },
+    "facing=west": {
+      "model": "auxiliautilities:block/diamond_spike",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

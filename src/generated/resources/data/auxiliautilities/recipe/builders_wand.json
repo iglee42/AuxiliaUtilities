@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "P": {
+      "item": "auxiliautilities:magical_wood"
+    }
+  },
+  "pattern": [
+    "  G",
+    " P ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:builders_wand"
+  }
+}

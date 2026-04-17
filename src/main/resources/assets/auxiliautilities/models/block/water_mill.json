@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "auxiliautilities:block/stoneburnt",
+    "east": "auxiliautilities:block/mill_fan",
+    "north": "auxiliautilities:block/mill_fan",
+    "particle": "auxiliautilities:block/water_mill",
+    "south": "auxiliautilities:block/mill_fan",
+    "up": "auxiliautilities:block/water_mill",
+    "west": "auxiliautilities:block/mill_fan"
+  }
+}

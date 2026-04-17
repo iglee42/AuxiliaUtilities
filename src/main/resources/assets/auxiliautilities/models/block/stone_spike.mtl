@@ -1,0 +1,5 @@
+newmtl base
+map_Kd auxiliautilities:block/spikes/stone_spikes_base
+
+newmtl side
+map_Kd auxiliautilities:block/spikes/stone_spikes_side

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "c:strings"
+    },
+    "S": {
+      "item": "auxiliautilities:power_manager"
+    },
+    "T": {
+      "tag": "c:ender_pearls"
+    }
+  },
+  "pattern": [
+    "RTR",
+    "TST",
+    "RTR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:ender_porcupine"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:rainbow_generator_bottom"
+    },
+    {
+      "item": "auxiliautilities:rainbow_generator_top"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:rainbow_generator"
+  }
+}

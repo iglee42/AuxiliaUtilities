@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:iron_drum"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:iron_drum"
+  }
+}

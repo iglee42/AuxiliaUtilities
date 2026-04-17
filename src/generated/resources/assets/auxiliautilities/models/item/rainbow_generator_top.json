@@ -1,0 +1,8 @@
+{
+  "parent": "auxiliautilities:item/slab_top",
+  "textures": {
+    "bottom": "auxiliautilities:block/rainbow_generator_center",
+    "side": "auxiliautilities:block/rainbow_generator_top",
+    "top": "auxiliautilities:block/rainbow_generator"
+  }
+}

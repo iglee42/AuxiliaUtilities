@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "auxiliautilities:resonating_redstone_crystal"
+    },
+    "G": {
+      "item": "auxiliautilities:redstone_gear"
+    },
+    "S": {
+      "item": "auxiliautilities:stoneburnt"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "GCG",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:water_mill"
+  }
+}

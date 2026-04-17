@@ -1,0 +1,10 @@
+{
+  "values": {
+    "#c:crops/cactus": {
+      "energyProvided": 4
+    },
+    "#c:sands": {
+      "energyProvided": 1
+    }
+  }
+}

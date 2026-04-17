@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "auxiliautilities:block/terraformer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "auxiliautilities:block/terraformer"
+    },
+    "facing=south": {
+      "model": "auxiliautilities:block/terraformer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "auxiliautilities:block/terraformer",
+      "y": 270
+    }
+  }
+}

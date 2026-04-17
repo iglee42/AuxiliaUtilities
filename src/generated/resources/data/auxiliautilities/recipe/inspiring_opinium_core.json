@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:elytra"
+    },
+    "I": {
+      "item": "minecraft:nether_star"
+    },
+    "O": {
+      "item": "auxiliautilities:amazing_opinium_core"
+    }
+  },
+  "pattern": [
+    " O ",
+    "CIC",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:inspiring_opinium_core"
+  }
+}

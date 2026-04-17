@@ -1,0 +1,11 @@
+{
+  "type": "auxiliautilities:resonator",
+  "ingredient": {
+    "tag": "c:gems/lapis"
+  },
+  "required_gp": 16,
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:lunar_reactive_dust"
+  }
+}

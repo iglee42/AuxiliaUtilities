@@ -1,0 +1,16 @@
+{
+  "type": "auxiliautilities:enchanter",
+  "energy": 24000,
+  "ingredient": {
+    "count": 1,
+    "tag": "c:storage_blocks/gold"
+  },
+  "lapis": {
+    "count": 9,
+    "tag": "c:gems/lapis"
+  },
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:enchanted_block"
+  }
+}

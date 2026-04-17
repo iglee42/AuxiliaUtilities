@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:comparator"
+    },
+    "I": {
+      "tag": "c:dusts/redstone"
+    },
+    "M": {
+      "item": "auxiliautilities:climograph_block"
+    },
+    "S": {
+      "tag": "c:ender_pearls"
+    }
+  },
+  "pattern": [
+    "SMS",
+    "IDI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:terraformer"
+  }
+}

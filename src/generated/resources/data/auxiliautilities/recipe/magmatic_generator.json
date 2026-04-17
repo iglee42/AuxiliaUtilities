@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:ingots/gold"
+    },
+    "F": {
+      "item": "auxiliautilities:furnace_generator"
+    },
+    "I": {
+      "tag": "c:buckets/lava"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CIC",
+    "RFR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:magmatic_generator"
+  }
+}

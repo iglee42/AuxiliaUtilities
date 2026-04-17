@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "auxiliautilities:block/slightly_larger_chest",
+    "east": "auxiliautilities:block/slightly_larger_chest_side",
+    "north": "auxiliautilities:block/slightly_larger_chest_front",
+    "particle": "auxiliautilities:block/slightly_larger_chest_front",
+    "south": "auxiliautilities:block/slightly_larger_chest_side",
+    "up": "auxiliautilities:block/slightly_larger_chest",
+    "west": "auxiliautilities:block/slightly_larger_chest_side"
+  }
+}

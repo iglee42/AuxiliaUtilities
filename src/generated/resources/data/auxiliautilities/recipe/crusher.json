@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "auxiliautilities:machine_block"
+    },
+    "I": {
+      "tag": "c:bricks/normal"
+    },
+    "P": [
+      {
+        "item": "minecraft:piston"
+      },
+      {
+        "item": "minecraft:sticky_piston"
+      }
+    ]
+  },
+  "pattern": [
+    "IPI",
+    "ICI",
+    "IPI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:crusher"
+  }
+}

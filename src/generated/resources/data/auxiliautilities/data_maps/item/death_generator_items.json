@@ -1,0 +1,32 @@
+{
+  "values": {
+    "minecraft:bone": {
+      "energy_per_tick": 40,
+      "time": 400
+    },
+    "minecraft:breeze_rod": {
+      "energy_per_tick": 100,
+      "time": 400
+    },
+    "minecraft:echo_shard": {
+      "energy_per_tick": 125,
+      "time": 400
+    },
+    "minecraft:ghast_tear": {
+      "energy_per_tick": 80,
+      "time": 400
+    },
+    "minecraft:rotten_flesh": {
+      "energy_per_tick": 20,
+      "time": 400
+    },
+    "minecraft:spider_eye": {
+      "energy_per_tick": 60,
+      "time": 400
+    },
+    "minecraft:wither_skeleton_skull": {
+      "energy_per_tick": 150,
+      "time": 400
+    }
+  }
+}

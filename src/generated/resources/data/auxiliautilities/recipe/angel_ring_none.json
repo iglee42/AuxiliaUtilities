@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "c:glass_blocks/cheap"
+    },
+    "B": {
+      "tag": "c:glass_blocks/cheap"
+    },
+    "C": {
+      "type": "auxiliautilities:lasso",
+      "entity": "minecraft:ghast",
+      "golden": false
+    },
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "L": {
+      "type": "auxiliautilities:lasso",
+      "entity": "minecraft:bat",
+      "golden": true
+    },
+    "S": {
+      "item": "auxiliautilities:flying_squid_ring"
+    }
+  },
+  "pattern": [
+    "AGB",
+    "GSG",
+    "LGC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:angel_ring"
+  }
+}

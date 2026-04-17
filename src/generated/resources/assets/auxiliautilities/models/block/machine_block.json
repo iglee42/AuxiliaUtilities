@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "auxiliautilities:block/machines/bottom",
+    "side": "auxiliautilities:block/machines/side"
+  }
+}

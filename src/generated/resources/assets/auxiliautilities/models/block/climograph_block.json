@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "auxiliautilities:block/terraformer/terraformer_base",
+    "side": "auxiliautilities:block/terraformer/terraformer_side"
+  }
+}

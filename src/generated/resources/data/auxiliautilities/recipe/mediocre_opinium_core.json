@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:gold_block"
+    },
+    "O": {
+      "item": "auxiliautilities:pathetic_opinium_core"
+    }
+  },
+  "pattern": [
+    " O ",
+    "CIC",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:mediocre_opinium_core"
+  }
+}

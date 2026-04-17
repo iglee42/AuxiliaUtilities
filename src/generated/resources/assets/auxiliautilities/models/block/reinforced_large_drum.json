@@ -1,0 +1,7 @@
+{
+  "parent": "auxiliautilities:block/drum",
+  "textures": {
+    "side": "auxiliautilities:block/drum/reinforced_large",
+    "top": "auxiliautilities:block/drum/top_reinforced_large"
+  }
+}

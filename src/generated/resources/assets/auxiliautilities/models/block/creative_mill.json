@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "auxiliautilities:block/creative_mill",
+    "side": "auxiliautilities:block/creative_mill_side"
+  }
+}

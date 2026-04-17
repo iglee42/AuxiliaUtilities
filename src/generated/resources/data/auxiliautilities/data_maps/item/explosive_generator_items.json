@@ -1,0 +1,12 @@
+{
+  "values": {
+    "minecraft:gunpowder": {
+      "energy_per_tick": 160,
+      "time": 400
+    },
+    "minecraft:tnt": {
+      "energy_per_tick": 160,
+      "time": 3200
+    }
+  }
+}

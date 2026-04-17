@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "auxiliautilities:block/dragon_egg_mill",
+    "east": "auxiliautilities:block/dragon_egg_mill_side",
+    "north": "auxiliautilities:block/dragon_egg_mill_side",
+    "particle": "auxiliautilities:block/dragon_egg_mill",
+    "south": "auxiliautilities:block/dragon_egg_mill_side",
+    "up": "auxiliautilities:block/dragon_egg_mill",
+    "west": "auxiliautilities:block/dragon_egg_mill_side"
+  }
+}

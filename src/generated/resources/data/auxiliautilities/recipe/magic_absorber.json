@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:climograph_block"
+    },
+    {
+      "tag": "minecraft:anvil"
+    },
+    {
+      "tag": "minecraft:anvil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:magic_absorber"
+  }
+}

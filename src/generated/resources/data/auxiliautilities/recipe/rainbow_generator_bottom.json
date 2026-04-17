@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "auxiliautilities:nether_star_generator"
+    },
+    "B": {
+      "item": "auxiliautilities:overclocked_generator"
+    },
+    "C": {
+      "item": "auxiliautilities:pink_generator"
+    },
+    "D": {
+      "item": "auxiliautilities:potion_generator"
+    },
+    "E": {
+      "item": "auxiliautilities:heated_redstone_generator"
+    },
+    "F": {
+      "item": "auxiliautilities:slimey_generator"
+    },
+    "G": {
+      "item": "auxiliautilities:survival_generator"
+    },
+    "H": {
+      "item": "auxiliautilities:explosive_generator"
+    },
+    "R": {
+      "item": "auxiliautilities:resonating_redstone_crystal"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DRE",
+    "FGH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:rainbow_generator_bottom"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "power_state=disabled": {
+      "model": "auxiliautilities:block/redstone_clock_off"
+    },
+    "power_state=enabled_not_powered": {
+      "model": "auxiliautilities:block/redstone_clock"
+    },
+    "power_state=enabled_powered": {
+      "model": "auxiliautilities:block/redstone_clock"
+    }
+  }
+}

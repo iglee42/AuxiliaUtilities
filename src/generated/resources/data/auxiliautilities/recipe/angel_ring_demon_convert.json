@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "auxiliautilities:angel_ring"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:charcoal"
+    }
+  ],
+  "result": {
+    "components": {
+      "auxiliautilities:wings": "demon"
+    },
+    "count": 1,
+    "id": "auxiliautilities:angel_ring"
+  }
+}

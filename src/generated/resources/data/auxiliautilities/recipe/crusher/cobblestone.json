@@ -1,0 +1,16 @@
+{
+  "type": "auxiliautilities:crusher",
+  "energy": 4000,
+  "ingredient": {
+    "tag": "c:cobblestones/normal"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:gravel"
+  },
+  "second_chance": 0.1,
+  "second_result": {
+    "count": 1,
+    "id": "minecraft:sand"
+  }
+}

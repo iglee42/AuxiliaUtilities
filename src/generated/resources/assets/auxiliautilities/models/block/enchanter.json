@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "auxiliautilities:block/machines/bottom",
+    "side": "auxiliautilities:block/machines/enchanter_side",
+    "top": "auxiliautilities:block/machines/enchanter_top"
+  }
+}

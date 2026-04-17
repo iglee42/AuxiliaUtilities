@@ -1,0 +1,7 @@
+{
+  "parent": "auxiliautilities:block/drum",
+  "textures": {
+    "side": "auxiliautilities:block/drum/netherite",
+    "top": "auxiliautilities:block/drum/top_netherite"
+  }
+}

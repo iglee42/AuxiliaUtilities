@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "auxiliautilities:dark_glass"
+    },
+    "M": {
+      "item": "auxiliautilities:moon_stone"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GMG",
+    "GGG"
+  ],
+  "result": {
+    "count": 8,
+    "id": "auxiliautilities:dark_ineffable_glass"
+  }
+}

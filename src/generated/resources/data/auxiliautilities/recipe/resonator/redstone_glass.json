@@ -1,0 +1,11 @@
+{
+  "type": "auxiliautilities:resonator",
+  "ingredient": {
+    "item": "auxiliautilities:thickened_glass"
+  },
+  "required_gp": 1,
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:redstone_glass"
+  }
+}

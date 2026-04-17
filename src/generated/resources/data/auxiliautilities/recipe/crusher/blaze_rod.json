@@ -1,0 +1,16 @@
+{
+  "type": "auxiliautilities:crusher",
+  "energy": 4000,
+  "ingredient": {
+    "tag": "c:rods/blaze"
+  },
+  "result": {
+    "count": 2,
+    "id": "minecraft:blaze_powder"
+  },
+  "second_chance": 0.4,
+  "second_result": {
+    "count": 3,
+    "id": "minecraft:blaze_powder"
+  }
+}

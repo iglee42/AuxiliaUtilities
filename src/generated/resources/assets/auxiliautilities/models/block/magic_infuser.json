@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/terraformer/magic_infuser",
+    "side": "auxiliautilities:block/terraformer/terraformer_side",
+    "top": "auxiliautilities:block/terraformer/terraformer_base"
+  }
+}

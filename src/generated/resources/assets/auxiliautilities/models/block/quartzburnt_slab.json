@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "auxiliautilities:block/quartzburnt",
+    "side": "auxiliautilities:block/quartzburnt",
+    "top": "auxiliautilities:block/quartzburnt"
+  }
+}

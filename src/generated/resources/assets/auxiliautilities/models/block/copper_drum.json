@@ -1,0 +1,7 @@
+{
+  "parent": "auxiliautilities:block/drum",
+  "textures": {
+    "side": "auxiliautilities:block/drum/copper",
+    "top": "auxiliautilities:block/drum/top_copper"
+  }
+}

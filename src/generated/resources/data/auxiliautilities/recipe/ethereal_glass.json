@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks/cheap"
+    },
+    "M": {
+      "item": "auxiliautilities:moon_stone"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GMG",
+    "GGG"
+  ],
+  "result": {
+    "count": 8,
+    "id": "auxiliautilities:ethereal_glass"
+  }
+}

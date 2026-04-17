@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "auxiliautilities:block/rainbow_stone",
+    "side": "auxiliautilities:block/rainbow_stone",
+    "top": "auxiliautilities:block/rainbow_stone"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:item/generated",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "layer0": "auxiliautilities:item/biome_marker_active",
+    "layer1": "auxiliautilities:item/biome_marker_active_0",
+    "layer2": "auxiliautilities:item/biome_marker_active_1",
+    "layer3": "auxiliautilities:item/biome_marker_active_2",
+    "layer4": "auxiliautilities:item/biome_marker_active_3"
+  }
+}

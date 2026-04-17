@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "auxiliautilities:item/ender_shards/ender_shard_6"
+  }
+}

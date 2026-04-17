@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "items": "auxiliautilities:sun_crystal",
+      "strict": true
+    },
+    "D": {
+      "tag": "c:ingots/evil_infused_iron"
+    },
+    "G": {
+      "item": "minecraft:lime_stained_glass"
+    },
+    "R": {
+      "item": "auxiliautilities:resonating_redstone_crystal"
+    }
+  },
+  "pattern": [
+    "DGD",
+    "DCD",
+    "DRD"
+  ],
+  "result": {
+    "components": {
+      "minecraft:base_color": "lime"
+    },
+    "count": 1,
+    "id": "auxiliautilities:lux_saber"
+  }
+}

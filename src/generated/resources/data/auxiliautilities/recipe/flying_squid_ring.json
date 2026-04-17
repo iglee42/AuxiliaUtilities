@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "type": "auxiliautilities:lasso",
+      "entity": "minecraft:squid",
+      "golden": true
+    },
+    "D": {
+      "tag": "c:gems/diamond"
+    },
+    "F": {
+      "tag": "c:dyes/black"
+    },
+    "P": {
+      "tag": "c:ender_pearls"
+    },
+    "R": {
+      "item": "auxiliautilities:chicken_ring"
+    }
+  },
+  "pattern": [
+    "FDF",
+    "CRP",
+    "FDF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:flying_squid_ring"
+  }
+}

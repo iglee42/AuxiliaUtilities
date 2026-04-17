@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "auxiliautilities:block/quartzburnt_slab"
+    },
+    "type=double": {
+      "model": "auxiliautilities:block/quartzburnt"
+    },
+    "type=top": {
+      "model": "auxiliautilities:block/quartzburnt_slab_top"
+    }
+  }
+}

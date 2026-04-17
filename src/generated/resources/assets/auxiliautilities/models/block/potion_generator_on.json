@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "auxiliautilities:block/machines/potion_generator/front_on",
+    "side": "auxiliautilities:block/machines/potion_generator/side",
+    "top": "auxiliautilities:block/machines/potion_generator/top"
+  }
+}

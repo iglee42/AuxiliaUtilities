@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bowl"
+    },
+    "F": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "S": [
+      {
+        "item": "minecraft:cobblestone_slab"
+      },
+      {
+        "item": "minecraft:stone_slab"
+      }
+    ]
+  },
+  "pattern": [
+    "FSF",
+    "FBF",
+    "FSF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "auxiliautilities:stone_drum"
+  }
+}

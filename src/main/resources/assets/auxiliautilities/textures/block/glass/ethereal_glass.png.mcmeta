@@ -1,0 +1,14 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "layer":"TRANSLUCENT",
+        "textures":[
+            "auxiliautilities:block/glass/ethereal_glass_connected"
+        ],
+        "extra":{
+        	"ignore_states":true,
+        	"connect_inside":false
+        }
+    }
+}
