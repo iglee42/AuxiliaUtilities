@@ -105,7 +105,10 @@ public class AUItems {
     public static final DeferredItem<Item> DIVISION_SIGIL = ITEMS.register("division_sigil",()-> new ItemDivisionSigil(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> PSEUDO_INVERSION_SIGIL = ITEMS.register("pseudo_inversion_sigil",()-> new ItemPseudoInversionSigil(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> CHICKEN_RING = ITEMS.register("chicken_ring",()-> new ItemChickenRing(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> FLYING_SQUID_RING = ITEMS.register("flying_squid_ring",()-> new ItemFlyingSquidRing(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> ANGEL_RING = ITEMS.register("angel_ring",()-> new ItemAngelRing(new Item.Properties().stacksTo(1)));
+
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
@@ -120,6 +123,6 @@ public class AUItems {
                 return new ItemEnergyDroplet.EnergyTank(it);
             return null;
         },AUItems.ENERGY_DROPLET.get());
-        event.registerItem(GPCapabilities.ITEM, AUGPItem.AUGPItemHolder::new,AUItems.ANGEL_RING.get());
+        event.registerItem(GPCapabilities.ITEM, AUGPItem.AUGPItemHolder::new,AUItems.ANGEL_RING.get(),AUItems.FLYING_SQUID_RING.get(),AUItems.CHICKEN_RING.get());
     }
 }

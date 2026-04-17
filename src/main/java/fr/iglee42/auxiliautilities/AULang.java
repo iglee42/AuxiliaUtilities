@@ -185,6 +185,8 @@ public enum AULang {
     DIVISION_SIGIL("item","division_sigil","Division Sigil (Activated)"),
     PSEUDO_INVERSION_SIGIL("item","pseudo_inversion_sigil","Pseudo-Inversion Sigil"),
 
+    CHICKEN_RING("item","chicken_ring","Chicken Wing Ring"),
+    FLYING_SQUID_RING("item","flying_squid_ring","Ring of the Flying Squid"),
     ANGEL_RING("item","angel_ring","Angel Ring"),
 
     UPGRADE_SPEED("upgrade","speed","Increases speed of operations"),
@@ -250,6 +252,10 @@ public enum AULang {
     MAGIC_INFUSER_TOOLTIP("tooltip","magic_infuser","Infuses magical energy into the area."),
     ANTENNA_TOOLTIP("tooltip","antenna","A device that used to send all the terraforming force (TF) to the terraformer."),
 
+    CHICKEN_RING_TOOLTIP("tooltip","chicken_ring","Flight of the majestic beast!"),
+    CHICKEN_RING_TOOLTIP_1("tooltip","chicken_ring.1","Uses 1 GP."),
+    FLYING_SQUID_RING_TOOLTIP("tooltip","flying_squid_ring","Jet propulsion at your fingertips!"),
+    FLYING_SQUID_RING_TOOLTIP_1("tooltip","flying_squid_ring.1","Uses 16 GP."),
     ANGEL_RING_TOOLTIP("tooltip","angel_ring","Fly like the god of this world."),
     ANGEL_RING_TOOLTIP_1("tooltip","angel_ring.1","Uses 32 GP."),
 

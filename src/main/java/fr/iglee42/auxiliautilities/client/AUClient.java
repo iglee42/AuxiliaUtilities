@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntityTypes;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
 import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer;
+import fr.iglee42.auxiliautilities.client.layers.ChickenRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
 import fr.iglee42.auxiliautilities.client.models.FlatTransferNodeModelWrapper;
 import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
@@ -194,6 +195,7 @@ public class AUClient {
     @SubscribeEvent
     public static void registerHUD(RegisterGuiLayersEvent event){
         event.registerAbove(VanillaGuiLayers.HOTBAR,AuxiliaUtilities.id("gp_informations"),ClientGPManager.HUD);
+        event.registerAbove(VanillaGuiLayers.HOTBAR,AuxiliaUtilities.id("flying_ring_bar"),ClientFlyingRingManager.HUD);
     }
 
     @SubscribeEvent
@@ -223,6 +225,7 @@ public class AUClient {
             if (renderer != null){
                 renderer.addLayer(new KikokuSheathLayer<>(renderer));
                 renderer.addLayer(new AngelRingRenderer<>(renderer));
+                renderer.addLayer(new ChickenRingRenderer<>(renderer));
             }
         }
     }

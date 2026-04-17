@@ -31,7 +31,6 @@ public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerMo
 
     protected static final double FLAP_FREQUENCY = 0.5;
     protected static final double MAX_ANGLE = 25.0;
-    private double angle = 0;
 
     public AngelRingRenderer(RenderLayerParent<T, PlayerModel<T>> parent) {
         super(parent);
@@ -53,13 +52,13 @@ public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerMo
         ItemAngelRing.AngelRingWings wings = stack.get(AUDataComponents.WINGS);
         if (wings == null || wings == ItemAngelRing.AngelRingWings.NONE) return;
 
-        renderWing(wings, poseStack, source, light, true, player.getAbilities().flying);
-        renderWing(wings, poseStack, source, light, false, player.getAbilities().flying);
+        renderWing(wings, poseStack, source, light, true, player.getAbilities().flying,getParentModel());
+        renderWing(wings, poseStack, source, light, false, player.getAbilities().flying,getParentModel());
     }
 
-    private void renderWing(ItemAngelRing.AngelRingWings wings, PoseStack poseStack, MultiBufferSource buffer, int packedLight, boolean right, boolean isFlying){
+    public static void renderWing(ItemAngelRing.AngelRingWings wings, PoseStack poseStack, MultiBufferSource buffer, int packedLight, boolean right, boolean isFlying,PlayerModel<?> model) {
         poseStack.pushPose();
-        getParentModel().body.translateAndRotate(poseStack);
+        model.body.translateAndRotate(poseStack);
 
         poseStack.translate((right ? -1 : 1) * 0.5, 0.1, 0.45);
         poseStack.scale(0.9f, 0.9f, 0.9f);
@@ -81,7 +80,7 @@ public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerMo
         poseStack.popPose();
     }
 
-    private void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, ItemAngelRing.AngelRingWings wings){
+    private static void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, ItemAngelRing.AngelRingWings wings){
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
         BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getModel(getWingLocation(wings));
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutout());

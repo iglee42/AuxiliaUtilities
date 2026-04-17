@@ -4,6 +4,8 @@ import fr.iglee42.auxiliautilities.gp.GPCapabilities;
 import fr.iglee42.auxiliautilities.gp.GPItemHolder;
 import fr.iglee42.auxiliautilities.gp.GPNetworkManager;
 import fr.iglee42.auxiliautilities.items.ItemAngelRing;
+import fr.iglee42.auxiliautilities.items.ItemChickenRing;
+import fr.iglee42.auxiliautilities.items.ItemFlyingSquidRing;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -38,8 +40,12 @@ public class AUCuriosHelper {
 
                     @Override
                     public void curioTick(SlotContext slotContext) {
-                        if (getStack().getItem() instanceof ItemAngelRing it){
-                            it.tick(getStack(), slotContext.entity());
+                        switch (getStack().getItem()) {
+                            case ItemAngelRing it -> it.tick(getStack(), slotContext.entity());
+                            case ItemFlyingSquidRing it -> it.tick(getStack(), slotContext.entity());
+                            case ItemChickenRing it -> it.tick(getStack(), slotContext.entity());
+                            default -> {
+                            }
                         }
                     }
 
@@ -47,8 +53,7 @@ public class AUCuriosHelper {
                     public boolean canEquipFromUse(SlotContext slotContext) {
                         return true;
                     }
-                }, AUItems.ANGEL_RING);
-
+                }, AUItems.ANGEL_RING,AUItems.FLYING_SQUID_RING,AUItems.CHICKEN_RING);
     }
 
     private abstract static class AUGPCurio implements ICurio{
@@ -56,6 +61,7 @@ public class AUCuriosHelper {
         @Override
         public void onEquip(SlotContext slotContext, ItemStack prevStack) {
             if (!(slotContext.entity() instanceof Player player)) return;
+            if (ItemStack.isSameItem(prevStack,getStack())) return;
             GPItemHolder holder;
             if ((holder=getStack().getCapability(GPCapabilities.ITEM,player)) != null){
                 if (holder.getGPGeneration() > 0) GPNetworkManager.INSTANCE.registerGenerator(holder);
@@ -66,6 +72,7 @@ public class AUCuriosHelper {
         @Override
         public void onUnequip(SlotContext slotContext, ItemStack newStack) {
             if (!(slotContext.entity() instanceof Player player)) return;
+            if (ItemStack.isSameItem(newStack,getStack())) return;
             GPItemHolder prevHolder;
             if ((prevHolder=getStack().getCapability(GPCapabilities.ITEM,player)) != null){
                 GPNetworkManager.INSTANCE.unregisterGenerator(prevHolder);

@@ -100,7 +100,7 @@ public class AUItemTagsProvider extends ItemTagsProvider {
 
         tag(AUTags.Items.DIVISION_SIGILS).add(AUItems.DIVISION_SIGIL.asItem(),AUItems.PSEUDO_INVERSION_SIGIL.asItem());
 
-        tag(CuriosTags.RING).add(AUItems.ANGEL_RING.asItem());
+        tag(CuriosTags.RING).add(AUItems.ANGEL_RING.asItem(),AUItems.FLYING_SQUID_RING.asItem(),AUItems.CHICKEN_RING.asItem());
     }
 
     private void addCompressedSet(TagKey<Item> tag, CompressedBlockSet set){

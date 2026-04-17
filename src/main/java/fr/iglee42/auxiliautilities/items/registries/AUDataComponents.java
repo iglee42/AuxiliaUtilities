@@ -27,6 +27,7 @@ public class AUDataComponents {
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<StoredFluidStack>> STORED_FLUID = DATA_COMPONENTS.register("stored_fluid", ()-> DataComponentType.<StoredFluidStack>builder().persistent(StoredFluidStack.CODEC).networkSynchronized(StoredFluidStack.STREAM_CODEC).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> FILTER_FLAGS = DATA_COMPONENTS.register("filter_flags", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<AngelRingWings>> WINGS = DATA_COMPONENTS.register("wings", ()-> DataComponentType.<AngelRingWings>builder().persistent(AngelRingWings.CODEC).networkSynchronized(AngelRingWings.STREAM_CODEC).build());
+    public static final DeferredHolder<DataComponentType<?>,DataComponentType<Integer>> REMAINING_FLYING_TICKS = DATA_COMPONENTS.register("remaining_flying_ticks", ()-> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
     public static final DeferredHolder<DataComponentType<?>,DataComponentType<List<ItemStack>>> FILTER_ITEMS=
             DATA_COMPONENTS.register("filter_items",

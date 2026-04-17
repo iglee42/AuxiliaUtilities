@@ -25,6 +25,8 @@ public enum AUPackets {
     SYNC_FLAT_TRANSFER_NODES(SyncFlatTransferNodesPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     POWER_DATA(ItemPowerManager.PowerDataPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
     PLAY_SOUND(PlaySoundPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+    UPDATE_PLAYER_REMAINING_FLYING_TICKS(UpdatePlayerRemainingFlyingTicksPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
+    PLAYER_MOVE_VERTICALLY(PlayerMoveVerticallyPacket.STREAM_CODEC, PacketFlow.CLIENTBOUND),
 
     // TO SERVER
     ASK_CURRENT_BLOCK_GP(AskCurrentBlockGPPacket.STREAM_CODEC, PacketFlow.SERVERBOUND),

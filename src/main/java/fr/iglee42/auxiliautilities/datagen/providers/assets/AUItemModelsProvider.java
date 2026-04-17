@@ -290,6 +290,14 @@ public class AUItemModelsProvider extends ItemModelProvider {
                     .parent(new ModelFile.UncheckedModelFile("item/generated"))
                     .texture("layer0", AuxiliaUtilities.id("item/wings/"+wing.name().toLowerCase()));
         }
+
+        getBuilder(AUItems.FLYING_SQUID_RING.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", AuxiliaUtilities.id("item/tools/flying_squid_ring"));
+
+        getBuilder(AUItems.CHICKEN_RING.getRegisteredName())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", AuxiliaUtilities.id("item/tools/chicken_ring"));
     }
 
 
