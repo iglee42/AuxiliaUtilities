@@ -18,6 +18,7 @@ import net.neoforged.neoforge.client.model.ItemLayerModel;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WandsModelWrapper extends BakedModelWrapper<BakedModel> {
@@ -35,14 +36,14 @@ public class WandsModelWrapper extends BakedModelWrapper<BakedModel> {
 
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand) {
-        List<BakedQuad> quads = super.getQuads(state, side, rand);
+        List<BakedQuad> quads = new ArrayList<>(super.getQuads(state, side, rand));
         if (type.equals("builders")){
-            List<BakedQuad> added = Quad2DCache.quads2DCache.get(Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BUILDERS));
+            List<BakedQuad> added = new ArrayList<>(Quad2DCache.quads2DCache.get(Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BUILDERS)));
             quads.removeAll(added);
             quads.addAll(added);
         }
         if (type.equals("destruction")){
-            List<BakedQuad> added = Quad2DCache.quads2DCache.get(Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(DESTRUCTION));
+            List<BakedQuad> added = new ArrayList<>(Quad2DCache.quads2DCache.get(Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(DESTRUCTION)));
             quads.removeAll(added);
             quads.addAll(added);
         }
