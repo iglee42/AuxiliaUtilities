@@ -87,11 +87,11 @@ public class AUBlockEntityTypes {
 
     private static <T extends AUBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block>... block){
         Supplier<List<Block>> blocks = ()->Arrays.stream(block).map(holder -> (Block) holder.get()).toList();
-        return BLOCK_ENTITY_TYPES.register(name,()->BlockEntityType.Builder.of(supplier, blocks.get().toArray(new Block[]{})).build(null));
+        return BLOCK_ENTITY_TYPES.register(name,()->new BlockEntityType<>(supplier, blocks.get().toArray(new Block[]{})));
     }
 
     private static <T extends AUGeneratorBlockEntity> DeferredHolder<BlockEntityType<?>,BlockEntityType<T>> registerGenerator(String name, BlockEntityType.BlockEntitySupplier<T> supplier, DeferredHolder<Block, ? extends Block> block){
-        var holder =  BLOCK_ENTITY_TYPES.register(name,()->BlockEntityType.Builder.of(supplier,block.get()).build(null));
+        var holder =  BLOCK_ENTITY_TYPES.register(name,()->new BlockEntityType<>(supplier,block.get()));
         GENERATORS.addLast( holder);
         return holder;
     }

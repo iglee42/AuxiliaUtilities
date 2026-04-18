@@ -55,7 +55,7 @@ public class SingleUpgradeStackHandler extends SingleItemStackHandler {
 
         public SlotSpeedUpgradeHandler( int x, int y) {
             super(SingleUpgradeStackHandler.this, 0, x, y);
-            setBackground(InventoryMenu.BLOCK_ATLAS, AuxiliaUtilities.id("item/upgrade_speed_skeleton"));
+            setBackground(AuxiliaUtilities.id("item/upgrade_speed_skeleton"));
         }
 
         @Override

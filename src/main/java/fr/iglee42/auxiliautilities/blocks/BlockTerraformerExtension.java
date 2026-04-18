@@ -2,16 +2,12 @@ package fr.iglee42.auxiliautilities.blocks;
 
 import com.mojang.serialization.MapCodec;
 import fr.iglee42.auxiliautilities.AULang;
-import fr.iglee42.auxiliautilities.blockentities.generators.AUGeneratorBlockEntity;
 import fr.iglee42.auxiliautilities.blockentities.terraformer.BETerraformerExtension;
-import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import fr.iglee42.auxiliautilities.blocks.api.AUEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -24,10 +20,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

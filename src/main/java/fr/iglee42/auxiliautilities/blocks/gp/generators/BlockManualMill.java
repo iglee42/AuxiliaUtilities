@@ -53,11 +53,11 @@ public class BlockManualMill extends AUBlock implements AUGPEntityBlock<BEManual
         withBlockEntityDo(level,pos,be->{
             if (level.isClientSide){
                 ConstantRightClickHandler.start(level,pos);
-                result.set(InteractionResult.sidedSuccess(true));
+                result.set(InteractionResult.SUCCESS);
             } else {
                 be.triggerAnimation();
                 player.causeFoodExhaustion(0.2F);
-                result.set(InteractionResult.SUCCESS_NO_ITEM_USED);
+                result.set(InteractionResult.SUCCESS_SERVER);
             }
         });
         return result.get();

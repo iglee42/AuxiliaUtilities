@@ -23,6 +23,8 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Function;
+
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
 public class AUItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AuxiliaUtilities.MODID);
@@ -144,6 +146,10 @@ public class AUItems {
         }
         return true;
     }));
+
+    public static <T extends Item> DeferredItem<T> createItem(String name, Function<Item.Properties,T> func, Item.Properties props){
+        return ITEMS.registerItem(name,func,props);
+    }
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){

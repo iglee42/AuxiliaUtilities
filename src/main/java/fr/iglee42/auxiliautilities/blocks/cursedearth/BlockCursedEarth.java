@@ -9,39 +9,33 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.lighting.LightEngine;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 
-import java.util.*;
+import java.util.List;
 
 public class BlockCursedEarth extends AUBlock {
 
     public static final int MAX_DECAY = 15;
     public static final IntegerProperty DECAY = IntegerProperty.create("decay", 0, MAX_DECAY);
 
-    public BlockCursedEarth() {
-        super(Properties.of()
-                .mapColor(MapColor.DIRT)
-                .strength(0.6F)
-                .randomTicks()
-                .sound(SoundType.GRASS)
-                .pushReaction(PushReaction.NORMAL));
+    public BlockCursedEarth(Properties props) {
+        super(props);
 
         registerDefaultState(stateDefinition.any().setValue(DECAY, 0));
     }
@@ -77,10 +71,8 @@ public class BlockCursedEarth extends AUBlock {
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.getLightBlockInto(
-                    level, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(level, blockpos)
-            );
-            return i < level.getMaxLightLevel();
+            int i =  LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightBlock());
+            return i < 15;
         }
     }
 
@@ -166,7 +158,7 @@ public class BlockCursedEarth extends AUBlock {
         if (data == null)
             return;
 
-        Entity entity = data.type.create(level);
+        Entity entity = data.type.create(level,EntitySpawnReason.NATURAL);
         if (!(entity instanceof Monster monster))
             return;
 
@@ -176,7 +168,7 @@ public class BlockCursedEarth extends AUBlock {
                 pos.getZ() + 0.5
         );
 
-        if (!monster.checkSpawnRules(level, MobSpawnType.NATURAL)
+        if (!monster.checkSpawnRules(level, EntitySpawnReason.NATURAL)
                 || !monster.checkSpawnObstruction(level)) {
             monster.discard();
             return;

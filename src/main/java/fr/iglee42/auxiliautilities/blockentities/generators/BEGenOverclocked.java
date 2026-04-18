@@ -23,12 +23,14 @@ public class BEGenOverclocked extends AUGeneratorBlockEntity{
 
     @Override
     protected int getEnergyPerProgress(ItemStack stack, FluidStack fluid) {
+        if (level == null) return 0;
         active = true;
-        return stack.getBurnTime(null);
+        return stack.getBurnTime(null,level.fuelValues());
     }
 
     @Override
     protected boolean isItemValid(int slot, ItemStack stack) {
-        return stack.getBurnTime(null)>0;
+        if (level == null) return false;
+        return stack.getBurnTime(null,level.fuelValues())>0;
     }
 }

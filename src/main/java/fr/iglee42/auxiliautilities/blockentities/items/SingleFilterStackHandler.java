@@ -179,7 +179,7 @@ public abstract class SingleFilterStackHandler extends SingleItemStackHandler{
         public SlotFilterWidget(SingleFilterStackHandler filterHandler, int x, int y) {
             super(filterHandler, 0, x, y);
             this.filterHandler = filterHandler;
-            setBackground(InventoryMenu.BLOCK_ATLAS, AuxiliaUtilities.id("item/filter_skeleton"));
+            setBackground(AuxiliaUtilities.id("item/filter_skeleton"));
         }
 
         @Override

@@ -99,10 +99,10 @@ public class BEFurnace extends AUBlockEntity {
         upgrades.deserializeNBT(registries, tag.getCompound("Upgrades"));
         if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")) {
             if (level != null) {
-                currentRecipe = level.getRecipeManager()
+                /*currentRecipe = level.recipeAccess().propertySet()
                         .getAllRecipesFor(RecipeType.SMELTING).stream()
                         .filter(r->r.value().matches(new SingleRecipeInput(inventory.getStackInSlot(0)), level))
-                        .findFirst().orElse(null);
+                        .findFirst().orElse(null);*/
             }
         } else {
             currentRecipe = null;
@@ -113,16 +113,16 @@ public class BEFurnace extends AUBlockEntity {
         if (currentRecipe == null || level == null)
             return false;
         ItemStack input = inventory.getStackInSlot(0);
-        if (!currentRecipe.value().getIngredients().get(0).test(input))
+        if (!currentRecipe.value().input().test(input))
             return false;
-        ItemStack result = currentRecipe.value().getResultItem(level.registryAccess());
+        ItemStack result = currentRecipe.value().assemble(new SingleRecipeInput(input.copy()),level.registryAccess());
         return inventory.insertItem(1, result, true).isEmpty();
     }
 
     @Override
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {
         if (currentRecipe == null) {
-            Optional<RecipeHolder<SmeltingRecipe>> optional = level.getRecipeManager()
+            Optional<RecipeHolder<SmeltingRecipe>> optional = level.recipeAccess()
                     .getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(inventory.getStackInSlot(0)), level);
             if (optional.isPresent()) {
                 currentRecipe = optional.get();
@@ -162,7 +162,7 @@ public class BEFurnace extends AUBlockEntity {
     private int calculateMaxProgress() {
         if (currentRecipe == null)
             return 0;
-        int cookingTime = currentRecipe.value().getCookingTime();
+        int cookingTime = currentRecipe.value().cookingTime();
         int recipeEnergy = cookingTime * BASE_ENERGY_PER_TICK;
         int baseProgress = cookingTime;
         int speedMultiplier = 1 + upgrades.getLevel(Upgrade.SPEED);
@@ -175,7 +175,7 @@ public class BEFurnace extends AUBlockEntity {
     private int calculateEnergyForProgressStep(int currentProgress, int maxProgress) {
         if (currentRecipe == null || maxProgress <= 0)
             return 0;
-        int totalEnergy = currentRecipe.value().getCookingTime() * BASE_ENERGY_PER_TICK;
+        int totalEnergy = currentRecipe.value().cookingTime() * BASE_ENERGY_PER_TICK;
         int energyBefore = (int) ((long) totalEnergy * currentProgress / maxProgress);
         int energyAfter = (int) ((long) totalEnergy * (currentProgress + 1) / maxProgress);
         return energyAfter - energyBefore;

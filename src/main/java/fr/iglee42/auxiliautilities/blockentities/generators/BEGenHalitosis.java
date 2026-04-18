@@ -6,8 +6,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Endermite;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,7 +42,7 @@ public class BEGenHalitosis extends AUGeneratorBlockEntity{
             double y = pos.getY() + 0.5D + rand.nextGaussian() * 3.0D;
             double z = pos.getZ() + 0.5D + rand.nextGaussian() * 3.0D;
 
-            Endermite endermite = EntityType.ENDERMITE.create(level);
+            Endermite endermite = EntityType.ENDERMITE.create(level,EntitySpawnReason.NATURAL);
             if (endermite == null) return;
 
             float yaw = Mth.wrapDegrees(rand.nextFloat() * 360.0F);
@@ -54,11 +54,11 @@ public class BEGenHalitosis extends AUGeneratorBlockEntity{
             endermite.finalizeSpawn(
                     (ServerLevel) level,
                     level.getCurrentDifficultyAt(BlockPos.containing(x, y, z)),
-                    MobSpawnType.NATURAL,
+                    EntitySpawnReason.NATURAL,
                     null
             );
 
-            if (endermite.checkSpawnRules(level, MobSpawnType.NATURAL) && endermite.checkSpawnObstruction(level)) {
+            if (endermite.checkSpawnRules(level, EntitySpawnReason.NATURAL) && endermite.checkSpawnObstruction(level)) {
 
                 level.addFreshEntity(endermite);
                 endermite.spawnAnim();

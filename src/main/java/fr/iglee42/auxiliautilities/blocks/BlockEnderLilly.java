@@ -197,7 +197,7 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader p_304482_, BlockPos p_52255_, BlockState p_52256_) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData, Player player) {
         return new ItemStack(AUBlocks.ENDER_LILLY.asItem());
     }
 

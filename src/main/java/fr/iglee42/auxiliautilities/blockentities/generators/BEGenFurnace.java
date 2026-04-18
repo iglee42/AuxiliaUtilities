@@ -18,7 +18,8 @@ public class BEGenFurnace extends AUGeneratorBlockEntity{
 
     @Override
     protected int getProgressPerItem(int slot, ItemStack stack) {
-        return stack.getBurnTime(null) / 10;
+        if (level == null) return 0;
+        return stack.getBurnTime(null,level.fuelValues()) / 10;
     }
 
     @Override
@@ -28,6 +29,7 @@ public class BEGenFurnace extends AUGeneratorBlockEntity{
 
     @Override
     protected boolean isItemValid(int slot, ItemStack stack) {
-        return stack.getBurnTime(null)>0;
+        if (level == null) return false;
+        return stack.getBurnTime(null,level.fuelValues())>0;
     }
 }

@@ -79,7 +79,7 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
 
     public boolean canWork(){
         if (currentRecipe == null) return false;
-        boolean work = GPNetworkManager.INSTANCE.hasEnoughPower(getNetworkId()) && inventory.insertItem(1,currentRecipe.value().getResultItem(level.registryAccess()),true).isEmpty();
+        boolean work = GPNetworkManager.INSTANCE.hasEnoughPower(getNetworkId()) && inventory.insertItem(1,currentRecipe.value().assemble(new SingleRecipeInput(inventory.getStackInSlot(0)),level.registryAccess()),true).isEmpty();
         if (currentRecipe.value().doesRequiresRainbowGenerator()){
             MutableBoolean hasRainbow = new MutableBoolean(false);
             BlockPos.betweenClosedStream(new AABB(getBlockPos()).inflate(AUConfig.RAINBOW_RANGE.get())).forEach(
@@ -103,7 +103,7 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
         if (currentRecipe != null) {
             if (canWork()){
                 if (progress >= currentRecipe.value().getRequiredGP() * 100){
-                    if (inventory.insertItem(1,currentRecipe.value().getResultItem(level.registryAccess()),false).isEmpty()){
+                    if (inventory.insertItem(1,currentRecipe.value().assemble(new SingleRecipeInput(inventory.getStackInSlot(0)),level.registryAccess()),false).isEmpty()){
                         inventory.extractItem(0,1,false);
                         this.progress = 0;
                         this.currentRecipe = null;
@@ -116,7 +116,7 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
             }
             return true;
         }
-        Optional<RecipeHolder<ResonatorRecipe>> optional = level.getRecipeManager().getRecipeFor(ResonatorRecipe.Type.INSTANCE, new SingleRecipeInput(inventory.getStackInSlot(0)), level);
+        Optional<RecipeHolder<ResonatorRecipe>> optional = level.recipeAccess().getRecipeFor(ResonatorRecipe.Type.INSTANCE, new SingleRecipeInput(inventory.getStackInSlot(0)), level);
         if (optional.isPresent()){
             currentRecipe = optional.get();
             progress = 0;
@@ -144,9 +144,9 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
         progress = tag.getInt("Progress");
         upgrades.deserializeNBT(registries,tag.getCompound("Upgrades"));
         if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")){
-            currentRecipe = level.getRecipeManager().getAllRecipesFor(ResonatorRecipe.Type.INSTANCE).stream()
+            /*currentRecipe = level.getRecipeManager().getAllRecipesFor(ResonatorRecipe.Type.INSTANCE).stream()
                     .filter(r -> r.value().matches(new SingleRecipeInput(inventory.getStackInSlot(0)), level))
-                    .findFirst().orElse(null);
+                    .findFirst().orElse(null);*/
         } else {
             currentRecipe = null;
         }

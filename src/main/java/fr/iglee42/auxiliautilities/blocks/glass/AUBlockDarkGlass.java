@@ -10,12 +10,12 @@ public class AUBlockDarkGlass extends AUBlockGlass {
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState p_309084_, BlockGetter p_309133_, BlockPos p_309097_) {
+    protected boolean propagatesSkylightDown(BlockState p_309084_) {
         return false;
     }
 
     @Override
-    protected int getLightBlock(BlockState p_60585_, BlockGetter getter, BlockPos p_60587_) {
-        return getter.getMaxLightLevel();
+    protected int getLightBlock(BlockState p_60585_) {
+        return 15;
     }
 }

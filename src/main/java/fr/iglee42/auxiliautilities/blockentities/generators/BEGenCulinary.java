@@ -53,7 +53,7 @@ public class BEGenCulinary extends AUGeneratorBlockEntity{
 
     public static float getEnergyRate(ItemStack stack) {
 
-        FoodProperties food = stack.getFoodProperties(null);
+        FoodProperties food = stack.get(DataComponents.FOOD);
 
         if (food == null)
             return 0;

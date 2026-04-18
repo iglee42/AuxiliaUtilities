@@ -33,12 +33,12 @@ public class CompressedBlockSet {
             float destroyTime = (float) (((BlockPropertiesAccessor)props).getDestroyTime() * Math.pow(2.25D,tier + 1));
             float explosionResistance = (float) (((BlockPropertiesAccessor)props).getExplosionResistance() * Math.pow(1.5D,tier + 1));
             int finalTier = tier;
-            blocks.put(finalTier,AUBlocks.createBlock("compressed_"+name+"_"+tier,()->new AUBlock(props.strength(destroyTime,explosionResistance)){
+            blocks.put(finalTier,AUBlocks.createBlock("compressed_"+name+"_"+tier,p->new AUBlock(p){
                 @Override
                 public List<Component> getStorageTooltips(ItemStack stack, Item.TooltipContext ctx, TooltipFlag flag) {
                     return List.of(AULang.COMPRESSED_BLOCKS.get(formatInt((int) Math.pow(9,finalTier))));
                 }
-            }));
+            },props.strength(destroyTime,explosionResistance)));
         }
         ALL_SETS.add(this);
     }

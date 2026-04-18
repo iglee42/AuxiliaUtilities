@@ -174,8 +174,7 @@ public class BETerraformerExtension extends AUBlockEntity {
                 double x = getBlockPos().getX() + 0.5 + ((dir.getStepX() * 5) + rand.nextFloat() * 2 - 1) / 16;
                 double y = (getBlockPos().getY() + 1) + ((5*rand.nextFloat() * 11.5D) / 16);
                 double z = getBlockPos().getZ() + 0.5 + ((dir.getStepZ() * 5) + rand.nextFloat() * 2 - 1) / 16;
-                Vector3f color = Vec3.fromRGB24(colors[rand.nextInt(colors.length)]).toVector3f();
-                level.addParticle(new DustParticleOptions(color,1f),x,y,z,0,0,0);
+                level.addParticle(new DustParticleOptions(colors[rand.nextInt(colors.length)],1f),x,y,z,0,0,0);
             }
         }
     }

@@ -68,7 +68,7 @@ public interface AUEntityBlock<T extends AUBlockEntity> extends AUBlockBase, Ent
     }
 
     default InteractionResult openMenu(Level level, BlockPos pos, Player player){
-        if (level.isClientSide) return InteractionResult.sidedSuccess(true);
+        if (level.isClientSide) return InteractionResult.SUCCESS;
         if (player.isCrouching()) return InteractionResult.PASS;
         AtomicReference<OptionalInt> result = new AtomicReference<>(OptionalInt.empty());
         withBlockEntityDo(level,pos,be->{

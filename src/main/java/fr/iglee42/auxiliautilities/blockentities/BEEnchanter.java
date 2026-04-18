@@ -111,10 +111,10 @@ public class BEEnchanter extends AUBlockEntity {
         progress = tag.getInt("Progress");
         upgrades.deserializeNBT(registries, tag.getCompound("Upgrades"));
         if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")) {
-            currentRecipe = level.getRecipeManager().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE).stream()
+            /*currentRecipe = level.getRecipeManager().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE).stream()
                     .filter(r -> r.value().getIngredient().test(inventory.getStackInSlot(0))
                             && r.value().getLapisIngredient().test(inventory.getStackInSlot(1)))
-                    .findFirst().orElse(null);
+                    .findFirst().orElse(null);*/
         } else {
             currentRecipe = null;
         }
@@ -123,9 +123,10 @@ public class BEEnchanter extends AUBlockEntity {
     public boolean canWork() {
         if (currentRecipe == null || level == null)
             return false;
+        EnchanterRecipeInput input = new EnchanterRecipeInput(this);
         return getEnchantmentPowerAround() >= 15 && currentRecipe.value().getIngredient().test(inventory.getStackInSlot(0))
                 && currentRecipe.value().getLapisIngredient().test(inventory.getStackInSlot(1))
-                && inventory.insertItem(2, currentRecipe.value().getResultItem(level.registryAccess()), true).isEmpty();
+                && inventory.insertItem(2, currentRecipe.value().assemble(input,level.registryAccess()), true).isEmpty();
     }
 
     public float getEnchantmentPowerAround(){
@@ -141,7 +142,7 @@ public class BEEnchanter extends AUBlockEntity {
     @Override
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {
         if (currentRecipe == null) {
-            Optional<RecipeHolder<EnchanterRecipe>> optional = level.getRecipeManager()
+            Optional<RecipeHolder<EnchanterRecipe>> optional = level.recipeAccess()
                     .getRecipeFor(EnchanterRecipe.Type.INSTANCE, new EnchanterRecipeInput(this), level);
             if (optional.isPresent()) {
                 currentRecipe = optional.get();
@@ -158,7 +159,7 @@ public class BEEnchanter extends AUBlockEntity {
         }
         if (canWork()) {
             if (progress >= calculateMaxProgress()) {
-                if (inventory.insertItem(2, currentRecipe.value().getResultItem(level.registryAccess()), false)
+                if (inventory.insertItem(2, currentRecipe.value().assemble(new EnchanterRecipeInput(this),level.registryAccess()), false)
                         .isEmpty()) {
                     inventory.extractItem(0, currentRecipe.value().getIngredient().count(), false);
                     inventory.extractItem(1, currentRecipe.value().getLapisIngredient().count(), false);

@@ -97,9 +97,9 @@ public class BECrusher extends AUBlockEntity {
         progress = tag.getInt("Progress");
         upgrades.deserializeNBT(registries, tag.getCompound("Upgrades"));
         if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")) {
-            currentRecipe = level.getRecipeManager().getAllRecipesFor(CrusherRecipe.Type.INSTANCE).stream()
+            /*currentRecipe = level.getRecipeManager().getAllRecipesFor(CrusherRecipe.Type.INSTANCE).stream()
                     .filter(r -> r.value().getIngredient().test(inventory.getStackInSlot(0)))
-                    .findFirst().orElse(null);
+                    .findFirst().orElse(null);*/
         } else {
             currentRecipe = null;
         }
@@ -109,14 +109,14 @@ public class BECrusher extends AUBlockEntity {
         if (currentRecipe == null || level == null)
             return false;
         return currentRecipe.value().getIngredient().test(inventory.getStackInSlot(0))
-                && inventory.insertItem(1, currentRecipe.value().getResultItem(level.registryAccess()), true).isEmpty()
+                && inventory.insertItem(1, currentRecipe.value().assemble(new CrusherRecipeInput(this),level.registryAccess()), true).isEmpty()
                 && (!currentRecipe.value().hasSecondResult() || inventory.insertItem(2, currentRecipe.value().getSecondResult(), true).isEmpty());
     }
 
     @Override
     protected boolean serverTick(ServerLevel level, BlockPos pos, BlockState state) {
         if (currentRecipe == null) {
-            Optional<RecipeHolder<CrusherRecipe>> optional = level.getRecipeManager()
+            Optional<RecipeHolder<CrusherRecipe>> optional = level.recipeAccess()
                     .getRecipeFor(CrusherRecipe.Type.INSTANCE, new CrusherRecipeInput(this), level);
             if (optional.isPresent()) {
                 currentRecipe = optional.get();
@@ -135,7 +135,7 @@ public class BECrusher extends AUBlockEntity {
             if (progress >= calculateMaxProgress()) {
 
                 boolean hasSecondResult = currentRecipe.value().hasSecondResult() && new Random().nextFloat() <= currentRecipe.value().getChance();
-                if (inventory.insertItem(1, currentRecipe.value().getResultItem(level.registryAccess()), false)
+                if (inventory.insertItem(1, currentRecipe.value().assemble(new CrusherRecipeInput(this),level.registryAccess()), false)
                         .isEmpty() && (!hasSecondResult || inventory.insertItem(2, currentRecipe.value().getSecondResult().copy(), false)
                         .isEmpty())) {
                     inventory.extractItem(0, 1, false);

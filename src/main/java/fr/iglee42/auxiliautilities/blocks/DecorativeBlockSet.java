@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.blocks;
 
+import fr.iglee42.auxiliautilities.blocks.api.AUBlock;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -19,10 +20,10 @@ public class DecorativeBlockSet {
 
     public DecorativeBlockSet(String name) {
         this.name = name;
-        block = AUBlocks.createBlock(name,()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-        stairs = AUBlocks.createBlock(name+"_stairs",()-> new StairBlock(block.get().defaultBlockState(),BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)));
-        slab = AUBlocks.createBlock(name+"_slab",()-> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)));
-        wall = AUBlocks.createBlock(name+"_wall",()-> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+        block = AUBlocks.createBlock(name, AUBlock::new,BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS));
+        stairs = AUBlocks.createBlock(name+"_stairs",props-> new StairBlock(block.get().defaultBlockState(),props),BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS));
+        slab = AUBlocks.createBlock(name+"_slab", SlabBlock::new,BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB));
+        wall = AUBlocks.createBlock(name+"_wall",WallBlock::new,BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL));
         ALL_SETS.add(this);
     }
 
