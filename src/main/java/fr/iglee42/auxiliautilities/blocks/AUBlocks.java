@@ -186,16 +186,16 @@ public class AUBlocks {
             .sound(SoundType.GRASS)
             .pushReaction(PushReaction.NORMAL));
 
-    public static final DeferredBlock<AUBlock> CLIMOGRAPH_BLOCK = createBlock("climograph_block", AUBlock::new,BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()));
-    public static final DeferredBlock<BlockTerraformer> TERRAFORMER = createBlock("terraformer", BlockTerraformer::new,BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()));
-    public static final DeferredBlock<BlockTerraformerExtension> COOLER = createBlock("cooler",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.COOLER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> HEATER = createBlock("heater",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.HEATER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> HUMIDIFIER = createBlock("humidifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.HUMIDIFIER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> DEHUMIDIFIER = createBlock("dehumidifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.DEHUMIDIFIER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_INFUSER = createBlock("magic_infuser",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.MAGIC_INFUSER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_ABSORBER = createBlock("magic_absorber",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.MAGIC_ABSORBER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<BlockTerraformerExtension> DESHOSTILIFIER = createBlock("deshostilifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.DESHOSTILIFIER),BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
-    public static final DeferredBlock<AUBlock> ANTENNA = createBlock("antenna",AUBlock::new,BlockBehaviour.Properties.ofFullCopy(MACHINE_BLOCK.get()).noOcclusion());
+    public static final DeferredBlock<AUBlock> CLIMOGRAPH_BLOCK = createBlock("climograph_block", AUBlock::new,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK));
+    public static final DeferredBlock<BlockTerraformer> TERRAFORMER = createBlock("terraformer", BlockTerraformer::new,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK));
+    public static final DeferredBlock<BlockTerraformerExtension> COOLER = createBlock("cooler",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.COOLER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> HEATER = createBlock("heater",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.HEATER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> HUMIDIFIER = createBlock("humidifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.HUMIDIFIER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> DEHUMIDIFIER = createBlock("dehumidifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.DEHUMIDIFIER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_INFUSER = createBlock("magic_infuser",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.MAGIC_INFUSER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> MAGIC_ABSORBER = createBlock("magic_absorber",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.MAGIC_ABSORBER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<BlockTerraformerExtension> DESHOSTILIFIER = createBlock("deshostilifier",p->new BlockTerraformerExtension(p, AUBlockEntityTypes.DESHOSTILIFIER),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
+    public static final DeferredBlock<AUBlock> ANTENNA = createBlock("antenna",AUBlock::new,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
 
     private static  DeferredBlock<BlockOpiniumCore> createOpiniumCore(BlockOpiniumCore.Tier tier){
         DeferredBlock<BlockOpiniumCore> block = createBlock(tier.name().toLowerCase() + "_opinium_core", p -> new BlockOpiniumCore(p, tier),BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());

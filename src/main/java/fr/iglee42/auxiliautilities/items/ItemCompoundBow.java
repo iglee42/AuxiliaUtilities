@@ -95,7 +95,7 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
         Entity entity = event.getEntity();
         if (!(entity instanceof AbstractArrow blueArrow)) return;
         if (blueArrow.level() == null || blueArrow.level().isClientSide()) return;
-        if (!blueArrow.getPersistentData().getBoolean("IsBlueArrow")  || ((ArrowAccessor)blueArrow).isInGround()) return;
+        if (!blueArrow.getPersistentData().getBoolean("IsBlueArrow")  || ((ArrowAccessor)blueArrow).auInvoke$isInGround()) return;
 
         for (int i = 0; i < 5; i++) {
             for (int k = 0; k < 4; k++) {

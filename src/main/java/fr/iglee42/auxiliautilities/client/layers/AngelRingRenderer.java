@@ -59,7 +59,7 @@ public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerMode
         renderWing(wings, poseStack, source, light, false, player.getAbilities().flying,getParentModel());
     }
 
-    public static void renderWing(ItemAngelRing.AngelRingWings wings, PoseStack poseStack, MultiBufferSource buffer, int packedLight, boolean right, boolean isFlying,PlayerModel<?> model) {
+    public static void renderWing(ItemAngelRing.AngelRingWings wings, PoseStack poseStack, MultiBufferSource buffer, int packedLight, boolean right, boolean isFlying,PlayerModel model) {
         poseStack.pushPose();
         model.body.translateAndRotate(poseStack);
 

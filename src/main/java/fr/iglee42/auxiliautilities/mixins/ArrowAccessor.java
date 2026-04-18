@@ -10,5 +10,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface ArrowAccessor {
 
     @Invoker("isInGround")
-    boolean isInGround();
+    boolean auInvoke$isInGround();
 }

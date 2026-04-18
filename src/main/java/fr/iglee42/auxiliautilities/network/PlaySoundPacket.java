@@ -41,7 +41,7 @@ public class PlaySoundPacket extends AUPacket{
         context.enqueueWork(()->{
             var level = Minecraft.getInstance().level;
             if (level != null){
-                SoundEvent event = BuiltInRegistries.SOUND_EVENT.get(soundId);
+                SoundEvent event = BuiltInRegistries.SOUND_EVENT.getValue(soundId);
                 if (event != null){
                     level.playLocalSound(pos,event, SoundSource.PLAYERS,1,1,false);
                 }

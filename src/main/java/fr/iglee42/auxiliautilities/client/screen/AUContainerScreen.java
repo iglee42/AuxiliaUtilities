@@ -48,10 +48,11 @@ public class AUContainerScreen extends AbstractContainerScreen<AUMenu> {
         int w3 = w - w2;
         int h3 = h - h2;
 
-        guiGraphics.blit(RenderType::guiTextured,texture, x, y, 0, 0, w2, h2);
-        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y, 256 - w3, 0, w3, h2);
-        guiGraphics.blit(RenderType::guiTextured,texture, x, y + h2, 0, 256 - h3, w2, h3);
-        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3);
+        // FUNC TEXTURE X Y UOFFSET VOFFSET UWIDTH VHEIGHT
+        guiGraphics.blit(RenderType::guiTextured,texture, x, y, 0, 0, w2, h2,w,h);
+        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y, 256 - w3, 0, w3, h2,w,h);
+        guiGraphics.blit(RenderType::guiTextured,texture, x, y + h2, 0, 256 - h3, w2, h3,w,h);
+        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3,w,h);
     }
 
     @Override

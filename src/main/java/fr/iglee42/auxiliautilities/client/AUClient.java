@@ -7,16 +7,10 @@ import fr.iglee42.auxiliautilities.blocks.api.AUBlockBase;
 import fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.ChickenRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
-import fr.iglee42.auxiliautilities.client.models.FlatTransferNodeModelWrapper;
-import fr.iglee42.auxiliautilities.client.models.SunCrystalModelWrapper;
-import fr.iglee42.auxiliautilities.client.models.WandsModelWrapper;
+import fr.iglee42.auxiliautilities.client.models.Quad2DUnbakedModelLoader;
 import fr.iglee42.auxiliautilities.client.renderers.*;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
-import fr.iglee42.auxiliautilities.config.AUConfig;
-import fr.iglee42.auxiliautilities.items.*;
-import fr.iglee42.auxiliautilities.items.api.AUItemBase;
-import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
-import fr.iglee42.auxiliautilities.items.registries.AUItems;
+import fr.iglee42.auxiliautilities.items.ItemAngelRing;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import net.minecraft.client.GuiMessage;
@@ -25,12 +19,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.gui.components.ComponentRenderUtils;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.PlayerSkin;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -40,7 +31,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
@@ -108,32 +98,18 @@ public class AUClient {
 
 
     @SubscribeEvent
-    public static void modifyBackingResult(ModelEvent.ModifyBakingResult event){
-        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_BUILDERS_WAND.getId(), "inventory"),
-                (location,model)->new WandsModelWrapper(model,"builders"));
-        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.CREATIVE_DESTRUCTION_WAND.getId(), "inventory"),
-                (location,model)->new WandsModelWrapper(model,"destruction"));
-        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.SUN_CRYSTAL.getId(), "inventory"),
-                (location, model) -> new SunCrystalModelWrapper(model));
-        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.FLAT_ITEM_TRANSFER_NODE.getId(), "inventory"),
-                (location, model) -> new FlatTransferNodeModelWrapper(model));
-        event.getModels().computeIfPresent(new ModelResourceLocation(AUItems.FLAT_FLUID_TRANSFER_NODE.getId(), "inventory"),
-                (location, model) -> new FlatTransferNodeModelWrapper(model));
-    }
-
-    @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event){
         registerItemProperties();
     }
 
     @SubscribeEvent
     public static void registerColors(RegisterColorHandlersEvent.ItemTintSources event){
-        AUItems.ITEMS.getEntries().stream()
+        /*AUItems.ITEMS.getEntries().stream()
                 .map(DeferredHolder::get)
                 .filter(AUItemBase.class::isInstance)
                 .map(AUItemBase.class::cast)
                 .forEach(i->
-                    event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));
+                    event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));*/
     }
 
     @SubscribeEvent
@@ -157,8 +133,13 @@ public class AUClient {
         }
     }
 
+    @SubscribeEvent
+    public static void registerCustomModelLoader(ModelEvent.RegisterLoaders event){
+        event.register(Quad2DUnbakedModelLoader.ID,Quad2DUnbakedModelLoader.INSTANCE);
+    }
+
     private static void registerItemProperties() {
-        ItemProperties.register(
+        /*ItemProperties.register(
                 AUItems.ENDER_SHARD.asItem(),
                 AuxiliaUtilities.id("shards"),
                 (stack,level,entity,seed)-> (float) stack.getCount()
@@ -198,7 +179,7 @@ public class AUClient {
 
         ItemProperties.register(AUItems.CURSED_LASSO.asItem(),
                 AuxiliaUtilities.id("has_entity"),
-                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);
+                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);*/
     }
 
     @SubscribeEvent
@@ -225,6 +206,7 @@ public class AUClient {
     public static void registerClientExtensions(RegisterSpecialModelRendererEvent event){
         event.register(AuxiliaUtilities.id("opinium_core"),OpiniumCoreItemRenderer.Unbaked.MAP_CODEC);
         event.register(AuxiliaUtilities.id("klein_bottle"),KleinBottleItemRenderer.Unbaked.MAP_CODEC);
+        event.register(AuxiliaUtilities.id("sun_crystal"),SunCrystalItemRenderer.Unbaked.MAP_CODEC);
     }
 
     @SubscribeEvent

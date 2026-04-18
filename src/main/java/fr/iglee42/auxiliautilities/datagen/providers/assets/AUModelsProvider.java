@@ -143,6 +143,7 @@ public class AUModelsProvider extends ModelProvider {
         createSpike(blockModels,AUBlocks.NETHERITE_SPIKE);
         createSpike(blockModels,AUBlocks.CREATIVE_SPIKE);
 
+
         TexturedModel.Provider cursedEarthProv = TexturedModel.createDefault(
                 b->
                         new TextureMapping()
