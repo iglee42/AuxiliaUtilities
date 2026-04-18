@@ -78,7 +78,7 @@ public class FluidColorHelper {
         for (int x : xs) {
             for (int y : ys) {
 
-                int col = abgrToArgb(img.getPixelRGBA(x, y));
+                int col = abgrToArgb(img.getPixel(x, y));
 
                 int a = (col >> 24) & 255;
 

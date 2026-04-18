@@ -30,6 +30,8 @@ public class ResonatorRecipe implements Recipe<RecipeInput> {
     private final ItemStack result;
     private final int requiredGP;
     private final boolean requiresRainbowGenerator;
+    @Nullable
+    private PlacementInfo placementInfo;
 
     public ResonatorRecipe(Ingredient ingredient, ItemStack result, int requiredGP, boolean requiresRainbowGenerator) {
         this.ingredient = ingredient;
@@ -46,17 +48,17 @@ public class ResonatorRecipe implements Recipe<RecipeInput> {
 
     @Override
     public ItemStack assemble(RecipeInput input, HolderLookup.Provider p_346030_) {
-        return getResultItem(p_346030_);
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-        return true;
-    }
-
-    @Override
-    public @NotNull ItemStack getResultItem(@Nullable HolderLookup.Provider p_336125_) {
         return result.copy();
+    }
+
+    @Override
+    public RecipeSerializer<? extends Recipe<RecipeInput>> getSerializer() {
+        return AURecipes.RESONATOR_SERIALIZER.get();
+    }
+
+    @Override
+    public RecipeType<? extends Recipe<RecipeInput>> getType() {
+        return Type.INSTANCE;
     }
 
     public ItemStack getResult() {
@@ -76,13 +78,15 @@ public class ResonatorRecipe implements Recipe<RecipeInput> {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        return AURecipes.RESONATOR_SERIALIZER.get();
+    public PlacementInfo placementInfo() {
+        if (placementInfo == null)
+            placementInfo = PlacementInfo.create(ingredient);
+        return placementInfo;
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
+    public RecipeBookCategory recipeBookCategory() {
+        return AURecipes.RESONATOR_CATEGORY.get();
     }
 
     public static class Type implements RecipeType<ResonatorRecipe> {
@@ -94,7 +98,7 @@ public class ResonatorRecipe implements Recipe<RecipeInput> {
 
         private static final MapCodec<ResonatorRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340782_ -> p_340782_.group(
-                                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(e->e.ingredient),
+                                Ingredient.CODEC.fieldOf("ingredient").forGetter(e->e.ingredient),
                                 ItemStack.CODEC.fieldOf("result").forGetter(e->e.result),
                                 ExtraCodecs.POSITIVE_INT.fieldOf("required_gp").forGetter(e->e.requiredGP),
                                 Codec.BOOL.optionalFieldOf("requires_rainbow_generator",false).forGetter(e->e.requiresRainbowGenerator)

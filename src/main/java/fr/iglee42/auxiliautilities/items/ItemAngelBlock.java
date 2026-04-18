@@ -4,9 +4,8 @@ import fr.iglee42.auxiliautilities.items.api.AUBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,13 +20,13 @@ public class ItemAngelBlock extends AUBlockItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (level.isClientSide) return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), true);
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        if (level.isClientSide) return InteractionResult.SUCCESS;
         int x = (int) Math.floor(player.getX());
         int y = (int) Math.floor(player.getY() + player.getEyeHeight());
         int z = (int) Math.floor(player.getZ());
         Vec3 look = player.getLookAngle();
-        Direction dir = Direction.getNearest(look.x(),look.y(),look.z());
+        Direction dir = Direction.getNearest((int) look.x(), (int) look.y(), (int) look.z(),Direction.UP);
         switch (dir){
             case DOWN -> y = (int) (Math.floor(player.getBoundingBox().minY) - 1);
             case UP -> y = (int) (Math.ceil(player.getBoundingBox().maxY) + 1);
@@ -46,7 +45,6 @@ public class ItemAngelBlock extends AUBlockItem {
                     false
             )));
         }
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return InteractionResult.CONSUME;
     }
-
 }

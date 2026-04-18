@@ -6,29 +6,24 @@ import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import fr.iglee42.igleelib.api.utils.ModsUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriPredicate;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -44,17 +39,13 @@ public class ItemLasso extends AUItem {
     }
 
     @Override
-    public @NotNull ItemStack getCraftingRemainingItem(ItemStack stack) {
+    public ItemStack getCraftingRemainder(ItemStack stack) {
         if (!hasEntity(stack)) return ItemStack.EMPTY;
         ItemStack newStack = stack.copy();
         newStack.remove(AUDataComponents.STORED_ENTITY);
         return newStack;
     }
 
-    @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
-        return hasEntity(stack);
-    }
 
     public static ItemStack getForCraft(boolean golden, EntityType<?> type){
         ItemStack stack = new ItemStack(golden ? AUItems.GOLDEN_LASSO.asItem() : AUItems.CURSED_LASSO.asItem());
@@ -113,19 +104,6 @@ public class ItemLasso extends AUItem {
         return InventoryHelper.isStackNotEmpty(stack) && stack.has(AUDataComponents.STORED_ENTITY);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public int getColor(ItemStack stack, int tintIndex) {
-        if (!hasEntity(stack)) return super.getColor(stack, tintIndex);
-        Entity entity = getEntityInStack(stack, Minecraft.getInstance().level);
-        if (entity == null) return super.getColor(stack, tintIndex);
-        SpawnEggItem item = SpawnEggItem.byId(entity.getType());
-        if (item == null) return super.getColor(stack, tintIndex);
-        if (tintIndex == 1) return FastColor.ARGB32.opaque(item.getColor(1));
-        if (tintIndex == 2) return FastColor.ARGB32.opaque(item.getColor(0));
-        return super.getColor(stack, tintIndex);
-    }
-
     @Nullable
     public Entity getEntityInStack(ItemStack stack,Level level){
         if (!hasEntity(stack)) return null;
@@ -133,7 +111,7 @@ public class ItemLasso extends AUItem {
         EntityType<?> type = EntityType.byString(nbt.getString("EntityId")).orElse(null);
         if (type == null) return null;
         if (!type.canSummon()) return null;
-        Entity entity = type.create(level);
+        Entity entity = type.create(level, EntitySpawnReason.BUCKET);
         if (entity == null) return null;
         entity.load(nbt);
         return entity;

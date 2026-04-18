@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ShapelessRecipeMixin {
 
     @Shadow
-    public abstract ItemStack getResultItem(HolderLookup.Provider p_335668_);
+    public abstract ItemStack assemble(CraftingInput p_345555_, HolderLookup.Provider p_335725_);
 
     @Inject(method = "matches(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/world/level/Level;)Z",at = @At("HEAD"),cancellable = true)
     private void au$playerOnlyRecipes(CraftingInput input, Level level, CallbackInfoReturnable<Boolean> cir){
-        if (getResultItem(level.registryAccess()).getItem().equals(AUBlocks.MAGICAL_WOOD.asItem())){
+        if (assemble(input,level.registryAccess()).getItem().equals(AUBlocks.MAGICAL_WOOD.asItem())){
             if (CommonHooks.getCraftingPlayer() == null){
                 cir.setReturnValue(false);
                 return;

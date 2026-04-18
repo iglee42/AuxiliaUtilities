@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.menu.widgets;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -29,13 +30,13 @@ public class AUProgressWidget extends AUWidgetBase{
     @Override
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
         if (progress > 0 && progress != -1){
-            graphics.blitSprite(TEXTURE_FULL,getWidth(),getHeight(),0,0,guiLeft + getX(), guiTop + getY(), (int) (this.progress * getWidth()),getHeight());
+            graphics.blitSprite(RenderType::guiTextured,TEXTURE_FULL,getWidth(),getHeight(),0,0,guiLeft + getX(), guiTop + getY(), (int) (this.progress * getWidth()),getHeight());
         }
     }
 
     @Override
     public void renderBackground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
-        graphics.blitSprite(progress != -1 ? TEXTURE : TEXTURE_ERROR,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
+        graphics.blitSprite(RenderType::guiTextured,progress != -1 ? TEXTURE : TEXTURE_ERROR,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
     }
 
     public List<Component> getErrorMessages(){

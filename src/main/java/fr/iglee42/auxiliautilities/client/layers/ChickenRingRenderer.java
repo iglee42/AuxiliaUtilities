@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -28,18 +29,19 @@ import org.joml.Quaternionf;
 
 import static fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer.renderWing;
 
-public class ChickenRingRenderer<T extends Player> extends RenderLayer<T, PlayerModel<T>> {
+public class ChickenRingRenderer extends RenderLayer<PlayerRenderState, PlayerModel> {
 
 
-    public ChickenRingRenderer(RenderLayerParent<T, PlayerModel<T>> parent) {
+    public ChickenRingRenderer(RenderLayerParent<PlayerRenderState, PlayerModel> parent) {
         super(parent);
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource source, int light, T player, float limbSwing, float swingAmount, float pt, float age, float headYaw, float headPitch) {
+    public void render(PoseStack poseStack, MultiBufferSource source, int light, PlayerRenderState state, float pt, float age) {
         if (Minecraft.getInstance().player == null) return;
+        Player player = Minecraft.getInstance().player;
 
-        if (player.isInvisible()) return;
+        if (state.isInvisible) return;
 
         int index = InventoryUtil.getFirstInventoryIndex(player, AUItems.CHICKEN_RING.asItem());
         ItemStack stack = index == -1 ? ItemStack.EMPTY : player.getInventory().getItem(index);

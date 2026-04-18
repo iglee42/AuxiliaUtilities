@@ -26,6 +26,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
+import java.awt.*;
 import java.util.List;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID, value = Dist.CLIENT)
@@ -47,13 +48,13 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
     }
 
     @Override
-    public void releaseUsing(ItemStack p_40667_, Level p_40668_, LivingEntity p_40669_, int p_40670_) {
+    public boolean releaseUsing(ItemStack p_40667_, Level p_40668_, LivingEntity p_40669_, int p_40670_) {
         if (p_40669_ instanceof Player player) {
             ItemStack itemstack = player.getProjectile(p_40667_);
             if (!itemstack.isEmpty()) {
                 int i = this.getUseDuration(p_40667_, p_40669_) - p_40670_;
                 i = net.neoforged.neoforge.event.EventHooks.onArrowLoose(p_40667_, p_40668_, player, i, !itemstack.isEmpty());
-                if (i < 0) return;
+                if (i < 0) return false;
                 float f = getArrowVelocityCustom(i);
                 if (!((double)f < 0.1)) {
                     List<ItemStack> list = draw(p_40667_, itemstack, player);
@@ -72,10 +73,13 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
                             1.0F / (p_40668_.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F
                     );
                     player.awardStat(Stats.ITEM_USED.get(this));
+                    return true;
                 }
             }
         }
+        return false;
     }
+
 
     @Override
     protected void shootProjectile(LivingEntity p_331372_, Projectile projectile, int p_330631_, float velocity, float p_331199_, float p_330857_, @Nullable LivingEntity p_331572_) {
@@ -101,12 +105,13 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
                 double offsetY = blueArrow.getDeltaMovement().y * k / 4.0 + blueArrow.level().random.nextGaussian() * radius;
                 double offsetZ = blueArrow.getDeltaMovement().z * k / 4.0 + blueArrow.level().random.nextGaussian() * radius;
 
-                double red = 0.36;
-                double green = 0.59;
-                double blue = 0.88;
+                float red = 0.36f;
+                float green = 0.59f;
+                float blue = 0.88f;
+
 
                 ((ServerLevel)blueArrow.level()).sendParticles(
-                        new DustParticleOptions(new Vector3f((float) red, (float) green, (float) blue),1.0f),
+                        new DustParticleOptions(new Color(red,green,blue).getRGB(),1.0f),
                         blueArrow.getX() + offsetX,
                         blueArrow.getY() + offsetY,
                         blueArrow.getZ() + offsetZ,

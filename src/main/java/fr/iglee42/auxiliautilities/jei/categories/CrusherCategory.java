@@ -13,6 +13,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -28,7 +30,7 @@ import java.util.Locale;
 
 public class CrusherCategory implements IRecipeCategory<RecipeHolder<CrusherRecipe>> {
 
-    public static final RecipeType<RecipeHolder<CrusherRecipe>> RECIPE_TYPE = RecipeType.createFromVanilla(
+    public static final IRecipeHolderType<CrusherRecipe> RECIPE_TYPE = IRecipeHolderType.create(
             CrusherRecipe.Type.INSTANCE);
     private final IDrawable background;
     private final IDrawable icon;
@@ -45,7 +47,7 @@ public class CrusherCategory implements IRecipeCategory<RecipeHolder<CrusherReci
 
 
     @Override
-    public @NotNull RecipeType<RecipeHolder<CrusherRecipe>> getRecipeType() {
+    public @NotNull IRecipeType<RecipeHolder<CrusherRecipe>> getRecipeType() {
         return RECIPE_TYPE;
     }
 
@@ -80,9 +82,9 @@ public class CrusherCategory implements IRecipeCategory<RecipeHolder<CrusherReci
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull RecipeHolder<CrusherRecipe> holder, @Nonnull IFocusGroup focusGroup) {
         CrusherRecipe recipe = holder.value();
-        builder.addSlot(RecipeIngredientRole.INPUT, 19, 14).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 14).addIngredient(VanillaTypes.ITEM_STACK,recipe.getResult());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 14).addIngredient(VanillaTypes.ITEM_STACK,recipe.getSecondResult());
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 14).add(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 79, 14).add(recipe.getResult());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 14).add(recipe.getSecondResult());
     }
 
 }

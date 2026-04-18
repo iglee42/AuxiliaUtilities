@@ -21,8 +21,4 @@ public class AngelRingSubtype implements ISubtypeInterpreter<ItemStack> {
         return ingredient.get(AUDataComponents.WINGS);
     }
 
-    @Override
-    public String getLegacyStringSubtypeInfo(ItemStack ingredient, UidContext context) {
-        return Optional.ofNullable( ingredient.get(AUDataComponents.WINGS)).map(StringRepresentable::getSerializedName).orElse("");
-    }
 }

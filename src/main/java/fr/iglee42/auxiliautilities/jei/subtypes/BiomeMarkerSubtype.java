@@ -20,9 +20,5 @@ public class BiomeMarkerSubtype implements ISubtypeInterpreter<ItemStack> {
         return ingredient.get(AUDataComponents.STORED_BIOME);
     }
 
-    @Override
-    public String getLegacyStringSubtypeInfo(ItemStack ingredient, UidContext context) {
-        return Optional.ofNullable(ingredient.get(AUDataComponents.STORED_BIOME)).map(biomeHolder -> biomeHolder.unwrapKey().map(key -> key.location().toString()).orElse("")).orElse("");
-    }
 
 }

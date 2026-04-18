@@ -18,13 +18,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ShapedRecipe.class)
 public abstract class ShapedRecipeMixin {
-
     @Shadow
-    public abstract ItemStack getResultItem(HolderLookup.Provider p_335668_);
+    public abstract ItemStack assemble(CraftingInput p_345201_, HolderLookup.Provider p_335688_);
 
     @Inject(method = "matches(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/world/level/Level;)Z",at = @At("HEAD"),cancellable = true)
     private void au$playerOnlyRecipes(CraftingInput input, Level level, CallbackInfoReturnable<Boolean> cir){
-        if (getResultItem(level.registryAccess()).getItem() instanceof ItemUnstableIngot){
+        if (assemble(input,level.registryAccess()).getItem() instanceof ItemUnstableIngot){
             if (CommonHooks.getCraftingPlayer() == null){
                 cir.setReturnValue(false);
                 return;
@@ -35,7 +34,7 @@ public abstract class ShapedRecipeMixin {
             }
         }
 
-        if (getResultItem(level.registryAccess()).getItem().equals(AUItems.GOLDEN_LASSO.asItem())){
+        if (assemble(input,level.registryAccess()).getItem().equals(AUItems.GOLDEN_LASSO.asItem())){
             if (CommonHooks.getCraftingPlayer() == null){
                 cir.setReturnValue(false);
                 return;

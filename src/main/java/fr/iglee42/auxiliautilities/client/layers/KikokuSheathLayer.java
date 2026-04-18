@@ -14,35 +14,36 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 
-public class KikokuSheathLayer<T extends Player> extends RenderLayer<T, PlayerModel<T>> {
-    public static final ModelResourceLocation MODEL_LOCATION = ModelResourceLocation.standalone(AuxiliaUtilities.id("item/kikoku_sheath_full"));
-    public static final ModelResourceLocation EMPTY_LOCATION = ModelResourceLocation.standalone(AuxiliaUtilities.id("item/kikoku_sheath_empty"));
+public class KikokuSheathLayer extends RenderLayer<PlayerRenderState, PlayerModel> {
+    public static final ResourceLocation MODEL_LOCATION = AuxiliaUtilities.id("item/kikoku_sheath_full");
+    public static final ResourceLocation EMPTY_LOCATION = AuxiliaUtilities.id("item/kikoku_sheath_empty");
 
-    public KikokuSheathLayer(RenderLayerParent<T, PlayerModel<T>> parent) {
+    public KikokuSheathLayer(RenderLayerParent<PlayerRenderState, PlayerModel> parent) {
         super(parent);
     }
+
 
     @Override
     public void render(
             PoseStack poseStack,
             MultiBufferSource buffer,
             int packedLight,
-            Player player,
+            PlayerRenderState state,
             float limbSwing,
-            float limbSwingAmount,
-            float partialTick,
-            float ageInTicks,
-            float netHeadYaw,
-            float headPitch
+            float limbSwingAmount
     ) {
 
+        Player player = Minecraft.getInstance().player;
+        if (player == null) return;
         if (!hasKikoku(player))
             return;
 
@@ -73,7 +74,7 @@ public class KikokuSheathLayer<T extends Player> extends RenderLayer<T, PlayerMo
 
     private void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, boolean isInHand){
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getModel(isInHand ? EMPTY_LOCATION : MODEL_LOCATION);
+        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(isInHand ? EMPTY_LOCATION : MODEL_LOCATION);
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutout());
 
         dispatcher.getModelRenderer().renderModel(

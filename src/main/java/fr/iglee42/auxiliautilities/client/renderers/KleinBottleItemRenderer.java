@@ -2,23 +2,25 @@ package fr.iglee42.auxiliautilities.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.Nullable;
 
-public class KleinBottleItemRenderer extends BlockEntityWithoutLevelRenderer {
+public class KleinBottleItemRenderer implements SpecialModelRenderer<Void> {
     public KleinBottleItemRenderer() {
-        super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     }
 
+
     @Override
-    public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void render(@Nullable Void p_387335_, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoil) {
         if (Minecraft.getInstance().level == null)
             return;
-        double time = (Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getTimer().getGameTimeDeltaTicks()) / 30.0 % 4.0;
+        double time = (Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaTicks()) / 30.0 % 4.0;
         poseStack.pushPose();
         poseStack.scale(0.75f,0.75f,0.75f);
         poseStack.mulPose(Axis.YP.rotationDegrees(180));
@@ -27,13 +29,25 @@ public class KleinBottleItemRenderer extends BlockEntityWithoutLevelRenderer {
         poseStack.popPose();
     }
 
+    @Override
+    public @Nullable Void extractArgument(ItemStack p_387212_) {
+        return null;
+    }
 
-    public static class Extension implements IClientItemExtensions{
-        private final KleinBottleItemRenderer renderer = new KleinBottleItemRenderer();
+    public static record Unbaked() implements SpecialModelRenderer.Unbaked {
+
+        public static final MapCodec<KleinBottleItemRenderer.Unbaked> MAP_CODEC = MapCodec.unit(new KleinBottleItemRenderer.Unbaked());
 
         @Override
-        public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-            return renderer;
+        public MapCodec<KleinBottleItemRenderer.Unbaked> type() {
+            return MAP_CODEC;
+        }
+
+        @Override
+        public SpecialModelRenderer<?> bake(EntityModelSet p_386553_) {
+            return new KleinBottleItemRenderer();
         }
     }
+
 }
+

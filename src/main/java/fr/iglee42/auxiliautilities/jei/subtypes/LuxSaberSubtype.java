@@ -27,15 +27,6 @@ public class LuxSaberSubtype implements ISubtypeInterpreter<ItemStack> {
         return new LuxSaberData(color, energy);
     }
 
-    @Override
-    public String getLegacyStringSubtypeInfo(ItemStack ingredient, UidContext context) {
-        DyeColor color = ingredient.get(DataComponents.BASE_COLOR);
-        int energy = ingredient.getOrDefault(AUDataComponents.STORED_ENERGY,0);
-        if (color == null)
-            color = DyeColor.WHITE;
-        if (context.equals(UidContext.Recipe)) return new LuxSaberData(DyeColor.WHITE,0).toString();
-        return new LuxSaberData(color, energy).toString();
-    }
     private record LuxSaberData(DyeColor color, int damage) {
         @Override
         public boolean equals(Object obj) {

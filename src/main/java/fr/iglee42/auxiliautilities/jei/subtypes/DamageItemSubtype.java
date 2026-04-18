@@ -17,10 +17,4 @@ public class DamageItemSubtype implements ISubtypeInterpreter<ItemStack> {
         if (context.equals(UidContext.Recipe)) return null;
         return ingredient.getDamageValue();
     }
-
-    @Override
-    public String getLegacyStringSubtypeInfo(ItemStack ingredient, UidContext context) {
-        if (context.equals(UidContext.Recipe)) return "0";
-        return ingredient.getDamageValue() + "";
-    }
 }

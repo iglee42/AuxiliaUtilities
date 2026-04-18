@@ -5,6 +5,7 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -30,13 +31,13 @@ public class AUEnergyWidget extends AUWidgetBase{
         if (storage.getEnergyStored() > 0){
             float progress = (float) storage.getEnergyStored() / storage.getMaxEnergyStored();
 
-            graphics.blitSprite(TEXTURE_FULL,getWidth(),getHeight(),0, (int) ((1-progress) * getHeight()),guiLeft + getX(), (int) (guiTop + getY() + (1-progress) * getHeight()), getWidth(), (int) (getHeight() * progress));
+            graphics.blitSprite(RenderType::guiTextured,TEXTURE_FULL,getWidth(),getHeight(),0, (int) ((1-progress) * getHeight()),guiLeft + getX(), (int) (guiTop + getY() + (1-progress) * getHeight()), getWidth(), (int) (getHeight() * progress));
         }
     }
 
     @Override
     public void renderBackground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
-        graphics.blitSprite( TEXTURE ,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
+        graphics.blitSprite( RenderType::guiTextured,TEXTURE ,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
     }
 
     @Override

@@ -94,7 +94,7 @@ public class ItemFlatTransferNode extends AUItem {
         if (player == null) return InteractionResult.PASS;
         Level level = player.level();
         if (level.isClientSide){
-            return InteractionResult.sidedSuccess(true);
+            return InteractionResult.SUCCESS;
         }
 
             FlatTransferNode existing = getCurrentFlatTransferNode(player);

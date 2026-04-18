@@ -22,7 +22,7 @@ public class SideHelper {
         Direction dir1 = Direction.values()[j];
         BlockPos crossP = zero.relative(dir).cross(zero.relative(dir1));
         if (!crossP.equals(zero))
-          crossProd[i][j] = Direction.getNearest(crossP.getX(), crossP.getY(), crossP.getZ());
+          crossProd[i][j] = Direction.getNearest(crossP.getX(), crossP.getY(), crossP.getZ(),dir1);
       } 
     } 
   }

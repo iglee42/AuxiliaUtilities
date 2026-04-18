@@ -10,6 +10,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.neoforged.neoforge.common.CommonHooks;
@@ -19,21 +21,20 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = Recipe.class,remap = false)
+@Mixin(value = CraftingRecipe.class,remap = false)
 public interface RecipeMixin {
 
-    @Shadow
-    ItemStack getResultItem(HolderLookup.Provider p_335668_);
 
     @Inject(method = "getRemainingItems",at = @At("HEAD"))
-    private void au$playerOnlyRecipes(RecipeInput p_345383_, CallbackInfoReturnable<NonNullList<ItemStack>> cir){
+    private void au$playerOnlyRecipes(CraftingInput input, CallbackInfoReturnable<NonNullList<ItemStack>> cir){
         if (CommonHooks.getCraftingPlayer() == null) return;
         Player craftingPlayer = CommonHooks.getCraftingPlayer();
+        Recipe<CraftingInput> casted = (Recipe<CraftingInput>) this;
         if (craftingPlayer.containerMenu instanceof CraftingMenu){
-            if (getResultItem(craftingPlayer.registryAccess()).getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockMagicalWood){
+            if (casted.assemble(input,craftingPlayer.registryAccess()).getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockMagicalWood){
                 craftingPlayer.giveExperienceLevels(-4);
             }
-            if (getResultItem(craftingPlayer.registryAccess()).getItem() instanceof ItemLasso && getResultItem(craftingPlayer.registryAccess()).getItem() == AUItems.GOLDEN_LASSO.asItem()){
+            if (casted.assemble(input,craftingPlayer.registryAccess()).getItem() instanceof ItemLasso && casted.assemble(input,craftingPlayer.registryAccess()).getItem() == AUItems.GOLDEN_LASSO.asItem()){
                 craftingPlayer.giveExperienceLevels(-8);
             }
         }

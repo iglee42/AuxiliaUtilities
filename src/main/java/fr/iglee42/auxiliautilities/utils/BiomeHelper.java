@@ -43,7 +43,7 @@ public class BiomeHelper {
         }
         ((LevelChunkSectionAccessor) section).setBiomes(biomes);
 
-        chunk.setUnsaved(true);
+        chunk.markUnsaved();
         level.getChunkSource().chunkMap.resendBiomesForChunks(List.of(chunk));
 
     }

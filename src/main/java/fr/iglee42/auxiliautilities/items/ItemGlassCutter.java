@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.Tool;
@@ -23,22 +24,19 @@ import java.util.List;
 public class ItemGlassCutter extends AUItem {
     public ItemGlassCutter(Properties props) {
         super(props.component(DataComponents.TOOL, new Tool(
-                List.of(Tool.Rule.minesAndDrops(Tags.Blocks.GLASS_BLOCKS,4),Tool.Rule.minesAndDrops(Tags.Blocks.GLASS_PANES,4)),1,1
+                List.of(Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_BLOCKS), 4),Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_PANES),4)),1,1
         )));
         NeoForge.EVENT_BUS.register(this);
     }
 
     @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
-        return stack.getDamageValue() < stack.getMaxDamage() - 1;
+    public ItemStack getCraftingRemainder(ItemStack stack) {
+        if (stack.getDamageValue() >= stack.getMaxDamage()) return ItemStack.EMPTY;
+        ItemStack copy = stack.copy();
+        copy.setDamageValue(stack.getDamageValue() + 1);
+        return copy;
     }
 
-    @Override
-    public @NotNull ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        ItemStack stack = itemStack.copy();
-        stack.setDamageValue(stack.getDamageValue() + 1);
-        return stack;
-    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void blockBroken(BlockDropsEvent event){

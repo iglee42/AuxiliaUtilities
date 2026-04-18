@@ -25,12 +25,5 @@ public class LassoSubtype implements ISubtypeInterpreter<ItemStack> {
         return stored.getString("EntityId");
     }
 
-    @Override
-    public String getLegacyStringSubtypeInfo(ItemStack ingredient, UidContext context) {
-        if (!ingredient.has(AUDataComponents.STORED_ENTITY)) return "";
-        CompoundTag stored = ingredient.get(AUDataComponents.STORED_ENTITY);
-        if (stored == null || !stored.contains("EntityId")) return "";
-        return stored.getString("EntityId");
-    }
 
 }

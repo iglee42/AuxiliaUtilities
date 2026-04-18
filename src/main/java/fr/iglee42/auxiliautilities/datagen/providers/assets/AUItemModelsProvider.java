@@ -1,4 +1,4 @@
-package fr.iglee42.auxiliautilities.datagen.providers.assets;
+/*package fr.iglee42.auxiliautilities.datagen.providers.assets;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blocks.AUBlocks;
@@ -356,4 +356,4 @@ public class AUItemModelsProvider extends ItemModelProvider {
         }
     }
 
-}
+}*/

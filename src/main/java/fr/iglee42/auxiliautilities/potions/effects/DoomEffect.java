@@ -6,6 +6,7 @@ import fr.iglee42.auxiliautilities.potions.AUMobEffect;
 import fr.iglee42.auxiliautilities.potions.AUMobEffects;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -34,23 +35,23 @@ public class DoomEffect extends AUMobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel level,LivingEntity entity, int amplifier) {
         MobEffectInstance instance = entity.getEffect(AUMobEffects.DOOM);
         if (instance != null){
             int duration = instance.getDuration();
-            if (entity.level().isClientSide){
-                int time = duration / 20;
-                if (time <= 0) return super.applyEffectTick(entity, amplifier);
-                if ((time <= 10 || time % 10 == 0) && duration % 20 == 0 && entity instanceof Player player){
-                    AULang.DOOM_MESSAGE.sendToPlayer(player,MESSAGE_UUID,time);
-                }
-            } else if (duration < 4){
+            int time = duration / 20;
+            if (time <= 0) return super.applyEffectTick(level,entity, amplifier);
+            if ((time <= 10 || time % 10 == 0) && duration % 20 == 0 && entity instanceof Player player){
+                AULang.DOOM_MESSAGE.sendToPlayer(player,MESSAGE_UUID,time);
+            }
+            if (duration < 4){
                 entity.hurt(entity.damageSources().source(DOOM_DAMAGE), Float.MAX_VALUE);
             }
         }
 
-        return super.applyEffectTick(entity, amplifier);
+        return super.applyEffectTick(level,entity, amplifier);
     }
+
 
     @SubscribeEvent
     public static void onEffectRemove(MobEffectEvent.Remove event){

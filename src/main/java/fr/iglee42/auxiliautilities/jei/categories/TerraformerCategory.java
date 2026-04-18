@@ -12,10 +12,11 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -33,7 +34,7 @@ import java.util.Locale;
 
 public class TerraformerCategory implements IRecipeCategory<TerraformerCategory.ExtensionWrapper> {
 
-    public static final RecipeType<ExtensionWrapper> RECIPE_TYPE = RecipeType.create(AuxiliaUtilities.MODID, "terraformer",
+    public static final IRecipeType<ExtensionWrapper> RECIPE_TYPE = IRecipeType.create(AuxiliaUtilities.MODID, "terraformer",
             ExtensionWrapper.class);
 
 
@@ -51,7 +52,7 @@ public class TerraformerCategory implements IRecipeCategory<TerraformerCategory.
 
 
     @Override
-    public RecipeType<ExtensionWrapper> getRecipeType() {
+    public IRecipeType<ExtensionWrapper> getRecipeType() {
         return RECIPE_TYPE;
     }
 
@@ -81,9 +82,9 @@ public class TerraformerCategory implements IRecipeCategory<TerraformerCategory.
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ExtensionWrapper wrapper, @Nonnull IFocusGroup focusGroup) {
-        builder.addSlot(RecipeIngredientRole.CATALYST,25,0).addItemLike(AUBlocks.ANTENNA);
-        builder.addSlot(RecipeIngredientRole.INPUT,25,17).addIngredients(wrapper.ingredient);
-        builder.addSlot(RecipeIngredientRole.CATALYST,25,35).addItemLike(AUBlocks.BLOCKS.getEntries().stream().filter(b->b.getId().getPath().equals(wrapper.type.getSerializedName())).findFirst().map(DeferredHolder::get)
+        builder.addSlot(RecipeIngredientRole.CRAFTING_STATION,25,0).add(AUBlocks.ANTENNA);
+        builder.addSlot(RecipeIngredientRole.INPUT,25,17).add(wrapper.ingredient);
+        builder.addSlot(RecipeIngredientRole.CRAFTING_STATION,25,35).add(AUBlocks.BLOCKS.getEntries().stream().filter(b->b.getId().getPath().equals(wrapper.type.getSerializedName())).findFirst().map(DeferredHolder::get)
                 .map(ItemLike::asItem).orElse(Items.AIR));
     }
 
@@ -95,7 +96,7 @@ public class TerraformerCategory implements IRecipeCategory<TerraformerCategory.
         }
 
         public ExtensionWrapper(TagKey<Item> item, int tfEnergy,TerraformerType type){
-            this(Ingredient.of(item),tfEnergy,type);
+            this(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(item)),tfEnergy,type);
         }
 
     }

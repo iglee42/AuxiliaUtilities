@@ -46,7 +46,7 @@ public abstract class GPItemHolder implements GPHolder {
 
     @Override
     public String name() {
-        return stack.getDescriptionId();
+        return stack.getItemName().toString();
     }
 
     protected int getGPConsumption(ItemStack stack, Player player) {

@@ -55,7 +55,6 @@ public abstract class AUTextScrollWidget extends AUTextWidget implements AUWidge
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
         updateMessages();
         if (this.strings.isEmpty()) return;
-        graphics.setColor(1,1,1,1);
         int scrollValue = this.scrollbar.scrollValue;
         List<FormattedCharSequence> messages = this.strings;
         for (int i = scrollValue; i < Math.min(messages.size(),scrollValue + this.numLines);i++)

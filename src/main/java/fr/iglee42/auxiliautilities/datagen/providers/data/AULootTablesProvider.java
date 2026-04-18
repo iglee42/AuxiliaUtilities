@@ -21,6 +21,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
@@ -38,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -77,7 +79,8 @@ public class AULootTablesProvider extends LootTableProvider {
         protected Iterable<Block> getKnownBlocks() {
             return BuiltInRegistries.BLOCK
                     .stream()
-                    .filter(entry -> entry.getLootTable().location().getNamespace().equals(AuxiliaUtilities.MODID))
+                    .filter(block->block.getLootTable().isPresent())
+                    .filter(entry -> entry.getLootTable().get().location().getNamespace().equals(AuxiliaUtilities.MODID))
                     .toList();
         }
 

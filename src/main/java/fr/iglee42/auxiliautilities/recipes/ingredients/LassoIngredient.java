@@ -5,12 +5,14 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.iglee42.auxiliautilities.items.ItemLasso;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
 import net.neoforged.neoforge.common.crafting.IngredientType;
@@ -49,8 +51,8 @@ public record LassoIngredient(boolean golden, EntityType<?> entity) implements I
     }
 
     @Override
-    public Stream<ItemStack> getItems() {
-        return Stream.of(ItemLasso.getForCraft(golden, entity));
+    public Stream<Holder<Item>> items() {
+        return Stream.of(ItemLasso.getForCraft(golden,entity).getItemHolder());
     }
 
     @Override

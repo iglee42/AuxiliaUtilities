@@ -42,7 +42,7 @@ neoForge {
         }
 
         data {
-            data()
+            clientData()
 
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
 
@@ -95,12 +95,12 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 
-    implementation "fr.iglee42:IgleeLib:${minecraft_version}-${lib_version}"
+    implementation "fr.iglee42:IgleeLib:1.21.1-${lib_version}"
 
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}"
 
-    runtimeOnly "team.chisel.ctm:CTM:1.21-1.2.1+3"
+    //runtimeOnly "team.chisel.ctm:CTM:1.21-1.2.1+3"
 
 }
 

@@ -28,7 +28,7 @@ public class AUPotions {
     public static final Holder<Potion> GREEK_FIRE = register("greek_fire", registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.GREEK_FIRE, 2400)));
     public static final Holder<Potion> RELAPSE = register("relapse", registryName-> new Potion(registryName, new MobEffectInstance(AUMobEffects.RELAPSE, 9600)));
 
-    public static final Holder<Potion> OILY = POTIONS.register("oily", ()-> new Potion());
+    public static final Holder<Potion> OILY = POTIONS.register("oily", ()-> new Potion("oily"));
 
 
 

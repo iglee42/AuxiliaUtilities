@@ -23,7 +23,7 @@ public class QuadsHelper {
         sub(vecs[1].toVector3f(), vecs[0].toVector3f(), a);
         sub(vecs[2].toVector3f(), vecs[0].toVector3f(), b);
         cross(a, b, c);
-        Direction facing = Direction.getNearest(c.x, c.y, c.z);
+        Direction facing = Direction.getNearest((int) c.x, (int) c.y, (int) c.z,Direction.NORTH);
         int col = addShading ? getFaceShadeColor(c.x, c.y, c.z) : tint;
         int[] vertex = new int[32];
         for (int i = 0; i < 4; i++) {
@@ -35,7 +35,7 @@ public class QuadsHelper {
             vertex[i * 8 + 5] = Float.floatToRawIntBits(sprite.getV((1-(vecs[i]).v)));
         }
         ClientHooks.fillNormal(vertex, facing);
-        return new BakedQuad(vertex, tint, facing, sprite, false, false);
+        return new BakedQuad(vertex, tint, facing, sprite, false, 0,false);
     }
 
     public static float getFaceBrightness(float x, float y, float z) {
@@ -105,7 +105,8 @@ public class QuadsHelper {
                 quad.getTintIndex(),
                 quad.getDirection(),
                 quad.getSprite(),
-                quad.isShade()
+                quad.isShade(),
+                0
         );
     }
 

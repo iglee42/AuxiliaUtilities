@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.potions.AUMobEffect;
 import net.minecraft.client.particle.HeartParticle;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -37,7 +38,7 @@ public class LoveEffect extends AUMobEffect {
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entity, int amplifier, double health) {
+    public void applyInstantenousEffect(ServerLevel level, @Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entity, int amplifier, double health) {
         if (entity.level().isClientSide){
             RandomSource randomSource = entity.level().getRandom();
             double xd = randomSource.nextGaussian() * 0.02d,yd = randomSource.nextGaussian() * 0.02d,zd = randomSource.nextGaussian() * 0.02d;

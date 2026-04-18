@@ -12,6 +12,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -27,7 +29,7 @@ import java.util.Locale;
 
 public class EnchanterCategory implements IRecipeCategory<RecipeHolder<EnchanterRecipe>> {
 
-    public static final RecipeType<RecipeHolder<EnchanterRecipe>> RECIPE_TYPE = RecipeType.createFromVanilla(
+    public static final IRecipeHolderType<EnchanterRecipe> RECIPE_TYPE = IRecipeHolderType.create(
             EnchanterRecipe.Type.INSTANCE);
     private final IDrawable background;
     private final IDrawable icon;
@@ -44,7 +46,7 @@ public class EnchanterCategory implements IRecipeCategory<RecipeHolder<Enchanter
 
 
     @Override
-    public @NotNull RecipeType<RecipeHolder<EnchanterRecipe>> getRecipeType() {
+    public @NotNull IRecipeType<RecipeHolder<EnchanterRecipe>> getRecipeType() {
         return RECIPE_TYPE;
     }
 
@@ -78,9 +80,9 @@ public class EnchanterCategory implements IRecipeCategory<RecipeHolder<Enchanter
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull RecipeHolder<EnchanterRecipe> holder, @Nonnull IFocusGroup focusGroup) {
         EnchanterRecipe recipe = holder.value();
-        builder.addSlot(RecipeIngredientRole.INPUT,19, 14).addIngredients(VanillaTypes.ITEM_STACK, Arrays.asList(recipe.getIngredient().getItems()));
-        builder.addSlot(RecipeIngredientRole.INPUT,39, 14).addIngredients(VanillaTypes.ITEM_STACK, Arrays.asList(recipe.getLapisIngredient().getItems()));
-        builder.addSlot(RecipeIngredientRole.OUTPUT,99, 14).addIngredient(VanillaTypes.ITEM_STACK,recipe.getResult());
+        builder.addSlot(RecipeIngredientRole.INPUT,19, 14).add(recipe.getIngredient().ingredient());
+        builder.addSlot(RecipeIngredientRole.INPUT,39, 14).add(recipe.getLapisIngredient().ingredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT,99, 14).add(recipe.getResult());
     }
 
 }

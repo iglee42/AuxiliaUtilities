@@ -13,10 +13,9 @@ import net.minecraft.world.entity.ambient.AmbientCreature;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.ToolMaterial;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -76,12 +75,12 @@ public class AUItems {
     public static final DeferredItem<Item> ENCHANTED_NUGGET = ITEMS.register("enchanted_nugget",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> EVIL_INFUSED_IRON_NUGGET = ITEMS.register("evil_infused_iron_nugget",()-> new AUItem(new Item.Properties()));
 
-    public static final DeferredItem<Item> WOODEN_SICKLE = ITEMS.register("wooden_sickle",()-> new ItemSickle(Tiers.WOOD, new Item.Properties()));
-    public static final DeferredItem<Item> STONE_SICKLE = ITEMS.register("stone_sickle",()-> new ItemSickle(Tiers.STONE, new Item.Properties()));
-    public static final DeferredItem<Item> IRON_SICKLE = ITEMS.register("iron_sickle",()-> new ItemSickle(Tiers.IRON, new Item.Properties()));
-    public static final DeferredItem<Item> GOLDEN_SICKLE = ITEMS.register("golden_sickle",()-> new ItemSickle(Tiers.GOLD, new Item.Properties()));
-    public static final DeferredItem<Item> DIAMOND_SICKLE = ITEMS.register("diamond_sickle",()-> new ItemSickle(Tiers.DIAMOND, new Item.Properties()));
-    public static final DeferredItem<Item> NETHERITE_SICKLE = ITEMS.register("netherite_sickle",()-> new ItemSickle(Tiers.NETHERITE, new Item.Properties()));
+    public static final DeferredItem<Item> WOODEN_SICKLE = ITEMS.register("wooden_sickle",()-> new ItemSickle(ToolMaterial.WOOD,0,-3, new Item.Properties()));
+    public static final DeferredItem<Item> STONE_SICKLE = ITEMS.register("stone_sickle",()-> new ItemSickle(ToolMaterial.STONE, -1,-2,new Item.Properties()));
+    public static final DeferredItem<Item> IRON_SICKLE = ITEMS.register("iron_sickle",()-> new ItemSickle(ToolMaterial.IRON, -2,-1,new Item.Properties()));
+    public static final DeferredItem<Item> GOLDEN_SICKLE = ITEMS.register("golden_sickle",()-> new ItemSickle(ToolMaterial.GOLD, 0,-3,new Item.Properties()));
+    public static final DeferredItem<Item> DIAMOND_SICKLE = ITEMS.register("diamond_sickle",()-> new ItemSickle(ToolMaterial.DIAMOND, -3,0,new Item.Properties()));
+    public static final DeferredItem<Item> NETHERITE_SICKLE = ITEMS.register("netherite_sickle",()-> new ItemSickle(ToolMaterial.NETHERITE, -4,0,new Item.Properties()));
 
     public static final DeferredItem<Item> UPGRADE_BASE = ITEMS.register("upgrade_base",()-> new AUItem(new Item.Properties()));
     public static final DeferredItem<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade",()-> new ItemSpeedUpgrade(new Item.Properties(),4));

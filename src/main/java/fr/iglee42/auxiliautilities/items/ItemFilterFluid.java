@@ -11,21 +11,24 @@ import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUMCClickChoiceWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.AUWidgetBase;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotGhostWidget;
-import fr.iglee42.auxiliautilities.utils.*;
+import fr.iglee42.auxiliautilities.utils.AUTooltipProvider;
+import fr.iglee42.auxiliautilities.utils.IFluidFilter;
+import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -104,12 +107,12 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide){
             ItemStack heldItem = player.getItemInHand(hand);
             if (heldItem.getItem() == this){
                 player.openMenu(this);
-                return InteractionResultHolder.sidedSuccess(heldItem, level.isClientSide());
+                return InteractionResult.SUCCESS_SERVER;
             }
         }
         return super.use(level, player, hand);
@@ -200,7 +203,7 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
                 @Override
                 public void renderBackground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
                     ResourceLocation texture = AuxiliaUtilities.id("item/filter_fluids");
-                    TextureAtlasSprite sprite = Minecraft.getInstance()
+                    /*TextureAtlasSprite sprite = Minecraft.getInstance()
                             .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
                             .apply(texture);
                     graphics.blit(
@@ -214,11 +217,11 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
                             1.0F,
                             1.0F,
                             0.75F
-                    );
+                    );*/
                 }
             };
             addWidget(item);
-            addTitle(Component.translatable(heldItem.getDescriptionId()));
+            addTitle(heldItem.getItemName());
             for (int i = 0; i < 16; i++) {
                 int slotX = i % NUM_COLUMNS;
                 int slotY = i / NUM_COLUMNS;
@@ -260,7 +263,7 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
                         ResourceLocation still = extensions.getStillTexture(fluidStack);
 
                         TextureAtlasSprite sprite = Minecraft.getInstance()
-                                .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
+                                .getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
                                 .apply(still);
                         if (sprite == null)
                             return;
@@ -268,9 +271,9 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
                         float r = (tint >> 16 & 255) / 255F;
                         float g = (tint >> 8 & 255) / 255F;
                         float b = (tint & 255) / 255F;
-                        gui.setColor(r, g, b, 1F);
-                        gui.blit(guiLeft + getX() + 1, guiTop + getY() + 1, 0, 16, 16, sprite);
-                        gui.setColor(1F, 1F, 1F, 1F);
+                        //gui.setColor(r, g, b, 1F);
+                        gui.blitSprite(RenderType::guiTextured,sprite,guiLeft + getX() + 1, guiTop + getY() + 1, 0, 16, 16);
+                       // gui.setColor(1F, 1F, 1F, 1F);
                     }
                 }));
             }

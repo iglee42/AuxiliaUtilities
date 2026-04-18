@@ -18,11 +18,13 @@ import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.recipe.IFocusFactory;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -53,9 +55,9 @@ public class AUContainerScreenHandler implements IGuiContainerHandler<AUContaine
                 )).collect(Collectors.toSet());
     }
 
-    IGuiClickableArea createArea(int xPos, int yPos, int width, int height, RecipeType<?>... recipeTypes) {
+    IGuiClickableArea createArea(int xPos, int yPos, int width, int height, IRecipeType<?>... recipeTypes) {
         Rect2i area = new Rect2i(xPos, yPos, width, height);
-        List<RecipeType<?>> recipeTypesList = Arrays.asList(recipeTypes);
+        List<IRecipeType<?>> recipeTypesList = Arrays.asList(recipeTypes);
         return new IGuiClickableArea() {
             @Override
             public Rect2i getArea() {

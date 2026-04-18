@@ -14,20 +14,17 @@ import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotGhostWidget;
 import fr.iglee42.auxiliautilities.utils.AUTooltipProvider;
 import fr.iglee42.auxiliautilities.utils.IItemFilter;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -100,12 +97,12 @@ public class ItemFilterItem extends AUItem implements IItemFilter, MenuProvider 
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide){
             ItemStack heldItem = player.getItemInHand(hand);
             if (heldItem.getItem() == this){
                 player.openMenu(this);
-                return InteractionResultHolder.sidedSuccess(heldItem, level.isClientSide());
+                return InteractionResult.SUCCESS_SERVER;
             }
         }
         return super.use(level, player, hand);
@@ -196,26 +193,24 @@ public class ItemFilterItem extends AUItem implements IItemFilter, MenuProvider 
             AUWidgetBase item = new AUWidgetBase(85 - filter_w / 2, 5, filter_w, filter_w) {
                 @Override
                 public void renderBackground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
-                    ResourceLocation texture = AuxiliaUtilities.id("item/filter_items");
-                    TextureAtlasSprite sprite = Minecraft.getInstance()
-                            .getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
-                            .apply(texture);
-                    graphics.blit(
+                    ResourceLocation texture = AuxiliaUtilities.id("textures/item/filter_items");
+                   /* graphics.blit(
+                            RenderType::guiTextured,
+                            texture,
                             guiLeft + x,
                             guiTop + y,
                             0,
                             width,
                             height,
-                            sprite,
                             1.0F,
                             1.0F,
                             1.0F,
                             0.75F
-                    );
+                    );*/
                 }
             };
             addWidget(item);
-            addTitle(Component.translatable(heldItem.getDescriptionId()));
+            addTitle(heldItem.getItemName());
             for (int i = 0; i < 16; i++) {
                 int slotX = i % NUM_COLUMNS;
                 int slotY = i / NUM_COLUMNS;

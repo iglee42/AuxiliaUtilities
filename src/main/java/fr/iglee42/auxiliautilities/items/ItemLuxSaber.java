@@ -19,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.SimpleTier;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.List;
@@ -26,24 +27,25 @@ import java.util.function.Consumer;
 
 public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
-    public static final Tier TIER = new SimpleTier(
+    public static final ToolMaterial TIER = new ToolMaterial(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
             0,
             5.0F,
             7.0F,
             15,
-            ()-> Ingredient.of(ItemStack.EMPTY)
+            Tags.Items.INGOTS_IRON
     );
 
+
     public ItemLuxSaber(Properties props) {
-        super(TIER, props.component(AUDataComponents.STORED_ENERGY,0).component(DataComponents.BASE_COLOR,DyeColor.WHITE));
+        super(TIER, 3,0,props.component(AUDataComponents.STORED_ENERGY,0).component(DataComponents.BASE_COLOR,DyeColor.WHITE));
     }
 
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
         ItemAttributeModifiers modifiers = super.getDefaultAttributeModifiers(stack);
         if (stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= AUConfig.SABER_THRESHOLD.get()){
-            modifiers = createAttributes(TIER,3f,0f);
+            modifiers = TIER.createToolAttributes(3f,0f);
         }
         return modifiers.withModifierAdded(
                 Attributes.BLOCK_INTERACTION_RANGE,
@@ -114,10 +116,10 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
     }
 
     @Override
-    public String getDescriptionId(ItemStack stack) {
-        if (!stack.has(DataComponents.BASE_COLOR)) return super.getDescriptionId(stack);
+    public Component getName(ItemStack stack) {
+        if (!stack.has(DataComponents.BASE_COLOR)) return super.getName(stack);
         DyeColor color = stack.getOrDefault(DataComponents.BASE_COLOR,DyeColor.WHITE);
-        return super.getDescriptionId(stack) + "." + color.getSerializedName();
+        return Component.translatable("item."+AuxiliaUtilities.MODID+".lux_saber."+color.getSerializedName());
     }
 
     @Override

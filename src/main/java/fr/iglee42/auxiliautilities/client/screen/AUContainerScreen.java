@@ -8,6 +8,7 @@ import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidgetKeyInput;
 import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidgetMouseInput;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -47,10 +48,10 @@ public class AUContainerScreen extends AbstractContainerScreen<AUMenu> {
         int w3 = w - w2;
         int h3 = h - h2;
 
-        guiGraphics.blit(texture, x, y, 0, 0, w2, h2);
-        guiGraphics.blit(texture, x + w2, y, 256 - w3, 0, w3, h2);
-        guiGraphics.blit(texture, x, y + h2, 0, 256 - h3, w2, h3);
-        guiGraphics.blit(texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3);
+        guiGraphics.blit(RenderType::guiTextured,texture, x, y, 0, 0, w2, h2);
+        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y, 256 - w3, 0, w3, h2);
+        guiGraphics.blit(RenderType::guiTextured,texture, x, y + h2, 0, 256 - h3, w2, h3);
+        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3);
     }
 
     @Override

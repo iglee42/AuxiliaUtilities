@@ -127,7 +127,7 @@ public class AUClient {
     }
 
     @SubscribeEvent
-    public static void registerColors(RegisterColorHandlersEvent.Item event){
+    public static void registerColors(RegisterColorHandlersEvent.ItemTintSources event){
         AUItems.ITEMS.getEntries().stream()
                 .map(DeferredHolder::get)
                 .filter(AUItemBase.class::isInstance)
@@ -215,10 +215,16 @@ public class AUClient {
         event.registerBlockEntityRenderer(AUBlockEntityTypes.KLEIN_BOTTLE.get(), KleinBottleRenderer::new);
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event){
         event.registerItem(new OpiniumCoreItemRenderer.Extension(),AUBlocks.MISERABLE_OPINIUM_CORE.asItem(),AUBlocks.PATHETIC_OPINIUM_CORE.asItem(),AUBlocks.MEDIOCRE_OPINIUM_CORE.asItem(),AUBlocks.PASSABLE_OPINIUM_CORE.asItem(),AUBlocks.DECENT_OPINIUM_CORE.asItem(),AUBlocks.SOLID_OPINIUM_CORE.asItem(),AUBlocks.GOOD_OPINIUM_CORE.asItem(),AUBlocks.DAMN_GOOD_OPINIUM_CORE.asItem(),AUBlocks.AMAZING_OPINIUM_CORE.asItem(),AUBlocks.INSPIRING_OPINIUM_CORE.asItem(),AUBlocks.PERFECTED_OPINIUM_CORE.asItem());
         event.registerItem(new KleinBottleItemRenderer.Extension(),AUBlocks.KLEIN_BOTTLE.asItem());
+    }*/
+
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterSpecialModelRendererEvent event){
+        event.register(AuxiliaUtilities.id("opinium_core"),OpiniumCoreItemRenderer.Unbaked.MAP_CODEC);
+        event.register(AuxiliaUtilities.id("klein_bottle"),KleinBottleItemRenderer.Unbaked.MAP_CODEC);
     }
 
     @SubscribeEvent
@@ -232,9 +238,9 @@ public class AUClient {
         for (PlayerSkin.Model type : event.getSkins()){
             PlayerRenderer renderer = event.getSkin(type);
             if (renderer != null){
-                renderer.addLayer(new KikokuSheathLayer<>(renderer));
-                renderer.addLayer(new AngelRingRenderer<>(renderer));
-                renderer.addLayer(new ChickenRingRenderer<>(renderer));
+                renderer.addLayer(new KikokuSheathLayer(renderer));
+                renderer.addLayer(new AngelRingRenderer(renderer));
+                renderer.addLayer(new ChickenRingRenderer(renderer));
             }
         }
     }

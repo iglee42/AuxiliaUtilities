@@ -25,6 +25,8 @@ public class CrusherRecipe implements Recipe<CrusherRecipeInput> {
     private final ItemStack secondResult;
     private final float chance;
     private final int energy;
+    @Nullable
+    private PlacementInfo placementInfo;
 
     public CrusherRecipe(Ingredient ingredient, ItemStack result, ItemStack secondResult, float chance, int energy) {
         this.ingredient = ingredient;
@@ -42,18 +44,31 @@ public class CrusherRecipe implements Recipe<CrusherRecipeInput> {
 
     @Override
     public ItemStack assemble(CrusherRecipeInput input, HolderLookup.Provider p_346030_) {
-        return getResultItem(p_346030_);
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-        return true;
-    }
-
-    @Override
-    public @NotNull ItemStack getResultItem(@Nullable HolderLookup.Provider p_336125_) {
         return result.copy();
     }
+
+    @Override
+    public RecipeSerializer<? extends Recipe<CrusherRecipeInput>> getSerializer() {
+        return AURecipes.CRUSHER_SERIALIZER.get();
+    }
+
+    @Override
+    public RecipeType<? extends Recipe<CrusherRecipeInput>> getType() {
+        return Type.INSTANCE;
+    }
+
+    @Override
+    public PlacementInfo placementInfo() {
+        if (placementInfo == null)
+            placementInfo = PlacementInfo.create(ingredient);
+        return placementInfo;
+    }
+
+    @Override
+    public RecipeBookCategory recipeBookCategory() {
+        return AURecipes.CRUSHER_CATEGORY.get();
+    }
+
 
     public ItemStack getResult() {
         return result;
@@ -80,16 +95,6 @@ public class CrusherRecipe implements Recipe<CrusherRecipeInput> {
     }
 
 
-    @Override
-    public RecipeSerializer<?> getSerializer() {
-        return AURecipes.CRUSHER_SERIALIZER.get();
-    }
-
-    @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
-    }
-
     public static class Type implements RecipeType<CrusherRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
@@ -99,7 +104,7 @@ public class CrusherRecipe implements Recipe<CrusherRecipeInput> {
 
         private static final MapCodec<CrusherRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 instance -> instance.group(
-                                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(e -> e.ingredient),
+                                Ingredient.CODEC.fieldOf("ingredient").forGetter(e -> e.ingredient),
                                 ItemStack.CODEC.fieldOf("result").forGetter(e->e.result),
                                 ItemStack.CODEC.optionalFieldOf("second_result",ItemStack.EMPTY).forGetter(e->e.secondResult),
                                 Codec.floatRange(0,1).optionalFieldOf("second_chance",0.0f).forGetter(e->e.chance),

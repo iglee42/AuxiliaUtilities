@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.potions.effects;
 
 import fr.iglee42.auxiliautilities.potions.AUMobEffect;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +21,7 @@ public class PurgeEffect extends AUMobEffect {
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entity, int amplifier, double health) {
+    public void applyInstantenousEffect(ServerLevel level, @Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entity, int amplifier, double health) {
         if (entity instanceof Player player){
             FoodData foodData = player.getFoodData();
             CompoundTag tag = new CompoundTag();

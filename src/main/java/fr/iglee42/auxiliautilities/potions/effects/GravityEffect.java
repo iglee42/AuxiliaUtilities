@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.potions.effects;
 
 import fr.iglee42.auxiliautilities.potions.AUMobEffect;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +21,7 @@ public class GravityEffect extends AUMobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int p_19468_) {
+    public boolean applyEffectTick(ServerLevel level,LivingEntity entity, int p_19468_) {
         if (entity instanceof Player player){
             if (player.getAbilities().flying){
                 player.getAbilities().flying = false;
@@ -41,6 +42,6 @@ public class GravityEffect extends AUMobEffect {
         }
         if (!entity.onGround())
             entity.setDeltaMovement(entity.getDeltaMovement().add(0, -0.04D * dist, 0));
-        return super.applyEffectTick(entity, p_19468_);
+        return super.applyEffectTick(level,entity, p_19468_);
     }
 }

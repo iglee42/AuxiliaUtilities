@@ -7,10 +7,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -32,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ItemDestructionWand extends ItemSelectionWand{
 
     private static final Item[] HARVEST_DELEGATES = {Items.DIAMOND_PICKAXE,Items.DIAMOND_AXE,Items.DIAMOND_SHOVEL,Items.DIAMOND_HOE};
-    private static final Item[] SPEED_DELEGATES = {Items.GOLDEN_PICKAXE,Items.GOLDEN_AXE,Items.GOLDEN_SHOVEL,Items.GOLDEN_HOE};
+    private static final ToolMaterial SPEED_DELEGATES = ToolMaterial.GOLD;
 
     public ItemDestructionWand(Properties props, int range, float[] col) {
         super(props.component(DataComponents.TOOL,new Tool(
@@ -46,11 +43,10 @@ public class ItemDestructionWand extends ItemSelectionWand{
         List<Tool.Rule> rules = new ArrayList<>();
         for (int i = 0; i < HARVEST_DELEGATES.length; i++) {
             ItemStack harvestDelegate = HARVEST_DELEGATES[i].getDefaultInstance();
-            ItemStack speedDelegate = SPEED_DELEGATES[i].getDefaultInstance();
-            if (harvestDelegate.has(DataComponents.TOOL) && speedDelegate.getItem() instanceof TieredItem speedItem) {
+            if (harvestDelegate.has(DataComponents.TOOL)) {
                 Tool harvestTool = harvestDelegate.get(DataComponents.TOOL);
                 harvestTool.rules().forEach(rule->{
-                    rules.add(new Tool.Rule(rule.blocks(), Optional.of(speedItem.getTier().getSpeed()),rule.correctForDrops()));
+                    rules.add(new Tool.Rule(rule.blocks(), Optional.of(SPEED_DELEGATES.speed()),rule.correctForDrops()));
                 });
             }
         }

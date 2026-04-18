@@ -24,38 +24,12 @@ public class ItemKikoku extends SwordItem implements AUItemBase {
 
     public ItemKikoku() {
         super(
-                Tiers.NETHERITE,
+                ToolMaterial.NETHERITE,
+                10,
+                -2.4f,
                 new Item.Properties()
                         .stacksTo(1)
-                        .attributes(createAttributes())
         );
-    }
-
-    private static ItemAttributeModifiers createAttributes() {
-
-        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-
-        builder.add(
-                Attributes.ATTACK_DAMAGE,
-                new AttributeModifier(
-                        BASE_ATTACK_DAMAGE_ID,
-                        10,
-                        AttributeModifier.Operation.ADD_VALUE
-                ),
-                EquipmentSlotGroup.MAINHAND
-        );
-
-        builder.add(
-                Attributes.ATTACK_SPEED,
-                new AttributeModifier(
-                        BASE_ATTACK_SPEED_ID,
-                        -2.4F,
-                        AttributeModifier.Operation.ADD_VALUE
-                ),
-                EquipmentSlotGroup.MAINHAND
-        );
-
-        return builder.build();
     }
 
     @Override

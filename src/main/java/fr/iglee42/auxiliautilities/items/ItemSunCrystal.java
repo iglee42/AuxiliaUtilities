@@ -1,8 +1,10 @@
 package fr.iglee42.auxiliautilities.items;
 
+import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,10 +51,9 @@ public class ItemSunCrystal extends AUItem {
     }
 
     @Override
-    public String getDescriptionId(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (stack.getDamageValue() == MAX_DAMAGE)
-            return super.getDescriptionId(stack) + ".empty";
-        return super.getDescriptionId(stack);
+            return AULang.SUN_CRYSTAL_EMPTY.get();
+        return super.getName(stack);
     }
-
 }

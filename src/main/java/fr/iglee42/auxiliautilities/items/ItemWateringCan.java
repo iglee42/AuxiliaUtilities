@@ -11,7 +11,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -119,7 +118,7 @@ public class ItemWateringCan extends AUItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         HitResult hit = player.pick(20.0D, 0.0F, true);
@@ -129,16 +128,16 @@ public class ItemWateringCan extends AUItem {
 
             if (level.getBlockState(pos).getFluidState().isSource()) {
                 player.startUsingItem(hand);
-                return InteractionResultHolder.success(stack);
+                return InteractionResult.SUCCESS;
             }
         }
 
         if (stack.getDamageValue() >= stack.getMaxDamage() && !player.getAbilities().instabuild) {
-            return InteractionResultHolder.fail(stack);
+            return InteractionResult.FAIL;
         }
 
         player.startUsingItem(hand);
-        return InteractionResultHolder.success(stack);
+        return InteractionResult.SUCCESS;
     }
 
     private void waterLocation(Level level, double x, double y, double z,
@@ -158,7 +157,7 @@ public class ItemWateringCan extends AUItem {
         }
 
         if (level.isClientSide) {
-            Vec3 dir = Vec3.atLowerCornerOf(side.getNormal());
+            Vec3 dir = Vec3.atLowerCornerOf(side.getUnitVec3i());
 
             for (int i = 0; i < 4 * range; i++) {
                 level.addParticle(ParticleTypes.SPLASH,

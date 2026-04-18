@@ -118,12 +118,7 @@ public class ItemDivisionSigil extends AUFoilItem {
     }
 
     @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
-        return true;
-    }
-
-    @Override
-    public @NotNull ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+    public ItemStack getCraftingRemainder(ItemStack itemStack) {
         ItemStack stack = itemStack.copy();
         stack.setDamageValue(stack.getDamageValue() + 1);
         if (stack.getDamageValue() == stack.getMaxDamage()) {
@@ -212,7 +207,7 @@ public class ItemDivisionSigil extends AUFoilItem {
         }
 
         AULang.sendMessageToPlayer(player, message, messageUUID);
-        return InteractionResult.SUCCESS_NO_ITEM_USED;
+        return InteractionResult.SUCCESS;
     }
 
     @EventBusSubscriber(modid = AuxiliaUtilities.MODID)
@@ -516,6 +511,8 @@ public class ItemDivisionSigil extends AUFoilItem {
                     .map(ResourceLocation::tryParse)
                     .filter(Objects::nonNull)
                     .map(BuiltInRegistries.ITEM::get)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
                     .map(ItemStack::new)
                     .toArray(ItemStack[]::new);
             return checkItemHandler(handler, stacks, destroy);
@@ -525,6 +522,8 @@ public class ItemDivisionSigil extends AUFoilItem {
                     .map(ResourceLocation::tryParse)
                     .filter(Objects::nonNull)
                     .map(BuiltInRegistries.ITEM::get)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
                     .map(ItemStack::new)
                     .toArray(ItemStack[]::new);
             return checkItemHandler(handler, stacks, destroy);
@@ -532,11 +531,12 @@ public class ItemDivisionSigil extends AUFoilItem {
         static int checkEastChest(IItemHandler handler, boolean destroy){
             ItemStack[] stacks;
             if (AUConfig.DEFAULT_EAST_CHEST.get()){
-                stacks = BuiltInRegistries.POTION.holders()
+                stacks = BuiltInRegistries.POTION.entrySet()
+                        .stream()
                         .filter(h -> h.getKey() != null && h.getKey().location().getNamespace().equals("minecraft"))
                         .map(potionHolder -> {
                                     ItemStack potionStack = new ItemStack(Items.POTION);
-                                    potionStack.set(DataComponents.POTION_CONTENTS, new PotionContents(potionHolder));
+                                    potionStack.set(DataComponents.POTION_CONTENTS, new PotionContents(BuiltInRegistries.POTION.wrapAsHolder(potionHolder.getValue())));
                                     return potionStack;
                                 }
                         ).toArray(ItemStack[]::new);;
@@ -545,6 +545,8 @@ public class ItemDivisionSigil extends AUFoilItem {
                         .map(ResourceLocation::tryParse)
                         .filter(Objects::nonNull)
                         .map(BuiltInRegistries.ITEM::get)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
                         .map(ItemStack::new)
                         .toArray(ItemStack[]::new);
             }
@@ -554,15 +556,18 @@ public class ItemDivisionSigil extends AUFoilItem {
         static int checkWestChest(IItemHandler handler, boolean destroy){
             ItemStack[] stacks;
             if (AUConfig.DEFAULT_WEST_CHEST.get()){
-                stacks = BuiltInRegistries.ITEM.holders()
+                stacks = BuiltInRegistries.ITEM.entrySet()
+                        .stream()
                         .filter(h -> h.getKey() != null && h.getKey().location().getPath().startsWith("music_disc_"))
-                        .map(ItemStack::new)
+                        .map(h->new ItemStack(h.getValue()))
                         .toArray(ItemStack[]::new);
             } else {
                 stacks = AUConfig.WEST_CHEST_ITEMS.get().stream().map(String.class::cast)
                         .map(ResourceLocation::tryParse)
                         .filter(Objects::nonNull)
                         .map(BuiltInRegistries.ITEM::get)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
                         .map(ItemStack::new)
                         .toArray(ItemStack[]::new);
             }

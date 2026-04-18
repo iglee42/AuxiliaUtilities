@@ -2,6 +2,8 @@ package fr.iglee42.auxiliautilities.recipes;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.NotNull;
 
 import com.mojang.serialization.Codec;
@@ -15,14 +17,11 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
+
+import java.util.List;
 
 public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
 
@@ -30,6 +29,8 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
     private final SizedIngredient lapisIngredient;
     private final ItemStack result;
     private final int energy;
+    @Nullable
+    private PlacementInfo placementInfo;
 
     public EnchanterRecipe(SizedIngredient ingredient,SizedIngredient lapisIngredient, ItemStack result, int energy) {
         this.ingredient = ingredient;
@@ -46,17 +47,17 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
 
     @Override
     public ItemStack assemble(EnchanterRecipeInput input, HolderLookup.Provider p_346030_) {
-        return getResultItem(p_346030_);
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-        return true;
-    }
-
-    @Override
-    public @NotNull ItemStack getResultItem(@Nullable HolderLookup.Provider p_336125_) {
         return result.copy();
+    }
+
+    @Override
+    public RecipeSerializer<? extends Recipe<EnchanterRecipeInput>> getSerializer() {
+        return AURecipes.ENCHANTER_SERIALIZER.get();
+    }
+
+    @Override
+    public RecipeType<? extends Recipe<EnchanterRecipeInput>> getType() {
+        return Type.INSTANCE;
     }
 
     public ItemStack getResult() {
@@ -77,13 +78,15 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
 
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        return AURecipes.ENCHANTER_SERIALIZER.get();
+    public PlacementInfo placementInfo() {
+        if (placementInfo == null)
+            placementInfo = PlacementInfo.create(List.of(ingredient.ingredient(),lapisIngredient.ingredient()));
+        return placementInfo;
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
+    public RecipeBookCategory recipeBookCategory() {
+        return AURecipes.ENCHANTER_CATEGORY.get();
     }
 
     public static class Type implements RecipeType<EnchanterRecipe> {
@@ -93,12 +96,12 @@ public class EnchanterRecipe implements Recipe<EnchanterRecipeInput> {
     }
     public static class Serializer implements RecipeSerializer<EnchanterRecipe> {
 
-        private static final Codec<SizedIngredient> INGREDIENT_CODEC = Codec.withAlternative(SizedIngredient.FLAT_CODEC,
-                ExtraCodecs.POSITIVE_INT, count -> SizedIngredient.of(Tags.Items.GEMS_LAPIS, count));
+        private static final Codec<SizedIngredient> INGREDIENT_CODEC = Codec.withAlternative(SizedIngredient.NESTED_CODEC,
+                ExtraCodecs.POSITIVE_INT, count -> new SizedIngredient(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(Tags.Items.GEMS_LAPIS)), count));
 
         private static final MapCodec<EnchanterRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340782_ -> p_340782_.group(
-                                SizedIngredient.FLAT_CODEC.fieldOf("ingredient").forGetter(e -> e.ingredient),
+                                SizedIngredient.NESTED_CODEC.fieldOf("ingredient").forGetter(e -> e.ingredient),
                                 INGREDIENT_CODEC.fieldOf("lapis").forGetter(e->e.lapisIngredient),
                                 ItemStack.CODEC.fieldOf("result").forGetter(e->e.result),
                                 ExtraCodecs.POSITIVE_INT.fieldOf("energy").forGetter(e->e.energy)

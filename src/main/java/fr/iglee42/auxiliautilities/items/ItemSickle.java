@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,25 +28,28 @@ import java.util.Map;
 
 public class ItemSickle extends DiggerItem implements AUItemBase {
 
-    public static final Map<Tier,Integer> RANGES = Map.of(
-            Tiers.WOOD,1,
-            Tiers.STONE,2,
-            Tiers.IRON,3,
-            Tiers.GOLD,1,
-            Tiers.DIAMOND,4,
-            Tiers.NETHERITE,5
+    public static final Map<ToolMaterial,Integer> RANGES = Map.of(
+            ToolMaterial.WOOD,1,
+            ToolMaterial.STONE,2,
+            ToolMaterial.IRON,3,
+            ToolMaterial.GOLD,1,
+            ToolMaterial.DIAMOND,4,
+            ToolMaterial.NETHERITE,5
     );
+
+    private final ToolMaterial material;
 
     private ThreadLocal<Boolean> propagate = ThreadLocal.withInitial(() -> false);
 
-    public ItemSickle(Tier tier, Properties props) {
-        super(tier, BlockTags.CROPS, props);
+    public ItemSickle(ToolMaterial material, float attackDamage, float attackSpeed, Properties props) {
+        super(material, BlockTags.CROPS, attackDamage, attackSpeed, props);
+        this.material = material;
         NeoForge.EVENT_BUS.register(this);
     }
 
     public int getRange(ItemStack stack){
         if (!(stack.getItem() instanceof ItemSickle sickle)) return 0;
-        return RANGES.getOrDefault(sickle.getTier(), Mth.floor(sickle.getTier().getAttackDamageBonus() + 1));
+        return RANGES.getOrDefault(material, Mth.floor(material.attackDamageBonus() + 1));
     }
 
     public boolean isEffectiveOn(BlockState state) {
@@ -54,7 +58,7 @@ public class ItemSickle extends DiggerItem implements AUItemBase {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        return isEffectiveOn(state) ? getTier().getSpeed() : super.getDestroySpeed(stack, state);
+        return isEffectiveOn(state) ? material.speed() : super.getDestroySpeed(stack, state);
     }
 
 

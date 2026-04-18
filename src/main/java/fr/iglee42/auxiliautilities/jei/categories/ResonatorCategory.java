@@ -13,6 +13,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -27,7 +29,7 @@ import java.awt.*;
 
 public class ResonatorCategory implements IRecipeCategory<RecipeHolder<ResonatorRecipe>> {
 
-    public static final RecipeType<RecipeHolder<ResonatorRecipe>> RECIPE_TYPE = RecipeType.createFromVanilla(
+    public static final IRecipeHolderType<ResonatorRecipe> RECIPE_TYPE = IRecipeHolderType.create(
             ResonatorRecipe.Type.INSTANCE);
     private final IDrawable background;
     private final IDrawable icon;
@@ -44,7 +46,7 @@ public class ResonatorCategory implements IRecipeCategory<RecipeHolder<Resonator
 
 
     @Override
-    public @NotNull RecipeType<RecipeHolder<ResonatorRecipe>> getRecipeType() {
+    public @NotNull IRecipeType<RecipeHolder<ResonatorRecipe>> getRecipeType() {
         return RECIPE_TYPE;
     }
 
@@ -86,8 +88,8 @@ public class ResonatorCategory implements IRecipeCategory<RecipeHolder<Resonator
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull RecipeHolder<ResonatorRecipe> holder, @Nonnull IFocusGroup focusGroup) {
         ResonatorRecipe recipe = holder.value();
-        builder.addSlot(RecipeIngredientRole.INPUT,19, 14).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT,79, 14).addIngredient(VanillaTypes.ITEM_STACK,recipe.getResult());
+        builder.addSlot(RecipeIngredientRole.INPUT,19, 14).add(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT,79, 14).add(recipe.getResult());
     }
 
 }

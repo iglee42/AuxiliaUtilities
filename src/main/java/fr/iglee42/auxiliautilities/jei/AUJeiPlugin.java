@@ -21,11 +21,13 @@ import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SimpleFluidIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
@@ -54,24 +56,24 @@ public class AUJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(AUBlocks.RESONATOR, ResonatorCategory.RECIPE_TYPE);
-        registration.addRecipeCatalyst(AUBlocks.ENCHANTER, EnchanterCategory.RECIPE_TYPE);
-        registration.addRecipeCatalyst(AUBlocks.FURNACE, RecipeTypes.SMELTING);
-        registration.addRecipeCatalyst(AUBlocks.CRUSHER, CrusherCategory.RECIPE_TYPE);
-        registration.addRecipeCatalyst(AUBlocks.TERRAFORMER, TerraformerCategory.RECIPE_TYPE);
+        registration.addCraftingStation(ResonatorCategory.RECIPE_TYPE,AUBlocks.RESONATOR);
+        registration.addCraftingStation(EnchanterCategory.RECIPE_TYPE,AUBlocks.ENCHANTER);
+        registration.addCraftingStation(RecipeTypes.SMELTING,AUBlocks.FURNACE);
+        registration.addCraftingStation(CrusherCategory.RECIPE_TYPE,AUBlocks.CRUSHER);
+        registration.addCraftingStation(TerraformerCategory.RECIPE_TYPE,AUBlocks.TERRAFORMER);
         for (Generators gen : Generators.values()) {
-            registration.addRecipeCatalyst(gen.block.get(), GeneratorCategory.getGeneratorRecipeType(gen.block));
+            registration.addCraftingStation(GeneratorCategory.getGeneratorRecipeType(gen.block),gen.block.get());
         }
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(ResonatorCategory.RECIPE_TYPE,
-                new ArrayList<>(Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(ResonatorRecipe.Type.INSTANCE)));
+        /*registration.addRecipes(ResonatorCategory.RECIPE_TYPE,
+                new ArrayList<>(Minecraft.getInstance().level.recipeAccess().stonecutterRecipes().getAllRecipesFor(ResonatorRecipe.Type.INSTANCE)));
         registration.addRecipes(EnchanterCategory.RECIPE_TYPE,
-                new ArrayList<>(Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE)));
+                new ArrayList<>(Minecraft.getInstance().level.recipeAccess().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE)));
         registration.addRecipes(CrusherCategory.RECIPE_TYPE,
-                new ArrayList<>(Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(CrusherRecipe.Type.INSTANCE)));
+                new ArrayList<>(Minecraft.getInstance().level.recipeAccess().getAllRecipesFor(CrusherRecipe.Type.INSTANCE)));*/
 
         List<TerraformerCategory.ExtensionWrapper> recipes = new ArrayList<>();
         for (TerraformerType type : TerraformerType.values()) {
@@ -80,7 +82,7 @@ public class AUJeiPlugin implements IModPlugin {
                         Holder<Item> itemHolder = stack.getItemHolder();
                        AUTerraformerDataMaps.TerraformerItem data = itemHolder.getData(type.getDataMapType());
                         if (data != null) {
-                            return new TerraformerCategory.ExtensionWrapper(Ingredient.of(stack),data.energyProvided(),type);
+                            return new TerraformerCategory.ExtensionWrapper(Ingredient.of(stack.getItem()),data.energyProvided(),type);
                         }
                         return null;
                     })
@@ -119,9 +121,9 @@ public class AUJeiPlugin implements IModPlugin {
         SURVIVAL(AUBlocks.SURVIVAL_GENERATOR,
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
-                            int burnTime = stack.getBurnTime(null);
+                            int burnTime = stack.getBurnTime(null,Minecraft.getInstance().level.fuelValues());
                             if (burnTime > 0) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), 5, burnTime * 10));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, 5, burnTime * 10));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
@@ -129,9 +131,9 @@ public class AUJeiPlugin implements IModPlugin {
         FURNACE(AUBlocks.FURNACE_GENERATOR,
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
-                            int burnTime = stack.getBurnTime(null);
+                            int burnTime = stack.getBurnTime(null,Minecraft.getInstance().level.fuelValues());
                             if (burnTime > 0) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), 40, burnTime / 10));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, 40, burnTime / 10));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
@@ -139,9 +141,9 @@ public class AUJeiPlugin implements IModPlugin {
         OVERCLOCKED(AUBlocks.OVERCLOCKED_GENERATOR,
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
-                            int burnTime = stack.getBurnTime(null);
+                            int burnTime = stack.getBurnTime(null,Minecraft.getInstance().level.fuelValues());
                             if (burnTime > 0) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), burnTime, 1));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, burnTime, 1));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
@@ -150,17 +152,17 @@ public class AUJeiPlugin implements IModPlugin {
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
                             if (stack.has(DataComponents.FOOD)) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), (int) BEGenCulinary.getEnergyRate(stack), (int) (BEGenCulinary.getEnergyRate(stack) * 10)));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, (int) BEGenCulinary.getEnergyRate(stack), (int) (BEGenCulinary.getEnergyRate(stack) * 10)));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
                         .toList()),
         MAGMATIC(AUBlocks.MAGMATIC_GENERATOR,
-                new GeneratorWrapper(List.of(), FluidIngredient.tag(Tags.Fluids.LAVA), 40, 125)),
+                new GeneratorWrapper(List.of(), SimpleFluidIngredient.of(BuiltInRegistries.FLUID.getOrThrow(Tags.Fluids.LAVA)), 40, 125)),
         REDSTONE_HEATED(AUBlocks.HEATED_REDSTONE_GENERATOR,
                 new GeneratorWrapper(Tags.Items.DUSTS_REDSTONE, Tags.Fluids.LAVA, 160, 125)),
         SLIMEY(AUBlocks.SLIMEY_GENERATOR,
-                new GeneratorWrapper(List.of(Ingredient.of(Tags.Items.SLIME_BALLS), Ingredient.of(Tags.Items.BUCKETS_MILK)), FluidIngredient.empty(), 400, 480)),
+                new GeneratorWrapper(List.of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(Tags.Items.SLIME_BALLS)), Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(Tags.Items.BUCKETS_MILK))), null, 400, 480)),
         DEATH(AUBlocks.DEATH_GENERATOR, dataMap(AUGeneratorsDataMaps.DEATH_ITEMS)),
         PINK(AUBlocks.PINK_GENERATOR,
                 new GeneratorWrapper(Tags.Items.DYES_PINK, 40, 10),
@@ -169,7 +171,7 @@ public class AUJeiPlugin implements IModPlugin {
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
                             if (stack.has(DataComponents.POTION_CONTENTS)) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), BEGenPotion.getPotionEnergy(stack).getFirst(), BEGenPotion.getPotionEnergy(stack).getSecond()));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, BEGenPotion.getPotionEnergy(stack).getFirst(), BEGenPotion.getPotionEnergy(stack).getSecond()));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
@@ -178,7 +180,7 @@ public class AUJeiPlugin implements IModPlugin {
                 manager -> manager.getAllItemStacks().stream()
                         .<GeneratorWrapper>mapMulti((stack, consumer) -> {
                             if (BEGenDisenchantment.getBookEnergy(stack) > 0) {
-                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), DISENCHANTMENT_RATE.get(), BEGenDisenchantment.getBookEnergy(stack) / DISENCHANTMENT_RATE.get()));
+                                consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, DISENCHANTMENT_RATE.get(), BEGenDisenchantment.getBookEnergy(stack) / DISENCHANTMENT_RATE.get()));
                             }
                         })
                         .sorted(Comparator.comparingInt(GeneratorWrapper::time))
@@ -206,7 +208,7 @@ public class AUJeiPlugin implements IModPlugin {
                         Holder<Item> itemHolder = stack.getItemHolder();
                         T data = itemHolder.getData(mapType);
                         if (data != null) {
-                            consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack)), FluidIngredient.empty(), data.energyPerTick(), data.time()));
+                            consumer.accept(new GeneratorWrapper(List.of(Ingredient.of(stack.getItem())), null, data.energyPerTick(), data.time()));
                         }
                     })
                     .sorted(Comparator.comparingInt(GeneratorWrapper::time))

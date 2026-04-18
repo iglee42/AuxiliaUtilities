@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.player.Player;
@@ -75,7 +76,7 @@ public class ItemDivisionSigilUnactivated extends AUItem {
             }
         }
         AULang.sendMessageToPlayer(player, message, messageUUID);
-        return InteractionResult.SUCCESS_NO_ITEM_USED;
+        return InteractionResult.SUCCESS;
     }
 
     private static List<Condition> getFailingConditions(Level level, BlockPos pos){
@@ -153,7 +154,7 @@ public class ItemDivisionSigilUnactivated extends AUItem {
                     double y = testPos.getY();
                     double z = testPos.getZ();
 
-                    LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
+                    LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level, EntitySpawnReason.TRIGGERED);
                     if (lightning != null) {
                         lightning.moveTo(x, y, z);
                         level.addFreshEntity(lightning);
@@ -198,7 +199,7 @@ public class ItemDivisionSigilUnactivated extends AUItem {
                                 else if (state.getPistonPushReaction() == PushReaction.DESTROY && !state.is(Blocks.REDSTONE_WIRE)) {
                                     level.destroyBlock(pos, true);
                                 }
-                                else if (state.isSolidRender(level, pos)) {
+                                else if (state.isSolidRender()) {
                                     break;
                                 }
                             }

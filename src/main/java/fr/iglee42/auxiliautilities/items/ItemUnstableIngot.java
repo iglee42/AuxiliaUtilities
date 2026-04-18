@@ -59,7 +59,7 @@ public class ItemUnstableIngot extends AUItem {
             long baseTime = stack.get(AUDataComponents.TIME);
 
             if (baseTime > 0L) {
-                float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
+                float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
 
                 float time = (float) (AUConfig.UNSTABLE_TIME.get() + baseTime - level.getGameTime())
                         - partialTick

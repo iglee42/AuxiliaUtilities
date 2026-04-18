@@ -17,30 +17,33 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
 import org.joml.Quaternionf;
 
-public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerModel<T>> {
+public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerModel> {
 
 
     protected static final double FLAP_FREQUENCY = 0.5;
     protected static final double MAX_ANGLE = 25.0;
 
-    public AngelRingRenderer(RenderLayerParent<T, PlayerModel<T>> parent) {
+    public AngelRingRenderer(RenderLayerParent<PlayerRenderState, PlayerModel> parent) {
         super(parent);
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource source, int light, T player, float limbSwing, float swingAmount, float pt, float age, float headYaw, float headPitch) {
+    public void render(PoseStack poseStack, MultiBufferSource source, int light, PlayerRenderState state, float pt, float age) {
         if (Minecraft.getInstance().player == null) return;
 
-        if (player.isInvisible()) return;
+        Player player = Minecraft.getInstance().player;
+        if (state.isInvisible) return;
 
         int index = InventoryUtil.getFirstInventoryIndex(player, AUItems.ANGEL_RING.asItem());
         ItemStack stack = index == -1 ? ItemStack.EMPTY : player.getInventory().getItem(index);
@@ -82,7 +85,7 @@ public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerMo
 
     private static void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, ItemAngelRing.AngelRingWings wings){
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getModel(getWingLocation(wings));
+        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(getWingLocation(wings));
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutout());
 
         poseStack.pushPose();
@@ -98,7 +101,7 @@ public class AngelRingRenderer<T extends Player> extends RenderLayer<T, PlayerMo
         poseStack.popPose();
     }
 
-    public static ModelResourceLocation getWingLocation(ItemAngelRing.AngelRingWings wings){
-        return ModelResourceLocation.standalone(AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing"));
+    public static ResourceLocation getWingLocation(ItemAngelRing.AngelRingWings wings){
+        return AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing");
     }
 }

@@ -2,7 +2,9 @@ package fr.iglee42.auxiliautilities.datagen.builders;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.recipes.ResonatorRecipe;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +22,6 @@ public class ResonatorRecipeBuilder {
     }
 
     public static void resonator(RecipeOutput consumer, String id, Ingredient ingredient, ItemStack output, int gp, boolean requireRainbowGenerator){
-        consumer.accept(AuxiliaUtilities.id("resonator/"+id),new ResonatorRecipe(ingredient,output,gp,requireRainbowGenerator),null);
+        consumer.accept(ResourceKey.create(Registries.RECIPE,AuxiliaUtilities.id("resonator/"+id)),new ResonatorRecipe(ingredient,output,gp,requireRainbowGenerator),null);
     }
 }

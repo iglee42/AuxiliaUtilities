@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.menu.widgets;
 
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public abstract class AUMCClickIconWidget extends AUMCClickWidget{
@@ -11,7 +12,7 @@ public abstract class AUMCClickIconWidget extends AUMCClickWidget{
 
     @Override
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
-        graphics.blitSprite(getIcon(), guiLeft + getX() + 1, guiTop + getY() + 1, 16, 16);
+        graphics.blitSprite(RenderType::guiTextured,getIcon(), guiLeft + getX() + 1, guiTop + getY() + 1, 16, 16);
     }
 
     public abstract ResourceLocation getIcon();

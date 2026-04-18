@@ -10,12 +10,7 @@ public class ItemPseudoInversionSigil extends AUFoilItem {
     }
 
     @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
-        return true;
-    }
-
-    @Override
-    public @NotNull ItemStack getCraftingRemainingItem(ItemStack stack) {
+    public ItemStack getCraftingRemainder(ItemStack stack) {
         return stack.copy();
     }
 }
