@@ -29,6 +29,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -169,41 +171,34 @@ public abstract class AUGeneratorBlockEntity extends AUBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
         if (requiredItems() > 0)
-            tag.put("DeathItems", itemHandler.serializeNBT(registries));
+            itemHandler.serialize(output.child("Inventory"));
         if (requiredFluidAmount() > 0)
-            tag.put("Fluid", fluidTank.writeToNBT(registries,new CompoundTag()));
-        tag.put("Energy", energyStorage.serializeNBT(registries));
-        if (forClient) tag.putInt("MaxBurnTime", maxBurnTime);
-        tag.putInt("BurnTime", burnTime);
-        tag.putBoolean("Active", active);
+            fluidTank.serialize(output.child("Fluid"));
+        energyStorage.serialize(output.child("Energy"));
+        if (forClient) output.putInt("MaxBurnTime", maxBurnTime);
+        output.putInt("BurnTime", burnTime);
+        output.putBoolean("Active", active);
 
-        tag.store("UsedItem", ItemStack.OPTIONAL_CODEC,registries.createSerializationContext(NbtOps.INSTANCE),usedItem);
-        tag.put("UsedFluid", usedFluid.saveOptional(registries));
-        if (rainbowPos != null) tag.store("RainbowPos", AUExtraCodecs.BLOCK_POS, rainbowPos);
+        output.store("UsedItem", ItemStack.OPTIONAL_CODEC,usedItem);
+        output.store("UsedFluid", FluidStack.OPTIONAL_CODEC,usedFluid);
+        if (rainbowPos != null) output.store("RainbowPos", AUExtraCodecs.BLOCK_POS, rainbowPos);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        if (tag.contains("DeathItems"))
-            itemHandler.deserializeNBT(registries,tag.getCompoundOrEmpty("DeathItems"));
-        if (tag.contains("Fluid"))
-            fluidTank.readFromNBT(registries,tag.getCompoundOrEmpty("Fluid"));
-        if (tag.contains("Energy"))
-            energyStorage.deserializeNBT(registries,tag.get("Energy"));
-        if (tag.contains("MaxBurnTime"))
-            maxBurnTime = tag.getIntOr("MaxBurnTime",0);
-        burnTime = tag.getIntOr("BurnTime",0);
-        active = tag.getBooleanOr("Active",false);
-
-        if (tag.contains("UsedItem"))
-            usedItem = tag.read("UsedItem",ItemStack.OPTIONAL_CODEC,registries.createSerializationContext(NbtOps.INSTANCE)).orElseThrow();
-        if (tag.contains("UsedFluid"))
-            usedFluid = FluidStack.parseOptional(registries,tag.getCompoundOrEmpty("UsedFluid"));
-        tag.read("RainbowPos",AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE)).ifPresent(pos->rainbowPos = pos);
+    protected void load(ValueInput input) {
+        super.load(input);
+        itemHandler.deserialize(input.childOrEmpty("Inventory"));
+        fluidTank.deserialize(input.childOrEmpty("Fluid"));
+        energyStorage.deserialize(input.childOrEmpty("Energy"));
+        input.getInt("MaxBurnTime").ifPresent(bt->maxBurnTime = bt);
+        burnTime = input.getIntOr("BurnTime",0);
+        active = input.getBooleanOr("Active",false);
+        input.read("UsedItem",ItemStack.OPTIONAL_CODEC).ifPresent(it->usedItem = it);
+        input.read("UsedFluid",FluidStack.OPTIONAL_CODEC).ifPresent(it->usedFluid = it);
+        input.read("RainbowPos",AUExtraCodecs.BLOCK_POS).ifPresent(pos->rainbowPos=pos);
     }
 
     protected boolean isItemValid(int slot, ItemStack stack){

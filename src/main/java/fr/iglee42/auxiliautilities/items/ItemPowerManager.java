@@ -16,6 +16,7 @@ import fr.iglee42.auxiliautilities.network.AUPackets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -125,7 +126,7 @@ public class ItemPowerManager extends AUItem implements MenuProvider {
                             .getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
                             .apply(texture);
                     graphics.blitSprite(
-                            RenderType::guiTextured,
+                            RenderPipelines.GUI_TEXTURED,
                             sprite,
                             guiLeft + x - 20,
                             guiTop + y - 20,

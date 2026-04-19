@@ -39,6 +39,8 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -287,29 +289,26 @@ public class BETerraformer extends AUBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        tag.put("BiomeHandler", biomeHandler.serializeNBT(registries));
-        tag.putInt("Range", range);
-        tag.putInt("TransformTime", transformTime);
-        TF_ENERGY_CODEC.encodeStart(registries.createSerializationContext(NbtOps.INSTANCE),energyPerType).result().ifPresent(nbt->tag.put("LoadedTFEnergy", nbt));
-        tag.put("Energy", energyStorage.serializeNBT(registries));
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        biomeHandler.serialize(output.child("BiomeHandler"));
+        output.putInt("Range", range);
+        output.putInt("TransformTime", transformTime);
+        output.store("LoadedTFEnergy",TF_ENERGY_CODEC,energyPerType);
+        energyStorage.serialize(output.child("Energy"));
         if (forClient)
-            tag.store("TargetPos", AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE),targetPos);
+            output.store("TargetPos", AUExtraCodecs.BLOCK_POS,targetPos);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        this.biomeHandler.deserializeNBT(registries,tag.getCompoundOrEmpty("BiomeHandler"));
-        this.range = tag.getIntOr("Range",0);
-        this.transformTime = tag.getIntOr("TransformTime",0);
-        if (tag.contains("LoadedTFEnergy")) {
-            TF_ENERGY_CODEC.parse(registries.createSerializationContext(NbtOps.INSTANCE), tag.get("LoadedTFEnergy")).result().ifPresent(map -> this.energyPerType = map);
-        }
-        energyStorage.deserializeNBT(registries,tag.get("Energy"));
-        if (tag.contains("TargetPos"))
-            tag.read("TargetPos",AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE)).ifPresent(targetPos::set);
+    protected void load(ValueInput input) {
+        super.load(input);
+        this.biomeHandler.deserialize(input.childOrEmpty("BiomeHandler"));
+        this.range = input.getIntOr("Range",0);
+        this.transformTime = input.getIntOr("TransformTime",0);
+        input.read("LoadedTFEnergy",TF_ENERGY_CODEC).ifPresent(map->energyPerType = map);
+        energyStorage.deserialize(input.childOrEmpty("Energy"));
+        input.read("TargetPos",AUExtraCodecs.BLOCK_POS).ifPresent(targetPos::set);
     }
 
     @Override

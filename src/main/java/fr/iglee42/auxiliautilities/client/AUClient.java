@@ -37,7 +37,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
-import net.neoforged.neoforge.client.model.standalone.StandaloneModelBaker;
+import net.neoforged.neoforge.client.model.standalone.SimpleUnbakedStandaloneModel;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
@@ -119,12 +119,12 @@ public class AUClient {
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterStandalone event){
-        event.register(ManualMillRenderer.GEAR_MODEL, StandaloneModelBaker.blockStateModel());
-        event.register(KikokuSheathLayer.MODEL_LOCATION,StandaloneModelBaker.blockStateModel());
-        event.register(KikokuSheathLayer.EMPTY_LOCATION,StandaloneModelBaker.blockStateModel());
+        event.register(ManualMillRenderer.GEAR_MODEL, SimpleUnbakedStandaloneModel.blockStateModel(ManualMillRenderer.GEAR_MODEL_ID));
+        event.register(KikokuSheathLayer.MODEL_LOCATION,SimpleUnbakedStandaloneModel.blockStateModel(KikokuSheathLayer.MODEL_ID));
+        event.register(KikokuSheathLayer.EMPTY_LOCATION,SimpleUnbakedStandaloneModel.blockStateModel(KikokuSheathLayer.EMPTY_ID));
         for (ItemAngelRing.AngelRingWings wing : ItemAngelRing.AngelRingWings.values()) {
             if (wing == ItemAngelRing.AngelRingWings.NONE) continue;
-            event.register(AngelRingRenderer.getWingLocation(wing),StandaloneModelBaker.blockStateModel());
+            event.register(AngelRingRenderer.getWingLocation(wing),SimpleUnbakedStandaloneModel.blockStateModel(AngelRingRenderer.getWingId(wing)));
         }
     }
 

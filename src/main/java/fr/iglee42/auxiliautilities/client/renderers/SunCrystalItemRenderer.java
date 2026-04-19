@@ -29,6 +29,7 @@ import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class SunCrystalItemRenderer implements SpecialModelRenderer<ItemStack> {
     public SunCrystalItemRenderer() {
@@ -90,6 +91,11 @@ public class SunCrystalItemRenderer implements SpecialModelRenderer<ItemStack> {
                                 packedOverlay
                         );
         poseStack.popPose();
+    }
+
+    @Override
+    public void getExtents(Set<Vector3f> p_428206_) {
+
     }
 
 

@@ -25,6 +25,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -139,7 +140,7 @@ public class AUContainerScreenHandler implements IGuiContainerHandler<AUContaine
             stack.setCount(1);
             if (screen.getMenu().getSlot(slot) instanceof SlotGhostWidget ghostSlot && !stack.isEmpty()) {
                 ghostSlot.set(stack);
-                PacketDistributor.sendToServer(new SubmitGhostItemPacket(stack, slot));
+                ClientPacketDistributor.sendToServer(new SubmitGhostItemPacket(stack, slot));
             }
         }
     }

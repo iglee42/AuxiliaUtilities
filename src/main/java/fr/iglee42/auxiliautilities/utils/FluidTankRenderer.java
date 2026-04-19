@@ -1,24 +1,29 @@
 package fr.iglee42.auxiliautilities.utils;
 
 import com.google.common.base.Preconditions;
+import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import fr.iglee42.auxiliautilities.AULang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import org.joml.Matrix4f;
+import org.joml.Matrix3x2f;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -49,7 +54,7 @@ public class FluidTankRenderer {
     }
 
     private static void drawTiledSprite(GuiGraphics guiGraphics, final int tiledWidth, final int tiledHeight, int color, long scaledAmount, TextureAtlasSprite sprite) {
-        Matrix4f matrix = guiGraphics.pose().last().pose();
+        Matrix3x2f matrix = guiGraphics.pose();
         setGLColorFromInt(color);
 
         final int xTileCount = tiledWidth / TEXTURE_SIZE;
@@ -69,7 +74,7 @@ public class FluidTankRenderer {
                     long maskTop = TEXTURE_SIZE - height;
                     int maskRight = TEXTURE_SIZE - width;
 
-                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100,RenderType.gui());
+                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100, RenderType.translucentMovingBlock());
                 }
             }
         }
@@ -81,10 +86,22 @@ public class FluidTankRenderer {
         float blue = (color & 0xFF) / 255.0F;
         float alpha = ((color >> 24) & 0xFF) / 255F;
 
-        RenderSystem.setShaderColor(red, green, blue, alpha);
+        DynamicTexture texture = new DynamicTexture("Fluid Rendering Dynamic Texture", 16, 16, false);
+
+        NativeImage nativeimage = texture.getPixels();
+
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                nativeimage.setPixel(j, i, ARGB.colorFromFloat(alpha, red, green, blue));
+            }
+        }
+        texture.setClamp(true);
+        texture.upload();
+
+        RenderSystem.setupOverlayColor(texture.getTextureView());
     }
 
-    private static void drawTextureWithMasking(Matrix4f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel,RenderType renderType) {
+    private static void drawTextureWithMasking(Matrix3x2f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel, RenderType renderType) {
         float uMin = textureSprite.getU0();
         float uMax = textureSprite.getU1();
         float vMin = textureSprite.getV0();
@@ -96,22 +113,22 @@ public class FluidTankRenderer {
 
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.addVertex(matrix, xCoord, yCoord + 16, zLevel).setUv(uMin, vMax);
-        bufferBuilder.addVertex(matrix, xCoord + 16 - maskRight, yCoord + 16, zLevel).setUv(uMax, vMax);
-        bufferBuilder.addVertex(matrix, xCoord + 16 - maskRight, yCoord + maskTop, zLevel).setUv(uMax, vMin);
-        bufferBuilder.addVertex(matrix, xCoord, yCoord + maskTop, zLevel).setUv(uMin, vMin);
+        bufferBuilder.addVertexWith2DPose(matrix, xCoord, yCoord + 16, zLevel).setUv(uMin, vMax);
+        bufferBuilder.addVertexWith2DPose(matrix, xCoord + 16 - maskRight, yCoord + 16, zLevel).setUv(uMax, vMax);
+        bufferBuilder.addVertexWith2DPose(matrix, xCoord + 16 - maskRight, yCoord + maskTop, zLevel).setUv(uMax, vMin);
+        bufferBuilder.addVertexWith2DPose(matrix, xCoord, yCoord + maskTop, zLevel).setUv(uMin, vMin);
         renderType.draw(bufferBuilder.buildOrThrow());
 
     }
 
     public void render(GuiGraphics guiGraphics, int x, int y, FluidStack fluidStack) {
-        guiGraphics.pose().pushPose();
+        guiGraphics.pose().pushMatrix();
         {
-            guiGraphics.pose().translate(x, y, 0);
+            guiGraphics.pose().translate(x, y, guiGraphics.pose());
             drawFluid(guiGraphics, width, height, fluidStack);
         }
-        guiGraphics.pose().popPose();
-        RenderSystem.setShaderColor(1, 1, 1, 1);
+        guiGraphics.pose().popMatrix();
+        RenderSystem.teardownOverlayColor();
     }
 
     private void drawFluid(GuiGraphics guiGraphics, final int width, final int height, FluidStack fluidStack) {

@@ -7,6 +7,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.WidgetSprites;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -40,7 +41,7 @@ public abstract class AUMCClickWidget extends AUClickWidget{
         int y = guiTop + getY();
         int width = getWidth();
         int height = getHeight();
-        graphics.blitSprite(RenderType::guiTextured,sprite, x, y, width, height);
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED,sprite, x, y, width, height);
 
 
     }

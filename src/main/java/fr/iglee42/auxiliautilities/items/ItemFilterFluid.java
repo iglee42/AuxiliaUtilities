@@ -16,6 +16,7 @@ import fr.iglee42.auxiliautilities.utils.IFluidFilter;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -272,7 +273,7 @@ public class ItemFilterFluid extends AUItem implements IFluidFilter, MenuProvide
                         float g = (tint >> 8 & 255) / 255F;
                         float b = (tint & 255) / 255F;
                         //gui.setColor(r, g, b, 1F);
-                        gui.blitSprite(RenderType::guiTextured,sprite,guiLeft + getX() + 1, guiTop + getY() + 1, 0, 16, 16);
+                        gui.blitSprite(RenderPipelines.GUI_TEXTURED,sprite,guiLeft + getX() + 1, guiTop + getY() + 1, 0, 16, 16);
                        // gui.setColor(1F, 1F, 1F, 1F);
                     }
                 }));

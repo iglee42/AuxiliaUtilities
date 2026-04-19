@@ -33,6 +33,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -103,23 +105,22 @@ public class BETerraformerExtension extends AUBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        tag.putInt("Level", tfEnergy);
-        tag.put("Energy", energyStorage.serializeNBT(registries));
-        tag.put("Inventory", itemHandler.original.serializeNBT(registries));
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        output.putInt("Level", tfEnergy);
+        energyStorage.serialize(output.child("Energy"));
+        itemHandler.original.serialize(output.child("Inventory"));
         if (forClient)
-            tag.putInt("SprinkerActive", sprinkerActive);
+            output.putInt("SprinkerActive", sprinkerActive);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        tfEnergy = tag.getIntOr("Level",0);
-        energyStorage.deserializeNBT(registries,tag.get("Energy"));
-        itemHandler.original.deserializeNBT(registries,tag.getCompoundOrEmpty("Inventory"));
-        if (tag.contains("SprinkerActive"))
-            sprinkerActive = tag.getIntOr("SprinkerActive",0);
+    protected void load(ValueInput input) {
+        super.load(input);
+        tfEnergy = input.getIntOr("Level",0);
+        energyStorage.deserialize(input.childOrEmpty("Energy"));
+        itemHandler.original.deserialize(input.childOrEmpty("Inventory"));
+        input.getInt("SprinkerActive").ifPresent(active->sprinkerActive = active);
     }
 
     public TerraformerType getTerraformerType() {

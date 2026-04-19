@@ -72,10 +72,10 @@ public class ResonatorCategory implements IRecipeCategory<RecipeHolder<Resonator
         slot.draw(stack,18,13);
         slot.draw(stack,78,13);
         if (holder.value().doesRequiresRainbowGenerator()){
-            stack.pose().pushPose();
-            stack.pose().scale(0.75f,0.75f,1);
+            stack.pose().pushMatrix();
+            stack.pose().scale(0.75f,0.75f,stack.pose());
             drawCenteredString(Minecraft.getInstance().font,BlockRainbowGenerator.getRainbowName(AULang.RESONATOR_REQUIRES_RAINBOW_GENERATOR.get(),1), (int) (getWidth() / 2 * 1.25) + 5, (int) (40*1.25), 0xffffffff,false,stack);
-            stack.pose().popPose();
+            stack.pose().popMatrix();
         }
     }
 

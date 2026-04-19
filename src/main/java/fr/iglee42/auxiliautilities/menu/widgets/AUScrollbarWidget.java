@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidgetMouseInput;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -110,18 +111,18 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
         if (this.hideWhenInvalid && this.minValue == this.maxValue)
             return;
         if (height == 112){
-            graphics.blitSprite(RenderType::guiTextured,BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,height);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,height);
         } else if (height < 112){
             int h = height / 2;
-            graphics.blitSprite(RenderType::guiTextured,BACKGROUND,BAR_WIDTH,112,0,0,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,h);
-            graphics.blitSprite(RenderType::guiTextured,BACKGROUND,BAR_WIDTH,112,0,112-h-1,guiLeft + getX(),guiTop + getY() + height - h-1, BAR_WIDTH,h + 1);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,BAR_WIDTH,112,0,0,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,h);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,BAR_WIDTH,112,0,112-h-1,guiLeft + getX(),guiTop + getY() + height - h-1, BAR_WIDTH,h + 1);
         } else {
-            graphics.blitSprite(RenderType::guiTextured,BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,16);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,guiLeft + getX(),guiTop + getY(), BAR_WIDTH,16);
             int k = 16;
             for (; k + 80 < height ; k += 80) {
-                graphics.blitSprite(RenderType::guiTextured,BACKGROUND,guiLeft + getX(),guiTop + getY() + k, BAR_WIDTH,80);
+                graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,guiLeft + getX(),guiTop + getY() + k, BAR_WIDTH,80);
             }
-            graphics.blitSprite(RenderType::guiTextured,BACKGROUND,guiLeft + getX(),guiTop + getY() + k, BAR_WIDTH, height - k);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,BACKGROUND,guiLeft + getX(),guiTop + getY() + k, BAR_WIDTH, height - k);
         }
     }
 
@@ -130,7 +131,7 @@ public class AUScrollbarWidget extends AUWidgetBase implements AUWidgetMouseInpu
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
         if (this.hideWhenInvalid && this.minValue == this.maxValue)
             return;
-        graphics.blitSprite(RenderType::guiTextured,ENABLED,guiLeft + getX() + 1,guiTop + getY() + 1 + (int) drawValue, 12, 15);
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED,ENABLED,guiLeft + getX() + 1,guiTop + getY() + 1 + (int) drawValue, 12, 15);
     }
 
     @OnlyIn(Dist.CLIENT)

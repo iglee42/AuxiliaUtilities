@@ -25,15 +25,13 @@ public class PurgeEffect extends AUMobEffect {
         if (entity instanceof Player player){
             FoodData foodData = player.getFoodData();
             CompoundTag tag = new CompoundTag();
-            foodData.addAdditionalSaveData(tag);
             if (entity == source){
-                tag.putInt("foodLevel", 0);
-                tag.putFloat("foodSaturationLevel", 0f);
+                foodData.setFoodLevel( 0);
+                foodData.setSaturation(0f);
             } else {
-                tag.putInt("foodLevel", Math.max(0, (foodData.getFoodLevel() + 1 ) / 2));
-                tag.putFloat("foodSaturationLevel", 0f);
+                foodData.setFoodLevel(Math.max(0, (foodData.getFoodLevel() + 1 ) / 2));
+                foodData.setSaturation(0f);
             }
-            foodData.readAdditionalSaveData(tag);
         }
     }
 }

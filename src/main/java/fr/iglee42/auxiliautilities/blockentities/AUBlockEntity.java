@@ -1,5 +1,6 @@
 package fr.iglee42.auxiliautilities.blockentities;
 
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.ItemEnergyDroplet;
 import fr.iglee42.auxiliautilities.items.ItemFluidDroplet;
 import net.minecraft.core.BlockPos;
@@ -10,6 +11,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +21,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -35,10 +40,10 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
 
     // Data Management
     @Override
-    protected final void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        tickCount = tag.getIntOr("tickCount",0);
-        load(tag,registries);
+    protected final void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        tickCount = input.getIntOr("tickCount",0);
+        load(input);
     }
 
     @Override
@@ -48,19 +53,23 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     @Override
-    protected final void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putInt("tickCount", tickCount);
-        save(tag,registries,false);
+    protected final void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("tickCount", tickCount);
+        save(output,false);
     }
 
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {};
-    protected void save(CompoundTag tag, HolderLookup.Provider registries,boolean forClient) {};
+    protected void load(ValueInput input) {};
+    protected void save(ValueOutput output,boolean forClient) {};
 
     @Override
     public final @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag nbt = super.getUpdateTag(registries);
-        save(nbt,registries,true);
+        try (ProblemReporter.ScopedCollector problemreporter$scopedcollector = new ProblemReporter.ScopedCollector(this.problemPath(), AuxiliaUtilities.LOGGER)) {
+            TagValueOutput tagvalueoutput = TagValueOutput.createWithContext(problemreporter$scopedcollector, registries);
+            save(tagvalueoutput,true);
+            nbt.merge(tagvalueoutput.buildResult());
+        }
         return nbt;
     }
 

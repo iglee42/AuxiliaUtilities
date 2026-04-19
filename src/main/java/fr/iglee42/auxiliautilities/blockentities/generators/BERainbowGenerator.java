@@ -12,6 +12,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -152,15 +154,15 @@ public class BERainbowGenerator extends AUBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        if (forClient) tag.putBoolean("Providing", providing);
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        if (forClient) output.putBoolean("Providing", providing);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        if (tag.contains("Providing")) providing = tag.getBooleanOr("Providing",false);
+    protected void load(ValueInput input) {
+        super.load(input);
+        providing = input.getBooleanOr("Providing",false);
     }
 
     public boolean isProviding() {

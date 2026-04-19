@@ -16,13 +16,16 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.model.standalone.StandaloneModelKey;
 
 public class KikokuSheathLayer extends RenderLayer<PlayerRenderState, PlayerModel> {
-    public static final StandaloneModelKey<BlockStateModel> MODEL_LOCATION = new StandaloneModelKey<>(AuxiliaUtilities.id("item/kikoku_sheath_full"));
-    public static final StandaloneModelKey<BlockStateModel> EMPTY_LOCATION = new StandaloneModelKey<>(AuxiliaUtilities.id("item/kikoku_sheath_empty"));
+    public static final ResourceLocation MODEL_ID = AuxiliaUtilities.id("item/kikoku_sheath_full");
+    public static final ResourceLocation EMPTY_ID = AuxiliaUtilities.id("item/kikoku_sheath_full");
+    public static final StandaloneModelKey<BlockStateModel> MODEL_LOCATION = new StandaloneModelKey<>(MODEL_ID::toString);
+    public static final StandaloneModelKey<BlockStateModel> EMPTY_LOCATION = new StandaloneModelKey<>(EMPTY_ID::toString);
 
     public KikokuSheathLayer(RenderLayerParent<PlayerRenderState, PlayerModel> parent) {
         super(parent);

@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.ModList;
@@ -101,6 +102,10 @@ public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerMode
     }
 
     public static StandaloneModelKey<BlockStateModel> getWingLocation(ItemAngelRing.AngelRingWings wings){
-        return new StandaloneModelKey<>(AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing"));
+        return new StandaloneModelKey<>(getWingId(wings)::toString);
+    }
+
+    public static ResourceLocation getWingId(ItemAngelRing.AngelRingWings wings){
+        return AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing");
     }
 }

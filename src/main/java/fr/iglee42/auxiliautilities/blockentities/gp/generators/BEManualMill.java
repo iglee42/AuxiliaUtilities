@@ -8,6 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 public class BEManualMill extends AUGPGeneratorBlockEntity {
 
@@ -65,17 +67,16 @@ public class BEManualMill extends AUGPGeneratorBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
         if (forClient){
-            tag.putFloat("animationTime",animationTime);
+            output.putFloat("animationTime",animationTime);
         }
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        if (tag.contains("animationTime"))
-            animationTime = tag.getFloatOr("animationTime",0);
+    protected void load(ValueInput input) {
+        super.load(input);
+        animationTime = input.getFloatOr("animationTime",0);
     }
 }

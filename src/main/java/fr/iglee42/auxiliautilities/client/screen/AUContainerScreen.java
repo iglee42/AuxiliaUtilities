@@ -8,6 +8,9 @@ import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidgetKeyInput;
 import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidgetMouseInput;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -49,10 +52,10 @@ public class AUContainerScreen extends AbstractContainerScreen<AUMenu> {
         int h3 = h - h2;
 
         // FUNC TEXTURE X Y UOFFSET VOFFSET UWIDTH VHEIGHT
-        guiGraphics.blit(RenderType::guiTextured,texture, x, y, 0, 0, w2, h2,w,h);
-        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y, 256 - w3, 0, w3, h2,w,h);
-        guiGraphics.blit(RenderType::guiTextured,texture, x, y + h2, 0, 256 - h3, w2, h3,w,h);
-        guiGraphics.blit(RenderType::guiTextured,texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3,w,h);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED,texture, x, y, 0, 0, w2, h2,w,h);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED,texture, x + w2, y, 256 - w3, 0, w3, h2,w,h);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED,texture, x, y + h2, 0, 256 - h3, w2, h3,w,h);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED,texture, x + w2, y + h2, 256 - w3, 256 - h3, w3, h3,w,h);
     }
 
     @Override
@@ -71,10 +74,11 @@ public class AUContainerScreen extends AbstractContainerScreen<AUMenu> {
         tooltip = renderWindowForeground(guiGraphics, mouseX, mouseY, tooltip, leftPos, topPos);
 
         if (tooltip != null && !tooltip.isEmpty()) {
-            guiGraphics.pose().pushPose();
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+            guiGraphics.pose().pushMatrix();
+            guiGraphics.renderTooltip(this.font, tooltip
+                    .stream().map(t->ClientTooltipComponent.create(t.getVisualOrderText())).toList(),  mouseX, mouseY, DefaultTooltipPositioner.INSTANCE,null);
 
-            guiGraphics.pose().popPose();
+            guiGraphics.pose().popMatrix();
         }
     }
 

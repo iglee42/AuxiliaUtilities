@@ -122,8 +122,7 @@ public class OpiniumCoreRenderer implements BlockEntityRenderer<BEOpiniumCore> {
     }
 
     @Override
-    public boolean shouldRenderOffScreen(BEOpiniumCore be) {
-        // Orbit items can extend slightly outside the block bounds; keep rendering
+    public boolean shouldRenderOffScreen() {
         return true;
     }
 }

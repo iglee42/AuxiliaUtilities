@@ -11,6 +11,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.client.settings.KeyModifier;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -62,7 +63,7 @@ public class CommonKeysHandler {
             }
             newStates.forEach((key, pressed) -> setKeyState(player, key, pressed));
             if (!newStates.isEmpty()) {
-                PacketDistributor.sendToServer(new UpdateTrackedKeysPacket(newStates));
+                ClientPacketDistributor.sendToServer(new UpdateTrackedKeysPacket(newStates));
             }
         }
     }

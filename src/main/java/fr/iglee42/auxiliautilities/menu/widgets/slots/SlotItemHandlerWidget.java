@@ -1,9 +1,11 @@
 package fr.iglee42.auxiliautilities.menu.widgets.slots;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.widgets.api.AUWidget;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -56,7 +58,7 @@ public class SlotItemHandlerWidget extends SlotItemHandler implements AUWidget {
 
     @Override
     public void renderBackground(GuiGraphics gui, AUContainerScreen screen, int guiLeft, int guiTop) {
-        gui.blitSprite(RenderType::guiTextured,SlotWidget.TEXTURE,guiLeft + getX(), guiTop + getY(), getWidth(), getHeight());
+        gui.blitSprite(RenderPipelines.GUI_TEXTURED,SlotWidget.TEXTURE,guiLeft + getX(), guiTop + getY(), getWidth(), getHeight());
     }
 
     @Override

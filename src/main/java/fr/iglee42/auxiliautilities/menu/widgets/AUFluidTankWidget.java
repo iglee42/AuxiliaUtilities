@@ -6,6 +6,7 @@ import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
 import fr.iglee42.auxiliautilities.utils.FluidTankRenderer;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -32,10 +33,10 @@ public class AUFluidTankWidget extends AUWidgetBase{
 
     @Override
     public void renderForeground(GuiGraphics graphics, AUContainerScreen gui, int guiLeft, int guiTop) {
-        graphics.pose().pushPose();
-        graphics.pose().translate(0,0,100);
-        graphics.blitSprite(RenderType::guiTextured,TEXTURE ,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
-        graphics.pose().popPose();
+        graphics.pose().pushMatrix();
+        graphics.pose().translate(0,0,graphics.pose());
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED,TEXTURE ,guiLeft +getX(), guiTop + getY(), getWidth(),getHeight());
+        graphics.pose().popMatrix();
     }
 
     @Override

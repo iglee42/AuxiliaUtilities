@@ -13,11 +13,13 @@ import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.model.standalone.StandaloneModelKey;
 
 public class ManualMillRenderer implements BlockEntityRenderer<BEManualMill> {
-    public static final StandaloneModelKey<BlockStateModel> GEAR_MODEL = new StandaloneModelKey<>(AuxiliaUtilities.id("block/manual_mill_gear"));
+    public static final ResourceLocation GEAR_MODEL_ID = AuxiliaUtilities.id("block/manual_mill_gear");
+    public static final StandaloneModelKey<BlockStateModel> GEAR_MODEL = new StandaloneModelKey<>(GEAR_MODEL_ID::toString);
 
 
     public ManualMillRenderer(BlockEntityRendererProvider.Context ctx) {

@@ -27,6 +27,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EnchantingTableBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -93,33 +95,31 @@ public class BEEnchanter extends AUBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        tag.put("Energy", energyStorage.serializeNBT(registries));
-        tag.put("Inventory", inventory.serializeNBT(registries));
-        tag.putInt("Progress", progress);
-        tag.put("Upgrades", upgrades.serializeNBT(registries));
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        energyStorage.serialize(output.child("Energy"));
+        inventory.serialize(output.child("Inventory"));
+        output.putInt("Progress",progress);
+        upgrades.serialize(output.child("Upgrades"));
         if (forClient)
-            tag.putBoolean("HasRecipe", currentRecipe != null);
+            output.putBoolean("HasRecipe", currentRecipe != null);
     }
 
     @Override
-    protected void load(CompoundTag tag, Provider registries) {
-        super.load(tag, registries);
-        energyStorage.deserializeNBT(registries, tag.get("Energy"));
-        inventory.deserializeNBT(registries, tag.getCompoundOrEmpty("Inventory"));
-        progress = tag.getIntOr("Progress",0);
-        upgrades.deserializeNBT(registries, tag.getCompoundOrEmpty("Upgrades"));
-        if (tag.contains("HasRecipe") && tag.getBooleanOr("HasRecipe",false)) {
-            /*currentRecipe = level.getRecipeManager().getAllRecipesFor(EnchanterRecipe.Type.INSTANCE).stream()
-                    .filter(r -> r.value().getIngredient().test(inventory.getStackInSlot(0))
-                            && r.value().getLapisIngredient().test(inventory.getStackInSlot(1)))
+    protected void load(ValueInput input) {
+        super.load(input);
+        energyStorage.deserialize(input.childOrEmpty("Energy"));
+        inventory.deserialize(input.childOrEmpty("Inventory"));
+        progress = input.getIntOr("Progress",0);
+        upgrades.deserialize(input.childOrEmpty("Upgrades"));
+        if (input.getBooleanOr("HasRecipe",false)) {
+            /*currentRecipe = level.getRecipeManager().getAllRecipesFor(CrusherRecipe.Type.INSTANCE).stream()
+                    .filter(r -> r.value().getIngredient().test(inventory.getStackInSlot(0)))
                     .findFirst().orElse(null);*/
         } else {
             currentRecipe = null;
         }
     }
-
     public boolean canWork() {
         if (currentRecipe == null || level == null)
             return false;

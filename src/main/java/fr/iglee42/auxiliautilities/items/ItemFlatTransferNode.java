@@ -35,6 +35,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -153,7 +154,7 @@ public class ItemFlatTransferNode extends AUItem {
         if (InventoryHelper.isStackEmpty(event.getItemStack())) return;
         if (!event.getLevel().isClientSide) return;
         if (event.getItemStack().getItem() instanceof ItemFlatTransferNode ){
-            PacketDistributor.sendToServer(new LeftClickFlatTransferNodePacket(event.getItemStack()));
+            ClientPacketDistributor.sendToServer(new LeftClickFlatTransferNodePacket(event.getItemStack()));
         }
     }
 

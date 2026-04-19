@@ -163,10 +163,8 @@ public class FlatTransferNodeHandler extends SavedData {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void clientRender(RenderLevelStageEvent event){
+    public static void clientRender(RenderLevelStageEvent.AfterTranslucentBlocks event){
         if (CLIENT_NODES.isEmpty()) return;
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)
-            return;
 
         Minecraft mc = Minecraft.getInstance();
         var level = mc.level;

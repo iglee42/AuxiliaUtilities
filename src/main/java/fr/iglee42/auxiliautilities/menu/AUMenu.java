@@ -20,6 +20,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.ApiStatus;
@@ -321,7 +322,7 @@ public abstract class AUMenu extends AbstractContainerMenu {
             AuxiliaUtilities.LOGGER.warn("Tried to send packet to widget {}, but it was not found in the menu's widget list.", widget);
             return;
         }
-        PacketDistributor.sendToServer(new MenuInputPacket(i, packet));
+        ClientPacketDistributor.sendToServer(new MenuInputPacket(i, packet));
     }
     
     public static class MenuInputPacket extends AUPacket {

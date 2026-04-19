@@ -29,6 +29,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.BlockCapability;
@@ -114,21 +116,19 @@ public class BEEnderPorcupine extends AUGPConsumerBlockEntity {
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        DynamicOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
-        tag.store("TargetA", AUExtraCodecs.BLOCK_POS,ops, targetA);
-        tag.store("TargetB", AUExtraCodecs.BLOCK_POS,ops, targetB);
-        tag.store("Target", AUExtraCodecs.BLOCK_POS,ops, target);
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        output.store("TargetA", AUExtraCodecs.BLOCK_POS, targetA);
+        output.store("TargetB", AUExtraCodecs.BLOCK_POS, targetB);
+        output.store("Target", AUExtraCodecs.BLOCK_POS, target);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        DynamicOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
-        this.targetA = tag.read("TargetA",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
-        this.targetB = tag.read("TargetB",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
-        this.target = tag.read("Target",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
+    protected void load(ValueInput input) {
+        super.load(input);
+        this.targetA = input.read("TargetA",AUExtraCodecs.BLOCK_POS).orElse(BlockPos.ZERO).mutable();
+        this.targetB = input.read("TargetB",AUExtraCodecs.BLOCK_POS).orElse(BlockPos.ZERO).mutable();
+        this.target = input.read("Target",AUExtraCodecs.BLOCK_POS).orElse(BlockPos.ZERO).mutable();
     }
 
     @Override

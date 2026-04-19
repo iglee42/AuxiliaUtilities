@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
@@ -10,6 +11,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundTagQueryPacket;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -22,6 +25,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.TagValueInput;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.util.TriPredicate;
 import org.jetbrains.annotations.Nullable;
@@ -82,7 +88,11 @@ public class ItemLasso extends AUItem {
         if (!canCapture.test(stack,player,target)) return false;
         CompoundTag nbt = new CompoundTag();
         nbt.putString("EntityId", EntityType.getKey(target.getType()).toString());
-        target.saveWithoutId(nbt);
+        try (ProblemReporter.ScopedCollector problemreporter$scopedcollector = new ProblemReporter.ScopedCollector(target.problemPath(), AuxiliaUtilities.LOGGER)) {
+            TagValueOutput output = TagValueOutput.createWithContext(problemreporter$scopedcollector, target.registryAccess());
+            target.saveWithoutId(output);
+            nbt.merge(output.buildResult());
+        }
         stack.set(AUDataComponents.STORED_ENTITY,nbt);
         target.remove(Entity.RemovalReason.DISCARDED);
         return true;
@@ -113,7 +123,10 @@ public class ItemLasso extends AUItem {
         if (!type.canSummon()) return null;
         Entity entity = type.create(level, EntitySpawnReason.BUCKET);
         if (entity == null) return null;
-        entity.load(nbt);
+        try (ProblemReporter.ScopedCollector problemreporter$scopedcollector = new ProblemReporter.ScopedCollector(entity.problemPath(), AuxiliaUtilities.LOGGER)) {
+            ValueInput input = TagValueInput.create(problemreporter$scopedcollector, level.registryAccess(),nbt);
+            entity.load(input);
+        }
         return entity;
     }
 

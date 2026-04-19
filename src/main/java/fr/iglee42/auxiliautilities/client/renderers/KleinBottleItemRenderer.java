@@ -10,6 +10,9 @@ import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
+
+import java.util.Set;
 
 public class KleinBottleItemRenderer implements SpecialModelRenderer<Void> {
     public KleinBottleItemRenderer() {
@@ -27,6 +30,11 @@ public class KleinBottleItemRenderer implements SpecialModelRenderer<Void> {
         poseStack.translate(-9/8f, 1/8f, 1/8f);
         KleinBottleRenderer.renderTube(poseStack,bufferSource,packedLight,packedOverlay,time);
         poseStack.popPose();
+    }
+
+    @Override
+    public void getExtents(Set<Vector3f> p_428206_) {
+
     }
 
     @Override

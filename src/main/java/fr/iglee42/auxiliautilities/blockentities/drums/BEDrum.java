@@ -11,6 +11,8 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.fml.util.thread.EffectiveSide;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -66,18 +68,18 @@ public class BEDrum extends AUBlockEntity {
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        tank.readFromNBT(registries, tag.getCompoundOrEmpty("Tank"));
+    protected void load(ValueInput input) {
+        super.load(input);
+        tank.deserialize(input.childOrEmpty("Tank"));
         if (EffectiveSide.get().isClient()) {
             Minecraft.getInstance().levelRenderer.setBlocksDirty(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(),getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ());
         }
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        tag.put("Tank", tank.writeToNBT(registries,new CompoundTag()));
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        tank.serialize(output.child("Tank"));
     }
 
     @Override

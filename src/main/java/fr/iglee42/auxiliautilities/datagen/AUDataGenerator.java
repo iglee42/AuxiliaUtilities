@@ -37,7 +37,7 @@ public class AUDataGenerator {
 
         var blocksTagsProvider = new AUBlocksTagsProvider(output,registries);
         generator.addProvider(true, blocksTagsProvider);
-        generator.addProvider(true,new AUItemTagsProvider(output,registries,blocksTagsProvider.contentsGetter()));
+        generator.addProvider(true,new AUItemTagsProvider(output,registries));
         generator.addProvider(true, new AULootTablesProvider(output,registries));
         generator.addProvider(true, new AURecipesProvider.Runner(output,registries));
         generator.addProvider(true, new AUDamageTypeTagsProvider(output,registries));

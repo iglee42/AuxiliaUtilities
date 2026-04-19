@@ -9,6 +9,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.UUID;
 
@@ -21,15 +23,15 @@ public abstract class AUGPBlockEntity extends AUBlockEntity implements GPHolder 
     }
 
     @Override
-    protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
-        super.save(tag, registries, forClient);
-        if (owner != null) tag.store("owner", UUIDUtil.CODEC, owner);
+    protected void save(ValueOutput output, boolean forClient) {
+        super.save(output, forClient);
+        if (owner != null) output.store("Owner", UUIDUtil.CODEC, owner);
     }
 
     @Override
-    protected void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag, registries);
-        if (tag.contains("owner"))owner = tag.read("owner",UUIDUtil.CODEC).orElseThrow();
+    protected void load(ValueInput input) {
+        super.load(input);
+        input.read("Owner",UUIDUtil.CODEC).ifPresent(uuid->owner = uuid);
     }
 
     protected abstract void removedFromNetwork();

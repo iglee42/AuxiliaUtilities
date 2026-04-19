@@ -6,7 +6,6 @@ import fr.iglee42.auxiliautilities.blockentities.gp.AUGPBlockEntity;
 import fr.iglee42.auxiliautilities.network.AskCurrentBlockGPPacket;
 import fr.iglee42.auxiliautilities.network.SyncGPNetworkPacket;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -15,7 +14,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.client.gui.GuiLayer;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID,value = Dist.CLIENT)
@@ -41,11 +41,11 @@ public class ClientGPManager {
         return totalConsumption;
     }
 
-    public static final LayeredDraw.Layer HUD = (gui,tracker)->{
+    public static final GuiLayer HUD = (gui, tracker)->{
         if (!(Minecraft.getInstance().hitResult instanceof BlockHitResult result)) return;
         if (Minecraft.getInstance().level == null) return;
         if (!(Minecraft.getInstance().level.getBlockEntity(result.getBlockPos()) instanceof AUGPBlockEntity)) return;
-        gui.pose().pushPose();
+        gui.pose().pushMatrix();
         int y = gui.guiHeight() * 7/10;
         gui.drawCenteredString(Minecraft.getInstance().font,AULang.GP_TOOLTIP.get(getTotalConsumption(),getTotalGeneration()),gui.guiWidth()/2,y,0xFFFFFF);
         if (currentBlockGP != 0){
@@ -57,7 +57,7 @@ public class ClientGPManager {
         } else {
             gui.drawCenteredString(Minecraft.getInstance().font, AULang.BLOCK_NO_GP.get(),gui.guiWidth()/2,y + 10,0xFFFFFF);
         }
-        gui.pose().popPose();
+        gui.pose().popMatrix();
     };
 
     @SubscribeEvent
@@ -75,7 +75,7 @@ public class ClientGPManager {
             setCurrentBlockGP(0);
             return;
         }
-        PacketDistributor.sendToServer(new AskCurrentBlockGPPacket(blockHit.getBlockPos()));
+        ClientPacketDistributor.sendToServer(new AskCurrentBlockGPPacket(blockHit.getBlockPos()));
 
     }
 

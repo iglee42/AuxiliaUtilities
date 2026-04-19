@@ -10,6 +10,9 @@ import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
+
+import java.util.Set;
 
 public class OpiniumCoreItemRenderer implements SpecialModelRenderer<BlockOpiniumCore.Tier> {
     public OpiniumCoreItemRenderer() {
@@ -22,6 +25,11 @@ public class OpiniumCoreItemRenderer implements SpecialModelRenderer<BlockOpiniu
         poseStack.translate(1/8f, 1/8f, 1/8f);
         OpiniumCoreRenderer.renderOpiniumCore(poseStack,bufferSource,packedLight,packedOverlay,tier);
         poseStack.popPose();
+    }
+
+    @Override
+    public void getExtents(Set<Vector3f> p_428206_) {
+
     }
 
     @Override
