@@ -20,6 +20,7 @@ import net.minecraft.server.bossevents.CustomBossEvent;
 import net.minecraft.server.bossevents.CustomBossEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.random.Weighted;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -215,22 +216,22 @@ public class ItemDivisionSigil extends AUFoilItem {
         
         private static final UUID messageSignature = UUID.fromString("a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6");
         private static final List<UUID> siegeParticipants = new ArrayList<>();
-        private static final List<MobSpawnSettings.SpawnerData> mobSpawns = List.of(
-                new MobSpawnSettings.SpawnerData(EntityType.SPIDER,200,3,3),
-                new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER,40,4,4),
-                new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE,200,4,4),
-                new MobSpawnSettings.SpawnerData(EntityType.SKELETON,200,4,4),
-                new MobSpawnSettings.SpawnerData(EntityType.CREEPER,120,4,4),
-                new MobSpawnSettings.SpawnerData(EntityType.BLAZE,80,2,4),
-                new MobSpawnSettings.SpawnerData(EntityType.BREEZE,60,2,4),
-                new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN,40,4,4),
-                new MobSpawnSettings.SpawnerData(EntityType.WITCH,40,1,3),
-                new MobSpawnSettings.SpawnerData(EntityType.SILVERFISH,40,3,3),
-                new MobSpawnSettings.SpawnerData(EntityType.GIANT,15,1,1),
-                new MobSpawnSettings.SpawnerData(EntityType.RAVAGER,20,1,1),
-                new MobSpawnSettings.SpawnerData(EntityType.PILLAGER,40,1,3),
-                new MobSpawnSettings.SpawnerData(EntityType.EVOKER,40,1,2),
-                new MobSpawnSettings.SpawnerData(EntityType.VINDICATOR,40,1,2)
+        private static final List<Weighted<MobSpawnSettings.SpawnerData>> mobSpawns = List.of(
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.SPIDER,200,3),3),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER,40,4),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE,200,4),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.SKELETON,200,4),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.CREEPER,120,4),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.BLAZE,80,2),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.BREEZE,60,2),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN,40,4),4),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.WITCH,40,1),3),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.SILVERFISH,40,3),3),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.GIANT,15,1),1),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.RAVAGER,20,1),1),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.PILLAGER,40,1),3),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.EVOKER,40,1),2),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(EntityType.VINDICATOR,40,1),2)
         );
 
         private static final AABB endZone = new AABB(BlockPos.ZERO).inflate(1024);
@@ -413,12 +414,8 @@ public class ItemDivisionSigil extends AUFoilItem {
             if (event.getEntity() instanceof Player) checkPlayer(level.getServer());
             if (event.getEntity() instanceof LivingEntity && event.getSource().getEntity() instanceof Player player && event.getEntity().getPersistentData().contains("Siege")){
                 if (siegeParticipants.contains(player.getGameProfile().getId())){
-                    if (player.getPersistentData().contains("SiegeKills")){
-                        player.getPersistentData().putInt("SiegeKills", player.getPersistentData().getInt("SiegeKills") + 1);
-                    } else {
-                        player.getPersistentData().putInt("SiegeKills", 1);
-                    }
-                    int kills = player.getPersistentData().getInt("SiegeKills");
+                    player.getPersistentData().putInt("SiegeKills", player.getPersistentData().getIntOr("SiegeKills",0) + 1);
+                    int kills = player.getPersistentData().getIntOr("SiegeKills",1);
 
                     CustomBossEvents events = level.getServer().getCustomBossEvents();
                     ResourceLocation barId = AuxiliaUtilities.id("siege_" + player.getGameProfile().getId());
@@ -495,12 +492,12 @@ public class ItemDivisionSigil extends AUFoilItem {
             if (event.getEntity() instanceof Mob mob && mob.level().isEmptyBlock(mob.blockPosition())){
                 mob.getPersistentData().putBoolean("Siege", true);
                 Holder<MobEffect>[] possibleEffects = new Holder[]{
-                        MobEffects.MOVEMENT_SPEED,
+                        MobEffects.SPEED,
                         MobEffects.ABSORPTION,
-                        MobEffects.DAMAGE_BOOST,
+                        MobEffects.STRENGTH,
                         MobEffects.FIRE_RESISTANCE,
                         MobEffects.REGENERATION,
-                        MobEffects.DAMAGE_RESISTANCE
+                        MobEffects.RESISTANCE
                 };
                 mob.addEffect(new MobEffectInstance(possibleEffects[event.getLevel().random.nextInt(possibleEffects.length)],7200,1));
             }

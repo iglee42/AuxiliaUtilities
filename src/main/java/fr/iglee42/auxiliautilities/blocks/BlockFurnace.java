@@ -54,11 +54,6 @@ public class BlockFurnace extends HorizontalDirectionalBlock implements AUEntity
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-        AUEntityBlock.onRemove(state, level, pos, newState);
-    }
-
-    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         return openMenu(level, pos, player);
     }
@@ -71,12 +66,6 @@ public class BlockFurnace extends HorizontalDirectionalBlock implements AUEntity
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
         return super.getStateForPlacement(ctx).setValue(FACING, ctx.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, ctx, flag);
-        super.appendHoverText(stack, ctx, tooltips, flag);
     }
 }
 

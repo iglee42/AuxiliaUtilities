@@ -35,7 +35,8 @@ public class ItemDestructionWand extends ItemSelectionWand{
         super(props.component(DataComponents.TOOL,new Tool(
                 combineRules(),
                 1,
-        0
+        0,
+                true
         )), range, col);
     }
 

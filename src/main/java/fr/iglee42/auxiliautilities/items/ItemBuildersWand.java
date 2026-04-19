@@ -40,7 +40,7 @@ public class ItemBuildersWand extends ItemSelectionWand{
         List<BlockPos> blocks = getPotentialBlocks(player,level,pos,side,this.range,pickBlock,state,state.getBlock());
         if (blocks.isEmpty()) return InteractionResult.FAIL;
         int slot = 0;
-        int origSlot = player.getInventory().selected;
+        int origSlot = player.getInventory().getSelectedSlot();
         ItemStack origStack = player.getInventory().getItem(origSlot);
         if (!Inventory.isHotbarSlot(origSlot) || origStack == null || origStack.isEmpty())
             return InteractionResult.FAIL;

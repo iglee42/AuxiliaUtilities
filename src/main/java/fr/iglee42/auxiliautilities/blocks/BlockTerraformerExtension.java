@@ -52,10 +52,6 @@ public class BlockTerraformerExtension extends HorizontalDirectionalBlock implem
         super.setPlacedBy(level, pos, state, entity, stack);
     }
 
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-        AUEntityBlock.onRemove(state, level, pos, newState);
-    }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
@@ -78,9 +74,4 @@ public class BlockTerraformerExtension extends HorizontalDirectionalBlock implem
         return AULang.CLIMOGRAPH_TOOLTIP.get();
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, context, flag);
-        super.appendHoverText(stack, context, tooltips, flag);
-    }
 }

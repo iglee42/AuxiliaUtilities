@@ -29,7 +29,8 @@ public class KleinBottleRenderer implements BlockEntityRenderer<BEKleinBottle> {
             PoseStack poseStack,
             MultiBufferSource buffer,
             int packedLight,
-            int packedOverlay
+            int packedOverlay,
+            Vec3 cameraPos
     ) {
         Level level = be.getLevel();
         if (level == null) {

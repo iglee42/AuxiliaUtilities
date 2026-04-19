@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 import java.awt.*;
@@ -15,7 +16,7 @@ import java.util.Random;
 
 public class RainbowGeneratorRenderer implements BlockEntityRenderer<BERainbowGenerator> {
 
-    private static final RenderType RAINBOW_RENDER = RenderType.create(
+    /*private static final RenderType RAINBOW_RENDER = RenderType.create(
             "rainbow_generator",
             DefaultVertexFormat.POSITION_COLOR,
             VertexFormat.Mode.QUADS,
@@ -27,7 +28,7 @@ public class RainbowGeneratorRenderer implements BlockEntityRenderer<BERainbowGe
                     .setShaderState(RenderStateShard.POSITION_COLOR_SHADER)
                     .setCullState(RenderStateShard.NO_CULL)
                     .createCompositeState(false)
-    );
+    );*/
 
     public RainbowGeneratorRenderer(BlockEntityRendererProvider.Context ctx) {
     }
@@ -39,13 +40,14 @@ public class RainbowGeneratorRenderer implements BlockEntityRenderer<BERainbowGe
             PoseStack poseStack,
             MultiBufferSource buffer,
             int packedLight,
-            int packedOverlay
+            int packedOverlay,
+            Vec3 vec3
     ) {
         if (!be.isProviding())
             return;
 
         BlockPos pos = be.getBlockPos();
-        VertexConsumer consumer = buffer.getBuffer(RAINBOW_RENDER);
+        VertexConsumer consumer = buffer.getBuffer(RenderType.DRAGON_RAYS);
 
         // Fixed seed so ray directions are stable; timer animates the spin
         Random rand = new Random(425L + pos.hashCode());

@@ -12,10 +12,4 @@ public class AUBlock extends Block implements AUBlockBase {
     public AUBlock(Properties props) {
         super(props);
     }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, context, flag);
-        super.appendHoverText(stack, context, tooltips, flag);
-    }
 }

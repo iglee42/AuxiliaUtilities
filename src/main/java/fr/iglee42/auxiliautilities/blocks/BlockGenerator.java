@@ -53,10 +53,6 @@ public class BlockGenerator<T extends AUGeneratorBlockEntity> extends Horizontal
         super.setPlacedBy(level, pos, state, entity, stack);
     }
 
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-        AUEntityBlock.onRemove(state, level, pos, newState);
-    }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {

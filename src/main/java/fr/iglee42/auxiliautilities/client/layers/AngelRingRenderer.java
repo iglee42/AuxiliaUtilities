@@ -15,17 +15,16 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.client.model.standalone.StandaloneModelKey;
 import org.joml.Quaternionf;
 
 public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerModel> {
@@ -85,14 +84,14 @@ public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerMode
 
     private static void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, ItemAngelRing.AngelRingWings wings){
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(getWingLocation(wings));
+        BlockStateModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(getWingLocation(wings));
+        if (model == null) return;
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutout());
 
         poseStack.pushPose();
-        dispatcher.getModelRenderer().renderModel(
+        ModelBlockRenderer.renderModel(
                 poseStack.last(),
                 buffer,
-                Blocks.AIR.defaultBlockState(),
                 model,
                 1.0F, 1.0F, 1.0F,
                 light,
@@ -101,7 +100,7 @@ public class AngelRingRenderer extends RenderLayer<PlayerRenderState, PlayerMode
         poseStack.popPose();
     }
 
-    public static ResourceLocation getWingLocation(ItemAngelRing.AngelRingWings wings){
-        return AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing");
+    public static StandaloneModelKey<BlockStateModel> getWingLocation(ItemAngelRing.AngelRingWings wings){
+        return new StandaloneModelKey<>(AuxiliaUtilities.id("item/"+wings.getSerializedName()+"_wing"));
     }
 }

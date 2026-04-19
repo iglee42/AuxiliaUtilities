@@ -115,11 +115,11 @@ public class BETerraformerExtension extends AUBlockEntity {
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        tfEnergy = tag.getInt("Level");
+        tfEnergy = tag.getIntOr("Level",0);
         energyStorage.deserializeNBT(registries,tag.get("Energy"));
-        itemHandler.original.deserializeNBT(registries,tag.getCompound("Inventory"));
+        itemHandler.original.deserializeNBT(registries,tag.getCompoundOrEmpty("Inventory"));
         if (tag.contains("SprinkerActive"))
-            sprinkerActive = tag.getInt("SprinkerActive");
+            sprinkerActive = tag.getIntOr("SprinkerActive",0);
     }
 
     public TerraformerType getTerraformerType() {

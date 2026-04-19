@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.client.models;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.math.Quadrant;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
@@ -41,8 +42,8 @@ public class Quad2DCache {
         Vector3f from = new Vector3f(0.0F, 0.0F, 8.0F);
         Vector3f to = new Vector3f(16.0F, 16.0F, 8.0F);
 
-        BlockElementFace southFace = new BlockElementFace(null, -1, "", new BlockFaceUV(new float[]{0.0F, 0.0F, 16.0F, 16.0F}, 0));
-        BlockElementFace northFace = new BlockElementFace(null, -1, "", new BlockFaceUV(new float[]{16.0F, 0.0F, 0.0F, 16.0F}, 0));
+        BlockElementFace southFace = new BlockElementFace(null, -1, "", new BlockElementFace.UVs(0.0F, 0.0F, 16.0F, 16.0F), Quadrant.R0);
+        BlockElementFace northFace = new BlockElementFace(null, -1, "", new BlockElementFace.UVs(16.0F, 0.0F, 0.0F, 16.0F),Quadrant.R0);
 
         BakedQuad south = bakery.bakeQuad(from, to, southFace, sprite, Direction.SOUTH, BlockModelRotation.X0_Y0, null, true,0);
         BakedQuad north = bakery.bakeQuad(from, to, northFace, sprite, Direction.NORTH, BlockModelRotation.X0_Y0, null, true,0);

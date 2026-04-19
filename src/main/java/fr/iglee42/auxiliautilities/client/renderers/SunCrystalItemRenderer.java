@@ -2,7 +2,6 @@ package fr.iglee42.auxiliautilities.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import com.mojang.serialization.MapCodec;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.ItemSunCrystal;
@@ -11,20 +10,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.block.model.BlockModelPart;
+import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -48,51 +45,45 @@ public class SunCrystalItemRenderer implements SpecialModelRenderer<ItemStack> {
         //poseStack.scale(0.75f,0.75f,0.75f);
         //poseStack.mulPose(Axis.YP.rotationDegrees(180));
         //poseStack.translate(-9/8f, 1/8f, 1/8f);
-        BakedModel model = new BakedModel() {
+        BlockStateModel model = new BlockStateModel() {
             @Override
-            public List<BakedQuad> getQuads(@Nullable BlockState p_235039_, @Nullable Direction p_235040_, RandomSource rand) {
-                if (stack != null && !stack.isEmpty()) {
-                    int damageValue = stack.getDamageValue();
-                    int progress = (int) ((1.0F - (float) damageValue / ItemSunCrystal.MAX_DAMAGE) * 255);
-                    if (progress > 0) {
-                        float timer = (System.currentTimeMillis() % 360000L) / 4000.0F;
-                        return buildRays(rand, timer, progress);
+            public void collectParts(RandomSource randomSource, List<BlockModelPart> list) {
+                list.add(new BlockModelPart() {
+                    @Override
+                    public List<BakedQuad> getQuads(@Nullable Direction direction) {
+                        if (stack != null && !stack.isEmpty()) {
+                            int damageValue = stack.getDamageValue();
+                            int progress = (int) ((1.0F - (float) damageValue / ItemSunCrystal.MAX_DAMAGE) * 255);
+                            if (progress > 0) {
+                                float timer = (System.currentTimeMillis() % 360000L) / 4000.0F;
+                                return buildRays(randomSource, timer, progress);
+                            }
+                        }
+                        return List.of();
                     }
-                }
-                return List.of();
+
+                    @Override
+                    public boolean useAmbientOcclusion() {
+                        return true;
+                    }
+
+                    @Override
+                    public TextureAtlasSprite particleIcon() {
+                        return null;
+                    }
+                });
             }
 
             @Override
-            public boolean useAmbientOcclusion() {
-                return true;
-            }
-
-            @Override
-            public boolean isGui3d() {
-                return true;
-            }
-
-            @Override
-            public boolean usesBlockLight() {
-                return false;
-            }
-
-            @Override
-            public TextureAtlasSprite getParticleIcon() {
+            public TextureAtlasSprite particleIcon() {
                 return null;
             }
 
-            @Override
-            public ItemTransforms getTransforms() {
-                return null;
-            }
         };
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.CUTOUT);
-        Minecraft.getInstance().getBlockRenderer().getModelRenderer()
-                        .renderModel(
+        ModelBlockRenderer.renderModel(
                                 poseStack.last(),
                                 buffer,
-                                Blocks.AIR.defaultBlockState(),
                                 model,
                                 1,1,1,
                                 packedLight,

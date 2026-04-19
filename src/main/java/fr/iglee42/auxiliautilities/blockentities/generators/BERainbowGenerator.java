@@ -160,7 +160,7 @@ public class BERainbowGenerator extends AUBlockEntity {
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        if (tag.contains("Providing")) providing = tag.getBoolean("Providing");
+        if (tag.contains("Providing")) providing = tag.getBooleanOr("Providing",false);
     }
 
     public boolean isProviding() {

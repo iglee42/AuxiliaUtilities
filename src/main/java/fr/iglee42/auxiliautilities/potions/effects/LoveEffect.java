@@ -54,7 +54,7 @@ public class LoveEffect extends AUMobEffect {
                 fallInLove(indirectSource, animal);
 
             if (entity instanceof TamableAnimal animal)
-                if (indirectSource instanceof Player player && animal.getOwnerUUID() == null)
+                if (indirectSource instanceof Player player && animal.getOwnerReference() == null)
                     animal.tame(player);
         }
     }

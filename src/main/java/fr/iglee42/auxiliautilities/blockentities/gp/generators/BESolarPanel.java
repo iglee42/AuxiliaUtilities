@@ -14,7 +14,7 @@ public class BESolarPanel extends AUGPGeneratorBlockEntity {
     public int getGPGeneration() {
 
         if (level == null) return 0;
-        boolean isDayTime = level.isDay();
+        boolean isDayTime = level.isBrightOutside();
         boolean hasSkyAccess = level.canSeeSky(getBlockPos().above());
         int gp = hasSkyAccess ? 8 : 0;
         gp *= (isDayTime) ? (level.isRaining() ? 0.75 : 1) : 0;

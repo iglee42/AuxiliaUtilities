@@ -9,6 +9,7 @@ import fr.iglee42.auxiliautilities.config.AUConfig;
 import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.*;
+import fr.iglee42.auxiliautilities.utils.AUExtraCodecs;
 import fr.iglee42.auxiliautilities.utils.BiomeHelper;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -28,6 +29,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.Weighted;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -97,7 +99,7 @@ public class BETerraformer extends AUBlockEntity {
     }
 
     private static boolean isHostile(Biome biome){
-        List<MobSpawnSettings.SpawnerData> spawns = biome.getMobSettings().getMobs(MobCategory.MONSTER).unwrap();
+        List<MobSpawnSettings.SpawnerData> spawns = biome.getMobSettings().getMobs(MobCategory.MONSTER).unwrap().stream().map(Weighted::value).toList();
         return !spawns.isEmpty();
     }
 
@@ -293,21 +295,21 @@ public class BETerraformer extends AUBlockEntity {
         TF_ENERGY_CODEC.encodeStart(registries.createSerializationContext(NbtOps.INSTANCE),energyPerType).result().ifPresent(nbt->tag.put("LoadedTFEnergy", nbt));
         tag.put("Energy", energyStorage.serializeNBT(registries));
         if (forClient)
-            tag.put("TargetPos", NbtUtils.writeBlockPos(targetPos));
+            tag.store("TargetPos", AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE),targetPos);
     }
 
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        this.biomeHandler.deserializeNBT(registries,tag.getCompound("BiomeHandler"));
-        this.range = tag.getInt("Range");
-        this.transformTime = tag.getInt("TransformTime");
+        this.biomeHandler.deserializeNBT(registries,tag.getCompoundOrEmpty("BiomeHandler"));
+        this.range = tag.getIntOr("Range",0);
+        this.transformTime = tag.getIntOr("TransformTime",0);
         if (tag.contains("LoadedTFEnergy")) {
             TF_ENERGY_CODEC.parse(registries.createSerializationContext(NbtOps.INSTANCE), tag.get("LoadedTFEnergy")).result().ifPresent(map -> this.energyPerType = map);
         }
         energyStorage.deserializeNBT(registries,tag.get("Energy"));
         if (tag.contains("TargetPos"))
-            NbtUtils.readBlockPos(tag,"TargetPos").ifPresent(pos->targetPos.set(pos));
+            tag.read("TargetPos",AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE)).ifPresent(targetPos::set);
     }
 
     @Override

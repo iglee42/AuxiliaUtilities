@@ -7,6 +7,7 @@ import fr.iglee42.auxiliautilities.AULang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -48,7 +49,6 @@ public class FluidTankRenderer {
     }
 
     private static void drawTiledSprite(GuiGraphics guiGraphics, final int tiledWidth, final int tiledHeight, int color, long scaledAmount, TextureAtlasSprite sprite) {
-        RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
         Matrix4f matrix = guiGraphics.pose().last().pose();
         setGLColorFromInt(color);
 
@@ -69,7 +69,7 @@ public class FluidTankRenderer {
                     long maskTop = TEXTURE_SIZE - height;
                     int maskRight = TEXTURE_SIZE - width;
 
-                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100);
+                    drawTextureWithMasking(matrix, x, y, sprite, maskTop, maskRight, 100,RenderType.gui());
                 }
             }
         }
@@ -84,7 +84,7 @@ public class FluidTankRenderer {
         RenderSystem.setShaderColor(red, green, blue, alpha);
     }
 
-    private static void drawTextureWithMasking(Matrix4f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel) {
+    private static void drawTextureWithMasking(Matrix4f matrix, float xCoord, float yCoord, TextureAtlasSprite textureSprite, long maskTop, long maskRight, float zLevel,RenderType renderType) {
         float uMin = textureSprite.getU0();
         float uMax = textureSprite.getU1();
         float vMin = textureSprite.getV0();
@@ -100,11 +100,11 @@ public class FluidTankRenderer {
         bufferBuilder.addVertex(matrix, xCoord + 16 - maskRight, yCoord + 16, zLevel).setUv(uMax, vMax);
         bufferBuilder.addVertex(matrix, xCoord + 16 - maskRight, yCoord + maskTop, zLevel).setUv(uMax, vMin);
         bufferBuilder.addVertex(matrix, xCoord, yCoord + maskTop, zLevel).setUv(uMin, vMin);
-        BufferUploader.drawWithShader(bufferBuilder.build());
+        renderType.draw(bufferBuilder.buildOrThrow());
+
     }
 
     public void render(GuiGraphics guiGraphics, int x, int y, FluidStack fluidStack) {
-        RenderSystem.enableBlend();
         guiGraphics.pose().pushPose();
         {
             guiGraphics.pose().translate(x, y, 0);
@@ -112,7 +112,6 @@ public class FluidTankRenderer {
         }
         guiGraphics.pose().popPose();
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        RenderSystem.disableBlend();
     }
 
     private void drawFluid(GuiGraphics guiGraphics, final int width, final int height, FluidStack fluidStack) {

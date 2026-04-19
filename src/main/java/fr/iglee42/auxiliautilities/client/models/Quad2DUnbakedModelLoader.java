@@ -10,7 +10,7 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.neoforged.neoforge.client.model.StandardModelParameters;
 import net.neoforged.neoforge.client.model.UnbakedModelLoader;
 
-public class Quad2DUnbakedModelLoader implements UnbakedModelLoader<Quad2DUnbakedModel>, ResourceManagerReloadListener {
+public class Quad2DUnbakedModelLoader implements UnbakedModelLoader<Quad2DUnbakedGeometry.Quad2DUnbakedModel>, ResourceManagerReloadListener {
     public static final Quad2DUnbakedModelLoader INSTANCE = new Quad2DUnbakedModelLoader();
     public static final ResourceLocation ID = AuxiliaUtilities.id("flat");
     
@@ -22,7 +22,7 @@ public class Quad2DUnbakedModelLoader implements UnbakedModelLoader<Quad2DUnbake
     }
     
     @Override
-    public Quad2DUnbakedModel read(JsonObject jsonObject, JsonDeserializationContext context) throws JsonParseException {
-        return new Quad2DUnbakedModel(StandardModelParameters.parse(jsonObject,context));
+    public Quad2DUnbakedGeometry.Quad2DUnbakedModel read(JsonObject jsonObject, JsonDeserializationContext context) throws JsonParseException {
+        return new Quad2DUnbakedGeometry.Quad2DUnbakedModel(StandardModelParameters.parse(jsonObject,context),new Quad2DUnbakedGeometry());
     }
 }

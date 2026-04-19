@@ -40,7 +40,7 @@ public class ItemUnstableIngot extends AUItem {
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, Level level, Player player) {
+    public void onCraftedBy(ItemStack stack, Player player) {
         if (player != null && player.containerMenu != null && player.containerMenu != player.inventoryMenu){
             stack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
             stack.set(AUDataComponents.CONTAINER_ID, player.containerMenu.containerId);
@@ -49,6 +49,7 @@ public class ItemUnstableIngot extends AUItem {
 
         }
     }
+
 
     @OnlyIn(Dist.CLIENT)
     public int getColor(ItemStack stack, int tintIndex) {

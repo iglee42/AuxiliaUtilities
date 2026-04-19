@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
@@ -28,7 +29,7 @@ public class OpiniumCoreRenderer implements BlockEntityRenderer<BEOpiniumCore> {
 
     @Override
     public void render(BEOpiniumCore be, float partialTick, PoseStack stack,
-                       MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+                       MultiBufferSource bufferSource, int packedLight, int packedOverlay, Vec3 cameraPos) {
 
         if (!(be.getBlockState().getBlock() instanceof BlockOpiniumCore core)) return;
 

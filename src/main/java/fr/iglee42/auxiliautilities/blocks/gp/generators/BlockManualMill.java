@@ -43,11 +43,6 @@ public class BlockManualMill extends AUBlock implements AUGPEntityBlock<BEManual
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean p_60519_) {
-        AUEntityBlock.onRemove(state,level,pos,newState);
-    }
-
-    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult p_60508_) {
         AtomicReference<InteractionResult> result = new AtomicReference<>(super.useWithoutItem(state, level, pos, player, p_60508_));
         withBlockEntityDo(level,pos,be->{

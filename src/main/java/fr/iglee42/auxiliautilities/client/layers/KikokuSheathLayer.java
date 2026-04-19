@@ -3,7 +3,6 @@ package fr.iglee42.auxiliautilities.client.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import net.minecraft.client.Minecraft;
@@ -11,21 +10,19 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.client.model.standalone.StandaloneModelKey;
 
 public class KikokuSheathLayer extends RenderLayer<PlayerRenderState, PlayerModel> {
-    public static final ResourceLocation MODEL_LOCATION = AuxiliaUtilities.id("item/kikoku_sheath_full");
-    public static final ResourceLocation EMPTY_LOCATION = AuxiliaUtilities.id("item/kikoku_sheath_empty");
+    public static final StandaloneModelKey<BlockStateModel> MODEL_LOCATION = new StandaloneModelKey<>(AuxiliaUtilities.id("item/kikoku_sheath_full"));
+    public static final StandaloneModelKey<BlockStateModel> EMPTY_LOCATION = new StandaloneModelKey<>(AuxiliaUtilities.id("item/kikoku_sheath_empty"));
 
     public KikokuSheathLayer(RenderLayerParent<PlayerRenderState, PlayerModel> parent) {
         super(parent);
@@ -64,7 +61,7 @@ public class KikokuSheathLayer extends RenderLayer<PlayerRenderState, PlayerMode
 
     private boolean hasKikoku(Player player) {
 
-        for (ItemStack stack : player.getInventory().items) {
+        for (ItemStack stack : player.getInventory().getNonEquipmentItems()) {
             if (stack.is(AUItems.KIKOKU.get()))
                 return true;
         }
@@ -74,13 +71,13 @@ public class KikokuSheathLayer extends RenderLayer<PlayerRenderState, PlayerMode
 
     private void renderModel(MultiBufferSource bufferSource, PoseStack poseStack, int light, boolean isInHand){
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-        BakedModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(isInHand ? EMPTY_LOCATION : MODEL_LOCATION);
+        BlockStateModel model = dispatcher.getBlockModelShaper().getModelManager().getStandaloneModel(isInHand ? EMPTY_LOCATION : MODEL_LOCATION);
+        if (model == null) return;
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutout());
 
-        dispatcher.getModelRenderer().renderModel(
+        ModelBlockRenderer.renderModel(
                 poseStack.last(),
                 buffer,
-                Blocks.AIR.defaultBlockState(),
                 model,
                 1.0F, 1.0F, 1.0F,
                 light,

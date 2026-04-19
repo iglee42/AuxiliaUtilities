@@ -20,7 +20,7 @@ public class CursedEarthEventHandler {
 
         if (tag.contains("CursedEarth")) {
 
-            int timer = tag.getInt("CursedEarth");
+            int timer = tag.getIntOr("CursedEarth",0);
 
             if (timer <= 0) {
                 mob.discard();

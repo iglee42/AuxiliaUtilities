@@ -145,7 +145,7 @@ public class ItemFilterItem extends AUItem implements IItemFilter, MenuProvider 
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int id, Inventory playerInv, Player player) {
-        return new FilterConfigContainer(player,id,playerInv.selected,playerInv,playerInv.getSelected());
+        return new FilterConfigContainer(player,id,playerInv.getSelectedSlot(),playerInv,playerInv.getSelectedItem());
     }
 
     public static enum Flag {
@@ -177,7 +177,7 @@ public class ItemFilterItem extends AUItem implements IItemFilter, MenuProvider 
         SlotGhostWidget[] ghostSlots = new SlotGhostWidget[ITEM_SLOTS];
 
         public FilterConfigContainer(int id, Inventory playerInv, RegistryFriendlyByteBuf buf) {
-            this(playerInv.player,id,playerInv.selected,playerInv,playerInv.getSelected());
+            this(playerInv.player,id,playerInv.getSelectedSlot(),playerInv,playerInv.getSelectedItem());
         }
 
         protected FilterConfigContainer(Player player, int id, int slot, Inventory playerInv, ItemStack heldItem) {
@@ -264,7 +264,7 @@ public class ItemFilterItem extends AUItem implements IItemFilter, MenuProvider 
         @Override
         public boolean stillValid(Player player) {
             ItemStack heldItem;
-            return (player == this.player && this.player.getInventory().selected == slot && InventoryHelper.isStackNotEmpty(heldItem = player.getMainHandItem()) && heldItem.getItem() == this.heldItem.getItem());
+            return (player == this.player && this.player.getInventory().getSelectedSlot() == slot && InventoryHelper.isStackNotEmpty(heldItem = player.getMainHandItem()) && heldItem.getItem() == this.heldItem.getItem());
         }
 
         @Override

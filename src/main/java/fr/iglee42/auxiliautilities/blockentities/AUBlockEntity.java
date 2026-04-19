@@ -37,8 +37,14 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     @Override
     protected final void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        tickCount = tag.getInt("tickCount");
+        tickCount = tag.getIntOr("tickCount",0);
         load(tag,registries);
+    }
+
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        super.preRemoveSideEffects(pos, state);
+        destroy(pos,state);
     }
 
     @Override
@@ -92,7 +98,7 @@ public abstract class AUBlockEntity extends BlockEntity implements MenuProvider 
     protected void changed(){}
 
     public void setPlacedBy(Player player){};
-    public void destroy(){
+    public void destroy(BlockPos pos, BlockState state){
         if (level != null && !level.isClientSide){
             var itemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK,getBlockPos(),getBlockState(),this,null);
             if (itemHandler != null){

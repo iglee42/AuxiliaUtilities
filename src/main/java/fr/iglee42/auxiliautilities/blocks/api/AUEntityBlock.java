@@ -56,17 +56,6 @@ public interface AUEntityBlock<T extends AUBlockEntity> extends AUBlockBase, Ent
             });
     }
 
-    static void onRemove(BlockState blockState, Level level, BlockPos pos, BlockState newState) {
-        if (!blockState.hasBlockEntity())
-            return;
-        if (blockState.is(newState.getBlock()) && newState.hasBlockEntity())
-            return;
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof AUBlockEntity sbe)
-            sbe.destroy();
-        level.removeBlockEntity(pos);
-    }
-
     default InteractionResult openMenu(Level level, BlockPos pos, Player player){
         if (level.isClientSide) return InteractionResult.SUCCESS;
         if (player.isCrouching()) return InteractionResult.PASS;

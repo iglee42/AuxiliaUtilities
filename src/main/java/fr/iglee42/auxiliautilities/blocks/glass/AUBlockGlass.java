@@ -34,10 +34,4 @@ public class AUBlockGlass extends TransparentBlock implements AUBlockBase {
     }
 
     protected boolean blockEntity(Entity entity) { return true; };
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, ctx, flag);
-        super.appendHoverText(stack, ctx, tooltips, flag);
-    }
 }

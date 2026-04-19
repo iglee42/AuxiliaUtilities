@@ -14,26 +14,27 @@ import net.neoforged.api.distmarker.OnlyIn;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public interface AUTooltipProvider {
 
     @OnlyIn(Dist.CLIENT)
-    default void addTooltips(ItemStack stack,List<Component> tooltips, Item.TooltipContext ctx, TooltipFlag flag){
-        tooltips.addAll(getTooltips(stack, ctx, flag));
+    default void addTooltips(ItemStack stack, Consumer<Component> acceptor, Item.TooltipContext ctx, TooltipFlag flag){
+       getTooltips(stack, ctx, flag).forEach(acceptor);
         List<Component> advanced = getAdvancedTooltips(stack, ctx, flag);
         if (!advanced.isEmpty()){
             if (CommonKeysHandler.isKeyPressed(AUKeymappings.SHOW_DESCRIPTION))
-                tooltips.addAll(advanced);
+                advanced.forEach(acceptor);
             else
-                tooltips.add(AULang.HOLD_DESCRIPTION_TOOLTIP.get(AUKeymappings.SHOW_DESCRIPTION.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
+                acceptor.accept(AULang.HOLD_DESCRIPTION_TOOLTIP.get(AUKeymappings.SHOW_DESCRIPTION.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
         }
 
         List<Component> storage = getStorageTooltips(stack, ctx, flag);
         if (!storage.isEmpty()){
             if (CommonKeysHandler.isKeyPressed(AUKeymappings.SHOW_DETAILS))
-                tooltips.addAll(storage);
+                storage.forEach(acceptor);
             else
-                tooltips.add(AULang.HOLD_DETAILS_TOOLTIP.get(AUKeymappings.SHOW_DETAILS.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
+                acceptor.accept(AULang.HOLD_DETAILS_TOOLTIP.get(AUKeymappings.SHOW_DETAILS.getTranslatedKeyMessage()).withStyle(ChatFormatting.GRAY));
         }
     }
 

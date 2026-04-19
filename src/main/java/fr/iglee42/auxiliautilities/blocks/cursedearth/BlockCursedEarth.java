@@ -65,7 +65,7 @@ public class BlockCursedEarth extends AUBlock {
     private static boolean canSurvive(BlockState state, Level level, BlockPos pos) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = level.getBlockState(blockpos);
-        if (level.canSeeSky(blockpos) && level.isDay()) return false;
+        if (level.canSeeSky(blockpos) && level.isBrightOutside()) return false;
         if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
             return true;
         } else if (blockstate.getFluidState().getAmount() == 8) {
@@ -158,7 +158,7 @@ public class BlockCursedEarth extends AUBlock {
         if (data == null)
             return;
 
-        Entity entity = data.type.create(level,EntitySpawnReason.NATURAL);
+        Entity entity = data.type().create(level,EntitySpawnReason.NATURAL);
         if (!(entity instanceof Monster monster))
             return;
 

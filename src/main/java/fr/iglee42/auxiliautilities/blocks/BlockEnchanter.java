@@ -33,10 +33,7 @@ public class BlockEnchanter extends AUBlock implements AUEntityBlock<BEEnchanter
         super.setPlacedBy(level, pos, p_49849_, entity, p_49851_);
     }
 
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean p_60519_) {
-        AUEntityBlock.onRemove(state,level,pos,newState);
-    }
+
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult p_60508_) {

@@ -8,8 +8,13 @@ import fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.ChickenRingRenderer;
 import fr.iglee42.auxiliautilities.client.layers.KikokuSheathLayer;
 import fr.iglee42.auxiliautilities.client.models.Quad2DUnbakedModelLoader;
+import fr.iglee42.auxiliautilities.client.models.properties.AngelRingWingsProp;
+import fr.iglee42.auxiliautilities.client.models.properties.BiomeMarkerHasBiomeProp;
+import fr.iglee42.auxiliautilities.client.models.properties.LassoHasEntityProp;
+import fr.iglee42.auxiliautilities.client.models.properties.LuxSaberHasEnergyProp;
 import fr.iglee42.auxiliautilities.client.renderers.*;
 import fr.iglee42.auxiliautilities.client.screen.AUContainerScreen;
+import fr.iglee42.auxiliautilities.client.models.tints.AUItemTintSource;
 import fr.iglee42.auxiliautilities.items.ItemAngelRing;
 import fr.iglee42.auxiliautilities.menu.AUMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
@@ -32,6 +37,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.client.model.standalone.StandaloneModelBaker;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,17 +105,6 @@ public class AUClient {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event){
-        registerItemProperties();
-    }
-
-    @SubscribeEvent
-    public static void registerColors(RegisterColorHandlersEvent.ItemTintSources event){
-        /*AUItems.ITEMS.getEntries().stream()
-                .map(DeferredHolder::get)
-                .filter(AUItemBase.class::isInstance)
-                .map(AUItemBase.class::cast)
-                .forEach(i->
-                    event.register((stack, tintIndex)->!stack.isEmpty() ? i.getColor(stack,tintIndex) : 0xFFFFFFFF, i.self()));*/
     }
 
     @SubscribeEvent
@@ -123,14 +118,36 @@ public class AUClient {
     }
 
     @SubscribeEvent
-    public static void registerAdditionalModels(ModelEvent.RegisterAdditional event){
-        event.register(ManualMillRenderer.GEAR_MODEL);
-        event.register(KikokuSheathLayer.MODEL_LOCATION);
-        event.register(KikokuSheathLayer.EMPTY_LOCATION);
+    public static void registerAdditionalModels(ModelEvent.RegisterStandalone event){
+        event.register(ManualMillRenderer.GEAR_MODEL, StandaloneModelBaker.blockStateModel());
+        event.register(KikokuSheathLayer.MODEL_LOCATION,StandaloneModelBaker.blockStateModel());
+        event.register(KikokuSheathLayer.EMPTY_LOCATION,StandaloneModelBaker.blockStateModel());
         for (ItemAngelRing.AngelRingWings wing : ItemAngelRing.AngelRingWings.values()) {
             if (wing == ItemAngelRing.AngelRingWings.NONE) continue;
-            event.register(AngelRingRenderer.getWingLocation(wing));
+            event.register(AngelRingRenderer.getWingLocation(wing),StandaloneModelBaker.blockStateModel());
         }
+    }
+
+    @SubscribeEvent
+    public static void onRegisterReloadListeners(AddClientReloadListenersEvent event) {
+        event.addListener(Quad2DUnbakedModelLoader.ID,Quad2DUnbakedModelLoader.INSTANCE);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterTintSource(RegisterColorHandlersEvent.ItemTintSources event) {
+        event.register(AuxiliaUtilities.id("item_tint"), AUItemTintSource.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterConditionalModelProperty(RegisterConditionalItemModelPropertyEvent event) {
+        event.register(AuxiliaUtilities.id("marker_has_biome"), BiomeMarkerHasBiomeProp.MAP_CODEC);
+        event.register(AuxiliaUtilities.id("lasso_has_entity"), LassoHasEntityProp.MAP_CODEC);
+        event.register(AuxiliaUtilities.id("saber_has_energy"), LuxSaberHasEnergyProp.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterSelectModelProperty(RegisterSelectItemModelPropertyEvent event) {
+        event.register(AuxiliaUtilities.id("angel_ring_wings"), AngelRingWingsProp.TYPE);
     }
 
     @SubscribeEvent
@@ -138,49 +155,6 @@ public class AUClient {
         event.register(Quad2DUnbakedModelLoader.ID,Quad2DUnbakedModelLoader.INSTANCE);
     }
 
-    private static void registerItemProperties() {
-        /*ItemProperties.register(
-                AUItems.ENDER_SHARD.asItem(),
-                AuxiliaUtilities.id("shards"),
-                (stack,level,entity,seed)-> (float) stack.getCount()
-        );
-        ItemProperties.register(
-                AUItems.LUX_SABER.asItem(),
-                AuxiliaUtilities.id("charged"),
-                (stack,level,entity,seed)-> stack.getOrDefault(AUDataComponents.STORED_ENERGY,0) >= AUConfig.SABER_THRESHOLD.get() ? 1f : 0f
-        );
-        ItemProperties.register(
-                AUItems.BIOME_MARKER.asItem(),
-                AuxiliaUtilities.id("has_biome"),
-                (stack,level,entity,seed)-> stack.has(AUDataComponents.STORED_BIOME) ? 1f : 0f
-        );
-
-        ItemProperties.register(AUItems.COMPOUND_BOW.asItem(), ResourceLocation.withDefaultNamespace("pull"), (p_344163_, p_344164_, p_344165_, p_344166_) -> {
-            if (p_344165_ == null) {
-                return 0.0F;
-            } else if (p_344165_.getUseItem() != p_344163_) {
-                return 0.0F;
-            } else {
-                float progress = (float)(p_344163_.getUseDuration(p_344165_) - p_344165_.getUseItemRemainingTicks()) / 20.0F;
-                return  progress >= 1.0F ? 4F : (progress > 0.82F ? 3F : (progress > 0.4F ? 2F : 1F));
-            }
-        });
-        ItemProperties.register(AUItems.COMPOUND_BOW.asItem(),
-                ResourceLocation.withDefaultNamespace("pulling"),
-                (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F
-        );
-        ItemProperties.register(AUItems.ANGEL_RING.asItem(),
-                AuxiliaUtilities.id("wings"),
-                (stack,level,entity,seed)->stack.getOrDefault(AUDataComponents.WINGS, ItemAngelRing.AngelRingWings.NONE).ordinal());
-
-        ItemProperties.register(AUItems.GOLDEN_LASSO.asItem(),
-                AuxiliaUtilities.id("has_entity"),
-                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);
-
-        ItemProperties.register(AUItems.CURSED_LASSO.asItem(),
-                AuxiliaUtilities.id("has_entity"),
-                (stack,level,entity,seed)->stack.has(AUDataComponents.STORED_ENTITY) ? 1f : 0f);*/
-    }
 
     @SubscribeEvent
     public static void registerHUD(RegisterGuiLayersEvent event){

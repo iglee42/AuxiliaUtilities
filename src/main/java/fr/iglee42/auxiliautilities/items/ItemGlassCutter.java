@@ -24,7 +24,7 @@ import java.util.List;
 public class ItemGlassCutter extends AUItem {
     public ItemGlassCutter(Properties props) {
         super(props.component(DataComponents.TOOL, new Tool(
-                List.of(Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_BLOCKS), 4),Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_PANES),4)),1,1
+                List.of(Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_BLOCKS), 4),Tool.Rule.minesAndDrops(BuiltInRegistries.BLOCK.getOrThrow(Tags.Blocks.GLASS_PANES),4)),1,1,true
         )));
         NeoForge.EVENT_BUS.register(this);
     }

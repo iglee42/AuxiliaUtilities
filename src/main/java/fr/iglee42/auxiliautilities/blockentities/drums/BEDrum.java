@@ -6,6 +6,7 @@ import fr.iglee42.auxiliautilities.utils.StoredFluidStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -67,7 +68,7 @@ public class BEDrum extends AUBlockEntity {
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        tank.readFromNBT(registries, tag.getCompound("Tank"));
+        tank.readFromNBT(registries, tag.getCompoundOrEmpty("Tank"));
         if (EffectiveSide.get().isClient()) {
             Minecraft.getInstance().levelRenderer.setBlocksDirty(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(),getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ());
         }
@@ -80,7 +81,7 @@ public class BEDrum extends AUBlockEntity {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy(BlockPos pos, BlockState state) {}
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder builder) {
@@ -89,7 +90,7 @@ public class BEDrum extends AUBlockEntity {
     }
 
     @Override
-    protected void applyImplicitComponents(DataComponentInput input) {
+    protected void applyImplicitComponents(DataComponentGetter input) {
         super.applyImplicitComponents(input);
         StoredFluidStack stored = input.get(AUDataComponents.STORED_FLUID);
         if (stored != null){

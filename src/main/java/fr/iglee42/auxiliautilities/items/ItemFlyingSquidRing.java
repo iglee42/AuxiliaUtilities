@@ -8,9 +8,11 @@ import fr.iglee42.auxiliautilities.network.PlayerMoveVerticallyPacket;
 import fr.iglee42.auxiliautilities.network.UpdatePlayerRemainingFlyingTicksPacket;
 import fr.iglee42.auxiliautilities.utils.CommonKeysHandler;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -26,7 +28,7 @@ public class ItemFlyingSquidRing extends AUGPConsumerItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean offhand) {
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, EquipmentSlot slot) {
         tick(stack,entity);
     }
 

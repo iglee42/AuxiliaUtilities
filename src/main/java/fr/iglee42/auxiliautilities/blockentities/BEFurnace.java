@@ -94,10 +94,10 @@ public class BEFurnace extends AUBlockEntity {
     protected void load(CompoundTag tag, Provider registries) {
         super.load(tag, registries);
         energyStorage.deserializeNBT(registries, tag.get("Energy"));
-        inventory.deserializeNBT(registries, tag.getCompound("Inventory"));
-        progress = tag.getInt("Progress");
-        upgrades.deserializeNBT(registries, tag.getCompound("Upgrades"));
-        if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")) {
+        inventory.deserializeNBT(registries, tag.getCompoundOrEmpty("Inventory"));
+        progress = tag.getIntOr("Progress",0);
+        upgrades.deserializeNBT(registries, tag.getCompoundOrEmpty("Upgrades"));
+        if (tag.contains("HasRecipe") && tag.getBooleanOr("HasRecipe",false)) {
             if (level != null) {
                 /*currentRecipe = level.recipeAccess().propertySet()
                         .getAllRecipesFor(RecipeType.SMELTING).stream()

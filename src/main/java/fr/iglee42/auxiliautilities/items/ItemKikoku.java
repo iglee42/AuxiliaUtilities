@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class ItemKikoku extends SwordItem implements AUItemBase {
+public class ItemKikoku extends AUItem {
 
     public static final ResourceLocation SOUL_DAMAGE_ID =
             AuxiliaUtilities.id("soul_damage");
@@ -23,25 +24,25 @@ public class ItemKikoku extends SwordItem implements AUItemBase {
     private static final double SOUL_DAMAGE_STEP = 1D / 39D;
 
     public ItemKikoku() {
-        super(
-                ToolMaterial.NETHERITE,
-                10,
-                -2.4f,
-                new Item.Properties()
+        super( new Item.Properties()
                         .stacksTo(1)
+                        .sword( ToolMaterial.NETHERITE,
+                                10,
+                                -2.4f)
+                .fireResistant()
         );
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
         if (!(attacker instanceof Player player))
-            return false;
+            return;
 
         Level level = target.level();
 
         if (level.isClientSide)
-            return true;
+            return;
 
         double vx = target.getDeltaMovement().x;
         double vy = target.getDeltaMovement().y;
@@ -57,7 +58,7 @@ public class ItemKikoku extends SwordItem implements AUItemBase {
 
         target.setDeltaMovement(vx, vy, vz);
 
-        return true;
+        return;
     }
 
     private void applySoulDamage(LivingEntity target) {
@@ -99,9 +100,4 @@ public class ItemKikoku extends SwordItem implements AUItemBase {
         );
     }
 
-    @Override
-    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
-        addTooltips(p_41421_, p_41423_, p_339594_, p_41424_);
-        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
-    }
 }

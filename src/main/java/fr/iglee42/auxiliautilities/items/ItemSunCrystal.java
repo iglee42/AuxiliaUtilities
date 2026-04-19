@@ -34,7 +34,7 @@ public class ItemSunCrystal extends AUItem {
         int damageValue = stack.getDamageValue();
         if (damageValue > 0) {
             Level level = entity.level();
-            if (!level.isDay() || !level.canSeeSky(entity.blockPosition()) || !level.dimensionType().hasSkyLight()) return super.onEntityItemUpdate(stack,entity);
+            if (!level.isBrightOutside() || !level.canSeeSky(entity.blockPosition()) || !level.dimensionType().hasSkyLight()) return super.onEntityItemUpdate(stack,entity);
             stack.setDamageValue(stack.getDamageValue() - 1);
         }
         return super.onEntityItemUpdate(stack, entity);

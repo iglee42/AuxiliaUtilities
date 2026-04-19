@@ -75,7 +75,7 @@ public class BEManualMill extends AUGPGeneratorBlockEntity {
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        if (tag.contains("animationTime",CompoundTag.TAG_FLOAT))
-            animationTime = tag.getFloat("animationTime");
+        if (tag.contains("animationTime"))
+            animationTime = tag.getFloatOr("animationTime",0);
     }
 }

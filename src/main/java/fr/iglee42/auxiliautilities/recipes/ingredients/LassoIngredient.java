@@ -45,8 +45,8 @@ public record LassoIngredient(boolean golden, EntityType<?> entity) implements I
         if (stackEntityNbt == null) return false;
         if (!referenceEntityNbt.contains("EntityId")) return true;
         if (!stackEntityNbt.contains("EntityId")) return false;
-        String referenceEntityId = referenceEntityNbt.getString("EntityId");
-        String stackEntityId = stackEntityNbt.getString("EntityId");
+        String referenceEntityId = referenceEntityNbt.getStringOr("EntityId","");
+        String stackEntityId = stackEntityNbt.getStringOr("EntityId","");
         return referenceEntityId.equals(stackEntityId);
     }
 

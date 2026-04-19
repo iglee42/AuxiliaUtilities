@@ -94,7 +94,7 @@ public class ItemLasso extends AUItem {
         Entity entity = getEntityInStack(stack,level);
         if (entity == null) return false;
         BlockPos releasePos = pos.relative(face);
-        entity.absMoveTo(releasePos.getX() + 0.5, releasePos.getY(), releasePos.getZ() + 0.5,0,0);
+        entity.absSnapTo(releasePos.getX() + 0.5, releasePos.getY(), releasePos.getZ() + 0.5,0,0);
         stack.remove(AUDataComponents.STORED_ENTITY);
         level.addFreshEntity(entity);
         return true;
@@ -108,7 +108,7 @@ public class ItemLasso extends AUItem {
     public Entity getEntityInStack(ItemStack stack,Level level){
         if (!hasEntity(stack)) return null;
         CompoundTag nbt = stack.get(AUDataComponents.STORED_ENTITY);
-        EntityType<?> type = EntityType.byString(nbt.getString("EntityId")).orElse(null);
+        EntityType<?> type = EntityType.byString(nbt.getStringOr("EntityId","")).orElse(null);
         if (type == null) return null;
         if (!type.canSummon()) return null;
         Entity entity = type.create(level, EntitySpawnReason.BUCKET);
@@ -129,7 +129,7 @@ public class ItemLasso extends AUItem {
         if (!(entity instanceof LivingEntity lv)) return tooltips;
         tooltips.add(AULang.LASSO_HEALTH_TOOLTIP.get(formatFloat(lv.getHealth()),formatFloat(lv.getMaxHealth())));
         if (entity instanceof Villager villager){
-            tooltips.add(AULang.LASSO_PROFESSION_TOOLTIP.get(ModsUtils.getUpperName(villager.getVillagerData().getProfession().name(),"_")));
+            tooltips.add(AULang.LASSO_PROFESSION_TOOLTIP.get(villager.getVillagerData().profession().value().name()));
         }
         return tooltips;
     }

@@ -34,7 +34,7 @@ public class QuadsHelper {
             vertex[i * 8 + 4] = Float.floatToRawIntBits(sprite.getU(((vecs[i]).u)));
             vertex[i * 8 + 5] = Float.floatToRawIntBits(sprite.getV((1-(vecs[i]).v)));
         }
-        ClientHooks.fillNormal(vertex, facing);
+        ClientHooks.fillNormal(vertex);
         return new BakedQuad(vertex, tint, facing, sprite, false, 0,false);
     }
 
@@ -82,7 +82,7 @@ public class QuadsHelper {
 
     public static BakedQuad applyMatrixTransform(BakedQuad quad, Matrix4f mat) {
 
-        int[] data = quad.getVertices().clone();
+        int[] data = quad.vertices().clone();
 
         for (int v = 0; v < 4; v++) {
 
@@ -102,10 +102,10 @@ public class QuadsHelper {
 
         return new BakedQuad(
                 data,
-                quad.getTintIndex(),
-                quad.getDirection(),
-                quad.getSprite(),
-                quad.isShade(),
+                quad.tintIndex(),
+                quad.direction(),
+                quad.sprite(),
+                quad.shade(),
                 0
         );
     }

@@ -140,10 +140,10 @@ public class BEResonator extends AUGPConsumerBlockEntity implements MenuProvider
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        inventory.deserializeNBT(registries,tag.getCompound("Inventory"));
-        progress = tag.getInt("Progress");
-        upgrades.deserializeNBT(registries,tag.getCompound("Upgrades"));
-        if (tag.contains("HasRecipe") && tag.getBoolean("HasRecipe")){
+        inventory.deserializeNBT(registries,tag.getCompoundOrEmpty("Inventory"));
+        progress = tag.getIntOr("Progress",0);
+        upgrades.deserializeNBT(registries,tag.getCompoundOrEmpty("Upgrades"));
+        if (tag.contains("HasRecipe") && tag.getBooleanOr("HasRecipe",false)){
             /*currentRecipe = level.getRecipeManager().getAllRecipesFor(ResonatorRecipe.Type.INSTANCE).stream()
                     .filter(r -> r.value().matches(new SingleRecipeInput(inventory.getStackInSlot(0)), level))
                     .findFirst().orElse(null);*/

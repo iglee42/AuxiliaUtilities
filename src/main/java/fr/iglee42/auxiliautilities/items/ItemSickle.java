@@ -1,6 +1,7 @@
 package fr.iglee42.auxiliautilities.items;
 
 import fr.iglee42.auxiliautilities.AULang;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -20,13 +21,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.List;
 import java.util.Map;
 
-public class ItemSickle extends DiggerItem implements AUItemBase {
+public class ItemSickle extends AUItem implements AUItemBase {
 
     public static final Map<ToolMaterial,Integer> RANGES = Map.of(
             ToolMaterial.WOOD,1,
@@ -42,7 +44,7 @@ public class ItemSickle extends DiggerItem implements AUItemBase {
     private ThreadLocal<Boolean> propagate = ThreadLocal.withInitial(() -> false);
 
     public ItemSickle(ToolMaterial material, float attackDamage, float attackSpeed, Properties props) {
-        super(material, BlockTags.CROPS, attackDamage, attackSpeed, props);
+        super( props.tool(material, BlockTags.CROPS, attackDamage, attackSpeed,0.0F));
         this.material = material;
         NeoForge.EVENT_BUS.register(this);
     }
@@ -112,11 +114,6 @@ public class ItemSickle extends DiggerItem implements AUItemBase {
         return super.useOn(ctx);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, ctx, flag);
-        super.appendHoverText(stack, ctx, tooltips, flag);
-    }
 
     @Override
     public List<Component> getAdvancedTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {

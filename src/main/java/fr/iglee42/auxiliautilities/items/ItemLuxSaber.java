@@ -3,6 +3,7 @@ package fr.iglee42.auxiliautilities.items;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.config.AUConfig;
+import fr.iglee42.auxiliautilities.items.api.AUItem;
 import fr.iglee42.auxiliautilities.items.api.AUItemBase;
 import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
@@ -25,7 +26,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ItemLuxSaber extends SwordItem implements AUItemBase {
+public class ItemLuxSaber extends AUItem {
 
     public static final ToolMaterial TIER = new ToolMaterial(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
@@ -38,7 +39,7 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
 
 
     public ItemLuxSaber(Properties props) {
-        super(TIER, 3,0,props.component(AUDataComponents.STORED_ENERGY,0).component(DataComponents.BASE_COLOR,DyeColor.WHITE));
+        super(props.sword(TIER, 3,0).component(AUDataComponents.STORED_ENERGY,0).component(DataComponents.BASE_COLOR,DyeColor.WHITE));
     }
 
     @Override
@@ -112,7 +113,7 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
             DyeColor color = stack.getOrDefault(DataComponents.BASE_COLOR,DyeColor.WHITE);
             return color.getTextureDiffuseColor();
         }
-        return AUItemBase.super.getColor(stack,tintIndex);
+        return super.getColor(stack,tintIndex);
     }
 
     @Override
@@ -122,11 +123,6 @@ public class ItemLuxSaber extends SwordItem implements AUItemBase {
         return Component.translatable("item."+AuxiliaUtilities.MODID+".lux_saber."+color.getSerializedName());
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, ctx, flag);
-        super.appendHoverText(stack, ctx, tooltips, flag);
-    }
 
     @Override
     public List<Component> getStorageTooltips(ItemStack stack, TooltipContext ctx, TooltipFlag flag) {

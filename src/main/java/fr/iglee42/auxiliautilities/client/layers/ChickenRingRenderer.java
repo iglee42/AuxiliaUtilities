@@ -1,11 +1,7 @@
 package fr.iglee42.auxiliautilities.client.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
-import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.items.ItemAngelRing;
-import fr.iglee42.auxiliautilities.items.registries.AUDataComponents;
 import fr.iglee42.auxiliautilities.items.registries.AUItems;
 import fr.iglee42.auxiliautilities.utils.AUCuriosHelper;
 import fr.iglee42.auxiliautilities.utils.InventoryHelper;
@@ -13,19 +9,12 @@ import fr.iglee42.igleelib.api.utils.InventoryUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
-import org.joml.Quaternionf;
 
 import static fr.iglee42.auxiliautilities.client.layers.AngelRingRenderer.renderWing;
 

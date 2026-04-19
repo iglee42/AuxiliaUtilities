@@ -17,6 +17,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -28,6 +29,7 @@ import org.joml.Vector3f;
 
 import java.awt.*;
 import java.util.List;
+import java.util.function.Consumer;
 
 @EventBusSubscriber(modid = AuxiliaUtilities.MODID, value = Dist.CLIENT)
 public class ItemCompoundBow extends BowItem implements AUItemBase {
@@ -95,7 +97,7 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
         Entity entity = event.getEntity();
         if (!(entity instanceof AbstractArrow blueArrow)) return;
         if (blueArrow.level() == null || blueArrow.level().isClientSide()) return;
-        if (!blueArrow.getPersistentData().getBoolean("IsBlueArrow")  || ((ArrowAccessor)blueArrow).auInvoke$isInGround()) return;
+        if (!blueArrow.getPersistentData().getBooleanOr("IsBlueArrow",false)  || ((ArrowAccessor)blueArrow).auInvoke$isInGround()) return;
 
         for (int i = 0; i < 5; i++) {
             for (int k = 0; k < 4; k++) {
@@ -124,8 +126,8 @@ public class ItemCompoundBow extends BowItem implements AUItemBase {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, ctx, flag);
-        super.appendHoverText(stack, ctx, tooltips, flag);
+    public void appendHoverText(ItemStack stack, TooltipContext ctx, TooltipDisplay p_399753_, Consumer<Component> acceptor, TooltipFlag flag) {
+        addTooltips(stack,acceptor,ctx,flag);
+        super.appendHoverText(stack, ctx, p_399753_, acceptor, flag);
     }
 }

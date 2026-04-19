@@ -11,6 +11,7 @@ import fr.iglee42.auxiliautilities.menu.widgets.AUFluidTankWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTimedProgressWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.slots.SlotItemHandlerWidget;
 import fr.iglee42.auxiliautilities.recipes.CrusherRecipe;
+import fr.iglee42.auxiliautilities.utils.AUExtraCodecs;
 import fr.iglee42.igleelib.api.blockentities.EnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,6 +19,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
@@ -178,30 +180,30 @@ public abstract class AUGeneratorBlockEntity extends AUBlockEntity {
         tag.putInt("BurnTime", burnTime);
         tag.putBoolean("Active", active);
 
-        tag.put("UsedItem", usedItem.saveOptional(registries));
+        tag.store("UsedItem", ItemStack.OPTIONAL_CODEC,registries.createSerializationContext(NbtOps.INSTANCE),usedItem);
         tag.put("UsedFluid", usedFluid.saveOptional(registries));
-        if (rainbowPos != null) tag.put("RainbowPos", NbtUtils.writeBlockPos(rainbowPos));
+        if (rainbowPos != null) tag.store("RainbowPos", AUExtraCodecs.BLOCK_POS, rainbowPos);
     }
 
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
         if (tag.contains("DeathItems"))
-            itemHandler.deserializeNBT(registries,tag.getCompound("DeathItems"));
+            itemHandler.deserializeNBT(registries,tag.getCompoundOrEmpty("DeathItems"));
         if (tag.contains("Fluid"))
-            fluidTank.readFromNBT(registries,tag.getCompound("Fluid"));
+            fluidTank.readFromNBT(registries,tag.getCompoundOrEmpty("Fluid"));
         if (tag.contains("Energy"))
             energyStorage.deserializeNBT(registries,tag.get("Energy"));
         if (tag.contains("MaxBurnTime"))
-            maxBurnTime = tag.getInt("MaxBurnTime");
-        burnTime = tag.getInt("BurnTime");
-        active = tag.getBoolean("Active");
+            maxBurnTime = tag.getIntOr("MaxBurnTime",0);
+        burnTime = tag.getIntOr("BurnTime",0);
+        active = tag.getBooleanOr("Active",false);
 
         if (tag.contains("UsedItem"))
-            usedItem = ItemStack.parseOptional(registries,tag.getCompound("UsedItem"));
+            usedItem = tag.read("UsedItem",ItemStack.OPTIONAL_CODEC,registries.createSerializationContext(NbtOps.INSTANCE)).orElseThrow();
         if (tag.contains("UsedFluid"))
-            usedFluid = FluidStack.parseOptional(registries,tag.getCompound("UsedFluid"));
-        NbtUtils.readBlockPos(tag,"RainbowPos").ifPresent(pos->rainbowPos = pos);
+            usedFluid = FluidStack.parseOptional(registries,tag.getCompoundOrEmpty("UsedFluid"));
+        tag.read("RainbowPos",AUExtraCodecs.BLOCK_POS,registries.createSerializationContext(NbtOps.INSTANCE)).ifPresent(pos->rainbowPos = pos);
     }
 
     protected boolean isItemValid(int slot, ItemStack stack){

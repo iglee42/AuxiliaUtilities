@@ -45,6 +45,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.saveddata.SavedData;
+import net.minecraft.world.level.saveddata.SavedDataType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -76,6 +77,21 @@ public class FlatTransferNodeHandler extends SavedData {
     public static final ResourceLocation BACK_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_back");
     public static final ResourceLocation SELECTION_NODE_SPRITE = ResourceLocation.fromNamespaceAndPath(AuxiliaUtilities.MODID, "block/transfer_nodes/flat_selection");
 
+    private static final SavedDataType<FlatTransferNodeHandler> TYPE = new SavedDataType<>(
+            AuxiliaUtilities.MODID + "_flat_transfer_nodes",
+            FlatTransferNodeHandler::new,
+            RecordCodecBuilder.create(instance -> instance.group(
+                    FlatTransferNode.CODEC.listOf().xmap(
+                            list->{
+                                Multimap<BlockPos, FlatTransferNode> map = HashMultimap.create();
+                                list.forEach(node->map.put(node.getPos(),node));
+                                return map;
+                            },
+                            map->new ArrayList<>(map.values())
+                    ).fieldOf("nodes").forGetter(FlatTransferNodeHandler::getNodes)
+            ).apply(instance,FlatTransferNodeHandler::new))
+    );
+
     public static final StreamCodec<RegistryFriendlyByteBuf, FlatTransferNodeHandler> STREAM_CODEC = StreamCodec.of(
             (buffer, handler) -> buffer.writeCollection(handler.nodes.values(), (buf,node)->FlatTransferNode.STREAM_CODEC.encode((RegistryFriendlyByteBuf) buf,node)),
             buffer -> {
@@ -93,28 +109,16 @@ public class FlatTransferNodeHandler extends SavedData {
     public static FlatTransferNodeHandler get(Level level){
         if (!(level instanceof ServerLevel serverLevel))
             throw new RuntimeException("FlatTransferNodeHandler can only be accessed on the server side");
-        return serverLevel.getDataStorage().computeIfAbsent(new Factory<>(FlatTransferNodeHandler::new, FlatTransferNodeHandler::new, DataFixTypes.LEVEL), AuxiliaUtilities.MODID + "_flat_transfer_nodes");
+        return serverLevel.getDataStorage().computeIfAbsent(TYPE);
     }
 
-    protected FlatTransferNodeHandler(Multimap<BlockPos, FlatTransferNode> nodes) {
-        this.nodes = nodes;
+    public FlatTransferNodeHandler(Multimap<BlockPos, FlatTransferNode> nodes) {
+        this.nodes = HashMultimap.create(nodes);
     }
+
 
     public FlatTransferNodeHandler() {
-        nodes = HashMultimap.create();
-    }
-    public FlatTransferNodeHandler(CompoundTag tag, HolderLookup.Provider registries) {
-        this();
-        ListTag entries = tag.getList("nodes", 10);
-        entries.stream().map(entry -> FlatTransferNode.CODEC.parse(registries.createSerializationContext(NbtOps.INSTANCE),entry).getOrThrow()).forEach(node -> this.nodes.put(node.pos, node));
-    }
-
-    @Override
-    public CompoundTag save(CompoundTag compoundTag, HolderLookup.Provider registries) {
-        ListTag entries = new ListTag();
-        this.nodes.values().stream().map(node -> FlatTransferNode.CODEC.encodeStart(registries.createSerializationContext(NbtOps.INSTANCE), node).getOrThrow()).forEach(entries::add);
-        compoundTag.put("nodes", entries);
-        return compoundTag;
+        this(HashMultimap.create());
     }
 
     @SubscribeEvent

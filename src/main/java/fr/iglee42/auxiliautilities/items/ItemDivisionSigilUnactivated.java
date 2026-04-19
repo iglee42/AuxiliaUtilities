@@ -156,7 +156,7 @@ public class ItemDivisionSigilUnactivated extends AUItem {
 
                     LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level, EntitySpawnReason.TRIGGERED);
                     if (lightning != null) {
-                        lightning.moveTo(x, y, z);
+                        lightning.snapTo(x, y, z);
                         level.addFreshEntity(lightning);
                     }
 

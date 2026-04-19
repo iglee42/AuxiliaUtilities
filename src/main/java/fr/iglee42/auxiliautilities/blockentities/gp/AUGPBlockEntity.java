@@ -4,6 +4,7 @@ import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
 import fr.iglee42.auxiliautilities.gp.GPHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -22,13 +23,13 @@ public abstract class AUGPBlockEntity extends AUBlockEntity implements GPHolder 
     @Override
     protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
         super.save(tag, registries, forClient);
-        if (owner != null) tag.putUUID("owner", owner);
+        if (owner != null) tag.store("owner", UUIDUtil.CODEC, owner);
     }
 
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        if (tag.hasUUID("owner"))owner = tag.getUUID("owner");
+        if (tag.contains("owner"))owner = tag.read("owner",UUIDUtil.CODEC).orElseThrow();
     }
 
     protected abstract void removedFromNetwork();
@@ -65,8 +66,8 @@ public abstract class AUGPBlockEntity extends AUBlockEntity implements GPHolder 
     }
 
     @Override
-    public void destroy() {
-        super.destroy();
+    public void destroy(BlockPos pos, BlockState state) {
+        super.destroy(pos,state);
         removedFromNetwork();
     }
 

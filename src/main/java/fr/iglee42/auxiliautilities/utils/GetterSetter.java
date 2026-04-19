@@ -57,7 +57,7 @@ public interface GetterSetter<T> extends Consumer<T>, Supplier<T> {
     }
     
     public ItemStack get() {
-      return this.inventoryPlayer.getSelected();
+      return this.inventoryPlayer.getSelectedItem();
     }
   }
 }

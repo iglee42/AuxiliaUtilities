@@ -32,7 +32,7 @@ public class SecondChanceEffect extends AUMobEffect {
         MobEffectInstance instance = entity.getEffect(AUMobEffects.SECOND_CHANCE);
         if (instance == null) return;
         CompoundTag nbt = entity.getPersistentData();
-        if (nbt.getBoolean("SecondChanceUsed")){
+        if (nbt.getBooleanOr("SecondChanceUsed",false)){
             if (entity instanceof Player p){
                 AULang.SECOND_CHANCE_ALREADY_USED_MESSAGE.sendToPlayer(p,MESSAGE_UUID);
             }

@@ -47,7 +47,7 @@ public class BEGenHalitosis extends AUGeneratorBlockEntity{
 
             float yaw = Mth.wrapDegrees(rand.nextFloat() * 360.0F);
 
-            endermite.moveTo(x, y, z, yaw, 0.0F);
+            endermite.snapTo(x, y, z, yaw, 0.0F);
             endermite.yHeadRot = yaw;
             endermite.yBodyRot = yaw;
 

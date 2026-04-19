@@ -37,10 +37,7 @@ public class BlockWindMill extends AUBlock implements AUGPEntityBlock<BEWindMill
         super.setPlacedBy(level, pos, p_49849_, entity, p_49851_);
     }
 
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean p_60519_) {
-        AUEntityBlock.onRemove(state,level,pos,newState);
-    }
+
 
     @Override
     protected VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {

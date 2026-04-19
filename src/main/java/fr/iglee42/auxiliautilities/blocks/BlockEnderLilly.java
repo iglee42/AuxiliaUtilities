@@ -6,8 +6,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.TriState;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -26,11 +29,10 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.util.TriState;
 
 import java.util.List;
 
-public class BlockEnderLilly extends BushBlock implements AUBlockBase {
+public class BlockEnderLilly extends VegetationBlock implements AUBlockBase {
     public static final MapCodec<BlockEnderLilly> CODEC = simpleCodec(BlockEnderLilly::new);
 
         public static final int MAX_AGE = 7;
@@ -51,12 +53,6 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
     public BlockEnderLilly(Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltips, TooltipFlag flag) {
-        addTooltips(stack, tooltips, context, flag);
-        super.appendHoverText(stack, context, tooltips, flag);
     }
 
     @Override
@@ -119,7 +115,7 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
             for (int j = -1; j <= 1; j++) {
                 float f1 = 0.0F;
                 BlockState blockstate = p_52274_.getBlockState(blockpos.offset(i, 0, j));
-                net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
+                TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
                 if (soilDecision.isDefault() ? blockstate.getBlock() instanceof net.minecraft.world.level.block.FarmBlock : soilDecision.isTrue()) {
                     f1 = 1.0F;
                     if (blockstate.isFertile(p_52274_, p_52275_.offset(i, 0, j))) {
@@ -163,17 +159,23 @@ public class BlockEnderLilly extends BushBlock implements AUBlockBase {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos p_52279_, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos p_52279_, Entity entity,InsideBlockEffectApplier applier) {
         if (!level.isClientSide && state.getValue(AGE) > 1 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75, 0.8F));
-            double d0 = Math.abs(entity.getX() - entity.xOld);
-            double d1 = Math.abs(entity.getZ() - entity.zOld);
-            if (d0 >= 0.003F || d1 >= 0.003F) {
-                entity.hurt(level.damageSources().sweetBerryBush(), 1.0F);
+            if (level instanceof ServerLevel serverLevel) {
+                Vec3 vec3 = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition().subtract(entity.position());
+                if (vec3.horizontalDistanceSqr() > 0.0) {
+                    double d0 = Math.abs(vec3.x());
+                    double d1 = Math.abs(vec3.z());
+                    if (d0 >= 0.003F || d1 >= 0.003F) {
+                        entity.hurtServer(serverLevel,level.damageSources().sweetBerryBush(), 1.0F);
+                    }
+                }
             }
         }
-        super.entityInside(state, level, p_52279_, entity);
+        super.entityInside(state, level, p_52279_, entity,applier);
     }
+
 
     @Override
     protected boolean canSurvive(BlockState p_52282_, LevelReader p_52283_, BlockPos p_52284_) {

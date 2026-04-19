@@ -2,6 +2,7 @@ package fr.iglee42.auxiliautilities.blockentities.gp.consumers;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.DynamicOps;
 import fr.iglee42.auxiliautilities.AULang;
 import fr.iglee42.auxiliautilities.AuxiliaUtilities;
 import fr.iglee42.auxiliautilities.blockentities.AUBlockEntity;
@@ -12,11 +13,14 @@ import fr.iglee42.auxiliautilities.menu.AUBEMenu;
 import fr.iglee42.auxiliautilities.menu.AUMenus;
 import fr.iglee42.auxiliautilities.menu.widgets.AUTextWidget;
 import fr.iglee42.auxiliautilities.menu.widgets.UpDownIntSelectorWidgets;
+import fr.iglee42.auxiliautilities.utils.AUExtraCodecs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -88,7 +92,7 @@ public class BEEnderPorcupine extends AUGPConsumerBlockEntity {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy(BlockPos pos, BlockState state) {}
 
     public Optional<Pair<Level, BlockPos>> getTargetPos() {
         verifyPos();
@@ -112,17 +116,19 @@ public class BEEnderPorcupine extends AUGPConsumerBlockEntity {
     @Override
     protected void save(CompoundTag tag, HolderLookup.Provider registries, boolean forClient) {
         super.save(tag, registries, forClient);
-        tag.put("TargetA", NbtUtils.writeBlockPos(targetA));
-        tag.put("TargetB", NbtUtils.writeBlockPos(targetB));
-        tag.put("Target", NbtUtils.writeBlockPos(target));
+        DynamicOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
+        tag.store("TargetA", AUExtraCodecs.BLOCK_POS,ops, targetA);
+        tag.store("TargetB", AUExtraCodecs.BLOCK_POS,ops, targetB);
+        tag.store("Target", AUExtraCodecs.BLOCK_POS,ops, target);
     }
 
     @Override
     protected void load(CompoundTag tag, HolderLookup.Provider registries) {
         super.load(tag, registries);
-        this.targetA = NbtUtils.readBlockPos(tag,"TargetA").orElse(BlockPos.ZERO).mutable();
-        this.targetB = NbtUtils.readBlockPos(tag,"TargetB").orElse(BlockPos.ZERO).mutable();
-        this.target = NbtUtils.readBlockPos(tag,"Target").orElse(BlockPos.ZERO).mutable();
+        DynamicOps<Tag> ops = registries.createSerializationContext(NbtOps.INSTANCE);
+        this.targetA = tag.read("TargetA",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
+        this.targetB = tag.read("TargetB",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
+        this.target = tag.read("Target",AUExtraCodecs.BLOCK_POS,ops).orElse(BlockPos.ZERO).mutable();
     }
 
     @Override
